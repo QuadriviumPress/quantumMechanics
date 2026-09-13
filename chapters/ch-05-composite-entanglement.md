@@ -41,6 +41,35 @@ to "two independent spins," is the first step toward composite systems of
 any size—two electrons, a spin coupled to a field mode, or the
 many-particle systems of Chapter 11.
 
+:::{note} Quick review: why do the dimensions multiply?
+Skip this box if it is already clear why a joint system of two qubits needs
+four basis states rather than, say, two or three.
+
+Suppose you are choosing an outfit: a shirt, from $2$ options, paired with a
+pair of pants, also from $2$ options. How many complete outfits are
+possible? Every shirt can be paired with every pair of pants independently,
+so the count is $2\times2=4$, not $2+2$: (shirt 1, pants 1), (shirt 1, pants
+2), (shirt 2, pants 1), (shirt 2, pants 2). Two independent choices, each
+with two options, combine multiplicatively.
+
+A joint quantum state space is built the same way. Spin $A$ has two basis
+states and spin $B$ has two basis states, so the *joint* system needs one
+basis state for every combination of one $A$-label and one $B$-label: four
+in total, listed just below. This is why joint dimensions multiply rather
+than add, and it generalizes immediately—three spins need
+$2\times2\times2=8$ basis states, and an $A$ with $m$ outcomes joined to a
+$B$ with $n$ outcomes needs $mn$.
+
+It is worth flagging now exactly where this analogy will later break down,
+since that break is the entire point of the chapter. A person can always
+describe a chosen outfit by separately naming one shirt and one pair of
+pants. Section 5.2 shows that a general joint quantum state *cannot* always
+be described by separately naming one state for $A$ and one state for $B$.
+That extra possibility—a joint description with no corresponding pair of
+separate local descriptions—is what makes composite quantum systems
+genuinely different from combinatorics with ordinary independent choices.
+:::
+
 One spin-$\tfrac12$ system has a two-dimensional state space. Two
 distinguishable spins require four independent basis states:
 
@@ -80,6 +109,28 @@ Notice that the coefficient array factors into one list for $A$ and one for
 $B$. This factorization is the defining feature of a pure **product state**,
 and it is exactly what will fail, in Section 5.2, for a state that cannot be
 built this way.
+
+### Quick calculation: multiplying out a concrete product state
+
+Take $|\psi\rangle_A=|+x\rangle_A=(|0\rangle_A+|1\rangle_A)/\sqrt2$ and
+$|\phi\rangle_B=|0\rangle_B$, so in the notation of equation
+{eq}`two-product-state`, $a=b=1/\sqrt2$ while $c=1$ and $d=0$. Multiplying
+out term by term,
+
+```{math}
+|+x\rangle_A|0\rangle_B
+=\frac{1}{\sqrt2}(1)|00\rangle+\frac{1}{\sqrt2}(0)|01\rangle
++\frac{1}{\sqrt2}(1)|10\rangle+\frac{1}{\sqrt2}(0)|11\rangle
+=\frac{|00\rangle+|10\rangle}{\sqrt2}.
+```
+
+Only the terms ending in $B$-label $0$ survive, because $|\phi\rangle_B$ has
+no $|1\rangle_B$ component at all: the amplitude for any joint outcome with
+$B=1$ is forced to zero regardless of what $A$ does. Contrast this with the
+entangled state introduced next: here both surviving terms share the same
+$B$ label while $A$'s label is free to be either $0$ or $1$—exactly the
+signature of $A$ and $B$ having been prepared independently, with no
+correlation between their outcomes.
 
 :::{figure} ../images/figures/ch05-tensor-product-space.svg
 :name: fig-tensor-product-space
@@ -245,12 +296,56 @@ The answer is captured by the **reduced density operator**,
 \hat\rho_A=\operatorname{Tr}_B(\hat\rho_{AB}),
 ```
 
-where the partial trace sums over any orthonormal basis of $B$. For
-$|\Phi^+\rangle$, working through this trace gives
+where the partial trace sums over any orthonormal basis of $B$. Concretely,
+for any orthonormal basis $\{|k\rangle_B\}$,
 
 ```{math}
-\hat\rho_A=\hat\rho_B=\frac12\hat I.
+\operatorname{Tr}_B(\hat\rho_{AB})
+=\sum_k{}_B\langle k|\hat\rho_{AB}|k\rangle_B.
 ```
+
+Each term ${}_B\langle k|\hat\rho_{AB}|k\rangle_B$ is itself still an
+operator, but now acting on $A$ alone: $B$'s basis ket has been contracted
+away on both sides, and the sum over $k$ adds up the resulting $A$-only
+pieces.
+
+Let's carry this out explicitly for $|\Phi^+\rangle=(|00\rangle+|11\rangle)
+/\sqrt2$, using the $z$ basis for $B$. Writing out the full operator,
+
+```{math}
+\hat\rho_{AB}=|\Phi^+\rangle\langle\Phi^+|
+=\frac12\Big(|00\rangle\langle00|+|00\rangle\langle11|
++|11\rangle\langle00|+|11\rangle\langle11|\Big).
+```
+
+Tracing over $B$ means sandwiching this between ${}_B\langle0|\cdots|0
+\rangle_B$ and separately between ${}_B\langle1|\cdots|1\rangle_B$, then
+adding the two results. Because ${}_B\langle0|0\rangle_B=
+{}_B\langle1|1\rangle_B=1$ while ${}_B\langle0|1\rangle_B=
+{}_B\langle1|0\rangle_B=0$, any term whose two $B$ labels disagree vanishes
+immediately—including both off-diagonal terms, $|00\rangle\langle11|$ and
+$|11\rangle\langle00|$, which are exactly the terms carrying
+$|\Phi^+\rangle$'s coherence. What survives is only
+
+```{math}
+\hat\rho_A
+={}_B\langle0|\hat\rho_{AB}|0\rangle_B
++{}_B\langle1|\hat\rho_{AB}|1\rangle_B
+=\frac12|0\rangle_A\langle0|_A+\frac12|1\rangle_A\langle1|_A
+=\frac12\hat I,
+```
+
+and the identical calculation, tracing over $A$ instead, gives
+$\hat\rho_B=\hat I/2$ as well.
+
+It is worth noticing exactly which piece of information the partial trace
+discarded. It kept the diagonal terms, which correctly predict that a $z$
+measurement of $A$ alone is 50–50. It discarded the off-diagonal
+$|00\rangle\langle11|$ coherence—the very feature that made
+$|\Phi^+\rangle$ a *pure* joint state rather than the classical mixture of
+Section 5.8. That coherence is a property of the joint operator alone; it
+has no counterpart living inside either local factor, which is exactly why
+no measurement confined to $A$ by itself can ever recover it.
 
 The joint state is pure, but each subsystem, considered alone, is maximally
 mixed. This is not ordinary ignorance about which pre-existing Bell
@@ -312,8 +407,24 @@ S=E(\mathbf a,\mathbf b)+E(\mathbf a,\mathbf b')
 +E(\mathbf a',\mathbf b)-E(\mathbf a',\mathbf b').
 ```
 
-Every local hidden-variable model of this type satisfies $|S|\le2$. For the
-singlet, suitable coplanar settings separated by $45^\circ$ instead give
+Every local hidden-variable model of this type satisfies $|S|\le2$.
+
+:::{tip} Where does the classical bound of $2$ come from?
+Here is the one-line idea behind that bound; Exercise 18 works it out in
+full. A local hidden-variable model says that each of the four numbers
+$A,A',B,B'$ is fixed in advance to $+1$ or $-1$ before any measurement
+choice is made, independent of which pair actually gets measured together.
+Then a bit of algebra regroups the CHSH combination as
+$AB+AB'+A'B-A'B'=A(B+B')+A'(B-B')$. Since $B$ and $B'$ are each $\pm1$,
+exactly one of $B+B'$ and $B-B'$ is always $0$ while the other is always
+$\pm2$—they can never both be large at the same time. So this expression can
+never exceed $2$ in magnitude, no matter how the four hidden values were
+assigned. Quantum mechanics evades this argument not by breaking the
+algebra, but because no single joint assignment of definite, pre-existing
+values to all four settings needs to exist in the first place.
+:::
+
+For the singlet, suitable coplanar settings separated by $45^\circ$ instead give
 $|S|=2\sqrt2$. Quantum theory violates the classical bound while still
 preserving the no-signaling marginal probabilities from Section 5.4.
 

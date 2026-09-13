@@ -32,6 +32,34 @@ fundamentally identical—not merely similar, but interchangeable in
 principle—and shows that the answer is not a new force or interaction. It is a
 restriction on which states of several particles are allowed to occur at all.
 
+:::{note} Quick review: two very different meanings of "can't tell them apart"
+Skip this box if it is already clear why quantum indistinguishability is a
+new postulate and not just an admission of experimental sloppiness.
+
+Take two identical classical billiard balls, prepared at positions $x_1$ and
+$x_2$ at some initial time. Even if the balls are manufactured to agree in
+every measurable respect—same mass, same color, same everything—classical
+mechanics still assigns each ball its own continuous trajectory. An observer
+who tracks both trajectories without blinking always knows which ball
+started at $x_1$: "ball 1" and "ball 2" remain meaningful labels for the rest
+of the experiment, even though no measurement performed on either ball
+*alone*, after the fact, could ever tell them apart. Classical
+indistinguishability is a practical limit on bookkeeping, not a limit built
+into the state itself—nothing in the mathematics prevents assigning
+permanent labels; only our patience for tracking them runs out.
+
+Quantum mechanics removes even that in-principle handle. A wavefunction does
+not follow a single sharp trajectory: two identical particles' wave packets
+can spread out and genuinely overlap, so that there is no fact of the
+matter, even in principle, about which particle is "the one that started on
+the left." There is no hidden trajectory that an all-seeing observer could
+have followed instead. This is why the rest of this chapter treats exchange
+symmetry as a postulate about which *states* are physically allowed to
+occur—equation {eq}`exchange-symmetry` below—rather than as a statement
+about the limits of measurement. Working out the consequences of that one
+difference is the entire content of this chapter.
+:::
+
 For two distinguishable particles, a product wavefunction can assign
 $\psi_a$ to particle 1 and $\psi_b$ to particle 2:
 

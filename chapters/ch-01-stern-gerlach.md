@@ -354,10 +354,13 @@ measured along $z$. This means applying equation {eq}`empirical-angle-rule`
 twice in a row, using the *selected* output of the first analyzer as the
 input to the second.
 
-At the middle analyzer,
+At the middle analyzer, equation {eq}`empirical-angle-rule` applies with
+$\alpha=60^\circ$, so the half-angle appearing in the formula is
+$\alpha/2=30^\circ$:
 
 ```{math}
-P(+\mathbf n\mid z+)=\cos^2 30^\circ=\frac34.
+P(+\mathbf n\mid z+)=\cos^2 30^\circ
+=\left(\frac{\sqrt3}{2}\right)^2=\frac34.
 ```
 
 The selected middle output is a new $+\mathbf n$ preparation. Since the angle
@@ -454,6 +457,14 @@ For spin $\tfrac12$, two independent states suffice to describe every
 possible pure spin state. We will represent them by vectors in a
 two-dimensional complex vector space. The word "two-dimensional" refers to
 state space, not ordinary physical space.
+
+If "complex vector space" does not yet mean much to you, that is completely
+expected at this point—nothing so far has required it. Chapter 2 builds this
+idea from the ground up, starting with a review of ordinary arrows in the
+plane and of complex-number arithmetic itself, before ever writing down a
+spin state. The two-outcome rule, the incompatibility of $S_z$ and $S_x$, and
+the interference rule found above are the experimental *reasons* that vector
+space is the right tool; the vocabulary comes second.
 
 ### From laboratory rules to mathematical demands
 
@@ -578,7 +589,23 @@ continuously with analyzer orientation.
 
 Equations such as {eq}`empirical-angle-rule` predict probabilities, whereas a
 real experiment produces integer counts. The link between the two is
-statistical. If the preparation and analyzer are held fixed and $N$
+statistical.
+
+:::{note} Quick review: what a standard deviation tells you
+If you flip a fair coin $100$ times, you do not expect exactly $50$ heads
+every time—you expect *something close to* $50$, with the typical batch
+landing within roughly $5$ of that number. The **standard deviation** is
+just a name for that typical amount of scatter: a way of saying, before the
+experiment is even run, "here is the size of wiggle you should expect around
+the predicted average, purely from chance." A result within one standard
+deviation of the prediction is unremarkable; a result many standard
+deviations away is a signal that something besides ordinary chance may be
+going on—an unfair coin, a miscounted trial, or, in the laboratory, a
+misaligned analyzer or a flawed theory. The formulas below simply make this
+everyday idea precise for the two-outcome case at hand.
+:::
+
+If the preparation and analyzer are held fixed and $N$
 independent atoms are recorded, the number $N_+$ at the positive exit
 fluctuates around $Np_+$, where
 

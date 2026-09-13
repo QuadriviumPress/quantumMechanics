@@ -38,6 +38,42 @@ $\mathbf r=(x,y,z)$, with
 \int|\psi(\mathbf r)|^2\,d^3r=1.
 ```
 
+:::{note} Quick review: the gradient and the Laplacian
+Skip this box if multivariable calculus is already familiar.
+
+In one dimension, the kinetic-energy operator involves a single second
+derivative, $d^2/dx^2$. In three dimensions a wavefunction depends on all
+three coordinates at once, $\psi(x,y,z)$, so "how fast $\psi$ curves" must
+now account for curvature along every direction, not just one. The
+**gradient**, written $\boldsymbol\nabla\psi$, collects the three ordinary
+partial derivatives into a single vector,
+
+```{math}
+\boldsymbol\nabla\psi=
+\left(\frac{\partial\psi}{\partial x},
+\frac{\partial\psi}{\partial y},
+\frac{\partial\psi}{\partial z}\right),
+```
+
+the direct three-dimensional generalization of an ordinary slope. The
+**Laplacian**, written $\nabla^2\psi$, then adds up the *second* derivative
+along each axis separately,
+
+```{math}
+\nabla^2\psi=\frac{\partial^2\psi}{\partial x^2}
++\frac{\partial^2\psi}{\partial y^2}
++\frac{\partial^2\psi}{\partial z^2}.
+```
+
+It measures total curvature: how much the value of $\psi$ at a point
+differs from the average of its immediate neighbors, summed over all three
+directions at once. Restricting $\psi$ to depend on $x$ alone recovers the
+one-dimensional kinetic-energy operator $-\frac{\hbar^2}{2m}
+\frac{d^2\psi}{dx^2}$ from Chapter 7 exactly, so nothing here is
+conceptually new: $\nabla^2$ is simply what $d^2/dx^2$ becomes once a
+wavefunction is allowed to vary in more than one direction.
+:::
+
 For a time-independent potential,
 
 ```{math}
@@ -76,6 +112,42 @@ a product $\psi=X(x)Y(y)Z(z)$ separates equation
 ```{math}
 E=E_x+E_y+E_z.
 ```
+
+### Quick calculation: carrying out the separation
+
+It is worth watching this separation happen explicitly rather than taking
+it on faith, since the identical technique reappears in Section 8.3 and
+throughout later chapters. Substituting $\psi=X(x)Y(y)Z(z)$ into equation
+{eq}`three-dimensional-tise` and using
+$V(x,y,z)=V_x(x)+V_y(y)+V_z(z)$ gives
+
+```{math}
+-\frac{\hbar^2}{2m}\Big(YZ\,X''+XZ\,Y''+XY\,Z''\Big)
++\big(V_x+V_y+V_z\big)XYZ=E\,XYZ.
+```
+
+Dividing every term by $\psi=XYZ$ separates the variables completely:
+
+```{math}
+\underbrace{\left[-\frac{\hbar^2}{2m}\frac{X''}{X}+V_x(x)\right]}_{\text{function of }x\text{ alone}}
++\underbrace{\left[-\frac{\hbar^2}{2m}\frac{Y''}{Y}+V_y(y)\right]}_{\text{function of }y\text{ alone}}
++\underbrace{\left[-\frac{\hbar^2}{2m}\frac{Z''}{Z}+V_z(z)\right]}_{\text{function of }z\text{ alone}}=E.
+```
+
+The first bracket depends only on $x$, the second only on $y$, the third
+only on $z$—yet their sum is the single constant $E$, the same number
+regardless of $x$, $y$, or $z$. The only way three functions of independent
+variables can add up to one fixed constant for *every* choice of $x$, $y$,
+and $z$ is if each bracket is separately equal to its own constant:
+
+```{math}
+-\frac{\hbar^2}{2m}\frac{d^2X}{dx^2}+V_x(x)X=E_xX,
+```
+
+and likewise for $Y$ with constant $E_y$ and $Z$ with constant $E_z$, where
+$E=E_x+E_y+E_z$. One three-dimensional problem has become three ordinary
+one-dimensional eigenvalue problems, each of exactly the form already solved
+in Chapter 7.
 
 For an infinite rectangular box with sides $L_x,L_y,L_z$,
 
@@ -128,6 +200,34 @@ degeneracy and exposing its geometric origin.
 :::
 
 ## 8.3 Central potentials and spherical coordinates
+
+:::{note} Quick review: spherical coordinates
+Skip this box if $(r,\theta,\phi)$ is already a familiar coordinate system.
+
+Ordinary Cartesian coordinates $(x,y,z)$ locate a point by three signed
+distances along fixed axes. **Spherical coordinates** instead locate the
+same point using one distance and two angles: $r\ge0$ is the distance from
+the origin, $\theta\in[0,\pi]$ is the polar angle measured down from the
+$+z$ axis, and $\phi\in[0,2\pi)$ is the azimuthal angle measured around the
+$z$ axis—the same way longitude is measured around the Earth, with $\theta$
+playing the role of colatitude. The conversion to Cartesian coordinates is
+
+```{math}
+x=r\sin\theta\cos\phi,\qquad
+y=r\sin\theta\sin\phi,\qquad
+z=r\cos\theta.
+```
+
+This system earns its keep whenever the physics singles out one special
+point, the origin, and treats every direction away from it on equal
+footing—exactly the situation for a central potential $V(r)$, which depends
+on distance from the origin alone and not on direction at all. Rewriting
+the Laplacian in these coordinates is what allows a problem with spherical
+symmetry to be split into a *radial* equation depending on $r$ alone, plus
+angular equations depending only on $\theta$ and $\phi$—precisely the split
+carried out in equation {eq}`central-separation` next, by the same
+separation-of-variables logic just used for the rectangular box.
+:::
 
 When $V(\mathbf r)=V(r)$, spherical coordinates respect the rotational
 symmetry. Write
@@ -210,7 +310,17 @@ The spatial density is largest at $r=0$, but the radial density is
 P(r)=\frac{4r^2}{a_0^3}e^{-2r/a_0}.
 ```
 
-Differentiation shows that $P(r)$ is largest at $r=a_0$. “Most likely point”
+Differentiating with the product rule,
+
+```{math}
+\frac{dP}{dr}=\frac{4}{a_0^3}\left(2re^{-2r/a_0}
+-\frac{2r^2}{a_0}e^{-2r/a_0}\right)
+=\frac{8r}{a_0^3}e^{-2r/a_0}\left(1-\frac{r}{a_0}\right),
+```
+
+which vanishes at $r=0$ (a minimum, since $P(0)=0$ there) and at $r=a_0$.
+The second root is the most probable radius, matching the length scale
+already built into the wavefunction itself. “Most likely point”
 and “most likely radius” answer different questions because their volume
 elements differ. Example 8.2 revisits this distinction for a state with
 nonzero $\ell$, where the growing shell volume and the decaying exponential
@@ -234,6 +344,28 @@ relative coordinate. The relative particle has reduced mass
 ```{math}
 \mu=\frac{m_em_p}{m_e+m_p}
 ```
+
+:::{note} Quick review: why a reduced mass appears
+Skip this box if the two-body-to-one-body reduction is already familiar from
+classical mechanics.
+
+The hydrogen atom is really a two-body problem: an electron and a proton,
+each free to move, pulling on each other. Attacking the Schrödinger equation
+directly for two independent three-dimensional positions would mean six
+coordinates at once. Exactly as in classical mechanics, this splits cleanly
+into two separate and much simpler problems: the motion of the *center of
+mass*, which drifts freely like a single particle of total mass $m_e+m_p$
+and carries no information about the atom's internal structure, and the
+motion of the *relative coordinate* $\mathbf r=\mathbf r_e-\mathbf r_p$,
+which behaves exactly like one fictitious particle orbiting a fixed center—
+provided that fictitious particle is assigned the reduced mass
+$\mu=m_em_p/(m_e+m_p)$ rather than either individual mass. Because
+$m_p\approx1836\,m_e$, $\mu$ turns out extremely close to $m_e$ itself,
+close enough that using $m_e$ in its place is an excellent approximation for
+most purposes—though not for the highest-precision spectroscopy, and not
+when comparing hydrogen to deuterium, where the small difference in $\mu$ is
+exactly the quantity being measured.
+:::
 
 and Coulomb potential
 
@@ -337,10 +469,35 @@ Its radial probability density is
 P(r)=r^2R_{21}^2(r)=\frac{1}{24a_0^5}\,r^4e^{-r/a_0}.
 ```
 
-Setting $dP/dr=0$ gives $4r^3-r^4/a_0=0$, so the most probable radius is
-$r_{\max}=4a_0=n^2a_0$ — the same radius Bohr's original circular-orbit
-picture assigns to $n=2$, even though the orbital has no orbit. The mean
-radius, by contrast, is
+Differentiating with the product rule, treating $1/(24a_0^5)$ as a constant
+prefactor,
+
+```{math}
+\frac{dP}{dr}=\frac{1}{24a_0^5}
+\left(4r^3e^{-r/a_0}-\frac{r^4}{a_0}e^{-r/a_0}\right)
+=\frac{e^{-r/a_0}}{24a_0^5}\left(4r^3-\frac{r^4}{a_0}\right).
+```
+
+Setting $dP/dr=0$ gives $4r^3-r^4/a_0=0$ (the exponential factor is never
+zero, so only the polynomial part can vanish), so the most probable radius
+is $r_{\max}=4a_0=n^2a_0$ — the same radius Bohr's original circular-orbit
+picture assigns to $n=2$, even though the orbital has no orbit.
+
+:::{note} Quick review: the integral $\int_0^\infty x^ne^{-x/a}\,dx=n!\,a^{n+1}$
+This integral—a rescaled Gamma-function integral—appears every time a
+hydrogen radial probability, always a polynomial in $r$ times
+$e^{-r/a_0}$, is integrated to get a normalization constant or a mean value,
+so it is worth keeping on hand as a standing tool rather than re-deriving it
+by repeated integration by parts each time it is needed. A quick check at
+small $n$ builds confidence in it: for $n=0$,
+$\int_0^\infty e^{-x/a}\,dx=a=0!\,a^1$; integrating once by parts for $n=1$
+gives $\int_0^\infty xe^{-x/a}\,dx=a^2=1!\,a^2$. Each additional power of
+$x$ contributes one more integration by parts, and hence one more factor of
+$a$ together with one more factor in the falling product that becomes
+$n!$—exactly the pattern the general formula packages into one closed form.
+:::
+
+The mean radius, by contrast, is
 
 ```{math}
 \langle r\rangle=\int_0^\infty rP(r)\,dr
@@ -393,7 +550,13 @@ For fixed $n$, the allowed orbital states number
 \sum_{\ell=0}^{n-1}(2\ell+1)=n^2.
 ```
 
-Including two spin states doubles this count. The Coulomb degeneracy is
+This is worth checking directly for the first few values of $n$ before
+trusting it in general. For $n=1$, only $\ell=0$ contributes:
+$1=1^2$. For $n=2$, $\ell=0$ and $\ell=1$ contribute $1+3=4=2^2$. For $n=3$,
+$\ell=0,1,2$ contribute $1+3+5=9=3^2$. The pattern is just the familiar fact
+that the first $n$ odd numbers always sum to $n^2$, now dressed up in the
+$(2\ell+1)$-fold degeneracy that rotational symmetry assigns to each value
+of $\ell$. Including two spin states doubles this count. The Coulomb degeneracy is
 larger than rotational symmetry alone requires: states with different
 $\ell$ also share the same energy. This is a genuinely different phenomenon
 from the box degeneracy of Section 8.2. Rotational symmetry by itself only
@@ -455,6 +618,29 @@ energetically possible line may therefore be absent or extremely weak.
 :::
 
 ### Why $\Delta\ell=\pm1$: a parity argument
+
+:::{note} Quick review: even and odd functions, and parity
+Skip this box if "parity" already means something concrete to you.
+
+A function $f(x)$ is called **even** if $f(-x)=f(x)$—flipping the sign of
+its argument leaves it unchanged, like $\cos x$ or $x^2$—and **odd** if
+$f(-x)=-f(x)$, like $\sin x$ or $x$ itself. The key fact used repeatedly
+below concerns integrals: the integral of an *odd* function over a range
+symmetric about the origin, such as $\int_{-a}^{a}f(x)\,dx$ with $f$ odd, is
+always exactly zero, since whatever the function contributes on the
+positive side is exactly canceled by its mirror image on the negative side.
+An even function has no such automatic cancellation.
+
+**Parity** is this same even/odd idea promoted to three dimensions, where
+"flipping the sign of the argument" means reflecting every point through
+the origin, $\mathbf r\to-\mathbf r$. A three-dimensional function has
+**even parity** if it is unchanged by this reflection and **odd parity** if
+it flips sign, and the identical cancellation argument applies: an integral
+over all of space of a function with overall odd parity vanishes
+automatically, with no need to know any further details of the function.
+This is exactly the tool the argument below applies to the electric-dipole
+matrix element.
+:::
 
 The rate for an electric-dipole transition is controlled by a matrix element
 of the position operator, $\langle n'\ell'm'|\mathbf r|n\ell m\rangle$. Under

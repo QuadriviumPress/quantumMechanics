@@ -42,7 +42,18 @@ whose Cartesian components satisfy
 [\hat J_x,\hat J_y]=i\hbar\hat J_z
 ```
 
-and cyclic permutations. Before deriving anything from this relation, it is
+and cyclic permutations. This is exactly the same kind of relation already
+proved directly from the Pauli matrices in Chapter 3, equation
+{eq}`spin-commutator`: $[\hat S_x,\hat S_y]=i\hbar\hat S_z$. What is new here
+is the direction of the logic. Chapter 3 started from a concrete
+$2\times2$ matrix representation and *derived* the commutator. This chapter
+runs the argument in reverse: it starts from the commutator alone, treated as
+the defining property of "an angular momentum," and derives everything
+else—the allowed eigenvalues, the ladder construction, even the existence of
+representations other than spin-$\tfrac12$—from that one algebraic fact.
+Nothing below assumes any particular matrix size in advance.
+
+Before deriving anything from this relation, it is
 worth checking that it is physically plausible. Take an ordinary object—a
 book, a phone—and rotate it $90^\circ$ about $x$ and then $90^\circ$ about
 $y$. Now reset it, and perform the same two rotations in the opposite order.
@@ -134,12 +145,28 @@ to $\hat J_\pm|j,m\rangle$ and using the commutator gives eigenvalue
 $\hbar(m\pm1)$.
 
 To fix the normalization—and, along the way, to see *why* the ladder must
-terminate—compute the squared norm of $\hat J_+|j,m\rangle$ directly:
+terminate—compute the squared norm of $\hat J_+|j,m\rangle$ directly. Start
+by multiplying out the product $\hat J_-\hat J_+$ term by term, exactly as
+you would expand $(a-ib)(a+ib)$ for ordinary numbers:
 
 ```{math}
 \hat J_-\hat J_+
 =(\hat J_x-i\hat J_y)(\hat J_x+i\hat J_y)
-=\hat J_x^2+\hat J_y^2+i[\hat J_x,\hat J_y]
+=\hat J_x^2+i\hat J_x\hat J_y-i\hat J_y\hat J_x-i^2\hat J_y^2
+=\hat J_x^2+\hat J_y^2+i[\hat J_x,\hat J_y].
+```
+
+The only difference from ordinary numbers is that $\hat J_x\hat J_y$ and
+$\hat J_y\hat J_x$ do not cancel, since $\hat J_x$ and $\hat J_y$ do not
+commute—their difference is exactly the commutator $[\hat J_x,\hat J_y]$
+that survives in the last term. Substituting
+$[\hat J_x,\hat J_y]=i\hbar\hat J_z$ from equation
+{eq}`angular-commutators` and $\hat J_x^2+\hat J_y^2=\hat J^2-\hat J_z^2$
+then gives
+
+```{math}
+\hat J_-\hat J_+
+=\hat J^2-\hat J_z^2+i(i\hbar\hat J_z)
 =\hat J^2-\hat J_z^2-\hbar\hat J_z.
 ```
 
@@ -390,6 +417,21 @@ The possible totals obey the triangle rule:
 j=|j_1-j_2|,|j_1-j_2|+1,\ldots,j_1+j_2.
 ```
 
+:::{tip} Why a range of totals, and why these particular endpoints?
+If $\hat{\mathbf J}_1$ and $\hat{\mathbf J}_2$ behaved like two ordinary
+classical arrows of fixed lengths $j_1$ and $j_2$, their vector sum could
+range anywhere from $j_1+j_2$ (the two arrows pointing the same way) down to
+$|j_1-j_2|$ (the two arrows pointing as oppositely as their lengths allow),
+depending on the angle between them. The quantum triangle rule reproduces
+exactly this classical range of possible total lengths, even though no
+single state has both $\hat{\mathbf J}_1$ and $\hat{\mathbf J}_2$ pointing in
+a sharp direction at once. What quantum mechanics adds is that only the
+values in equation {eq}`angular-triangle`—spaced one unit apart, never a
+continuum—are actually realized, and that a *given* pair of subsystem
+states does not have one fixed total $j$; it is generally a superposition
+over several allowed values, as Example 9.4 makes concrete below.
+:::
+
 In every term of a coupled-state expansion, $m=m_1+m_2$, since
 $\hat J_z=\hat J_{1z}+\hat J_{2z}$. The coefficients connecting the two bases
 are **Clebsch–Gordan coefficients**. They are not arbitrary: each coupled
@@ -437,6 +479,16 @@ and $\hat S_-|{\uparrow}\rangle=\hbar|{\downarrow}\rangle$, so
 ```{math}
 \hbar\sqrt3\,\big|\tfrac32,\tfrac12\big\rangle
 =\hbar\sqrt2\,|1,0\rangle|{\uparrow}\rangle+\hbar\,|1,1\rangle|{\downarrow}\rangle,
+```
+
+Dividing both sides by the common factor $\hbar\sqrt3$ isolates the ket on
+the left and turns the two right-hand coefficients into the Clebsch–Gordan
+numbers themselves:
+
+```{math}
+\big|\tfrac32,\tfrac12\big\rangle
+=\frac{\sqrt2}{\sqrt3}\,|1,0\rangle|{\uparrow}\rangle
++\frac{1}{\sqrt3}\,|1,1\rangle|{\downarrow}\rangle,
 ```
 
 giving
@@ -522,6 +574,19 @@ states form the $j=1$ **triplet**. The remaining orthogonal state is
 ```
 
 the antisymmetric $j=0$ **singlet**.
+
+It is worth pausing to recognize these states: equation {eq}`spin-singlet`
+is exactly the entangled state $|\Psi^-\rangle$ from Chapter 5, and
+$|1,0\rangle$ above is exactly $|\Psi^+\rangle$. Chapter 5 introduced them as
+the states with the strongest possible nonclassical correlations between two
+separated spins, without yet having a name for *why* nature singles out
+precisely this pair of combinations. This section supplies that reason: the
+singlet and the $m=0$ triplet state are not an arbitrary choice of entangled
+states—they are exactly the states of definite *total* angular momentum,
+$j=0$ and $j=1$ respectively, that a rotationally symmetric interaction
+between two spins naturally produces and conserves. Entanglement and the
+addition of angular momentum turn out to be two views of the same
+construction for a two-spin system.
 
 ### Example 9.4: measuring total spin
 

@@ -29,6 +29,41 @@ single mathematical object, called an **operator**, that acts on a state
 vector and hands back the possible outcomes together with the states that
 make each outcome certain.
 
+:::{note} Quick review: matrices, eigenvectors, and eigenvalues
+Skip this box if diagonalizing a matrix is already routine for you.
+
+A matrix acting on a column vector is a rule for turning one vector into
+another—in general, rotating and rescaling it into some new direction.
+Remarkably, for almost any square matrix, a few special input vectors are
+*not* redirected at all: the matrix sends each of them straight back along
+its own original direction, merely stretched or shrunk by some factor. Such
+a vector is called an **eigenvector** of the matrix, and the stretching
+factor is its **eigenvalue**.
+
+For a concrete, purely mathematical example with no physics attached yet,
+take the real matrix
+
+```{math}
+M=\begin{pmatrix}3&1\\1&3\end{pmatrix}.
+```
+
+Acting on the column $(1,1)$ gives $(4,4)=4\,(1,1)$: the same direction,
+scaled by $4$. Acting on $(1,-1)$ gives $(2,-2)=2\,(1,-1)$: the same
+direction again, this time scaled by $2$. Try this on almost any other
+vector, say $(1,0)$, and the result, $(3,1)$, points in a genuinely new
+direction rather than merely rescaling $(1,0)$. So $(1,1)$ and $(1,-1)$ are
+eigenvectors of $M$, with eigenvalues $4$ and $2$ respectively—and, for this
+particular $M$, essentially the only directions with this special property.
+
+This is exactly the mathematical structure a measurement needs. An
+eigenvector is a preparation for which "applying the operator" returns a
+definite, predictable multiple of the same state, rather than mixing it into
+something new—and the multiple it returns by is the number a measurement
+would report. Sections 3.1–3.2 make this identification precise for spin,
+where the vectors involved are complex kets rather than real columns like
+$(1,1)$.
+:::
+
 A physical observable is represented by a **Hermitian** linear operator: one
 equal to its own conjugate transpose. Section 3.8 will show exactly why this
 property is what guarantees real, physically sensible measurement outcomes;
@@ -472,15 +507,43 @@ Stern–Gerlach bookkeeping every time. The **commutator** of two operators is
 ```
 
 If $\hat A$ and $\hat B$ commute, the order in which we apply them makes no
-difference; if the commutator is nonzero, order matters. Direct
-multiplication of the Pauli matrices gives
+difference; if the commutator is nonzero, order matters. It is worth
+multiplying the Pauli matrices out by hand once, so that the result is not
+taken purely on faith. Using equation {eq}`pauli-matrices`,
+
+```{math}
+\sigma_x\sigma_y=
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+=\begin{pmatrix}i&0\\0&-i\end{pmatrix}
+=i\sigma_z,
+```
+
+while multiplying in the opposite order gives
+
+```{math}
+\sigma_y\sigma_x=
+\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+=\begin{pmatrix}-i&0\\0&i\end{pmatrix}
+=-i\sigma_z.
+```
+
+The two products are not equal—already a direct demonstration that matrix
+multiplication need not commute—and their difference is
+$\sigma_x\sigma_y-\sigma_y\sigma_x=2i\sigma_z$. Inserting
+$\hat S_j=(\hbar/2)\sigma_j$ from equation {eq}`spin-pauli` then gives
 
 ```{math}
 :label: spin-commutator
-[\hat S_x,\hat S_y]=i\hbar\hat S_z,
+[\hat S_x,\hat S_y]
+=\left(\frac{\hbar}{2}\right)^2(2i\sigma_z)
+=i\hbar\left(\frac{\hbar}{2}\sigma_z\right)
+=i\hbar\hat S_z,
 ```
 
-with cyclic permutations for the other pairs. This nonzero commutator is the
+with cyclic permutations for the other pairs, obtained by the same steps
+with $x\to y\to z\to x$ relabeled throughout. This nonzero commutator is the
 precise algebraic counterpart of the sequential-analyzer behavior observed
 in Chapter 1.
 
@@ -665,10 +728,35 @@ conjugates of each other. Its characteristic equation is
 
 so the possible outcomes are the real values
 $\lambda_\pm=3\pm\sqrt3$—real, exactly as Hermiticity guaranteed in advance.
-Solving $(\hat A-\lambda_\pm\hat I)|\lambda_\pm\rangle=0$ and normalizing
-produces orthogonal eigenkets. Even before doing that last piece of algebra,
-Hermiticity already tells us that the roots must be real and that a unitary
-change of basis can diagonalize the operator.
+
+A quick check catches most sign or arithmetic errors before going any
+further: the sum of the eigenvalues must equal the trace of $\hat A$, and
+their product must equal its determinant. Here
+$\lambda_++\lambda_-=6=2+4=\operatorname{Tr}\hat A$, and
+$\lambda_+\lambda_-=(3+\sqrt3)(3-\sqrt3)=9-3=6$, which indeed matches the
+determinant computed above, $2\cdot4-|1-i|^2=8-2=6$. Both checks pass, so it
+is safe to proceed.
+
+To find the eigenvector for $\lambda_+$, write $|\lambda_+\rangle=(v_1,v_2)$
+and use either row of $(\hat A-\lambda_+\hat I)|\lambda_+\rangle=0$—the two
+rows are not independent equations once $\lambda_+$ is an exact root, so
+either one alone determines the ratio $v_2/v_1$. The second row reads
+$(1+i)v_1+(4-\lambda_+)v_2=0$, so
+
+```{math}
+v_2=-\frac{1+i}{4-\lambda_+}v_1
+=-\frac{1+i}{1-\sqrt3}v_1.
+```
+
+Choosing $v_1=1$ fixes an unnormalized eigenvector; dividing by its norm
+then produces a properly normalized $|\lambda_+\rangle$. The same procedure
+with $\lambda_-=3-\sqrt3$ produces $|\lambda_-\rangle$, and one can check
+directly that $\langle\lambda_+|\lambda_-\rangle=0$, exactly as the general
+argument of Section 3.8 guarantees for any two eigenvectors belonging to
+distinct eigenvalues of a Hermitian matrix. Even before carrying out this
+last piece of algebra, Hermiticity already told us in advance that the roots
+must be real and that a unitary change of basis can diagonalize the
+operator; Exercise 15 asks you to finish the normalization explicitly.
 
 ## 3.9 The Pauli algebra as a calculation tool
 
@@ -751,9 +839,11 @@ w_j\geq0,\quad\sum_jw_j=1.
 ```
 
 Recall that the trace of an operator is the sum of its diagonal entries in
-any orthonormal basis—the result does not depend on which basis is chosen. A
-density operator is always Hermitian, has trace one, and has no negative
-eigenvalues. In this language, probabilities and expectation values take
+any orthonormal basis—the result does not depend on which basis is chosen.
+(This is the same fact used as a check in Example 3.4: the trace, computed
+from the diagonal entries, equals the sum of the eigenvalues, computed from
+an entirely different calculation.) A density operator is always Hermitian,
+has trace one, and has no negative eigenvalues. In this language, probabilities and expectation values take
 compact forms that work for pure states and mixtures alike:
 
 ```{math}

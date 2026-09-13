@@ -39,6 +39,41 @@ that tells the state how to change from one instant to the next. Equation
 specifying the initial state $|\psi(0)\rangle$ and the Hamiltonian $\hat
 H(t)$ is enough to determine the state at every later time.
 
+:::{note} Quick review: what does it mean to exponentiate an operator?
+For an ordinary number $x$, the exponential function is defined by its power
+series,
+
+```{math}
+e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots.
+```
+
+The very same series makes sense if $x$ is replaced by a square matrix $X$,
+since matrices can be multiplied by themselves and added together just like
+numbers:
+
+```{math}
+e^X=\hat I+X+\frac{X^2}{2!}+\frac{X^3}{3!}+\cdots.
+```
+
+This infinite sum looks intimidating, but it collapses to something simple
+whenever $X$ is diagonal, say $X=\operatorname{diag}(x_1,x_2)$. Every power
+of a diagonal matrix is just the same diagonal matrix with each entry raised
+to that power, so the whole series acts independently, entry by entry:
+
+```{math}
+e^X=\operatorname{diag}(e^{x_1},e^{x_2}).
+```
+
+Exponentiating a diagonal matrix, in other words, is nothing more than
+exponentiating each diagonal number separately, then reassembling the
+result. This is precisely the strategy used throughout this chapter:
+diagonalize $\hat H$ first—its eigenvalues are the possible energies—
+exponentiate the resulting simple diagonal matrix, and transform back to
+whichever basis is convenient. You have already met a $1\times1$ special
+case of this idea, under a different name, in Chapter 2's Euler formula
+$e^{i\phi}=\cos\phi+i\sin\phi$.
+:::
+
 When the Hamiltonian does not depend on time, this differential equation has
 an explicit solution:
 
@@ -48,6 +83,23 @@ an explicit solution:
 \qquad
 \hat U(t)=e^{-i\hat Ht/\hbar}.
 ```
+
+It is worth checking directly that this solves equation {eq}`tdse`, rather
+than accepting it purely on authority. Differentiating the defining power
+series of $\hat U(t)$ term by term with respect to $t$,
+
+```{math}
+\frac{d\hat U(t)}{dt}
+=\frac{d}{dt}\sum_{n=0}^\infty\frac{1}{n!}
+\left(\frac{-i\hat Ht}{\hbar}\right)^n
+=-\frac{i\hat H}{\hbar}\hat U(t),
+```
+
+because $\hat H$ commutes with every power of itself, so each term of the
+series differentiates exactly as an ordinary power of $t$ would. Multiplying
+both sides by $i\hbar$ and applying the result to $|\psi(0)\rangle$
+reproduces equation {eq}`tdse` exactly. This calculation used only that
+$\hat H$ does not depend on time; nothing about spin specifically entered.
 
 Because $\hat H$ is Hermitian, the operator $\hat U$ built from it is
 automatically **unitary**: $\hat U^\dagger\hat U=\hat I$. This single fact has
@@ -276,7 +328,27 @@ Keeping track of that sign carefully, rather than dropping it, avoids
 silently reversing the direction of precession later on.
 
 Because $\sigma_z^2=\hat I$, its exponential can be evaluated directly from
-the power series, without any diagonalization step:
+the power series, without any diagonalization step. Every even power of
+$\sigma_z$ collapses back to $\hat I$, and every odd power collapses back to
+$\sigma_z$ itself: $\sigma_z^3=\sigma_z(\sigma_z^2)=\sigma_z$,
+$\sigma_z^4=(\sigma_z^2)^2=\hat I$, and so on. Writing $\theta=\omega_0t/2$
+for brevity and separating the exponential's power series into its even and
+odd terms,
+
+```{math}
+e^{i\theta\sigma_z}
+=\sum_{n=0}^\infty\frac{(i\theta\sigma_z)^n}{n!}
+=\underbrace{\left(\sum_{n\ \mathrm{even}}\frac{(i\theta)^n}{n!}\right)}
+_{=\cos\theta}\hat I
++\underbrace{\left(\sum_{n\ \mathrm{odd}}\frac{(i\theta)^n}{n!}\right)}
+_{=i\sin\theta}\sigma_z,
+```
+
+using $\sigma_z^n=\hat I$ for even $n$ and $\sigma_z^n=\sigma_z$ for odd $n$
+to pull $\sigma_z$ out of every odd term. The two bracketed sums are exactly
+the ordinary Taylor series whose sum is $\cos\theta$ and $i\sin\theta$
+respectively—the same series reviewed above for $e^{i\phi}$, now split into
+its even and odd parts instead of read off directly. This gives
 
 ```{math}
 :label: pauli-exponential
@@ -284,6 +356,12 @@ e^{i\omega_0t\sigma_z/2}
 =\cos\frac{\omega_0t}{2}\,\hat I
 +i\sin\frac{\omega_0t}{2}\,\sigma_z.
 ```
+
+The identical argument applies to $e^{i\alpha\,\mathbf
+n\cdot\boldsymbol\sigma/2}$ for any unit vector $\mathbf n$, since
+$(\mathbf n\cdot\boldsymbol\sigma)^2=\hat I$ as well; this is exactly the
+fact reused in Section 4.5 for a field pointing in an arbitrary direction
+and in Section 4.10 for a general control pulse.
 
 In the $z$ basis, where $\hat H$ is already diagonal, this is simply
 

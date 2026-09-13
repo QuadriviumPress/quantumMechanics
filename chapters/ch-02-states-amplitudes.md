@@ -34,6 +34,35 @@ complex vector space. There is no more mystery in the symbol than in writing
 $\vec v$ for an arrow in ordinary space—it is just a label, chosen to remind
 us that we are working with a state rather than an ordinary number.
 
+:::{note} Quick review: vectors, components, and dot products
+If vectors and dot products are already second nature to you, skip ahead—
+everything here reappears below in the spin context. If not, here is the
+ordinary-space picture this chapter builds on.
+
+An arrow $\vec v$ in the plane can be written as a sum of two perpendicular
+unit vectors, $\vec v=v_x\hat x+v_y\hat y$, where $\hat x$ and $\hat y$ point
+one unit along the two axes. The numbers $v_x$ and $v_y$ are the arrow's
+**components**: they say how much of $\hat x$ and how much of $\hat y$ must
+be combined to build $\vec v$. Once axes are chosen, it is equivalent, and
+often more convenient, to drop the arrow notation entirely and just write the
+column of numbers, $\vec v\doteq(v_x,v_y)$.
+
+The **dot product** of two vectors, $\vec u\cdot\vec v=u_xv_x+u_yv_y$,
+answers a specific geometric question: how much does one vector "overlap"
+with another? Two perpendicular vectors have zero overlap, and a vector
+dotted with itself gives the square of its own length,
+$\vec v\cdot\vec v=|\vec v|^2$. For a concrete check, $\vec u=(3,4)$ and
+$\vec v=(0,1)$ give $\vec u\cdot\vec v=3(0)+4(1)=4$—exactly the $y$-component
+of $\vec u$, since $\vec v=\hat y$. Dotting a vector with a basis vector
+simply reads off the corresponding component.
+
+Everything below repeats this pattern with two changes: the "components"
+$a$ and $b$ are complex numbers rather than real ones, and the dot product is
+replaced by an *inner product* built to handle that. Nothing about the
+underlying idea—build a vector from basis pieces, then use a product to read
+the pieces back off—is new.
+:::
+
 The preparation called $z+$ is represented by the ket $|+z\rangle$, and the
 preparation $z-$ by $|-z\rangle$. These two state vectors form an orthonormal
 basis for the spin state space: every other spin-$\tfrac12$ preparation can be
@@ -134,8 +163,11 @@ valid physical state by dividing by its length:
 
 ### Example 2.1: normalization
 
-Normalize $|v\rangle=2|+z\rangle+(1+i)|-z\rangle$. Its squared norm is
-$4+|1+i|^2=6$, hence
+Normalize $|v\rangle=2|+z\rangle+(1+i)|-z\rangle$. Applying equation
+{eq}`norm-state` term by term, the first coefficient contributes
+$|2|^2=4$ and the second contributes
+$|1+i|^2=(1+i)^*(1+i)=(1-i)(1+i)=1+1=2$, so the squared norm is
+$\langle v|v\rangle=4+2=6$, hence
 
 ```{math}
 |\psi\rangle=\frac{1}{\sqrt6}
@@ -173,6 +205,68 @@ term flips sign because $i^*=-i$, not because of anything to do with
 linearity.
 
 ### Complex numbers as amplitude geometry
+
+:::{note} Quick review: complex-number arithmetic
+Skip this box if complex numbers are already familiar. If your last
+exposure to them was in an algebra class and feels distant, read on—
+everything quantum mechanics needs from complex numbers is contained here.
+
+A complex number is a pair of real numbers, $x$ and $y$, packaged as
+$z=x+iy$, where the symbol $i$ is defined by $i^2=-1$. Here $x$ is called the
+real part and $y$ the imaginary part. Two complex numbers add just like
+vectors, component by component:
+
+```{math}
+(2+3i)+(1-5i)=3-2i.
+```
+
+Multiplication follows the ordinary rules of algebra, with $i^2$ replaced by
+$-1$ wherever it appears:
+
+```{math}
+(2+3i)(1-5i)=2-10i+3i-15i^2=2-7i+15=17-7i.
+```
+
+Every complex number $z=x+iy$ has a **complex conjugate**, written $z^*$,
+obtained by flipping the sign of the imaginary part: $z^*=x-iy$. Multiplying
+a number by its own conjugate always gives a nonnegative real number, called
+its squared **modulus** (or squared magnitude):
+
+```{math}
+z^*z=(x-iy)(x+iy)=x^2+y^2=|z|^2.
+```
+
+For example, $z=3+4i$ has $z^*=3-4i$ and $|z|^2=9+16=25$, so $|z|=5$.
+Notice that $|z|$ is an ordinary nonnegative real number even though $z$
+itself is not—this is exactly the property that will let a complex
+amplitude turn into a real, positive probability.
+
+It helps enormously to picture $z=x+iy$ as a point, or an arrow from the
+origin, in a plane with a "real axis" and an "imaginary axis"—exactly the
+same kind of picture as the $(v_x,v_y)$ arrow in the box above, just with a
+new name for the axes. In this picture, $|z|$ is the length of the arrow,
+and the angle $\phi$ the arrow makes with the real axis is called its
+**phase**. Trigonometry then gives an equivalent way to write any complex
+number, called polar form:
+
+```{math}
+z=x+iy=r\cos\phi+ir\sin\phi=re^{i\phi},
+\qquad r=|z|,
+```
+
+where the last equality, Euler's formula, is a standard fact about the
+exponential function that we will use constantly without reproving it. A
+number with $r=1$, such as $e^{i\phi}$ itself, sits exactly on the unit
+circle in this picture—its magnitude is $1$ and only its angle $\phi$
+varies. For instance, $e^{i\pi/2}=\cos(\pi/2)+i\sin(\pi/2)=i$: multiplying by
+$i$ rotates the plane by $90^\circ$.
+
+The one calculation habit worth fixing firmly now, because it recurs on
+every page of this chapter, is this: to get a probability from a complex
+amplitude $z$, always compute $|z|^2=z^*z$—never $z^2$. For $z=i/2$,
+$z^2=-1/4$, which cannot be a probability, whereas
+$|z|^2=(i/2)^*(i/2)=(-i/2)(i/2)=1/4$, which can.
+:::
 
 Complex numbers enter quantum mechanics because an amplitude needs to carry
 both a magnitude and a phase at once, and a single real number cannot do
@@ -422,6 +516,36 @@ the change of basis. Reading its entries as inner products also makes clear
 that a basis change is *not* a physical Stern–Gerlach measurement—no outcome
 has been selected, and the abstract ket itself has not been disturbed in any
 way.
+
+### Quick calculation: carrying out the matrix multiplication
+
+It is worth performing this multiplication by hand once, so that equation
+{eq}`z-to-x-change` reads as an ordinary matrix–vector product—row dotted
+into column, exactly as in the vector review of Section 2.1—rather than as
+an unfamiliar piece of bra–ket bookkeeping. Take
+$|\psi\rangle=(|+z\rangle+i|-z\rangle)/\sqrt2$, so
+$[\psi]_z=\frac{1}{\sqrt2}\binom1i$. Multiplying,
+
+```{math}
+[\psi]_x
+=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}
+\frac{1}{\sqrt2}\binom1i
+=\frac12\binom{1+i}{1-i}.
+```
+
+The top entry comes from dotting the row $(1,1)$ into the column $(1,i)$,
+giving $1+i$; the bottom entry comes from dotting $(1,-1)$ into $(1,i)$,
+giving $1-i$; each is then scaled by the $\frac1{\sqrt2}\cdot\frac1{\sqrt2}
+=\frac12$ collected from the two prefactors. As a check, normalization must
+survive the change of basis:
+
+```{math}
+\left|\frac{1+i}{2}\right|^2+\left|\frac{1-i}{2}\right|^2
+=\frac12+\frac12=1,
+```
+
+confirming directly, by arithmetic rather than by appeal to unitarity alone,
+that the $x$-basis column is a properly normalized state.
 
 ### Example 2.3: probabilities in another basis
 
@@ -741,6 +865,22 @@ multiplying $|+\mathbf n\rangle$ or $|-\mathbf n\rangle$ by its own overall
 phase changes its coordinates but no outcome probability. The *relative*
 phase written inside each ket, by contrast, is not a matter of convention
 once the $z$-basis convention has already been fixed.
+
+### Checking special cases first
+
+Before applying equation {eq}`arbitrary-direction-spinors` to an unfamiliar
+direction, it is a good habit to check that it reproduces the three
+directions already known, since a mistake in a general formula often shows
+up as soon as you specialize it. Setting $\theta=0$ (pointing along $+z$)
+gives $|+\mathbf n\rangle=|+z\rangle$, exactly as it should, since the
+formula's $\phi$-dependent term is multiplied by $\sin(\theta/2)=0$. Setting
+$\theta=\pi/2,\ \phi=0$ (pointing along $+x$) gives
+$|+\mathbf n\rangle=(|+z\rangle+|-z\rangle)/\sqrt2=|+x\rangle$, matching
+equation {eq}`x-states`. Setting $\theta=\pi/2,\ \phi=\pi/2$ (pointing along
+$+y$) gives $|+\mathbf n\rangle=(|+z\rangle+i|-z\rangle)/\sqrt2=|+y\rangle$,
+matching equation {eq}`y-states`. With these three checks passed, the
+formula can be trusted for a direction that is not simply one of the six
+coordinate poles.
 
 ### Example 2.6: an analyzer not in a coordinate plane
 
