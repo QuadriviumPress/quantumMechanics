@@ -21,15 +21,20 @@ After this chapter, you should be able to:
 ## 3.1 Observables as operators
 
 Chapter 2 treated $S_z$, $S_x$, and every other spin component separately,
-building a fresh pair of basis kets each time. It is more efficient—and more
-revealing—to package "the measurement of spin along some axis" into a single
-mathematical object that acts on state vectors and hands back the possible
-outcomes together with the states that make each outcome certain. That object
-is a linear operator, and a physical observable is represented by a Hermitian
-linear operator: one equal to its own conjugate transpose, a property that
-Section 3.8 shows is exactly what guarantees real, physically sensible
-measurement outcomes. For spin $\tfrac12$, it is convenient to introduce the
-Pauli matrices
+building a fresh pair of basis kets each time we wanted to ask a new
+question. That approach works, but it is repetitive: the same idea—"measure
+spin along some axis"—kept reappearing with different labels attached. It is
+both more efficient and more revealing to package that whole idea into a
+single mathematical object, called an **operator**, that acts on a state
+vector and hands back the possible outcomes together with the states that
+make each outcome certain.
+
+A physical observable is represented by a **Hermitian** linear operator: one
+equal to its own conjugate transpose. Section 3.8 will show exactly why this
+property is what guarantees real, physically sensible measurement outcomes;
+for now, treat it as the defining requirement an operator must satisfy to
+represent something measurable. For spin $\tfrac12$, it is convenient to
+introduce the Pauli matrices
 
 ```{math}
 :label: pauli-matrices
@@ -38,7 +43,7 @@ Pauli matrices
 \sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
 ```
 
-The spin operators are
+The spin operators are built directly from them:
 
 ```{math}
 :label: spin-pauli
@@ -46,11 +51,13 @@ The spin operators are
 \qquad j\in\{x,y,z\}.
 ```
 
-Hermiticity, $\hat A^\dagger=\hat A$, guarantees real eigenvalues and permits
-an orthonormal eigenbasis. These are exactly the properties required of ideal
-measurement outcomes.
+Hermiticity, written $\hat A^\dagger=\hat A$, guarantees two things at once:
+real eigenvalues, and an orthonormal eigenbasis. These are exactly the two
+properties we need from an ideal measurement—real numbers on a meter, and a
+definite state associated with each possible reading.
 
-For example,
+For example, applying $\hat S_z$ to the two basis kets just returns them,
+scaled by the corresponding measured value:
 
 ```{math}
 \hat S_z|+z\rangle=+\frac{\hbar}{2}|+z\rangle,
@@ -58,12 +65,14 @@ For example,
 \hat S_z|-z\rangle=-\frac{\hbar}{2}|-z\rangle.
 ```
 
-The possible measured values are the eigenvalues, not the diagonal entries in
-an arbitrary representation.
+It is worth stressing what the possible measured values actually are: they
+are the **eigenvalues** of the operator, not just any numbers that happen to
+appear when we write out its matrix in some basis.
 
 ### One apparatus, three mathematical objects
 
-For an ideal measurement, it helps to keep three related objects distinct:
+For an ideal measurement, it helps to keep three related objects distinct,
+since students often blur them together at first:
 
 | Laboratory meaning | Mathematical object | For $S_z$ |
 | --- | --- | --- |
@@ -71,24 +80,26 @@ For an ideal measurement, it helps to keep three related objects distinct:
 | A state that makes that reading certain | eigenket | $|+z\rangle$ or $|-z\rangle$ |
 | The test for membership in that outcome state | projector | $|\pm z\rangle\langle\pm z|$ |
 
-The observable operator packages all three pieces of information. Solving its
-eigenvalue equation
+The observable operator packages all three pieces of information into one
+object. Solving its eigenvalue equation
 
 ```{math}
 \hat A|a_n\rangle=a_n|a_n\rangle
 ```
 
-extracts the possible readings and the corresponding definite-outcome states.
-The prepared ket $|\psi\rangle$ need not be one of those eigenkets. Instead, its
-projections onto them determine the outcome probabilities.
+extracts the possible readings $a_n$ and the corresponding definite-outcome
+states $|a_n\rangle$ in one stroke. The prepared state $|\psi\rangle$ need
+not itself be one of those eigenkets—in general it will not be. Instead, its
+*projections* onto them are what determine the outcome probabilities, as the
+next section makes precise.
 
 ## 3.2 Constructing an operator from its measurement states
 
-An operator that represents a measurement can be built directly out of the
-outcome states themselves, using a tool already implicit in Chapter 2's
-resolution of the identity: the **projector**, an operator that takes an
-arbitrary state and returns its component along one particular direction in
-state space, discarding the rest. Define the projectors
+We can build an operator representing a measurement directly out of its
+outcome states, using a tool already implicit in Chapter 2's resolution of
+the identity: the **projector**. A projector is an operator that takes an
+arbitrary state, extracts its component along one particular direction in
+state space, and discards the rest. Define the projectors
 
 ```{math}
 :label: z-projectors
@@ -97,11 +108,14 @@ state space, discarding the rest. Define the projectors
 \hat P_{z-}=|-z\rangle\langle-z|.
 ```
 
-They satisfy $\hat P^2=\hat P$, $\hat P^\dagger=\hat P$, and
-$\hat P_{z+}\hat P_{z-}=0$. Completeness gives
+They satisfy three properties worth checking directly from the definition:
+$\hat P^2=\hat P$ (projecting twice does nothing new), $\hat P^\dagger=\hat
+P$ (each is Hermitian), and $\hat P_{z+}\hat P_{z-}=0$ (the two outcomes are
+mutually exclusive). Completeness, from Chapter 2, gives
 $\hat P_{z+}+\hat P_{z-}=\hat I$.
 
-The spectral decomposition of $\hat S_z$ is
+Combining the eigenvalues with their projectors reconstructs the full
+operator. The spectral decomposition of $\hat S_z$ is
 
 ```{math}
 :label: sz-spectral
@@ -111,15 +125,17 @@ The spectral decomposition of $\hat S_z$ is
 ```
 
 More generally, if a Hermitian observable $\hat A$ has nondegenerate
-eigenstates $|a_n\rangle$ and eigenvalues $a_n$, then
+eigenstates $|a_n\rangle$ and eigenvalues $a_n$, the same pattern holds for
+any number of outcomes:
 
 ```{math}
 :label: spectral-general
 \hat A=\sum_n a_n|a_n\rangle\langle a_n|.
 ```
 
-This expression cleanly separates the possible values from the state
-projectors associated with those values.
+This expression cleanly separates two pieces of information that are easy to
+conflate: the possible *values* $a_n$, and the state *projectors* associated
+with those values.
 
 ### Example 3.1: construct $\hat S_x$
 
@@ -131,11 +147,14 @@ Using equation {eq}`x-states`,
 =\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}.
 ```
 
-The last matrix is written in the $z$ basis. In the $x$ basis, the same operator
-is diagonal.
+The last matrix is written in the $z$ basis. In the $x$ basis, the same
+operator is diagonal—a reminder that "the matrix of an operator" always means
+the matrix *in a particular basis*, never an absolute property of the
+operator alone.
 
-Conversely, if the matrix of an observable is known, its eigenvectors identify
-the analyzer states. This two-way connection is worth practicing:
+This construction also runs in reverse: if the matrix of an observable is
+already known, its eigenvectors identify the corresponding analyzer states.
+This two-way connection is worth practicing in both directions:
 
 ```{math}
 \text{measurement states and values}
@@ -143,12 +162,15 @@ the analyzer states. This two-way connection is worth practicing:
 \text{Hermitian operator}.
 ```
 
-The operator is not an additional physical substance carried by the atom. It
-is the linear map that encodes a particular experimental question.
+Keep in mind what the operator is *not*. It is not an additional physical
+substance carried around by the atom. It is simply the linear map that
+encodes one particular experimental question—nothing more, and nothing less.
 
 ## 3.3 Measurement probabilities and state update
 
-For a system prepared in $|\psi\rangle$, the probability of result $a_n$ is
+For a system prepared in $|\psi\rangle$, the probability of obtaining result
+$a_n$ follows directly from the Born rule of Chapter 2, now written using the
+projector language just introduced:
 
 ```{math}
 :label: projective-born
@@ -159,25 +181,28 @@ P(a_n)=|\langle a_n|\psi\rangle|^2
 ```
 
 If $a_n$ is obtained in an ideal nondegenerate measurement, the state
-immediately after the measurement is $|a_n\rangle$ up to an overall phase. This
-is the **projection postulate**. Before the result is known, the theory supplies
-a probability distribution; after selection of a result, it supplies a new
-preparation.
+immediately after the measurement is $|a_n\rangle$, up to an overall phase.
+This is the **projection postulate**: before the result is known, the theory
+supplies a probability distribution over outcomes; the instant a result is
+selected, that same theory supplies a new preparation to use going forward.
 
 ### A reusable measurement workflow
 
-Given a prepared state and an observable:
+Given a prepared state and an observable, the same five steps apply every
+time:
 
-1. Diagonalize the observable if its eigenvalues and normalized eigenkets are
-   not already known.
+1. Diagonalize the observable if its eigenvalues and normalized eigenkets
+   are not already known.
 2. Build the projector $\hat P_n$ for each distinct outcome.
 3. Compute $P(a_n)=\langle\psi|\hat P_n|\psi\rangle$ and check that the
    probabilities sum to one.
-4. If an outcome is selected, apply its projector and normalize.
-5. Use the resulting state—not the original state—for any later measurement.
+4. If an outcome is selected, apply its projector and normalize the result.
+5. Use the resulting state—not the original state—for any later
+   measurement.
 
-This workflow is the operator form of tracing a route through sequential
-Stern–Gerlach analyzers.
+This workflow is nothing more than the operator version of tracing a route
+through sequential Stern–Gerlach analyzers, which Chapter 1 did by hand and
+Chapter 2 did with explicit amplitudes.
 
 ### Example 3.2: measure along a tilted axis
 
@@ -209,12 +234,14 @@ P(+\mathbf n\mid z+)
 =\cos^2\frac{\theta}{2}.
 ```
 
-The operator method has recovered the half-angle rule, while also identifying
-the exact state prepared when the $+\mathbf n$ result is selected.
+The operator method has recovered the same half-angle rule found empirically
+in Chapter 1, while also identifying the exact state prepared once the
+$+\mathbf n$ result is selected—something the earlier probability-tree
+approach could not supply on its own.
 
 For a degenerate result, several orthogonal states share one eigenvalue. If
-$\hat P_n$ projects onto that entire eigenspace, the normalized post-measurement
-state is
+$\hat P_n$ projects onto that entire eigenspace, the normalized
+post-measurement state generalizes to
 
 ```{math}
 :label: degenerate-projection
@@ -223,10 +250,12 @@ state is
 {\sqrt{\langle\psi|\hat P_n|\psi\rangle}}.
 ```
 
-The denominator is the square root of the probability for that outcome.
+The denominator here is just the square root of the probability for that
+outcome, ensuring $|\psi'\rangle$ comes out properly normalized.
 
-For a one-dimensional outcome space, applying the projector makes
-repeatability transparent:
+This projector construction also makes repeatability, Chapter 1's first
+empirical rule, mathematically transparent. For a one-dimensional outcome
+space,
 
 ```{math}
 \hat P_n\left(
@@ -237,18 +266,21 @@ repeatability transparent:
 {\sqrt{\langle\psi|\hat P_n|\psi\rangle}},
 ```
 
-because $\hat P_n^2=\hat P_n$. A second immediate measurement therefore finds
-the same outcome with certainty. The empirical repeatability of Chapter 1 is
-built into the projector algebra.
+because $\hat P_n^2=\hat P_n$. Reading this equation in words: applying the
+same projector a second time changes nothing. A second immediate measurement
+therefore finds the same outcome with certainty—repeatability is not a
+separate assumption we need to add; it falls straight out of the projector
+algebra.
 
 ## 3.4 Expectation values
 
-A single measurement returns one eigenvalue, chosen randomly according to the
-Born-rule probabilities. It is also useful to ask what the *average* reading
-would be over many repetitions of the same preparation and measurement—a
-number a laboratory can compare directly to a meter that reports a running
-mean. The expectation value is that ensemble average predicted for many
-identically prepared systems:
+A single measurement returns one eigenvalue, chosen randomly according to
+the Born-rule probabilities. It is also useful to ask a different question:
+what would the *average* reading be, over many repetitions of the same
+preparation and measurement? This is a number a laboratory can compare
+directly to a meter that reports a running mean, rather than a single
+random outcome. We call it the **expectation value**, and it is the ensemble
+average predicted for many identically prepared systems:
 
 ```{math}
 :label: expectation
@@ -257,9 +289,11 @@ identically prepared systems:
 =\langle\psi|\hat A|\psi\rangle.
 ```
 
-It need not be a possible result of a single measurement. For spin $\tfrac12$,
-$\langle S_z\rangle=0$ is possible for an ensemble even though no individual
-$S_z$ measurement returns zero.
+An important subtlety: the expectation value need not itself be a possible
+result of any single measurement. For spin $\tfrac12$, $\langle
+S_z\rangle=0$ is a perfectly good ensemble average even though no individual
+$S_z$ measurement can ever return zero—every single measurement returns
+$+\hbar/2$ or $-\hbar/2$.
 
 ### Example 3.3: mean spin
 
@@ -276,7 +310,8 @@ For the Bloch-sphere state of equation {eq}`bloch-state`, this becomes
 \langle S_z\rangle=\frac{\hbar}{2}\cos\theta.
 ```
 
-The complete result is
+Repeating the same calculation for $\langle S_x\rangle$ and $\langle
+S_y\rangle$ gives the complete result
 
 ```{math}
 :label: bloch-expectation
@@ -285,13 +320,15 @@ The complete result is
 (\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta).
 ```
 
-The Bloch vector points along the expectation value of spin, but this does not
-mean every component simultaneously has that value.
+So the Bloch vector points along the expectation value of spin. Be careful
+not to overread this: it does not mean every component simultaneously *has*
+that value in any single measurement, only that this is the value each
+component averages to.
 
 ### Expectation values as state tomography
 
-For a spin-$\tfrac12$ pure state, the three mean Pauli components determine the
-Bloch vector:
+For a spin-$\tfrac12$ pure state, the three mean Pauli components together
+determine the Bloch vector completely:
 
 ```{math}
 \mathbf r=(\langle\sigma_x\rangle,
@@ -299,27 +336,34 @@ Bloch vector:
 \langle\sigma_z\rangle).
 ```
 
-Experimentally, each component is obtained from counts. If $N_{x+}$ and
-$N_{x-}$ are measured on identically prepared members of an ensemble, then
+Each component is measured experimentally from counts, not read off
+directly. If $N_{x+}$ and $N_{x-}$ are the numbers measured on identically
+prepared members of an ensemble, then
 
 ```{math}
 \langle\sigma_x\rangle
 \approx\frac{N_{x+}-N_{x-}}{N_{x+}+N_{x-}},
 ```
 
-with analogous expressions for $y$ and $z$. Separate subensembles are required
-because the three components cannot all be measured sharply on the same atom.
-Reconstructing a state from a collection of measurement statistics is called
-**quantum-state tomography**.
+with analogous expressions for $y$ and $z$. Three *separate* subensembles
+are required, one per axis, because the three spin components cannot all be
+measured sharply on the same atom—measuring one disturbs what can be known
+about the others. The general process of reconstructing a state from a
+collection of measurement statistics like this is called **quantum-state
+tomography**.
 
-For a pure state, $|\mathbf r|=1$. Values with $|\mathbf r|<1$ describe mixed
-states; the completely unpolarized mixture has $\mathbf r=0$. Thus “zero mean
-spin” does not by itself mean that every measurement returns zero—zero is not
-even an allowed result for a spin-$\tfrac12$ component.
+For a pure state, $|\mathbf r|=1$ exactly. Values with $|\mathbf r|<1$
+describe mixed states, which Section 3.10 introduces properly; the
+completely unpolarized mixture sits at $\mathbf r=0$. So "zero mean spin"
+does not, by itself, mean that every measurement returns zero—indeed, zero
+is not even an allowed result for a single spin-$\tfrac12$ component
+measurement.
 
 ## 3.5 Variance and uncertainty
 
-The variance of $A$ is
+Just as the expectation value captures the *center* of a distribution of
+outcomes, we also want a number that captures its *spread*. The variance of
+$A$ is defined, as in ordinary statistics, by
 
 ```{math}
 :label: variance
@@ -328,7 +372,8 @@ The variance of $A$ is
 =\langle\hat A^2\rangle-\langle\hat A\rangle^2.
 ```
 
-For every spin component, $\hat S_j^2=(\hbar^2/4)\hat I$. Thus a $z+$ state has
+For every spin component, $\hat S_j^2=(\hbar^2/4)\hat I$, a fact that follows
+directly from $\sigma_j^2=\hat I$. Applying this to a $z+$ state gives
 
 ```{math}
 \Delta S_z=0,
@@ -336,11 +381,34 @@ For every spin component, $\hat S_j^2=(\hbar^2/4)\hat I$. Thus a $z+$ state has
 \Delta S_x=\Delta S_y=\frac{\hbar}{2}.
 ```
 
-Zero uncertainty means the state is an eigenstate of the observable. It does
-not mean that all observables are simultaneously sharp.
+Zero uncertainty means exactly one thing: the state is an eigenstate of the
+observable in question. It does *not* mean that all observables are
+simultaneously sharp—here $S_z$ is perfectly definite while $S_x$ and $S_y$
+are maximally spread.
+
+### Concept check 3.1
+
+If $\langle S_z\rangle=0$, must the state have a definite value of $S_x$?
+
+:::{dropdown} Answer
+No. Every equatorial Bloch-sphere state has $\langle S_z\rangle=0$, but only
+two of them, $|+x\rangle$ and $|-x\rangle$, have definite $S_x$.
+:::
+
+### Concept check 3.2
+
+Can an expectation value lie outside the range of an observable's
+eigenvalues?
+
+:::{dropdown} Answer
+No. It is a probability-weighted average of the eigenvalues. It can lie
+between them, even when that intermediate value cannot occur in one
+measurement.
+:::
 
 For an arbitrary component $S_{\mathbf n}$ in a pure state with Bloch vector
-$\mathbf r$, the two possible outcomes immediately give
+$\mathbf r$, the two possible outcomes immediately give both the mean and the
+spread in closed form:
 
 ```{math}
 :label: spin-direction-moments
@@ -351,34 +419,50 @@ $\mathbf r$, the two possible outcomes immediately give
 =\frac{\hbar}{2}\sqrt{1-(\mathbf n\cdot\mathbf r)^2}.
 ```
 
-The uncertainty vanishes when the analyzer points along or opposite the Bloch
-vector and is maximal for every perpendicular direction. This makes
-uncertainty a property of a state relative to a specified measurement, not a
-property of the state alone.
+The uncertainty vanishes precisely when the analyzer points along or
+opposite the Bloch vector, and it is maximal for every direction
+perpendicular to it. This is the cleanest way to see that uncertainty is a
+property of a *state relative to a specified measurement*—not some intrinsic
+fuzziness of the state considered alone.
+
+### Concept check 3.3
+
+A student calculates $\Delta S_z=0$ in a state $|\psi\rangle$. What can be
+concluded about $|\psi\rangle$?
+
+:::{dropdown} Answer
+It must be an eigenstate of $\hat S_z$, so it is $|+z\rangle$ or $|-z\rangle$
+up to an overall phase. The calculation does not imply zero uncertainty for
+$S_x$ or $S_y$; each of those uncertainties is $\hbar/2$.
+:::
 
 ## 3.6 Commutators and incompatibility
 
 Chapter 1 showed experimentally that measuring $S_x$ then $S_z$ gives a
 different final distribution than measuring $S_z$ then $S_x$: order matters
-for incompatible observables. The operator language captures this order
-dependence in a single algebraic object. The commutator of two operators is
+for incompatible observables. We now want a single algebraic object that
+captures this order-dependence directly, without having to redo the
+Stern–Gerlach bookkeeping every time. The **commutator** of two operators is
 
 ```{math}
 [\hat A,\hat B]=\hat A\hat B-\hat B\hat A.
 ```
 
-The Pauli matrices imply
+If $\hat A$ and $\hat B$ commute, the order in which we apply them makes no
+difference; if the commutator is nonzero, order matters. Direct
+multiplication of the Pauli matrices gives
 
 ```{math}
 :label: spin-commutator
 [\hat S_x,\hat S_y]=i\hbar\hat S_z,
 ```
 
-with cyclic permutations for the other pairs. The order of operations matters.
-This algebra is the mathematical counterpart of the sequential-analyzer
-behavior from Chapter 1.
+with cyclic permutations for the other pairs. This nonzero commutator is the
+precise algebraic counterpart of the sequential-analyzer behavior observed
+in Chapter 1.
 
-For any state,
+The commutator also controls how sharply two observables can be
+simultaneously known. For any state,
 
 ```{math}
 :label: robertson
@@ -388,31 +472,34 @@ For any state,
 
 In a $z+$ state, equation {eq}`robertson` gives
 $\Delta S_x\Delta S_y\geq\hbar^2/4$; both uncertainties equal $\hbar/2$, so
-the bound is saturated.
+the bound is saturated exactly—there is no slack left.
 
 :::{warning} A common misreading
-An uncertainty relation describes the spread of outcomes for ensembles prepared
-in the same state. It is not merely a statement about poor instruments or a
-careless observer.
+An uncertainty relation describes the spread of outcomes for ensembles
+prepared in the same state. It is not merely a statement about poor
+instruments or a careless observer.
 :::
 
-Noncommutation is closely related to analyzer order, but one should not equate
-an operator product directly with “perform one projective measurement and then
-the other.” A selected sequence also includes state update. For example, the
+Noncommutation is closely related to analyzer order, but be careful not to
+equate an operator product directly with "perform one projective measurement
+and then the other." A selected sequence also includes a state update in
+between, which the bare commutator does not track by itself. For example, the
 route probability for $z+\rightarrow x+\rightarrow z-$ is
 
 ```{math}
 \|\hat P_{z-}\hat P_{x+}|+z\rangle\|^2=\frac14.
 ```
 
-Reversing the two projectors changes the physical route being described. The
-projector product keeps both the ordering and the conditional selection
-explicit.
+Reversing the two projectors changes the physical route being described—it
+answers a different experimental question, not just a reordered version of
+the same one. The projector product keeps both the ordering and the
+conditional selection explicit, which the commutator alone does not.
 
 ## 3.7 Operators along an arbitrary direction
 
 For a unit vector
-$\mathbf n=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)$, define
+$\mathbf n=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)$, define the
+spin component along that direction as
 
 ```{math}
 :label: spin-n
@@ -420,17 +507,20 @@ $\mathbf n=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)$, define
 =\frac{\hbar}{2}\mathbf n\cdot\boldsymbol\sigma.
 ```
 
-Its eigenvalues are $\pm\hbar/2$. Its $+$ eigenstate is the Bloch-sphere state
-in equation {eq}`bloch-state`, up to an overall phase. The compact identity
+Its eigenvalues are $\pm\hbar/2$, for any choice of $\mathbf n$—a fact
+consistent with Chapter 1's observation that every analyzer, no matter how
+it is oriented, gives exactly two outcomes. Its $+$ eigenstate is the
+Bloch-sphere state in equation {eq}`bloch-state`, up to an overall phase. The
+compact identity
 
 ```{math}
 (\mathbf n\cdot\boldsymbol\sigma)^2=\hat I
 ```
 
-makes the eigenvalues immediate.
+makes the eigenvalues immediate, without any further diagonalization.
 
-The associated outcome projectors can be written without first finding the
-eigenvectors:
+The associated outcome projectors can be written down directly, without
+first solving for the eigenvectors at all:
 
 ```{math}
 :label: direction-projectors
@@ -438,23 +528,29 @@ eigenvectors:
 =\frac12(\hat I\pm\mathbf n\cdot\boldsymbol\sigma).
 ```
 
-They sum to the identity and satisfy
-$(\mathbf n\cdot\boldsymbol\sigma)\hat P_{\mathbf n\pm}
+They sum to the identity, as any pair of complementary projectors must, and
+satisfy $(\mathbf n\cdot\boldsymbol\sigma)\hat P_{\mathbf n\pm}
 =\pm\hat P_{\mathbf n\pm}$. For a state with Bloch vector $\mathbf r$,
-equation {eq}`direction-projectors` yields the compact probability rule
+equation {eq}`direction-projectors` yields a compact probability rule that
+is often faster to use than working with explicit eigenkets:
 
 ```{math}
 :label: bloch-direction-probability
 P(\pm\mathbf n)=\frac12(1\pm\mathbf n\cdot\mathbf r).
 ```
 
-This is the operator version of equation {eq}`bloch-overlap` and is useful even
-for mixed states, whose Bloch vectors lie inside the sphere.
+This is the operator version of equation {eq}`bloch-overlap`, and it remains
+useful even for *mixed* states, whose Bloch vectors lie strictly inside the
+sphere rather than on its surface.
 
 ## 3.8 Why Hermitian operators have the needed structure
 
-The mathematical requirements on an observable are closely tied to the
-laboratory meaning of a measurement. Suppose
+Section 3.1 asserted that Hermiticity guarantees real eigenvalues and
+orthogonal eigenstates. It is worth proving both claims directly, since they
+are the entire justification for representing observables by Hermitian
+operators in the first place, rather than by some other kind of matrix.
+
+Suppose
 
 ```{math}
 \hat A|a\rangle=a|a\rangle
@@ -466,7 +562,8 @@ for a normalized eigenket. Taking the inner product with $\langle a|$ gives
 a=\langle a|\hat A|a\rangle.
 ```
 
-For a Hermitian operator,
+For a Hermitian operator, complex-conjugating this expression and using
+$\hat A^\dagger=\hat A$ gives
 
 ```{math}
 \langle a|\hat A|a\rangle^*
@@ -474,8 +571,9 @@ For a Hermitian operator,
 =\langle a|\hat A|a\rangle,
 ```
 
-so $a=a^*$ and the eigenvalue is real. Detector readings can therefore be real
-numbers with physical units.
+so $a=a^*$, meaning the eigenvalue is real. This is precisely what we need:
+detector readings can be real numbers with physical units, not complex
+quantities with no direct meter reading.
 
 Now let $|a\rangle$ and $|b\rangle$ have distinct eigenvalues $a$ and $b$.
 Hermiticity gives
@@ -484,28 +582,31 @@ Hermiticity gives
 \langle a|\hat A|b\rangle=b\langle a|b\rangle
 ```
 
-but also
+but also, moving $\hat A$ to act on the bra instead,
 
 ```{math}
 \langle a|\hat A|b\rangle=a\langle a|b\rangle.
 ```
 
-Thus $(a-b)\langle a|b\rangle=0$. If $a\ne b$, then
+Subtracting these two expressions for the same quantity gives
+$(a-b)\langle a|b\rangle=0$. If $a\ne b$, the only way this can hold is
 $\langle a|b\rangle=0$: states belonging to distinct ideal outcomes are
-orthogonal. In a degenerate eigenspace, orthonormal eigenvectors can be chosen,
-but the measurement outcome by itself does not identify which vector within
-that subspace was present.
+automatically orthogonal. In a degenerate eigenspace, where several states
+share one eigenvalue, orthonormal eigenvectors can still be chosen within
+that subspace, but the measurement outcome alone does not identify which
+particular vector within it was present.
 
-These facts lead to the finite-dimensional spectral theorem: a Hermitian
-operator has an orthonormal eigenbasis and can be written
+Together these two facts give the finite-dimensional spectral theorem: every
+Hermitian operator has an orthonormal eigenbasis, and can be written
 
 ```{math}
 \hat A=\sum_n a_n\hat P_n,
 ```
 
 where $\hat P_n$ projects onto the full eigenspace belonging to the distinct
-value $a_n$. The nondegenerate formula in equation {eq}`spectral-general` is
-the special case $\hat P_n=|a_n\rangle\langle a_n|$.
+value $a_n$. The nondegenerate formula already used in equation
+{eq}`spectral-general` is just the special case $\hat P_n=|a_n\rangle\langle
+a_n|$, where each eigenspace happens to be one-dimensional.
 
 ### Example 3.4: diagonalize a two-state observable
 
@@ -520,7 +621,7 @@ Consider
 ```
 
 The matrix is Hermitian because its off-diagonal entries are complex
-conjugates. Its characteristic equation is
+conjugates of each other. Its characteristic equation is
 
 ```{math}
 \det(\hat A-\lambda\hat I)
@@ -529,15 +630,18 @@ conjugates. Its characteristic equation is
 ```
 
 so the possible outcomes are the real values
-$\lambda_\pm=3\pm\sqrt3$. Solving
-$(\hat A-\lambda_\pm\hat I)|\lambda_\pm\rangle=0$ and normalizing produces
-orthogonal eigenkets. Even before doing that last algebra, Hermiticity tells us
-that the roots must be real and that a unitary change of basis can diagonalize
-the operator.
+$\lambda_\pm=3\pm\sqrt3$—real, exactly as Hermiticity guaranteed in advance.
+Solving $(\hat A-\lambda_\pm\hat I)|\lambda_\pm\rangle=0$ and normalizing
+produces orthogonal eigenkets. Even before doing that last piece of algebra,
+Hermiticity already tells us that the roots must be real and that a unitary
+change of basis can diagonalize the operator.
 
 ## 3.9 The Pauli algebra as a calculation tool
 
-Direct multiplication of the matrices in equation {eq}`pauli-matrices` gives
+Many spin calculations become much shorter once a few Pauli-matrix
+identities are available, so it is worth collecting them here as tools
+rather than rederiving them from scratch each time. Direct multiplication of
+the matrices in equation {eq}`pauli-matrices` gives
 
 ```{math}
 :label: pauli-product
@@ -547,7 +651,8 @@ Direct multiplication of the matrices in equation {eq}`pauli-matrices` gives
 
 Here $\delta_{ij}$ is one when the indices agree and zero otherwise, while
 $\epsilon_{ijk}$ supplies the sign associated with a cyclic ordering of
-$x,y,z$. A vector form packages all nine products:
+$x,y,z$. Packaging all nine possible products into a single vector identity
+gives
 
 ```{math}
 :label: pauli-vector-product
@@ -557,9 +662,12 @@ $x,y,z$. A vector form packages all nine products:
 +i(\mathbf a\times\mathbf b)\cdot\boldsymbol\sigma.
 ```
 
-Setting $\mathbf a=\mathbf b=\mathbf n$ immediately gives
-$(\mathbf n\cdot\boldsymbol\sigma)^2=\hat I$ for a unit vector. Subtracting the
-same formula with $\mathbf a$ and $\mathbf b$ exchanged gives
+Setting $\mathbf a=\mathbf b=\mathbf n$ immediately recovers
+$(\mathbf n\cdot\boldsymbol\sigma)^2=\hat I$ for a unit vector, without any
+further calculation. Subtracting the same formula with $\mathbf a$ and
+$\mathbf b$ exchanged—and using $\mathbf b\times\mathbf a=-\mathbf
+a\times\mathbf b$—gives the commutator for components along two arbitrary
+directions:
 
 ```{math}
 :label: arbitrary-spin-commutator
@@ -567,9 +675,10 @@ same formula with $\mathbf a$ and $\mathbf b$ exchanged gives
 =i\hbar\,\hat{\mathbf S}\cdot(\mathbf a\times\mathbf b).
 ```
 
-Parallel components commute; perpendicular components have the largest
-commutator magnitude. The vector geometry of analyzer directions is therefore
-encoded directly in the operator algebra.
+Parallel components commute, since their cross product vanishes; perpendicular
+components have the largest possible commutator magnitude. In this way, the
+vector geometry of analyzer directions is encoded directly in the operator
+algebra, rather than needing to be checked case by case.
 
 ### Example 3.5: two projectors in succession
 
@@ -584,17 +693,21 @@ Using equation {eq}`direction-projectors`,
 \right].
 ```
 
-The imaginary cross-product term changes sign if the order is reversed. The
-operators are identical only for parallel or antiparallel axes. Acting on
+The imaginary cross-product term changes sign if the order is reversed, so
+the two operators are identical only for parallel or antiparallel axes—any
+other pair of directions gives an order-dependent result. Acting on
 $|+\mathbf a\rangle$ and taking the squared norm yields
 $(1+\mathbf a\cdot\mathbf b)/2$, recovering the analyzer angle rule while
-retaining the post-selected output state.
+also retaining the post-selected output state, something the bare
+probability number alone would not do.
 
 ## 3.10 Density operators and unread measurements
 
-A ket describes a pure preparation. An ensemble in which state $|\psi_j\rangle$
-is prepared with classical probability $w_j$ is represented by the **density
-operator**
+A ket describes a *pure* preparation: every atom in the ensemble was
+prepared exactly the same way. But real experiments sometimes involve a
+classical mixture of different preparations—an ensemble in which state
+$|\psi_j\rangle$ occurs with classical probability $w_j$. This is represented
+by the **density operator**
 
 ```{math}
 :label: density-ensemble
@@ -603,9 +716,11 @@ operator**
 w_j\geq0,\quad\sum_jw_j=1.
 ```
 
-The trace of an operator is the sum of its diagonal entries in any orthonormal
-basis. A density operator is Hermitian, has trace one, and has no negative
-eigenvalues. Probabilities and expectation values take the compact forms
+Recall that the trace of an operator is the sum of its diagonal entries in
+any orthonormal basis—the result does not depend on which basis is chosen. A
+density operator is always Hermitian, has trace one, and has no negative
+eigenvalues. In this language, probabilities and expectation values take
+compact forms that work for pure states and mixtures alike:
 
 ```{math}
 :label: density-predictions
@@ -615,11 +730,13 @@ P(a_n)=\operatorname{Tr}(\hat\rho\hat P_n),
 ```
 
 For a pure state, $\hat\rho=|\psi\rangle\langle\psi|$ and
-$\hat\rho^2=\hat\rho$, so $\operatorname{Tr}(\hat\rho^2)=1$. A genuine mixture
-has $\operatorname{Tr}(\hat\rho^2)<1$. This **purity** test is basis
-independent.
+$\hat\rho^2=\hat\rho$, so $\operatorname{Tr}(\hat\rho^2)=1$. A genuine
+mixture instead has $\operatorname{Tr}(\hat\rho^2)<1$. This **purity** test
+gives a single number that tells pure states and mixtures apart, and it does
+not depend on which basis we use to compute it.
 
-Every spin-$\tfrac12$ density operator can be written
+Every spin-$\tfrac12$ density operator, pure or mixed, can be written in
+Bloch-vector form:
 
 ```{math}
 :label: density-bloch
@@ -627,10 +744,11 @@ Every spin-$\tfrac12$ density operator can be written
 \qquad |\mathbf r|\leq1.
 ```
 
-Pure states lie on the surface of the Bloch sphere, where $|\mathbf r|=1$.
-Mixed states lie inside it. The completely unpolarized state
-$\hat\rho=\hat I/2$ lies at the center and predicts equal probabilities for
-every analyzer orientation.
+Pure states lie exactly on the surface of the Bloch sphere, where
+$|\mathbf r|=1$; mixed states lie strictly inside it. The completely
+unpolarized state $\hat\rho=\hat I/2$ sits at the very center, $\mathbf
+r=0$, and predicts equal probabilities for every possible analyzer
+orientation.
 
 ### Example 3.6: tomography from three analyzer settings
 
@@ -640,14 +758,14 @@ Suppose three equal subensembles produce
 P(x+)=0.80,\qquad P(y+)=0.10,\qquad P(z+)=0.50.
 ```
 
-Since $r_j=P(j+)-P(j-)=2P(j+)-1$,
+Since $r_j=P(j+)-P(j-)=2P(j+)-1$ for each axis,
 
 ```{math}
 \mathbf r=(0.60,-0.80,0).
 ```
 
-Its length is one, so the idealized data describe a pure equatorial state. A
-representative ket is
+Its length is exactly one, so this idealized data describes a pure
+equatorial state. A representative ket reproducing it is
 
 ```{math}
 |\psi\rangle
@@ -657,15 +775,19 @@ representative ket is
 e^{i\phi}=0.60-0.80i.
 ```
 
-Real experimental frequencies may yield a reconstructed vector slightly
-outside the unit sphere because of finite-sample noise. A statistically sound
-tomography method then finds the nearest physical density operator instead of
-interpreting $|\mathbf r|>1$ as a possible quantum state.
+In a real experiment, finite-sample noise means the reconstructed vector may
+come out slightly outside the unit sphere, with $|\mathbf r|$ marginally
+greater than one. A statistically sound tomography method then finds the
+nearest physically allowed density operator, rather than trying to interpret
+$|\mathbf r|>1$ as if it described a valid quantum state.
 
 ### An outcome ignored is not a measurement undone
 
-If an ideal projective measurement occurs but its result is not retained, the
-post-measurement ensemble is
+Here is a question that trips up many students on first encounter: if an
+ideal measurement occurs but nobody looks at the result, has anything
+changed? The answer is yes—and understanding why is one of the more
+important lessons in this chapter. If an ideal projective measurement
+occurs but its result is not retained, the post-measurement ensemble is
 
 ```{math}
 :label: unread-measurement
@@ -682,25 +804,13 @@ For an initial $|+x\rangle$ state followed by an unread $S_z$ measurement,
 =\frac12\hat I.
 ```
 
-The off-diagonal $z$-basis terms have disappeared. A later $S_x$ measurement is
-therefore 50--50, even though no observer used the intermediate result.
-Discarding a record is not equivalent to preventing the record from being
-created. The physical correlation that made the alternatives distinguishable
-is what removed their interference.
-
-If the result $a_n$ is retained, the conditional density operator is
-
-```{math}
-:label: conditional-density-update
-\hat\rho_n'
-=\frac{\hat P_n\hat\rho\hat P_n}
-{\operatorname{Tr}(\hat\rho\hat P_n)}.
-```
-
-Equations {eq}`unread-measurement` and
-{eq}`conditional-density-update` distinguish two common laboratory
-instructions: “measure and forget the result” versus “measure and select one
-result.”
+Notice what happened to the off-diagonal $z$-basis terms: they have
+disappeared entirely. As a direct consequence, a later $S_x$ measurement is
+now 50–50, even though no observer ever actually used the intermediate
+result. Discarding a record after the fact is not the same as preventing
+that record from being created in the first place. It is the physical
+correlation that made the alternatives distinguishable—not anyone's act of
+reading it—that destroyed the interference.
 
 ### Concept check 3.4
 
@@ -714,8 +824,8 @@ distinguish preparation recipes that produce the same density operator.
 
 ### Concept check 3.5
 
-An unread $S_z$ measurement is made on a $z+$ state. Does its density operator
-change?
+An unread $S_z$ measurement is made on a $z+$ state. Does its density
+operator change?
 
 :::{dropdown} Answer
 No. Equation {eq}`unread-measurement` returns
@@ -723,34 +833,20 @@ $\hat P_{z+}\hat\rho\hat P_{z+}=\hat\rho$ and a zero contribution from the
 other projector. The state was already definite for the measured observable.
 :::
 
-### Concept check 3.1
+By contrast, if the result $a_n$ *is* retained, the conditional density
+operator is
 
-If $\langle S_z\rangle=0$, must the state have a definite value of $S_x$?
+```{math}
+:label: conditional-density-update
+\hat\rho_n'
+=\frac{\hat P_n\hat\rho\hat P_n}
+{\operatorname{Tr}(\hat\rho\hat P_n)}.
+```
 
-:::{dropdown} Answer
-No. Every equatorial Bloch-sphere state has $\langle S_z\rangle=0$, but only two
-of them, $|+x\rangle$ and $|-x\rangle$, have definite $S_x$.
-:::
-
-### Concept check 3.2
-
-Can an expectation value lie outside the range of an observable's eigenvalues?
-
-:::{dropdown} Answer
-No. It is a probability-weighted average of the eigenvalues. It can lie between
-them, even when that intermediate value cannot occur in one measurement.
-:::
-
-### Concept check 3.3
-
-A student calculates $\Delta S_z=0$ in a state $|\psi\rangle$. What can be
-concluded about $|\psi\rangle$?
-
-:::{dropdown} Answer
-It must be an eigenstate of $\hat S_z$, so it is $|+z\rangle$ or $|-z\rangle$
-up to an overall phase. The calculation does not imply zero uncertainty for
-$S_x$ or $S_y$; each of those uncertainties is $\hbar/2$.
-:::
+Equations {eq}`unread-measurement` and {eq}`conditional-density-update`
+distinguish two common laboratory instructions that are easy to conflate in
+words but behave quite differently: "measure and forget the result" versus
+"measure and select one result."
 
 ## Summary
 
@@ -760,11 +856,13 @@ $S_x$ or $S_y$; each of those uncertainties is $\hbar/2$.
 - An expectation value is an ensemble mean, not generally a single outcome.
 - Variance quantifies the spread of repeated measurements on identically
   prepared systems.
-- Noncommuting observables encode order dependence and uncertainty relations.
-- Projector products describe selected routes through sequential measurements.
+- Noncommuting observables encode order dependence and uncertainty
+  relations.
+- Projector products describe selected routes through sequential
+  measurements.
 - The three mean Pauli components reconstruct a spin state's Bloch vector.
-- Hermiticity guarantees real outcomes and orthogonal eigenspaces for distinct
-  outcomes.
+- Hermiticity guarantees real outcomes and orthogonal eigenspaces for
+  distinct outcomes.
 - Density operators describe pure states and mixtures in one framework;
   unread measurements remove coherence in the measured basis.
 
