@@ -191,9 +191,7 @@ def fig_sg_apparatus():
     ax.text(10.35, 4.70, "classical", ha="center", color=MUTED, weight="bold")
     ax.text(12.55, 4.70, "observed", ha="center", color=PURPLE, weight="bold")
     # classical smear
-    yy = np.linspace(1.45, 4.2, 100)
-    density = 0.26 + 0.48 * (1 - ((yy - 2.82) / 1.38) ** 2)
-    ax.fill_betweenx(yy, 10.35 - density / 2, 10.35 + density / 2, color=MUTED, alpha=0.26)
+    ax.add_patch(Rectangle((10.04, 1.45), 0.62, 2.75, fc=MUTED, ec=MUTED, alpha=0.26))
     ax.plot([9.88, 10.82], [1.25, 1.25], color=MUTED, lw=1)
     ax.text(10.35, 0.88, "continuous smear", ha="center", color=MUTED, fontsize=9)
     # observed dots
@@ -341,22 +339,42 @@ def fig_complex_amplitude():
 def fig_born_projection():
     fig, axes = plt.subplots(1, 2, figsize=(10.5, 4.6), layout="constrained")
     ax = axes[0]
-    clean(ax, (-0.5, 4.5), (-0.45, 3.3))
-    arrow(ax, (0, 0), (3.4, 0), color=TEAL, lw=2.2)
-    arrow(ax, (0, 0), (0, 2.65), color=CORAL, lw=2.2)
-    theta = np.deg2rad(38)
-    tip = (3.3 * np.cos(theta), 3.3 * np.sin(theta))
-    arrow(ax, (0, 0), tip, color=PURPLE, lw=3.2, mutation=17)
-    ax.plot([tip[0], tip[0]], [0, tip[1]], color=GRID, ls="--")
-    ax.plot([0, tip[0]], [tip[1], tip[1]], color=GRID, ls="--")
-    ax.text(3.55, 0, r"$|+z\rangle$", color=TEAL, va="center", weight="bold")
-    ax.text(0, 2.82, r"$|-z\rangle$", color=CORAL, ha="center", weight="bold")
-    ax.text(tip[0] + 0.12, tip[1] + 0.1, r"$|\psi\rangle$", color=PURPLE, weight="bold")
-    ax.text(tip[0] / 2, -0.28, r"$c_+=\langle+z|\psi\rangle$", color=TEAL, ha="center")
-    ax.text(-0.08, tip[1] / 2, r"$c_-$", color=CORAL, ha="right", va="center")
-    ax.set_title("Inner products give amplitudes")
+    clean(ax, (0, 6.2), (0, 4.5))
+    rounded(
+        ax,
+        (0.45, 3.05),
+        5.3,
+        0.85,
+        r"$|\psi\rangle=c_+|+z\rangle+c_-|-z\rangle$",
+        fc=PURPLE_LIGHT,
+        ec=PURPLE,
+        fontsize=12,
+    )
+    arrow(ax, (3.1, 3.05), (1.7, 2.35), color=TEAL, lw=1.8)
+    arrow(ax, (3.1, 3.05), (4.5, 2.35), color=CORAL, lw=1.8)
+    rounded(
+        ax,
+        (0.3, 0.65),
+        2.75,
+        1.7,
+        r"$z+$ amplitude\n$c_+=\langle+z|\psi\rangle$\n$|c_+|$ and phase $\phi_+$",
+        fc=TEAL_LIGHT,
+        ec=TEAL,
+        fontsize=10,
+    )
+    rounded(
+        ax,
+        (3.15, 0.65),
+        2.75,
+        1.7,
+        r"$z-$ amplitude\n$c_-=\langle-z|\psi\rangle$\n$|c_-|$ and phase $\phi_-$",
+        fc=CORAL_LIGHT,
+        ec=CORAL,
+        fontsize=10,
+    )
+    ax.set_title("Basis expansion gives complex amplitudes")
     ax = axes[1]
-    probs = [np.cos(theta) ** 2, np.sin(theta) ** 2]
+    probs = [0.65, 0.35]
     bars = ax.bar([0, 1], probs, width=0.62, color=[TEAL, CORAL])
     ax.set_xticks([0, 1], [r"$z+$", r"$z-$"])
     ax.set_ylim(0, 1.05)
@@ -371,19 +389,16 @@ def fig_born_projection():
     finish(fig, "ch02-born-rule-projection.svg")
 
 
-def fig_bloch_phase_mixture():
+def fig_bloch_phase_coordinates():
     fig, axes = plt.subplots(1, 3, figsize=(11, 4.1), layout="constrained")
     draw_bloch(axes[0], (0.72, 0.45, 0.52), r"$|\psi\rangle$")
     axes[0].set_title("A pure state\nis a surface point")
     draw_bloch(axes[1], (-0.55, 0.72, 0.0), r"$\phi$")
     axes[1].add_patch(Arc((0, 0), 1.05, 0.36, theta1=0, theta2=138, color=GOLD, lw=2.0))
     axes[1].set_title("Relative phase\nsets the azimuth")
-    draw_bloch(axes[2], (0.28, -0.15, 0.20), r"$\mathbf{r}$")
-    # Replace the arrow end emphasis with an interior cloud.
-    rng = np.random.default_rng(3)
-    axes[2].scatter(rng.normal(0.1, 0.16, 28), rng.normal(0.08, 0.13, 28), s=12, color=PURPLE, alpha=0.18)
-    axes[2].set_title("A mixed state\nlies inside the sphere")
-    fig.text(0.5, -0.015, r"overall phase moves no Bloch vector; relative phase and mixture do", ha="center", color=MUTED)
+    draw_bloch(axes[2], (0.72, 0.45, 0.52), r"$|\psi\rangle,\ e^{i\gamma}|\psi\rangle$")
+    axes[2].set_title("Overall phase leaves\nthe point unchanged")
+    fig.text(0.5, -0.015, r"relative phase changes the physical point; overall phase does not", ha="center", color=MUTED)
     finish(fig, "ch02-bloch-phase-and-mixture.svg")
 
 
@@ -563,7 +578,7 @@ def main():
         fig_coherent_paths,
         fig_complex_amplitude,
         fig_born_projection,
-        fig_bloch_phase_mixture,
+        fig_bloch_phase_coordinates,
         fig_measurement_workflow,
         fig_noncommuting_order,
         fig_unread_measurement,

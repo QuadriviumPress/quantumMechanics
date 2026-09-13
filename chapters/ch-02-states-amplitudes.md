@@ -13,11 +13,16 @@ After this chapter, you should be able to:
 - normalize a state and apply the Born rule;
 - calculate selected routes through sequential analyzers;
 - distinguish relative phase from overall phase;
-- translate among the $x$, $y$, and $z$ spin bases; and
+- translate among the $x$, $y$, and $z$ spin bases;
 - distinguish a coherent pure state from a classical mixture;
-- construct spinors for an arbitrary analyzer direction; and
+- in the optional extension, construct spinors for an arbitrary analyzer
+  direction; and
 - add amplitudes for coherent alternatives and probabilities for exclusive
   recorded routes.
+
+The subsections labeled "optional extension" provide compact matrix machinery
+for readers ready to go further; the core conceptual path does not depend on
+them.
 
 ## 2.1 States are vectors
 
@@ -28,6 +33,44 @@ continuous families of other preparations, and phase information that can
 produce interference. An ordinary table of probabilities cannot do all of
 this at once, because it has no room for phase. Complex vectors can, and this
 chapter makes that idea precise.
+
+:::{note} Prerequisite review: complex-number arithmetic
+Skip this box if complex numbers are already familiar. If your last exposure
+to them was in an algebra class and feels distant, read it before continuing;
+the notation introduced here is used in the first state calculations below.
+
+A complex number is a pair of real numbers, $x$ and $y$, packaged as
+$z=x+iy$, where $i^2=-1$. Complex numbers add component by component, while
+multiplication follows the ordinary rules of algebra with $i^2$ replaced by
+$-1$:
+
+```{math}
+(2+3i)+(1-5i)=3-2i,
+\qquad
+(2+3i)(1-5i)=17-7i.
+```
+
+The **complex conjugate** of $z=x+iy$ is $z^*=x-iy$. Multiplying a number by
+its conjugate produces its nonnegative squared **modulus**:
+
+```{math}
+z^*z=(x-iy)(x+iy)=x^2+y^2=|z|^2.
+```
+
+Thus $z=3+4i$ has $z^*=3-4i$ and $|z|=5$. A probability built from a complex
+amplitude $z$ is $|z|^2=z^*z$, never $z^2$. For example,
+$|i/2|^2=1/4$, whereas $(i/2)^2=-1/4$ cannot be a probability.
+
+Geometrically, $z=x+iy$ is an arrow in a plane. Its length is $r=|z|$, and
+its angle $\phi$ from the real axis is its **phase**. Polar form records both:
+
+```{math}
+z=x+iy=r\cos\phi+ir\sin\phi=re^{i\phi},
+```
+
+where Euler's formula states $e^{i\phi}=\cos\phi+i\sin\phi$. Conjugation
+reverses the phase, $z^*=re^{-i\phi}$, without changing the magnitude.
+:::
 
 The notation $|\cdot\rangle$, read "ket," simply names a vector in that
 complex vector space. There is no more mystery in the symbol than in writing
@@ -105,8 +148,9 @@ numbers changes.
 
 ### Superposition is a physical principle
 
-Because states are vectors, any linear combination of two allowed states is
-itself an allowed state. This is the **superposition principle**, and it says
+Because states are vectors, any nonzero linear combination of two allowed
+states can be normalized to represent an allowed state. This is the
+**superposition principle**, and it says
 something stronger than "the atom is secretly in one state or the other." In
 
 ```{math}
@@ -117,8 +161,8 @@ the complex coefficients preserve phase information that can affect a later
 measurement. Compare this with a classical mixture, in which a fraction
 $|a|^2$ of atoms is separately prepared in $z+$ and the rest in $z-$. That
 mixture and the superposition above generally make *different* predictions,
-even though both give the same probabilities for a $z$ measurement. Section
-2.8 makes this comparison explicit.
+even though both give the same probabilities for a $z$ measurement. The
+section on pure states and mixtures makes this comparison explicit.
 
 ## 2.2 Bras and inner products
 
@@ -174,6 +218,17 @@ $\langle v|v\rangle=4+2=6$, hence
 \left(2|+z\rangle+(1+i)|-z\rangle\right).
 ```
 
+### Algebra check
+
+If $|\chi\rangle=(|+z\rangle-i|-z\rangle)/\sqrt2$, what are
+$\langle\chi|$ and $\langle\chi|\chi\rangle$?
+
+:::{dropdown} Answer
+Conjugating the coefficients gives
+$\langle\chi|=(\langle+z|+i\langle-z|)/\sqrt2$. Orthonormality then gives
+$\langle\chi|\chi\rangle=1/2+1/2=1$.
+:::
+
 ### Inner-product habits
 
 Three small algebraic rules prevent most early errors. First, swapping the
@@ -190,83 +245,22 @@ Second, a bra acts linearly on a ket to its right:
 =a\langle\phi|u\rangle+b\langle\phi|v\rangle.
 ```
 
-Third, the same holds for a linear combination of bras acting on a ket:
+Third, the inner product is **conjugate-linear in its first slot**. If a ket
+is combined first and then converted into a bra, its coefficients are
+conjugated:
 
 ```{math}
-(a\langle u|+b\langle v|)|\psi\rangle
-=a\langle u|\psi\rangle+b\langle v|\psi\rangle.
+\langle a u+b v|\psi\rangle
+=a^*\langle u|\psi\rangle+b^*\langle v|\psi\rangle.
 ```
 
-Notice what does *not* happen: the coefficients are conjugated when a ket is
-converted into a bra, but they are left alone when a bra simply acts linearly
-on a ket. For example, if $|\phi\rangle=(|+z\rangle+i|-z\rangle)/\sqrt2$, then
-$\langle\phi|=(\langle+z|-i\langle-z|)/\sqrt2$—the coefficient of the second
-term flips sign because $i^*=-i$, not because of anything to do with
-linearity.
+For example, if $|\phi\rangle=(|+z\rangle+i|-z\rangle)/\sqrt2$, then
+$\langle\phi|=(\langle+z|-i\langle-z|)/\sqrt2$. Once a bra has already been
+written as a row, ordinary row–column multiplication is linear in the entries
+of that row. Keeping these two statements separate prevents the common error
+of forgetting conjugation when forming the bra.
 
 ### Complex numbers as amplitude geometry
-
-:::{note} Quick review: complex-number arithmetic
-Skip this box if complex numbers are already familiar. If your last
-exposure to them was in an algebra class and feels distant, read on—
-everything quantum mechanics needs from complex numbers is contained here.
-
-A complex number is a pair of real numbers, $x$ and $y$, packaged as
-$z=x+iy$, where the symbol $i$ is defined by $i^2=-1$. Here $x$ is called the
-real part and $y$ the imaginary part. Two complex numbers add just like
-vectors, component by component:
-
-```{math}
-(2+3i)+(1-5i)=3-2i.
-```
-
-Multiplication follows the ordinary rules of algebra, with $i^2$ replaced by
-$-1$ wherever it appears:
-
-```{math}
-(2+3i)(1-5i)=2-10i+3i-15i^2=2-7i+15=17-7i.
-```
-
-Every complex number $z=x+iy$ has a **complex conjugate**, written $z^*$,
-obtained by flipping the sign of the imaginary part: $z^*=x-iy$. Multiplying
-a number by its own conjugate always gives a nonnegative real number, called
-its squared **modulus** (or squared magnitude):
-
-```{math}
-z^*z=(x-iy)(x+iy)=x^2+y^2=|z|^2.
-```
-
-For example, $z=3+4i$ has $z^*=3-4i$ and $|z|^2=9+16=25$, so $|z|=5$.
-Notice that $|z|$ is an ordinary nonnegative real number even though $z$
-itself is not—this is exactly the property that will let a complex
-amplitude turn into a real, positive probability.
-
-It helps enormously to picture $z=x+iy$ as a point, or an arrow from the
-origin, in a plane with a "real axis" and an "imaginary axis"—exactly the
-same kind of picture as the $(v_x,v_y)$ arrow in the box above, just with a
-new name for the axes. In this picture, $|z|$ is the length of the arrow,
-and the angle $\phi$ the arrow makes with the real axis is called its
-**phase**. Trigonometry then gives an equivalent way to write any complex
-number, called polar form:
-
-```{math}
-z=x+iy=r\cos\phi+ir\sin\phi=re^{i\phi},
-\qquad r=|z|,
-```
-
-where the last equality, Euler's formula, is a standard fact about the
-exponential function that we will use constantly without reproving it. A
-number with $r=1$, such as $e^{i\phi}$ itself, sits exactly on the unit
-circle in this picture—its magnitude is $1$ and only its angle $\phi$
-varies. For instance, $e^{i\pi/2}=\cos(\pi/2)+i\sin(\pi/2)=i$: multiplying by
-$i$ rotates the plane by $90^\circ$.
-
-The one calculation habit worth fixing firmly now, because it recurs on
-every page of this chapter, is this: to get a probability from a complex
-amplitude $z$, always compute $|z|^2=z^*z$—never $z^2$. For $z=i/2$,
-$z^2=-1/4$, which cannot be a probability, whereas
-$|z|^2=(i/2)^*(i/2)=(-i/2)(i/2)=1/4$, which can.
-:::
 
 Complex numbers enter quantum mechanics because an amplitude needs to carry
 both a magnitude and a phase at once, and a single real number cannot do
@@ -347,38 +341,28 @@ and it is one of the central postulates of quantum mechanics. Notice that the
 order matters in the amplitude: the bra labels the possible measurement
 outcome, and the ket labels the prepared state.
 
-The Born rule connects naturally to the completeness of the basis. Because
-the $z$ basis spans the whole space,
-
-```{math}
-:label: completeness-z
-|+z\rangle\langle+z|+|-z\rangle\langle-z|=\hat I.
-```
-
-Inserting this identity operator into any ket reproduces its basis
-expansion—which is really just a formal way of saying "every state is built
-out of its projections onto the basis." For example,
+Because the $z$ basis spans the state space, the two overlaps recover the
+whole ket:
 
 ```{math}
 |\psi\rangle
-=\hat I|\psi\rangle
-=|+z\rangle\langle+z|\psi\rangle
- +|-z\rangle\langle-z|\psi\rangle.
+=\langle+z|\psi\rangle|+z\rangle
+ +\langle-z|\psi\rangle|-z\rangle.
 ```
 
-Comparing this with equation {eq}`general-z-state` shows that the expansion
-coefficients $a$ and $b$ are precisely the amplitudes $\langle+z|\psi\rangle$
-and $\langle-z|\psi\rangle$ for the two basis outcomes.
+Comparing this with equation {eq}`general-z-state` shows that $a$ and $b$ are
+precisely the amplitudes $\langle+z|\psi\rangle$ and
+$\langle-z|\psi\rangle$. Chapter 3 will package this basis expansion into an
+identity operator after operators have been introduced.
 
 :::{figure} ../images/figures/ch02-born-rule-projection.svg
 :name: fig-born-rule-projection
-:alt: A state vector is resolved into components along the z plus and z minus basis directions. A bar chart shows that the squared magnitudes of those components are the two outcome probabilities and sum to one.
+:alt: A state is expanded using two complex amplitudes, one for z plus and one for z minus. A bar chart shows that their squared magnitudes are the two outcome probabilities and sum to one.
 :width: 100%
 
-Projection onto a measurement basis produces amplitudes; the Born rule turns
-their squared magnitudes into normalized outcome probabilities. The geometry
-is schematic—spin state space is complex even though this cross-section is
-drawn in a real plane.
+Expansion in a measurement basis produces complex amplitudes; the Born rule
+turns their squared magnitudes into normalized outcome probabilities. Each
+amplitude can carry a phase even though the probability bars cannot show it.
 :::
 
 ### A probability calculation in four steps
@@ -411,8 +395,13 @@ $|-i/2|^2=1/4$.
 
 Every measurement so far has used the $z$ basis, but nothing forces that
 choice—an analyzer built along $x$ or $y$ asks a different physical question,
-and it needs its own basis kets. The experimental 50–50 result for a $z+$
-state measured along $x$, found in Chapter 1, is reproduced if we define
+and it needs its own basis kets. The 50–50 result alone fixes the magnitudes of
+the two $z$-basis coefficients but not their relative phases. The formulas
+below therefore contain two ingredients: equal magnitudes demanded by the
+experiment, and a standard phase convention that ties the labels $x$ and $y$
+to perpendicular directions in physical space. Chapter 3 will recover the
+same kets as eigenvectors of the spin-component matrices. With that convention,
+the $x$ basis is
 
 ```{math}
 :label: x-states
@@ -421,7 +410,7 @@ state measured along $x$, found in Chapter 1, is reproduced if we define
 |-x\rangle=\frac{1}{\sqrt2}\left(|+z\rangle-|-z\rangle\right).
 ```
 
-A consistent phase convention for the $y$ basis, similarly, is
+and the $y$ basis is
 
 ```{math}
 :label: y-states
@@ -430,13 +419,13 @@ A consistent phase convention for the $y$ basis, similarly, is
 |-y\rangle=\frac{1}{\sqrt2}\left(|+z\rangle-i|-z\rangle\right).
 ```
 
-### Example 2.2: one complex amplitude
+### Example 2.2: a relative phase becomes a definite result
 
 Prepare
 
 ```{math}
-|\psi\rangle=\frac{1}{\sqrt3}|+z\rangle
-+i\sqrt{\frac23}|-z\rangle
+|\psi\rangle=\frac{1}{\sqrt2}
+\left(|+z\rangle+i|-z\rangle\right)
 ```
 
 and ask for the probability of $y+$. From equation {eq}`y-states`,
@@ -449,21 +438,13 @@ Therefore
 
 ```{math}
 \langle+y|\psi\rangle
-=\frac{1}{\sqrt2}\left(\frac{1}{\sqrt3}
-+\sqrt{\frac23}\right)
-=\frac{1+\sqrt2}{\sqrt6},
+=\frac12\left(1+(-i)i\right)=1,
 ```
 
-and
-
-```{math}
-P(y+)=\frac{(1+\sqrt2)^2}{6}
-=\frac{3+2\sqrt2}{6}.
-```
-
-The complementary probability is
-$P(y-)=(3-2\sqrt2)/6$, so the sum is one. The sign from conjugating $i$ in the
-$y+$ ket is physically consequential here.
+so $P(y+)=1$ and $P(y-)=0$. The state is exactly $|+y\rangle$, written in the
+$z$ basis. This deliberately simple example exposes the important algebra:
+the $i$ in the ket becomes $-i$ in the bra, and $(-i)i=1$. A missed complex
+conjugation would destroy the certainty that defines the $y+$ state.
 
 Let's check that this reproduces the known result. Applying the Born rule to
 a $z+$ input,
@@ -474,8 +455,7 @@ P(x+\mid z+)=|\langle+x|+z\rangle|^2
 ```
 
 exactly as observed in Chapter 1. To express any state $|\psi\rangle$ in the
-$x$ basis instead of the $z$ basis, insert the $x$-basis completeness
-relation in place of the $z$-basis one:
+$x$ basis instead of the $z$ basis, project it onto the two $x$-basis kets:
 
 ```{math}
 |\psi\rangle
@@ -489,7 +469,10 @@ has changed—the atom's preparation is exactly what it was. Only the
 rewriting an arrow's components in a rotated coordinate frame does not move
 the arrow.
 
-### Basis-change matrices
+### Optional extension: basis-change matrices
+
+The inner-product method above is the core skill. Readers who want a compact
+matrix version can organize all the overlaps into one basis-change matrix.
 
 The same calculation can be organized as a single matrix multiplication,
 which is often more convenient for bookkeeping. If $[\psi]_z=(a,b)^{\mathsf
@@ -510,9 +493,12 @@ column is
 ```
 
 Each row of this matrix is one of the $x$-basis bras, written out in $z$
-coordinates. This change-of-basis matrix is unitary, so it automatically
-preserves normalization: a properly normalized state stays normalized after
-the change of basis. Reading its entries as inner products also makes clear
+coordinates. A matrix $U$ is called **unitary** when
+$U^\dagger U=UU^\dagger=I$; this condition guarantees that lengths and inner
+products are preserved. The change-of-basis matrix is unitary, so a properly
+normalized state stays normalized after the change of basis. Chapter 3 will
+develop operators and unitary matrices systematically. Reading the entries
+here as inner products also makes clear
 that a basis change is *not* a physical Stern–Gerlach measurement—no outcome
 has been selected, and the abstract ket itself has not been disturbed in any
 way.
@@ -692,7 +678,119 @@ Interference, seen this way, is not some extra phenomenon bolted onto the
 vector formalism; it is simply what ordinary basis projection does to
 complex coefficients once more than one term is present.
 
-## 2.7 The Bloch-sphere coordinates
+## 2.7 A complete coherent path calculation
+
+We can now close the experimental loop opened in Chapter 1. Consider an ideal
+device that splits $z+$ into coherent $x+$ and $x-$ paths and then implements
+the inverse routing operation, returning both paths to the same spatial and
+motional state. With no uncontrolled path-dependent phase, the amplitude for
+each final outcome is the sum of the two indistinguishable route amplitudes:
+
+```{math}
+A(z+)
+=\langle+z|+x\rangle\langle+x|+z\rangle
++\langle+z|-x\rangle\langle-x|+z\rangle.
+```
+
+The two route amplitudes are each $1/2$, so
+
+```{math}
+:label: recombined-z-plus
+A(z+)=\frac12+\frac12=1,
+\qquad
+P(z+)=1.
+```
+
+For the other exit,
+
+```{math}
+:label: recombined-z-minus
+A(z-)
+=\langle-z|+x\rangle\langle+x|+z\rangle
++\langle-z|-x\rangle\langle-x|+z\rangle
+=\frac12-\frac12=0.
+```
+
+The mathematics describes the ideal apparatus specified above; merely writing
+a sum over intermediate states would not prove that an arbitrary physical
+beam splitter preserves coherence or recombines every other degree of freedom.
+
+### Concept check 2.4
+
+Both route amplitudes in equation {eq}`recombined-z-minus` have squared
+magnitude $1/4$. Why is the final probability zero rather than $1/2$?
+
+:::{dropdown} Answer
+The routes are indistinguishable and must be added as complex amplitudes.
+Their relative minus sign makes the sum zero. Adding the two route
+probabilities would describe a different apparatus—one that records or
+decoheres the intermediate alternatives.
+:::
+
+The cancellation is valid only because the intermediate $x$ result was never
+recorded. If it *is* recorded, the two complete routes become exclusive, and
+we add their probabilities:
+
+```{math}
+P_{\mathrm{recorded}}(z+)
+=\left|\frac12\right|^2+\left|\frac12\right|^2
+=\frac12.
+```
+
+The same route magnitudes produce certainty or a 50–50 split depending on
+whether the intermediate alternatives remain coherent.
+
+### Concept check 2.5
+
+Does changing the phase convention of $|-x\rangle$ change the interference
+prediction?
+
+:::{dropdown} Answer
+No. A phase assigned to the intermediate basis ket appears once in a ket
+overlap and once with the opposite sign in the corresponding bra overlap. It
+cancels from each complete route amplitude. Observable interference depends
+on physical relative phases introduced by transformations, not on basis
+notation.
+:::
+
+### A controllable phase
+
+Suppose one path adds a phase $e^{i\delta}$ before recombination, perhaps
+because it travels a slightly longer distance. Repeating the calculation,
+
+```{math}
+A(z+)=\frac{1+e^{i\delta}}{2},
+\qquad
+A(z-)=\frac{1-e^{i\delta}}{2},
+```
+
+so that
+
+```{math}
+:label: two-path-spin-fringes
+P(z+)=\cos^2\frac{\delta}{2},
+\qquad
+P(z-)=\sin^2\frac{\delta}{2}.
+```
+
+At $\delta=0$, the original $z+$ preparation is recovered. At $\delta=\pi$,
+the two exits exchange roles and $z-$ occurs with certainty. In between, a
+continuously adjustable phase controls discrete detector outcomes through
+continuously changing ensemble frequencies.
+
+The calculation supplies a reusable rule:
+
+1. identify each complete, indistinguishable route to one final record;
+2. multiply amplitudes along each route;
+3. include every transformation phase;
+4. add the route amplitudes; and
+5. square the magnitude only after the coherent sum is complete.
+
+If a record distinguishes routes, group together only routes that remain
+indistinguishable to that record, and add probabilities between the resulting
+exclusive groups.
+
+## 2.8 The Bloch-sphere coordinates
 
 After normalizing a state and discarding its irrelevant overall phase, every
 pure spin-$\tfrac12$ state can be written in the standard form
@@ -708,9 +806,24 @@ with $0\leq\theta\leq\pi$ and $0\leq\phi<2\pi$. Because only two real
 parameters remain once normalization and overall phase are fixed, the angles
 $(\theta,\phi)$ locate a point on an ordinary sphere—the **Bloch sphere**—and
 every possible pure spin state corresponds to exactly one point on it. The
-half-angle is essential here, not optional: as noted in Chapter 1, spinors
-acquire a minus sign under a $2\pi$ rotation, although that overall sign does
-not by itself change the physical state of an isolated spin.
+half-angle is essential here, not optional. The angles $(\theta,\phi)$ label a
+direction on the Bloch sphere; they should not be confused with a history of
+physical rotation undergone by the atom. Chapter 4 will show that when a
+representative spinor is physically rotated through $2\pi$, its ket acquires a
+minus sign. The corresponding physical ray is unchanged because the sign is
+an overall phase, though it can be observed relative to another coherent
+amplitude.
+
+:::{figure} ../images/figures/ch02-bloch-phase-and-mixture.svg
+:name: fig-bloch-phase-mixture
+:alt: Three Bloch spheres show a pure state as a point on the surface, a change in relative phase as a change in azimuth, and two kets differing by an overall phase at the same Bloch-sphere point.
+:width: 100%
+
+The Bloch sphere represents physical pure states rather than individual ket
+representatives. Polar angle fixes the relative magnitudes, azimuth fixes the
+relative phase, and overall phase has no coordinate because it leaves the
+physical state unchanged.
+:::
 
 For a measurement along a unit vector $\mathbf n$ making angle $\theta$ with
 $+z$, equation {eq}`bloch-state` gives
@@ -789,7 +902,7 @@ equation {eq}`bloch-state` update to match. Reproduce Example 2.5 by dragging
 to $\theta=60^\circ$ and checking the phase the sphere reports.
 ```
 
-## 2.8 Pure states and mixtures
+## 2.9 Pure states and mixtures
 
 Section 2.1 promised that a coherent superposition and a classical mixture
 are not the same thing, even when they agree on some measurements. We can
@@ -820,8 +933,14 @@ above—in which the 50–50 outcome disappears entirely.
 
 No single ket can represent that classical mixture—there is simply no linear
 combination of $|+z\rangle$ and $|-z\rangle$ that reproduces its statistics
-in *every* basis. A later chapter introduces the density operator, a tool
-built to describe both cases within one framework:
+in *every* basis. The core operational lesson is therefore: identical
+probabilities for one measurement do not prove that two preparations are the
+same quantum state.
+
+:::{note} Optional preview: density operators
+A later chapter introduces the density operator, which describes pure states
+and mixtures within one framework. In the $z$ basis, the two preparations
+above will be represented by
 
 ```{math}
 \hat\rho_{\mathrm{coh}}=|+x\rangle\langle+x|
@@ -839,22 +958,14 @@ whereas
 
 The off-diagonal entries present in $\hat\rho_{\mathrm{coh}}$ but absent from
 $\hat\rho_{\mathrm{mix}}$ are exactly the coherence that can influence
-measurements in another basis. For now, the operational lesson is enough:
-identical probabilities for one measurement do not prove that two
-preparations are the same quantum state.
-
-:::{figure} ../images/figures/ch02-bloch-phase-and-mixture.svg
-:name: fig-bloch-phase-mixture
-:alt: Three Bloch spheres. A pure state is shown by an arrow to the surface, relative phase changes the arrow's azimuth around the equator, and a mixed state is represented by a shorter vector inside the sphere.
-:width: 100%
-
-The Bloch sphere packages the distinctions developed in this chapter. Pure
-states reach the surface, relative phase fixes an azimuth, and mixtures occupy
-the interior. Overall phase has no Bloch-sphere coordinate because it changes
-no physical state.
+measurements in another basis. This notation is a preview, not a prerequisite
+for the remaining sections or exercises.
 :::
 
-## 2.9 Spinors for an arbitrary direction
+## 2.10 Optional extension: spinors for an arbitrary direction
+
+The core chapter is complete. This optional extension packages an arbitrary
+analyzer orientation into a pair of spinors and a basis-change matrix.
 
 The Bloch-sphere coordinates do more than just label a state—they also give
 us the eigenstates of an analyzer built along any direction we like. For an
@@ -944,127 +1055,12 @@ coordinates, while $V_{\mathbf n}^\dagger$ performs the reverse change,
 from old coordinates to new. Keeping those two directions of conversion
 straight prevents a common basis-change error.
 
-## 2.10 A complete coherent path calculation
-
-Let's return to the ideal analyzer–recombiner from Chapter 1 and finally
-work through it with amplitudes, rather than the informal picture used
-there. Insert the $x$-basis identity between an initial $z+$ state and a
-final $z$ outcome:
-
-```{math}
-\langle+z|\hat I|+z\rangle
-=\langle+z|+x\rangle\langle+x|+z\rangle
-+\langle+z|-x\rangle\langle-x|+z\rangle.
-```
-
-The two route amplitudes on the right are each $1/2$, so the total amplitude
-for the $z+$ outcome is
-
-```{math}
-:label: recombined-z-plus
-A(z+)=\frac12+\frac12=1,
-\qquad
-P(z+)=1.
-```
-
-For the other exit, the same kind of calculation gives
-
-```{math}
-:label: recombined-z-minus
-A(z-)
-=\langle-z|+x\rangle\langle+x|+z\rangle
-+\langle-z|-x\rangle\langle-x|+z\rangle
-=\frac12-\frac12=0.
-```
-
-### Concept check 2.4
-
-Both route amplitudes in equation {eq}`recombined-z-minus` have squared
-magnitude $1/4$. Why is the final probability zero rather than $1/2$?
-
-:::{dropdown} Answer
-The routes are indistinguishable and must be added as complex amplitudes.
-Their relative minus sign makes the sum zero. Adding the two route
-probabilities would describe a different apparatus—one that records or
-decoheres the intermediate alternatives.
-:::
-
-The two $z-$ alternatives cancel exactly. This cancellation is only valid
-because the intermediate $x$ result was never recorded. If it *is* recorded,
-the two complete routes become exclusive, and we must add their
-probabilities—not their amplitudes:
-
-```{math}
-P_{\mathrm{recorded}}(z+)
-=\left|\frac12\right|^2+\left|\frac12\right|^2
-=\frac12.
-```
-
-The same two route magnitudes have just produced two completely different
-answers, certainty or a 50–50 split, depending only on whether the
-intermediate alternatives remained coherent.
-
-### Concept check 2.5
-
-Does changing the phase convention of $|-x\rangle$ change the interference
-prediction?
-
-:::{dropdown} Answer
-No. A phase assigned to the intermediate basis ket appears once in a ket
-overlap and once with the opposite sign in the corresponding bra overlap. It
-cancels from each complete route amplitude. Observable interference depends
-on physical relative phases introduced by transformations, not on basis
-notation.
-:::
-
-### A controllable phase
-
-Suppose one path adds a phase $e^{i\delta}$ before recombination, perhaps
-because it travels a slightly longer distance. Repeating the amplitude
-calculation with this extra phase inserted,
-
-```{math}
-A(z+)=\frac{1+e^{i\delta}}{2},
-\qquad
-A(z-)=\frac{1-e^{i\delta}}{2},
-```
-
-so that
-
-```{math}
-:label: two-path-spin-fringes
-P(z+)=\cos^2\frac{\delta}{2},
-\qquad
-P(z-)=\sin^2\frac{\delta}{2}.
-```
-
-At $\delta=0$, the original $z+$ preparation is recovered, matching equation
-{eq}`recombined-z-plus`. At $\delta=\pi$, the two exits exchange roles and
-$z-$ occurs with certainty. In between, a continuously adjustable phase
-controls discrete detector outcomes through continuously changing ensemble
-frequencies—exactly the behavior of an ordinary two-path interferometer,
-translated into spin language.
-
-This calculation supplies a reusable rule for more complicated coherent
-experiments:
-
-1. identify each complete, indistinguishable route to one final record;
-2. multiply amplitudes along each route;
-3. include every transformation phase;
-4. add the route amplitudes; and
-5. square the magnitude only after the coherent sum is complete.
-
-If a record distinguishes routes, group together only routes that remain
-indistinguishable to that record, and add probabilities between the
-resulting exclusive groups.
-
 ## Summary
 
 - A ket is an abstract state vector; its column depends on the chosen basis.
 - Inner products produce amplitudes, and squared magnitudes produce
   probabilities.
-- An orthonormal basis resolves the identity and supplies expansion
-  coefficients.
+- An orthonormal basis supplies expansion amplitudes through inner products.
 - Overall phase is unobservable, while relative phase controls interference.
 - Every pure spin-$\tfrac12$ state corresponds to a point on the Bloch
   sphere.
@@ -1073,12 +1069,18 @@ resulting exclusive groups.
   amplitude level.
 - A coherent superposition and a classical mixture can agree in one basis
   and disagree in another.
-- Arbitrary analyzer directions correspond to orthonormal spinors whose
-  half-angle coordinates form a unitary basis-change matrix.
+- In the optional extension, arbitrary analyzer directions correspond to
+  orthonormal spinors whose half-angle coordinates form a unitary
+  basis-change matrix.
 - Coherent routes are multiplied along each route and added across
   indistinguishable alternatives before the Born rule is applied.
 
 ## Exercises
+
+Exercises 1–7 establish the core notation and probability skills, 8–14
+consolidate basis changes, phases, and mixtures, and 15–21 are extensions on
+arbitrary directions and coherent paths. Complete the first group before
+moving to the more algebraic problems.
 
 1. Normalize $(3,4i)^{\mathsf T}$ and find the probabilities of $z+$ and $z-$.
 2. Verify directly that the two states in equation {eq}`x-states` are normalized
@@ -1105,9 +1107,10 @@ resulting exclusive groups.
     second inner-product calculation.
 12. Find the Bloch angles $(\theta,\phi)$ for the normalized ket
     $(1,\sqrt3 i)^{\mathsf T}/2$. What spin direction does it represent?
-13. Show explicitly that $\hat\rho_{\mathrm{coh}}$ predicts certainty for $x+$
-    while $\hat\rho_{\mathrm{mix}}$ predicts probability $1/2$, using
-    $P(x+)=\langle+x|\hat\rho|+x\rangle$.
+13. Without using density operators, show that a coherent $|+x\rangle$
+    preparation gives $x+$ with certainty while a 50–50 classical mixture of
+    $z+$ and $z-$ gives $P(x+)=1/2$. State where probabilities, rather than
+    amplitudes, must be added in the mixture calculation.
 14. Construct two physically different ensembles that give identical $z$
     statistics. Specify one additional analyzer orientation that distinguishes
     them, and calculate the predicted probabilities.

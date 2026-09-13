@@ -18,6 +18,11 @@ After this chapter, you should be able to:
 - represent pure states, mixtures, and unread measurements with density
   operators.
 
+Sections 3.8 and 3.9 are optional mathematical extensions. They prove the
+spectral structure used earlier and collect compact Pauli identities, but the
+measurement and density-operator sections do not depend on completing every
+derivation there.
+
 ## 3.1 Observables as operators
 
 Chapter 2 treated $S_z$, $S_x$, and every other spin component separately,
@@ -25,9 +30,10 @@ building a fresh pair of basis kets each time we wanted to ask a new
 question. That approach works, but it is repetitive: the same idea—"measure
 spin along some axis"—kept reappearing with different labels attached. It is
 both more efficient and more revealing to package that whole idea into a
-single mathematical object, called an **operator**, that acts on a state
-vector and hands back the possible outcomes together with the states that
-make each outcome certain.
+single mathematical object, called an **operator**. Its eigenvalues list the
+possible outcomes, and its eigenspaces identify the states that make those
+outcomes certain. Applying the operator to an arbitrary ket is an algebraic
+operation, not a literal simulation of one laboratory measurement.
 
 :::{note} Quick review: matrices, eigenvectors, and eigenvalues
 Skip this box if diagonalizing a matrix is already routine for you.
@@ -132,8 +138,8 @@ next section makes precise.
 ## 3.2 Constructing an operator from its measurement states
 
 We can build an operator representing a measurement directly out of its
-outcome states, using a tool already implicit in Chapter 2's resolution of
-the identity: the **projector**. A projector is an operator that takes an
+outcome states, using a tool already implicit in Chapter 2's basis
+expansions: the **projector**. A projector is an operator that takes an
 arbitrary state, extracts its component along one particular direction in
 state space, and discards the rest. Define the projectors
 
@@ -147,8 +153,9 @@ state space, and discards the rest. Define the projectors
 Direct from the definition, they satisfy three properties:
 $\hat P^2=\hat P$ (projecting twice does nothing new), $\hat P^\dagger=\hat
 P$ (each is Hermitian), and $\hat P_{z+}\hat P_{z-}=0$ (the two outcomes are
-mutually exclusive). Completeness, from Chapter 2, gives
-$\hat P_{z+}+\hat P_{z-}=\hat I$.
+mutually exclusive). Because the two basis states span the space,
+$\hat P_{z+}+\hat P_{z-}=\hat I$. This is the operator form of the basis
+expansion used in Chapter 2.
 
 Combining the eigenvalues with their projectors reconstructs the full
 operator. The spectral decomposition of $\hat S_z$ is
@@ -201,6 +208,18 @@ This two-way connection deserves practice in both directions:
 Keep in mind what the operator is *not*. It is not an additional physical
 substance carried around by the atom. It is simply the linear map that
 encodes one particular experimental question—nothing more, and nothing less.
+
+### Concept check: reading a spectral decomposition
+
+In $\hat A=a_1|a_1\rangle\langle a_1|+a_2|a_2\rangle\langle a_2|$, which
+symbols denote detector readings, definite-outcome states, and tests for the
+two outcomes?
+
+:::{dropdown} Answer
+The numbers $a_1,a_2$ are detector readings; the kets $|a_1\rangle,|a_2\rangle$
+are definite-outcome states; and the projectors
+$|a_1\rangle\langle a_1|,|a_2\rangle\langle a_2|$ test for those outcomes.
+:::
 
 ## 3.3 Measurement probabilities and state update
 
@@ -285,6 +304,7 @@ in Chapter 1, while also identifying the exact state prepared once the
 $+\mathbf n$ result is selected, something the earlier probability-tree
 approach could not supply on its own.
 
+:::{note} Optional extension: degenerate outcomes
 For a degenerate result, several orthogonal states share one eigenvalue. If
 $\hat P_n$ projects onto that entire eigenspace, the normalized
 post-measurement state generalizes to
@@ -298,6 +318,7 @@ post-measurement state generalizes to
 
 The denominator here is just the square root of the probability for that
 outcome, ensuring $|\psi'\rangle$ comes out properly normalized.
+:::
 
 This projector construction also makes repeatability, Chapter 1's first
 empirical rule, mathematically transparent. For a one-dimensional outcome
@@ -658,12 +679,12 @@ This is the operator version of equation {eq}`bloch-overlap`, and it remains
 useful even for *mixed* states, whose Bloch vectors lie strictly inside the
 sphere rather than on its surface.
 
-## 3.8 Why Hermitian operators have the needed structure
+## 3.8 Optional extension: why Hermitian operators have the needed structure
 
 Section 3.1 asserted that Hermiticity guarantees real eigenvalues and
-orthogonal eigenstates. It is worth proving both claims directly, since they
-are the entire justification for representing observables by Hermitian
-operators in the first place, rather than by some other kind of matrix.
+orthogonal eigenstates. It is worth proving both claims directly because they
+explain why Hermitian operators fit ideal observables in finite-dimensional
+quantum mechanics.
 
 Suppose
 
@@ -810,7 +831,7 @@ workflow: find the eigenvalues, solve for each component ratio, normalize,
 and check orthogonality. Hermiticity told us in advance that the roots would
 be real and that such an orthonormal eigenbasis must exist.
 
-## 3.9 The Pauli algebra as a calculation tool
+## 3.9 Optional extension: the Pauli algebra as a calculation tool
 
 Many spin calculations become much shorter once a few Pauli-matrix
 identities are available, so they are collected here as tools
@@ -1056,6 +1077,12 @@ words but behave quite differently: "measure and forget the result" versus
   unread measurements remove coherence in the measured basis.
 
 ## Exercises
+
+Exercises 1–7 build the essential operator, projector, and expectation-value
+skills. Exercises 8–14 consolidate sequential measurement and state
+reconstruction. Exercises 15–22 draw on the optional mathematical extensions
+or density-operator material. A first pass can therefore use 1–7, 10–12, 18,
+and 20–21 without treating the entire list as one assignment.
 
 1. Find the eigenvalues and normalized eigenvectors of each Pauli matrix.
 2. Verify the projector properties for $\hat P_{x+}$ and $\hat P_{x-}$ using

@@ -18,6 +18,9 @@ After this chapter, you should be able to:
 - distinguish ideal probabilities from finite-sample frequencies; and
 - design analyzer sequences that test competing physical explanations.
 
+The final two objectives are developed in optional laboratory and inquiry
+extensions after the chapter's core conceptual sequence.
+
 ## 1.1 An experiment before a formalism
 
 Quantum mechanics is easiest to trust when it grows out of a real experiment,
@@ -84,12 +87,16 @@ atoms boiling off the oven should have their magnetic moments pointing every
 which way. That means $\mu_z=\mu\cos\theta$ should take every value between
 $-\mu$ and $+\mu$, depending on each atom's orientation angle $\theta$.
 Combined with equation {eq}`sg-force`, this predicts a continuous smear of
-deflections on the screen: one broad band, dense in the middle and thinning
-toward the edges.
+deflections on the screen. For fixed-magnitude moments pointing isotropically,
+$\cos\theta$ is uniformly distributed, so the idealized classical pattern is
+an approximately uniform band between the two extreme deflections. Thermal
+speeds, finite slits, and detector resolution can broaden or reshape that
+band, but they do not turn it into two discrete spots.
 
-That is not what Stern and Gerlach saw. Instead of a smear, they saw exactly
-two separated spots, with nothing in between. We label these two outcomes
-$z+$ and $z-$.
+That is not what Stern and Gerlach saw. Instead of the predicted continuous
+band, their deposited silver pattern separated into two traces. In the ideal
+two-outcome model used throughout this chapter, we represent those traces as
+two spots labeled $z+$ and $z-$.
 
 :::{figure} ../images/figures/ch01-stern-gerlach-apparatus.svg
 :name: fig-sg-apparatus
@@ -135,6 +142,14 @@ recorded as $z+$—so the same device that just *measured* spin has become a
 device that *prepares* it. This dual role, one physical apparatus used first
 as a measurement and then as a preparation, will come up again and again in
 this chapter, so it is worth fixing firmly in mind now.
+
+:::{caution} Ideal analyzers from this point onward
+The original silver-beam experiment established the two-valued result, but the
+perfect filters, lossless beam routing, and chained analyzers used below are
+idealized devices. They isolate the logic of spin measurements. A laboratory
+implementation must also control the atoms' position, momentum, velocity
+spread, and accumulated phase.
+:::
 
 ### Reading the experiment from left to right
 
@@ -274,6 +289,17 @@ along an incompatible axis replaces that certainty with a new preparation.
 The diagrams are read from left to right, just like the laboratory sequence.
 :::
 
+### Concept check 1.1
+
+A $z+$ beam enters $\mathrm{SG}_x$. The $x-$ exit is blocked, and the
+transmitted $x+$ beam enters another $\mathrm{SG}_x$. What fraction of the
+original $z+$ beam reaches the final $x+$ detector?
+
+:::{dropdown} Answer
+One half. The first $x$ measurement transmits half the atoms into $x+$.
+Repeating the $S_x$ measurement then returns $x+$ with certainty.
+:::
+
 ### What "disturbance" does and does not explain
 
 One might instead say that the middle analyzer simply adds uncontrolled
@@ -326,11 +352,13 @@ P(-\mathbf b\mid+\mathbf a)=\sin^2\frac{\alpha}{2}.
 
 Notice the *half*-angle, $\alpha/2$, rather than $\alpha$ itself. This is not
 a typo or a minor detail—it is an early hint that spin does not transform
-like an ordinary arrow in space. An ordinary arrow returns to itself after a
-$360^\circ$ rotation. A spin state, as Chapter 4 will show, returns to itself
-only after picking up an overall minus sign along the way, and needs a full
-$720^\circ$ rotation to return exactly unchanged. The half-angle in equation
-{eq}`empirical-angle-rule` is the first fingerprint of that fact.
+like an ordinary arrow in space. As Chapter 4 will show, a representative
+spinor acquires an overall minus sign under a $360^\circ$ rotation and returns
+to the identical ket only after $720^\circ$. The minus sign does not change
+the physical state of an isolated spin, because overall phase is unobservable;
+it becomes detectable only relative to another coherent amplitude. The
+half-angle in equation {eq}`empirical-angle-rule` is an early fingerprint of
+this spinor transformation law.
 
 It is worth checking that this formula reproduces everything found so far.
 At $\alpha=0^\circ$ (aligned analyzers), $\cos^2(0)=1$: certainty of
@@ -383,12 +411,34 @@ reach the final $z-$ detector; the remaining quarter was blocked at the
 middle analyzer. Conditional probabilities must be multiplied along a
 selected path.
 
+### Concept check 1.2
+
+A $z+$ beam is analyzed along an axis $\mathbf n$ only $10^\circ$ from $+z$.
+One student predicts exactly $z+$ because the axes are nearly aligned;
+another predicts a 50–50 split because the axes are different. What does the
+experiment predict?
+
+:::{dropdown} Answer
+Neither. The probability of $+\mathbf n$ is
+$\cos^2(5^\circ)\approx0.9924$, while the probability of $-\mathbf n$ is about
+$0.0076$. Quantum outcomes are discrete, but their probabilities vary
+continuously with analyzer orientation.
+:::
+
 ## 1.4 Recombining alternatives
 
 Every experiment so far has ended with a measurement: an atom lands in one
 detector or another, and that is the end of the story. What happens if,
 instead of recording which path an atom took, we let two paths recombine
 before anything is measured?
+
+:::{caution} What an ideal recombiner assumes
+A textbook Stern–Gerlach recombiner is not merely a second ordinary magnet. It
+must reverse the path separation while erasing any correlation with position,
+momentum, or the environment and while preserving a controlled relative
+phase. Such devices are technically demanding for massive particles. Here the
+idealization lets us isolate the quantum rule for coherent alternatives.
+:::
 
 Imagine a carefully built device that splits a $z+$ beam into two separate
 paths, one associated with $x+$ and one with $x-$, and then brings the two
@@ -444,6 +494,17 @@ This is why "half the atoms went through each arm" is not a complete
 description of the coherent experiment. The path amplitudes can cancel at one
 output and reinforce at another, even though each open arm alone sends atoms
 to both outputs.
+
+### Concept check 1.3
+
+Why is a 50–50 collection of separately prepared $x+$ and $x-$ atoms not
+automatically equivalent to a coherent recombination of the two paths?
+
+:::{dropdown} Answer
+The collection records mutually exclusive preparations and is an incoherent
+mixture. A coherent recombination preserves the relative phase between the
+two amplitudes, so later probabilities can contain interference terms.
+:::
 
 ## 1.5 A minimal model
 
@@ -556,43 +617,11 @@ The final counts are not $4{,}000$ and zero. The state entering the last
 analyzer is $x-$, not the earlier $z+$ preparation. Writing the state beneath
 each segment of an apparatus sketch is a simple way to avoid this mistake.
 
-### Concept check 1.1
+## 1.8 Optional laboratory extension: from probabilities to data
 
-A $z+$ beam enters $\mathrm{SG}_x$. The $x-$ exit is blocked, and the
-transmitted $x+$ beam enters another $\mathrm{SG}_x$. What fraction of the
-original $z+$ beam reaches the final $x+$ detector?
-
-:::{dropdown} Answer
-One half. The first $x$ measurement transmits half the atoms into $x+$.
-Repeating the $S_x$ measurement then returns $x+$ with certainty.
-:::
-
-### Concept check 1.2
-
-Why is a 50–50 collection of separately prepared $x+$ and $x-$ atoms not
-automatically equivalent to a coherent recombination of the two paths?
-
-:::{dropdown} Answer
-The collection records mutually exclusive preparations and is an incoherent
-mixture. A coherent recombination preserves the relative phase between the
-two amplitudes, so later probabilities can contain interference terms.
-:::
-
-### Concept check 1.3
-
-A $z+$ beam is analyzed along an axis $\mathbf n$ only $10^\circ$ from $+z$.
-One student predicts exactly $z+$ because the axes are nearly aligned;
-another predicts a 50–50 split because the axes are different. What does the
-experiment predict?
-
-:::{dropdown} Answer
-Neither. The probability of $+\mathbf n$ is
-$\cos^2(5^\circ)\approx0.9924$, while the probability of $-\mathbf n$ is about
-$0.0076$. Quantum outcomes are discrete, but their probabilities vary
-continuously with analyzer orientation.
-:::
-
-## 1.8 From probabilities to laboratory data
+The conceptual route to the state-vector formalism is complete at this point.
+This optional section connects ideal probabilities to the fluctuations and
+systematic effects encountered in laboratory data.
 
 Equations such as {eq}`empirical-angle-rule` predict probabilities, whereas a
 real experiment produces integer counts. The link between the two is
@@ -669,6 +698,17 @@ statistics. "The data look noisy" is not an explanation until the sources of
 noise are identified and tested.
 :::
 
+### Concept check 1.4
+
+A run with $100$ atoms gives $54$ counts at $x+$ and $46$ at $x-$. Has the
+expected 50–50 split failed?
+
+:::{dropdown} Answer
+No. For $N=100$ and $p=1/2$, the expected standard deviation of the positive
+count is $\sqrt{100(1/2)(1/2)}=5$. A count of $54$ is less than one standard
+deviation above the mean of $50$ and is entirely typical.
+:::
+
 ### Estimating an unknown analyzer angle
 
 The same experiment can be used in reverse. For a known $z+$ input and an
@@ -686,7 +726,11 @@ characterize an apparatus as well as test a prepared state. In later
 chapters, this reversal of viewpoint becomes quantum-state tomography: known
 analyzers are used to infer an unknown preparation.
 
-## 1.9 Experiments that separate competing explanations
+## 1.9 Optional inquiry extension: separating competing explanations
+
+This optional section turns the chapter's observations into a model-testing
+strategy: choose arrangements for which plausible explanations make different
+predictions.
 
 A useful experiment does more than exhibit an effect; it distinguishes
 between models that would otherwise make the same prediction. A single $z$
@@ -740,27 +784,6 @@ coherent—whether any physical degree of freedom carries usable which-path
 information. Chapter 2 will represent this distinction by retaining or
 discarding the cross terms between amplitudes.
 
-:::{admonition} Idealization boundary
-:class: caution
-A textbook Stern–Gerlach recombiner is an ideal coherent device.
-Constructing one for massive particles is technically demanding because the
-two paths must be redirected without leaving uncontrolled position,
-momentum, or phase records. The idealization isolates the quantum logic; it
-is not a claim that ordinary laboratory magnets automatically reverse an
-analyzer.
-:::
-
-### Concept check 1.4
-
-A run with $100$ atoms gives $54$ counts at $x+$ and $46$ at $x-$. Has the
-expected 50–50 split failed?
-
-:::{dropdown} Answer
-No. For $N=100$ and $p=1/2$, the expected standard deviation of the positive
-count is $\sqrt{100(1/2)(1/2)}=5$. A count of $54$ is less than one standard
-deviation above the mean of $50$ and is entirely typical.
-:::
-
 ### Concept check 1.5
 
 Why can the sequence $z+\rightarrow x+\rightarrow z$ test more than the
@@ -793,6 +816,11 @@ $z$ label should not erase it.
   predictions.
 
 ## Exercises
+
+Exercises 1–6 rehearse the core analyzer logic, 7–11 consolidate angle rules
+and coherent alternatives, and 12–16 extend the chapter into data analysis and
+experimental design. Complete the first group before choosing from the later
+two.
 
 1. An unpolarized beam of $20{,}000$ atoms passes through $\mathrm{SG}_z$; the
    $z+$ output then passes through $\mathrm{SG}_x$. Estimate the counts in the

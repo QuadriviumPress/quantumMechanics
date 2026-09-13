@@ -16,6 +16,10 @@ After this chapter, you should be able to:
 - use commutators to derive translations and uncertainty bounds; and
 - calculate expectation values for continuous observables.
 
+Sections 6.1–6.7 form the conceptual core. Sections 6.8–6.9 are applications
+to packet spreading and expectation-value dynamics; they may be taken as a
+second pass before the chapter's final representation check.
+
 ## 6.1 From discrete labels to a continuum
 
 Every chapter so far has worked with a spin's *discrete* state space: two
@@ -42,9 +46,11 @@ sum over two labels. Position has a continuous label $x$ in place of a
 discrete index $n$, and turning a sum into its continuum analogue always
 follows the same two-step recipe: chop the line into narrow bins of width
 $\Delta x$, write a Riemann sum over those bins, and then let
-$\Delta x\to0$ so the sum becomes an integral. Schematically, if
-$|x_n\rangle$ denotes an approximately normalized state built from the
-amplitude within a bin of width $\Delta x$ centered on $x_n=n\,\Delta x$,
+$\Delta x\to0$ so the sum becomes an integral. If $|n;\Delta x\rangle$ is a
+normalized state localized in the $n$th bin, its approximate completeness
+relation is an ordinary sum, $\sum_n|n;\Delta x\rangle\langle n;\Delta x|
+\approx\hat I$. Define sampled generalized kets by
+$|x_n\rangle=|n;\Delta x\rangle/\sqrt{\Delta x}$. Then
 
 ```{math}
 \sum_n|x_n\rangle\langle x_n|\,\Delta x
@@ -52,9 +58,9 @@ amplitude within a bin of width $\Delta x$ centered on $x_n=n\,\Delta x$,
 \int_{-\infty}^{\infty}|x\rangle\langle x|\,dx.
 ```
 
-The factor of $\Delta x$ is not optional bookkeeping: it is exactly what
-keeps the sum finite as the bins are made infinitely narrow, and it is what
-turns into $dx$ under the integral sign. That same factor is also why an
+The factor of $\Delta x$ accompanies the *generalized* sampled kets; it is
+what turns into $dx$ under the integral sign. A normalized finite-bin ket,
+by contrast, belongs in the sum without that factor. This scaling is why an
 orthonormality condition that used to be a simple $1$ or $0$—the Kronecker
 delta $\delta_{mn}$—must turn into something that blows up at coincidence
 and vanishes elsewhere just fast enough to cancel a factor of $dx$: the
@@ -94,6 +100,7 @@ One consequence follows immediately: ideal position kets are not
 normalizable physical states at all. Real preparations are wave packets of
 finite width, as Section 6.5 develops in detail.
 
+:::{dropdown} Optional mathematical detail: why the delta is singular
 It helps to see directly why an ordinary finite function cannot play the
 role of $\langle x|x'\rangle$, rather than simply asserting it. Suppose
 instead that $\langle x|x'\rangle=g(x-x')$ for some bounded function $g$.
@@ -117,10 +124,12 @@ continuum version of that same requirement forces delta-function
 normalization in place of unit inner products, and it is exactly what
 pushes the generalized kets $|x\rangle$ just outside the space of
 normalizable states.
+:::
 
 :::{note} A generalized basis is a bookkeeping device
 No apparatus prepares $|x\rangle$ itself: doing so would require infinite
-momentum uncertainty and infinite energy. What is physically prepared are
+momentum uncertainty and, for the usual nonrelativistic kinetic Hamiltonian
+$\hat p^2/(2m)$, infinite mean kinetic energy. What is physically prepared are
 normalizable wave packets, expressed as superpositions
 $\int\psi(x)|x\rangle\,dx$ over the generalized basis. The basis kets earn
 their keep by making the expansion coefficients—the wavefunction—easy to
@@ -299,22 +308,22 @@ the left side as an integral and integrating by parts once,
 ```
 
 The remaining integral on the right is exactly $\langle\hat p\phi|\psi
-\rangle$, the quantity Hermiticity requires the left side to equal. So the
-two sides agree if and only if the boundary term
-$\big[\phi^*\psi\big]_{-\infty}^{\infty}$ vanishes. For any pair of
-normalizable wavefunctions on the whole line, both $\phi$ and $\psi$ must
-already go to zero as $x\to\pm\infty$ simply for $\int|\phi|^2dx$ and
-$\int|\psi|^2dx$ to be finite, so this boundary term vanishes automatically.
-It becomes a genuine physical constraint only once the domain has an edge—an
-infinite square well's walls, for instance—which is exactly the case
-flagged next.
+\rangle$, the quantity symmetry of $\hat p$ requires the left side to equal.
+Thus the two sides agree when the boundary form
+$\big[\phi^*\psi\big]_{-\infty}^{\infty}$ vanishes for every pair in the
+operator's domain. Square integrability alone does not guarantee a pointwise
+limit at infinity; one also needs suitable regularity and boundary behavior.
+The standard momentum domain on the whole line is chosen so these conditions
+hold.
 
-So an operator is not
-fully defined by a differential expression alone; its allowed domain of
-functions is part of its definition. Chapter 7 will meet this issue
-concretely: an infinite square well forces $\psi$ to vanish at the walls,
-which is exactly the condition needed to keep $\hat p$ Hermitian on that
-domain, while the bare differential expression alone would not guarantee it.
+An unbounded operator is therefore not fully defined by a differential
+expression alone: its domain is part of its definition. A further subtlety
+appears on a finite interval. Requiring wavefunctions to vanish at two hard
+walls makes the boundary form vanish, so $-i\hbar d/dx$ is symmetric on that
+domain, but it is not self-adjoint there and does not define the well's
+momentum observable. The operator $-\hbar^2d^2/dx^2/(2m)$ with the hard-wall
+boundary conditions *does* define a self-adjoint Hamiltonian. Chapter 7 uses
+that Hamiltonian directly.
 
 ### Concept check 6.2
 
@@ -410,6 +419,14 @@ distinction Chapter 2 drew between rewriting a spin ket in a new basis and
 performing an actual measurement. Normalization is preserved either way:
 $\int|\psi(x)|^2dx=\int|\phi(p)|^2dp=1$.
 
+:::{important} Coordinates are not outcomes
+Calculating $\phi(p)$ from $\psi(x)$ only rewrites the same state. It neither
+moves the particle nor measures its momentum. A momentum measurement is a
+physical interaction that produces one outcome and changes the conditional
+state used afterward. Section 6.10 returns to this distinction after the
+applications.
+:::
+
 A broad packet in position generally requires a narrow range of wave
 numbers; a narrow position packet requires many. This Fourier fact underlies
 the position–momentum uncertainty relation, and separating what is and is
@@ -486,11 +503,11 @@ calibrated position detector kicking the particle around. It describes the sprea
 ensembles, each prepared identically in the same state, one measured for
 position and the other for momentum.
 
-### Why the Gaussian, specifically, saturates the bound
+### Optional mathematical extension: why the Gaussian saturates the bound
 
-Chapter 3 showed that the general uncertainty relation
-$\Delta A\,\Delta B\ge\tfrac12|\langle[\hat A,\hat B]\rangle|$ becomes an
-equality precisely when
+For the canonical pair, equality in the Cauchy–Schwarz argument behind the
+uncertainty relation can occur only when the two centered state vectors are
+related by
 
 ```{math}
 :label: minimum-uncertainty-condition
@@ -673,7 +690,7 @@ limit, that correctly describes a laboratory detector pixel or a particle
 track in a bubble chamber.
 :::
 
-## 6.8 Free-particle evolution and packet spreading
+## 6.8 Application: free-particle evolution and packet spreading
 
 For $V=0$, each momentum component is an energy eigenstate with
 $E(p)=p^2/(2m)$. The momentum wavefunction evolves as
@@ -729,10 +746,12 @@ Confusing the two gives a factor-of-two error for the nonrelativistic
 dispersion relation $\omega=\hbar k^2/(2m)$. The phase velocity is not
 meaningless—it governs how the fine ripples inside the envelope move—but it
 is not what a particle detector downstream registers as "how fast the
-particle arrived." Only the envelope carries probability, so only the
-envelope's speed should ever be compared with a classical velocity.
+particle arrived." For a narrow-band packet, the carrier oscillations do not
+appear separately in $|\psi|^2$, whereas the envelope locates the probability
+packet. Its group velocity is therefore the speed to compare with the
+packet's classical motion.
 
-## 6.9 Ehrenfest's theorem
+## 6.9 Application: Ehrenfest's theorem
 
 For
 
@@ -864,8 +883,9 @@ outcome and preparing a new state for whatever comes next.
 - Position multiplies by $x$, while momentum differentiates in the position
   representation.
 - Position and momentum wavefunctions are Fourier transforms of one another.
-- Gaussian packets attain the minimum uncertainty product $\hbar/2$ and are the
-  unique states that do so.
+- Gaussian packets attain the minimum uncertainty product $\hbar/2$ and,
+  apart from their center, mean momentum, and overall phase, are the unique
+  states that do so.
 - Momentum generates translations, connecting symmetry with observables; the
   same pattern reappears for time evolution and rotations.
 - Ehrenfest's theorem closes exactly only when the potential is at most
@@ -874,6 +894,11 @@ outcome and preparing a new state for whatever comes next.
 - Finite-resolution measurements project onto ranges rather than exact points.
 
 ## Exercises
+
+Exercises 1–12 build the core representation, normalization, Fourier, and
+translation skills. Exercises 13–17 accompany the dynamics applications.
+Exercises 18–34 are deeper derivations and synthesis; a first course should
+select from them rather than assign the entire bank at once.
 
 1. Normalize $\psi(x)=A$ on $0<x<L$ and zero elsewhere. Find
    $\langle x\rangle$ and $\Delta x$.
@@ -897,6 +922,9 @@ outcome and preparing a new state for whatever comes next.
     and the conditional wavefunction after the $x\ge0$ result.
 12. Explain how two wavefunctions can have identical position densities but
     different momentum distributions. Give an explicit pair.
+
+### Dynamics applications
+
 13. Derive equation {eq}`gaussian-spreading` by evolving the Gaussian in
     momentum space, or verify its short- and long-time limits.
 14. Find the time at which the width of a free Gaussian has doubled.
@@ -906,6 +934,9 @@ outcome and preparing a new state for whatever comes next.
     which it is generally false.
 17. Verify the momentum-space representation of $\hat x$ by differentiating
     the Fourier kernel.
+
+### Further extensions and synthesis
+
 18. Suppose $\langle x|x'\rangle=g(x-x')$ for a bounded function $g$ with
     $\int g(x)\,dx=1$. Show that $\int g(x'-x)\psi(x)\,dx$ generally differs
     from $\psi(x')$ for a wavefunction that varies on the scale over which $g$

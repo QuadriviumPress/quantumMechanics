@@ -17,6 +17,12 @@ After this chapter, you should be able to:
 - explain tunneling through a classically forbidden region; and
 - describe the harmonic oscillator with ladder operators.
 
+Sections 7.1–7.6 form a core progression from boundary-value problems to
+probability flow and tunneling. The above-barrier resonance subsection is an
+optional extension. Section 7.7 introduces a second solution strategy—the
+oscillator's algebraic ladder method—and can be taught after the well and
+current sections without requiring the resonance extension.
+
 ## 7.1 Schrödinger's equation in position space
 
 Chapter 6 developed the position representation in the abstract: operators
@@ -229,6 +235,16 @@ quadrant. The dimensionless number $z_0$ measures the well's "strength": how
 many oscillations the interior wavefunction can complete before decay must
 take over.
 
+:::{figure} ../images/figures/ch07-finite-well-intersections.svg
+:name: fig-finite-well-intersections
+:alt: A quarter circle for finite-well strength z zero equal to four intersects alternating even and odd tangent branches at three marked points.
+:width: 90%
+
+For $z_0=4$, the constraint circle meets two even branches and one odd
+branch. Enlarging the circle admits another state only after it crosses the
+next branch threshold.
+:::
+
 This picture, without any further algebra, already answers the two
 questions that matter most:
 
@@ -243,18 +259,22 @@ questions that matter most:
   sign there, so a new branch of the even curve enters the first quadrant
   every time $z_0$ passes a multiple of $\pi$, and a new branch of the odd
   curve enters every time $z_0$ passes an odd multiple of $\pi/2$. The
-  total bound-state count is therefore
+  total bound-state count, for $z_0>0$, is therefore
   ```{math}
   :label: finite-well-count
-  N=\left\lfloor\frac{2z_0}{\pi}\right\rfloor+1,
+  N=\left\lceil\frac{2z_0}{\pi}\right\rceil.
   ```
-  alternating even, odd, even, odd, $\ldots$ as $z_0$ grows, and matching
-  the evenly spaced infinite-well spectrum of equation
-  {eq}`infinite-well-energies` for the lowest levels only once $z_0\gg1$;
+  At an exact threshold the prospective new solution has $E=0$ and is not
+  normalizable, so it does not yet count as a bound state; this is why the
+  ceiling formula, rather than “floor plus one,” handles threshold values
+  correctly. Away from exact thresholds the two forms agree. The states
+  alternate even, odd, even, odd, $\ldots$ as $z_0$ grows. Only once
+  $z_0\gg1$ do the lowest levels approach the $n^2$-spaced infinite-well
+  energies of equation {eq}`infinite-well-energies`;
   the topmost bound state, barely below $E=0$, always looks qualitatively
   different—loosely bound with a long decaying tail.
 
-### Example 7.3: counting bound states
+### Example 7.2: counting bound states
 
 Take a well with $z_0=4$. Since $\pi/2\approx1.57$, $\pi\approx3.14$, and
 $3\pi/2\approx4.71$, the value $z_0=4$ has passed the first two thresholds
@@ -262,7 +282,7 @@ but not the third: one even branch exists from $z_0>0$, a second even
 branch appears once $z_0>\pi$, and one odd branch appears once
 $z_0>\pi/2$, while the second odd branch (threshold $3\pi/2$) has not yet
 appeared. Equation {eq}`finite-well-count` confirms this directly:
-$N=\lfloor 8/\pi\rfloor+1=\lfloor2.55\rfloor+1=3$. This well supports
+$N=\lceil 8/\pi\rceil=\lceil2.55\rceil=3$. This well supports
 exactly three bound states: two even and one odd.
 
 ```{phet-legacy} bound-states
@@ -287,7 +307,32 @@ nodeless state. Only in higher dimensions can an arbitrarily weak well fail
 to bind anything.
 :::
 
-## 7.4 Scattering from a step
+## 7.4 Probability current
+
+Scattering problems ask how probability flows, not merely how large a
+wave-amplitude coefficient is. Equation {eq}`coordinate-tdse` implies the
+continuity equation
+
+```{math}
+:label: probability-continuity
+\frac{\partial|\psi|^2}{\partial t}+\frac{\partial j}{\partial x}=0,
+```
+
+where
+
+```{math}
+:label: probability-current
+j=\frac{\hbar}{2mi}
+\left(\psi^*\frac{\partial\psi}{\partial x}
+-\psi\frac{\partial\psi^*}{\partial x}\right).
+```
+
+For $Ae^{ikx}$, $j=(\hbar k/m)|A|^2$. Reflection and transmission
+probabilities are therefore ratios of outgoing to incoming current. This
+velocity weighting is essential when two regions have different wave
+numbers, as the step problem shows next.
+
+## 7.5 Scattering from a step
 
 Bound states are only half the story: a particle with enough energy to
 escape to infinity produces a **scattering state** instead, and the relevant
@@ -321,7 +366,16 @@ t=\frac{2k_1}{k_1+k_2}.
 
 Even though $E>V_0$, reflection occurs because the wavelength changes
 abruptly. The amplitude $|t|^2$ is not by itself the transmission
-probability when the speeds differ, as Section 7.5 makes precise.
+probability when the speeds differ. Using the current from Section 7.4 gives
+
+```{math}
+:label: step-rt
+R=|r|^2,\qquad
+T=\frac{k_2}{k_1}|t|^2,\qquad R+T=1.
+```
+
+Probability conservation plays the role here that particle-number
+bookkeeping played in Stern–Gerlach chains.
 
 ### Concept check 7.3
 
@@ -334,8 +388,9 @@ Classical certainty of transmission is not the quantum prediction.
 
 ### Total reflection below the step
 
-Now suppose $E<V_0$. Region II no longer oscillates; normalizability as
-$x\to\infty$ forces the purely decaying solution
+Now suppose $E<V_0$. Region II no longer oscillates. Boundedness as
+$x\to\infty$, together with the absence of an exponentially growing incoming
+term from the right, leaves the purely decaying solution
 $u_{II}=Ce^{-\kappa x}$, with $\kappa=\sqrt{2m(V_0-E)}/\hbar$. Matching $u$
 and $u'$ at $x=0$ as before gives
 
@@ -357,9 +412,11 @@ j_{II}=\frac{\hbar}{2mi}
 \left(u_{II}^*u_{II}'-u_{II}u_{II}^{*\prime}\right)=0,
 ```
 
-since $u_{II}$ and $u_{II}'$ differ only by the real factor $-\kappa$. No
-probability leaks away to $x=+\infty$; it only visits the forbidden region
-and returns, consistent with $R=1$.
+since $u_{II}$ and $u_{II}'$ differ only by the real factor $-\kappa$. The
+forbidden region has nonzero probability density but carries no net
+probability flow toward $x=+\infty$, consistent with $R=1$. This statement
+does not assign a trajectory in which an individual particle travels in and
+then returns.
 
 Writing $r$ in polar form exposes a reflection *phase shift* with no
 classical analogue. If $\kappa\to\infty$ (an infinitely high step, i.e. an
@@ -369,7 +426,7 @@ hard-wall value and $r\to+1$ as $E\to V_0^-$—which matches the $E>V_0$
 formula for $r$ evaluated at $k_2\to0$, so the two regimes join smoothly at
 threshold even though their functional forms look unrelated.
 
-### Example 7.4: how a soft wall differs from a hard one
+### Example 7.3: how a soft wall differs from a hard one
 
 For $\kappa=k_1$ (a step exactly twice the particle's kinetic energy),
 equation {eq}`step-below-reflection` gives
@@ -390,43 +447,9 @@ vanishes is the probability *current* there, so no probability permanently
 escapes to $x\to+\infty$; $R=1$ is still exact.
 :::
 
-## 7.5 Probability current
-
-Section 7.4 flagged that $|t|^2$ alone is not the transmission probability
-whenever the two regions carry waves of different speed. Here is the tool
-that fixes this: equation {eq}`coordinate-tdse` implies the continuity
-equation
-
-```{math}
-:label: probability-continuity
-\frac{\partial|\psi|^2}{\partial t}+\frac{\partial j}{\partial x}=0,
-```
-
-where
-
-```{math}
-:label: probability-current
-j=\frac{\hbar}{2mi}
-\left(\psi^*\frac{\partial\psi}{\partial x}
--\psi\frac{\partial\psi^*}{\partial x}\right).
-```
-
-For $Ae^{ikx}$, $j=(\hbar k/m)|A|^2$. The step probabilities are correctly
-given by *ratios of outgoing to incoming current*, not by ratios of squared
-amplitudes:
-
-```{math}
-:label: step-rt
-R=|r|^2,\qquad
-T=\frac{k_2}{k_1}|t|^2,\qquad R+T=1.
-```
-
-Probability conservation plays the role here that particle-number
-bookkeeping played in Stern–Gerlach chains.
-
 ## 7.6 Tunneling through a barrier
 
-Section 7.4 showed total reflection when $E<V_0$ for a step that stays high
+Section 7.5 showed total reflection when $E<V_0$ for a step that stays high
 forever. What changes if the classically forbidden region has finite width
 instead? Let a rectangular barrier have height $V_0>E$ and width $a$. Inside
 the barrier, solutions are exponential rather than oscillatory, yet matching
@@ -467,7 +490,7 @@ exponential, not absent. Matching it at the second boundary leaves a transmitted
 amplitude whose probability is extraordinarily sensitive to barrier width.
 :::
 
-### Example 7.2: compare two barrier widths
+### Example 7.4: compare two barrier widths
 
 In the thick-barrier regime, increasing $a$ by $\Delta a$ multiplies $T$ by
 $e^{-2\kappa\Delta a}$. If $\kappa\Delta a=1$, the transmission falls by
@@ -484,7 +507,7 @@ energy anywhere. A CheerpJ simulation takes tens of seconds to load on a cold
 cache and is mouse-only.
 ```
 
-### Above the barrier: resonant transmission
+### Optional extension: above-barrier resonant transmission
 
 Equation {eq}`barrier-transmission` was derived for $E<V_0$, but the same
 matching calculation applies for $E>V_0$, where the interior solution
@@ -556,7 +579,32 @@ They satisfy $[\hat a,\hat a^\dagger]=1$, and
 \hat H=\hbar\omega\left(\hat a^\dagger\hat a+\frac12\right).
 ```
 
-If $\hat N=\hat a^\dagger\hat a$, its eigenstates obey
+The spectrum does not follow merely by naming these operators, so here is
+the essential argument. Define $\hat N=\hat a^\dagger\hat a$. For every
+normalized state,
+
+```{math}
+\langle\psi|\hat N|\psi\rangle
+=\|\hat a|\psi\rangle\|^2\geq0,
+```
+
+so its eigenvalues cannot be negative. The commutator above gives
+
+```{math}
+[\hat H,\hat a^\dagger]=\hbar\omega\hat a^\dagger,
+\qquad
+[\hat H,\hat a]=-\hbar\omega\hat a.
+```
+
+Therefore $\hat a^\dagger$ raises any energy eigenvalue by
+$\hbar\omega$, while $\hat a$ lowers it by the same amount. Starting from a
+number eigenstate with eigenvalue $\nu$, repeated lowering would produce
+$\nu-1,\nu-2,\ldots$. Because number eigenvalues cannot be negative, this
+sequence must terminate at a state annihilated by $\hat a$. For that state,
+$\|\hat a|0\rangle\|^2=\langle0|\hat N|0\rangle=0$, so its number
+eigenvalue is zero. The original $\nu$ must therefore have been a
+nonnegative integer. Repeated raising gives every $n=0,1,2,\ldots$, and the
+norms of the raised and lowered states fix the ladder factors:
 
 ```{math}
 \hat a|n\rangle=\sqrt n\,|n-1\rangle,\qquad
@@ -575,8 +623,8 @@ first-order equation gives a Gaussian, as Example 7.5 works out explicitly.
 The ladder method obtains the complete spectrum without solving a new
 differential equation for every level: every excited state is reached from
 $|0\rangle$ by repeated algebra with $\hat a^\dagger$, rather than by solving
-a new second-order boundary-value problem for each $n$ as Sections 7.2–7.4
-required.
+a new second-order boundary-value problem for each $n$ as the earlier well
+problems required.
 
 :::{figure} ../images/figures/ch07-harmonic-oscillator.svg
 :name: fig-harmonic-oscillator
@@ -646,6 +694,11 @@ $[\hat x,\hat p]=i\hbar$.
 
 ## Exercises
 
+Exercises 1–12 form the core set on wells, probability flow, tunneling, and
+the oscillator algebra. Exercises 13–19 deepen boundary matching and
+below-step reflection. Exercises 20–24 are synthesis or optional-extension
+problems.
+
 1. Derive equations {eq}`infinite-well-solutions` and
    {eq}`infinite-well-energies` from both boundary conditions.
 2. Find $\langle x\rangle$ for every infinite-well energy eigenstate by
@@ -668,6 +721,9 @@ $[\hat x,\hat p]=i\hbar$.
     $u_0(x)$ in position space to find $u_1(x)$ explicitly, and verify by
     direct substitution that it solves equation {eq}`one-dimensional-tise`
     with $E_1=\tfrac32\hbar\omega$.
+
+### Boundary-matching consolidation
+
 13. Starting from continuity of $u$ and $u'$ at $x=L/2$, and using the
     symmetry of the well to relate $u(-L/2)$ to $u(L/2)$, derive the even-
     parity condition in equation {eq}`finite-well-even`.
@@ -685,6 +741,9 @@ $[\hat x,\hat p]=i\hbar$.
 19. Show that the probability current $j_{II}$ vanishes identically for
     $u_{II}=Ce^{-\kappa x}$, for any constant $C$, and explain why this is
     consistent with $R=1$.
+
+### Extensions and synthesis
+
 20. Derive equation {eq}`barrier-resonant-transmission` from equation
     {eq}`barrier-transmission` by the substitution $\kappa\to ik_2$, and find
     the smallest barrier width $a$ giving $T=1$ for a given $k_2$.
@@ -704,3 +763,24 @@ $[\hat x,\hat p]=i\hbar$.
     $L=2\sqrt{\hbar/(m\omega)}$ (a rough width match). Which is larger, and
     why might that be expected from the shape of the two potentials near their
     minima?
+
+## Selected exercise guidance
+
+Use these checks only after making a complete attempt.
+
+:::{dropdown} Exercise 5
+Use $j=(\hbar k/m)|A|^2$ separately for the incident, reflected, and
+transmitted traveling waves. The reflected current points left, so $R$ uses
+its magnitude. Substituting the matched amplitudes should give $R+T=1$.
+:::
+
+:::{dropdown} Exercise 8
+Because $\kappa\propto\sqrt m$, multiplying the mass by four doubles
+$\kappa$. In the thick-barrier approximation the exponent therefore changes
+from $-2\kappa a$ to $-4\kappa a$, apart from the algebraic prefactor.
+:::
+
+:::{dropdown} Exercise 15
+$N=\lceil14/\pi\rceil=5$. The parity alternates from the even ground state,
+so there are three even states and two odd states.
+:::

@@ -19,6 +19,13 @@ After this chapter, you should be able to:
   and
 - analyze simple two-qubit gates and measurement protocols.
 
+Sections 5.1–5.6 provide the core route: build joint states, calculate local
+and joint predictions, interpret Bell correlations, and create entanglement.
+Section 5.7 is an optional quantitative extension using the Schmidt
+decomposition. Section 5.8 begins with the essential distinction between
+correlation and entanglement, then marks its Werner-state test as an advanced
+extension.
+
 ## 5.1 Building a joint state space
 
 Chapters 2 through 4 developed a complete quantum description of a single
@@ -260,6 +267,18 @@ decomposition. For now, treat the Bell states as one convenient orthonormal
 family of *maximally* entangled states, not as the only entangled states
 that exist.
 
+### Foundation check: factor or not?
+
+Can $(|00\rangle+|10\rangle)/\sqrt2$ be written as a product? What about
+$(|00\rangle+|11\rangle)/\sqrt2$?
+
+:::{dropdown} Answer
+The first state factors as $|+x\rangle_A|0\rangle_B$. The second does not:
+making the $|00\rangle$ and $|11\rangle$ coefficients nonzero while making
+both cross coefficients zero is impossible for a product of two one-qubit
+kets.
+:::
+
 ## 5.3 Joint, marginal, and conditional probabilities
 
 For outcome kets $|a\rangle_A$ and $|b\rangle_B$, the joint Born rule is
@@ -278,10 +297,39 @@ P_A(a)=\sum_bP(a,b).
 If $B=b$ is recorded, the conditional probability is
 $P(a|b)=P(a,b)/P_B(b)$ when $P_B(b)\ne0$.
 
-### Example 5.2: analyzers at different angles
+### Example 5.2: joint, marginal, and conditional records
 
-Let's apply these three definitions to the most consequential entangled
-state in physics: the singlet,
+Begin with $|\Phi^+\rangle$ and measure both spins in the $z$ basis. Reading
+the four amplitudes directly gives
+
+```{math}
+P(0,0)=\frac12,\qquad P(1,1)=\frac12,\qquad
+P(0,1)=P(1,0)=0.
+```
+
+To ignore $B$'s record, sum across the two possibilities for $B$:
+
+```{math}
+P_A(0)=P(0,0)+P(0,1)=\frac12,\qquad
+P_A(1)=\frac12.
+```
+
+Thus $A$ alone looks random. If $B=0$ is known, however,
+
+```{math}
+P(A=0\mid B=0)=\frac{P(0,0)}{P_B(0)}=1,
+```
+
+so the same data are perfectly predictable after conditioning. Keep the
+three questions distinct: a **joint** probability concerns both records, a
+**marginal** deliberately ignores one record, and a **conditional**
+probability uses a known record to sort the trials.
+
+The arbitrary-angle singlet formulas used in the Bell discussion are stated
+next. Their derivation is optional on a first pass.
+
+:::{dropdown} Optional derivation: singlet analyzers at arbitrary angles
+For the singlet
 
 ```{math}
 :label: singlet-state
@@ -323,7 +371,13 @@ P(r,s|\mathbf a,\mathbf b)
 \end{aligned}
 ```
 
-Thus the joint distribution is
+This calculation combines projectors, tensor products, density operators,
+and trace identities. It is an efficient derivation once those ingredients
+are familiar, but it should not be the first example used to learn the
+meaning of a marginal probability.
+:::
+
+The resulting joint distribution is
 
 ```{math}
 :label: singlet-joint
@@ -713,11 +767,12 @@ many subsystems they act on jointly.
 
 Drag a Hadamard gate onto qubit $A$ and a controlled-NOT between $A$ and $B$
 to build the circuit above. Watch the two Bloch spheres and the joint-state
-amplitudes update live, and confirm that measuring $A$ instantly fixes what a
-later measurement of $B$ will find.
+amplitudes update live, and confirm that conditioning on $A$'s recorded result
+makes a definite prediction for a later measurement of $B$, while $B$'s
+unconditional statistics remain unchanged.
 ```
 
-## 5.7 Schmidt decomposition and amount of entanglement
+## 5.7 Optional extension: Schmidt decomposition and amount of entanglement
 
 Section 5.2 promised a precise, quantitative way to say "how entangled" a
 state is. Every pure state of two finite systems can be expressed in
@@ -813,8 +868,10 @@ S(\rho_A)=-\operatorname{Tr}(\hat\rho_A\log_2\hat\rho_A)
 ```
 
 It is zero for a product state and exactly one bit for a maximally entangled
-pair of qubits. This entropy quantifies joint information that is present
-in the pair as a whole but absent from either subsystem taken alone.
+pair of qubits. For a pure joint state, this entropy measures entanglement by
+quantifying the mixedness of either reduced state. It is not, by itself, a
+general measure of all information or correlation in an arbitrary mixed
+state.
 
 ### Example 5.4: a partially entangled state
 
@@ -890,6 +947,8 @@ Such states can still contain shared classical randomness, but nothing more.
 Entangled mixed states cannot be written this way. Bell-inequality violation
 certifies entanglement when it occurs, but some entangled mixed states do
 not violate any particular Bell test: the choice of measurement matters.
+
+### Optional advanced extension: the Werner-state boundary
 
 A cleaner illustration of the boundary between separable and entangled is
 the **Werner state**,
@@ -993,7 +1052,7 @@ For $|\Phi^+\rangle$, does measuring $B$ create a random result at $A$?
 :::{dropdown} Answer
 The joint state already predicts correlated records. Conditioning on $B$'s
 record changes the state used for predictions at $A$, but without that
-record $A$'s local results remain 50--50. No controllable local change
+record $A$'s local results remain 50–50. No controllable local change
 identifies whether or how $B$ was measured.
 :::
 
@@ -1023,6 +1082,11 @@ contain all information in a joint state.
   mixing parameter.
 
 ## Exercises
+
+Exercises 1–12 are the foundational set. Exercises 13–18 consolidate the
+core ideas and begin using the optional Schmidt machinery. Exercises 19–32
+are extensions and synthesis problems; assigning a representative subset is
+more useful than treating all fourteen as routine end-of-chapter practice.
 
 ### Core practice
 

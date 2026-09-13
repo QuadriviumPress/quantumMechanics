@@ -17,6 +17,11 @@ After this chapter, you should be able to:
 - translate controlled field pulses into Bloch-sphere rotations; and
 - predict a Ramsey interference signal.
 
+Sections 4.1–4.7 form the core path through unitary evolution and spin
+precession. Sections 4.8–4.9 are mathematical extensions, while Sections
+4.10–4.11 form an applications track on laboratory pulses and Ramsey
+interference. Those tracks may be assigned independently after the core.
+
 ## 4.1 The dynamical postulate
 
 Every chapter so far has treated the spin state as something that only
@@ -115,10 +120,11 @@ drifts as it evolves:
 
 So unitary evolution preserves normalization and, more generally, every
 inner product between two evolving states. Something here can feel
-paradoxical at first: this evolution is completely
-*deterministic*, even though the measurement outcomes it eventually leads to
-are probabilistic. Nothing random happens while the state simply evolves;
-randomness enters only at the moment of measurement.
+paradoxical at first: within the ideal isolated-system model, this evolution
+is completely *deterministic*, even though the outcomes of a later projective
+measurement are probabilistic. The Schrödinger equation itself introduces no
+random step; the measurement postulate supplies probabilities when a
+measurement is made.
 
 ### What an evolution problem is asking
 
@@ -239,9 +245,10 @@ equivalent representative
 ```
 
 The energy probabilities remain one half at all times. But in a basis built
-from coherent sums of $|E_+\rangle$ and $|E_-\rangle$—such as the $x$ or $y$
-basis for a spin system—the corresponding probabilities oscillate with
-frequency $\omega$.
+from coherent sums of $|E_+\rangle$ and $|E_-\rangle$, the corresponding
+probabilities oscillate with frequency $\omega$. If these two energy states
+are chosen as the $z$ basis of a spin-$\tfrac12$ system, the $x$ and $y$
+bases are familiar examples of such mixing bases.
 
 ### Only energy differences drive observable phase changes
 
@@ -635,7 +642,7 @@ pattern seen throughout the chapter: it is energy *differences*, not an
 arbitrary choice for the zero of energy, that control observable relative
 phases.
 
-## 4.8 Time-dependent Hamiltonians
+## 4.8 Optional mathematical extension: time-dependent Hamiltonians
 
 Every result so far assumed a time-independent Hamiltonian, which is what
 let us write $\hat U(t)=e^{-i\hat Ht/\hbar}$ so simply. If $\hat H$ instead
@@ -707,7 +714,7 @@ different physical states because the interval propagators do not commute.
 This piecewise construction is the practical finite-step version of time
 ordering.
 
-## 4.9 Motion of expectation values
+## 4.9 Optional mathematical extension: motion of expectation values
 
 The Schrödinger equation for the ket also implies a direct equation of
 motion for the expectation value of any observable, which is often a faster
@@ -738,7 +745,7 @@ in this chapter. The expectation vector traces out a smooth, classical-looking
 trajectory, even though the individual Stern–Gerlach outcomes behind it
 remain discrete.
 
-## 4.10 Controlled rotations and pulse language
+## 4.10 Applications track: controlled rotations and pulse language
 
 Laboratory control of a spin is usually described not in terms of a
 continuously running field, but in terms of discrete **pulses**—a field
@@ -771,10 +778,11 @@ a definite $z$ state into an equal-amplitude superposition. For example,
 \hat R_x(\pi)|+z\rangle=-i|-z\rangle.
 ```
 
-It is worth keeping the factor $-i$ explicit during a multistep calculation,
-even though it is only an overall phase at this stage. Dropping it too early
-can make a later, genuinely physical relative phase look like a bookkeeping
-error, or vice versa.
+The factor $-i$ may be dropped here because it multiplies the entire state;
+subsequent unitary operations cannot turn a truly global phase into a
+relative one. In multibranch calculations, however, a phase belonging to
+only one branch is *not* global and must be retained until the branches are
+recombined.
 
 If an $x$ pulse acts first and a $y$ pulse second, the combined operator is
 
@@ -817,7 +825,7 @@ reversed. The laboratory sequence runs left to right, while the corresponding
 operator product acts on the ket from right to left.
 :::
 
-## 4.11 Ramsey interference
+## 4.11 Applications track: Ramsey interference
 
 We can now assemble everything in this chapter into one of the most
 important protocols in atomic physics: a Ramsey sequence, which is really an
@@ -938,6 +946,11 @@ equal final $z$ probabilities rather than a full-contrast fringe.
   population fringes.
 
 ## Exercises
+
+Exercises 1–9 establish the core evolution and measurement workflow.
+Exercises 10–13 consolidate spin precession and interrupted evolution.
+Exercises 14–20 support the optional mathematical and applications tracks;
+a focused first assignment need not include all three groups.
 
 1. Starting from equation {eq}`tdse`, show directly that the norm of a state is
    constant when $\hat H$ is Hermitian.

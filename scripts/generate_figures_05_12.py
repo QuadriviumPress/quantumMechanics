@@ -245,6 +245,44 @@ def fig_infinite_well():
     finish(fig, "ch07-infinite-well-spectrum.svg")
 
 
+def fig_finite_well_intersections():
+    fig = new_figure(10.8, 5.2)
+    ax = fig.add_subplot(111)
+    z0 = 4.0
+    xi = np.linspace(0.002, z0, 2400)
+    circle = np.sqrt(np.maximum(z0**2 - xi**2, 0))
+    ax.plot(xi, circle, color=INK, lw=2.8, label=r"energy constraint $\xi^2+\eta^2=z_0^2$")
+
+    even = xi * np.tan(xi)
+    odd = -xi / np.tan(xi)
+    even_mask = (even >= 0) & (even <= z0 + 0.2)
+    odd_mask = (odd >= 0) & (odd <= z0 + 0.2)
+    ax.plot(xi, np.where(even_mask, even, np.nan), color=TEAL, lw=2.3,
+            label=r"even: $\eta=\xi\tan\xi$")
+    ax.plot(xi, np.where(odd_mask, odd, np.nan), color=PURPLE, lw=2.3,
+            label=r"odd: $\eta=-\xi\cot\xi$")
+
+    # Locate sign changes against the circle on each visible branch.
+    for curve, mask, color in ((even, even_mask, TEAL), (odd, odd_mask, PURPLE)):
+        difference = curve - circle
+        valid_pairs = mask[:-1] & mask[1:] & np.isfinite(difference[:-1]) & np.isfinite(difference[1:])
+        crossings = np.where(valid_pairs & (difference[:-1] * difference[1:] <= 0))[0]
+        for index in crossings:
+            x_cross = (xi[index] + xi[index + 1]) / 2
+            y_cross = np.sqrt(z0**2 - x_cross**2)
+            ax.scatter([x_cross], [y_cross], s=70, color=color, edgecolor="white", linewidth=1.2, zorder=5)
+
+    for threshold, label in ((np.pi / 2, r"$\pi/2$"), (np.pi, r"$\pi$")):
+        ax.axvline(threshold, color=GRID, lw=1, ls="--")
+        ax.text(threshold, -0.22, label, ha="center", va="top", color=MUTED)
+    ax.text(3.55, 2.25, r"$z_0=4$", color=INK, weight="bold")
+    ax.set(xlim=(0, 4.15), ylim=(0, 4.25), xlabel=r"interior wave number $\xi=kL/2$", ylabel=r"decay constant $\eta=\kappa L/2$")
+    plot_style(ax)
+    ax.legend(frameon=False, loc="upper right", fontsize=9)
+    ax.set_title("Each curve–circle intersection is one finite-well bound state")
+    finish(fig, "ch07-finite-well-intersections.svg")
+
+
 def fig_tunneling_barrier():
     fig, axes = plt.subplots(1, 2, figsize=(10.8, 4.3), layout="constrained")
     ax = axes[0]
@@ -713,6 +751,7 @@ def main():
         fig_fourier_uncertainty,
         fig_packet_spreading,
         fig_infinite_well,
+        fig_finite_well_intersections,
         fig_tunneling_barrier,
         fig_harmonic_oscillator,
         fig_box_degeneracy,
