@@ -8,22 +8,9 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: ci-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    env:
-      BASE_URL: /${{ github.event.repository.name }}
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run verify
-      - run: npm run build
+  ci:
+    uses: QuadriviumPress/bindery/.github/workflows/ci.yml@main
+    with:
+      pre-build-command: npm run verify
+      build-command: npm run build
