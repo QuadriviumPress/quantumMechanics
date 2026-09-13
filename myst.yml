@@ -1,0 +1,30 @@
+version: 1
+project:
+  title: Your Book Title
+  short_title: Your Book
+  description: A concise description of your interactive online book.
+  authors:
+    - name: Your Name
+  license: CC-BY-SA-4.0
+  open_access: true
+  github: QuadriviumPress/opiniatedMystmdBookTemplate
+  keywords:
+    - open textbook
+    - interactive book
+    - MyST Markdown
+  toc:
+    - file: content/index.md
+    - title: Chapters
+      children:
+        - file: content/01-getting-started.md
+        - file: content/02-interactive-content.md
+site:
+  template: book-theme
+  title: Your Book Title
+  options:
+    logo: img/logo.svg
+    logo_dark: img/logo-dark.svg
+    logo_alt: Open book logo
+    logo_text: Your Book
+    style: css/custom.css
+    hide_authors: false
