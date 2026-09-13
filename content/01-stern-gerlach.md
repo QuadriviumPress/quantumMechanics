@@ -13,21 +13,46 @@ After this chapter, you should be able to:
 - calculate route probabilities and expected counts for analyzers at arbitrary
   relative angles;
 - distinguish an incoherent mixture from a coherent quantum state;
-- infer three empirical rules that a quantum model must reproduce; and
-- explain why spin is not adequately modeled as a tiny classical arrow.
+- infer three empirical rules that a quantum model must reproduce;
+- explain why spin is not adequately modeled as a tiny classical arrow;
+- distinguish ideal probabilities from finite-sample frequencies; and
+- design analyzer sequences that test competing physical explanations.
 
 ## 1.1 An experiment before a formalism
 
-Send a collimated beam of neutral silver atoms through a nonuniform magnetic
-field. A classical magnetic dipole with moment $\boldsymbol\mu$ has potential
-energy
+Quantum mechanics is easiest to trust when it is built from a real experiment
+rather than handed down as a set of postulates. We start with one of the
+simplest experiments in physics, first performed by Otto Stern and Walther
+Gerlach in 1922. Their goal was modest by today's standards—to see whether an
+atom's magnetism points in only a few special directions, or in any direction
+at all. The answer turned out to force a complete rethinking of what it means
+for a particle to have a definite orientation.
+
+The apparatus is easy to picture. An oven vaporizes silver and lets atoms
+escape through a small opening; slits downstream select a narrow, well-defined
+beam, so that every atom entering the apparatus travels the same direction
+with the same speed. This **collimated beam** then passes between the shaped
+poles of a magnet before striking a glass detection screen. The magnet is
+built so that the field is much stronger near one pole than the other, which
+is the one design choice that makes the whole experiment work.
+
+To see why, picture each atom as carrying a tiny bar magnet, described by a
+**magnetic moment** vector $\boldsymbol\mu$—the same quantity that tells a
+compass needle which way to twist. Like a compass needle, its energy depends
+on its orientation relative to the external field $\mathbf B$: aligned with
+the field is low energy, anti-aligned is high energy, and every angle in
+between interpolates smoothly. This is captured by the potential energy
 
 ```{math}
 :label: magnetic-energy
-U=-\boldsymbol\mu\cdot\mathbf B,
+U=-\boldsymbol\mu\cdot\mathbf B.
 ```
 
-so a field gradient exerts a force. For a gradient along $z$,
+A *uniform* field only twists such a dipole, since the force on one "pole" of
+the magnet is canceled by the opposite force on the other; the atom feels a
+torque but no net push. A push appears only if the field strength itself
+changes from one side of the atom to the other—that is, only if the field has
+a gradient. For a gradient along $z$, the net force on the atom is
 
 ```{math}
 :label: sg-force
@@ -35,9 +60,22 @@ F_z=-\frac{\partial U}{\partial z}
     \approx \mu_z\frac{\partial B_z}{\partial z}.
 ```
 
-If atomic magnetic moments could point in arbitrary directions, a narrow input
-beam would spread into a continuous band. Instead, two separated traces appear.
-We label them $z+$ and $z-$.
+This equation is the entire principle behind the device: an atom is deflected
+by an amount proportional to $\mu_z$, the component of its magnetic moment
+along the field gradient. A stronger $\mu_z$ means a larger deflection, a
+reversed $\mu_z$ means deflection the other way, and the magnet effectively
+converts an otherwise invisible internal property into a visible displacement
+on the screen.
+
+Now ask what a classical magnet predicts. Nothing in classical physics singles
+out any direction for $\boldsymbol\mu$ to point, so an oven full of atoms
+should produce moments pointing every which way, with $\mu_z=\mu\cos\theta$
+taking every value between $-\mu$ and $+\mu$ as $\theta$ ranges over all
+orientations. Equation {eq}`sg-force` then predicts a continuous spread of
+deflections: a narrow input beam should fan out into one smeared, continuous
+band on the screen, dense in the middle and thinning toward the edges. Instead,
+Stern and Gerlach saw exactly two separated spots, with nothing in between. We
+label them $z+$ and $z-$.
 
 :::{note} What the apparatus measures
 A Stern–Gerlach analyzer does not simply reveal the location of a pre-existing
@@ -45,16 +83,29 @@ little arrow. It couples an internal degree of freedom to the atom's path. The
 spatial separation makes two possible outcomes visible at the detector.
 :::
 
-For a spin-$\tfrac12$ system, the measured $z$ component has only the values
+The clean, two-spot pattern says that the relevant component of the atom's
+intrinsic angular momentum—called **spin**—is not a continuously variable
+quantity at all. Whatever axis the magnet happens to be built along, only two
+outcomes ever occur, never a value in between. For a spin-$\tfrac12$ system
+such as silver's unpaired outer electron, the measured $z$ component of spin
+angular momentum has only the two values
 
 ```{math}
 :label: sz-values
 S_z=+\frac{\hbar}{2}\quad\text{or}\quad S_z=-\frac{\hbar}{2}.
 ```
 
+This restriction to two outcomes, regardless of the analyzer's orientation, is
+the first genuinely quantum fact in this book, and everything that follows is
+an attempt to build a theory around it.
+
 We abbreviate an analyzer oriented along $z$ as $\mathrm{SG}_z$. Blocking one
-exit turns the device into a **preparation apparatus**. Passing only the $z+$
-beam prepares every transmitted atom in the same $z+$ condition.
+exit turns the device into a **preparation apparatus** rather than a mere
+measuring one: passing only the $z+$ beam discards every atom that would have
+been recorded as $z-$, leaving a beam in which every transmitted atom shares
+the same, definite $z+$ condition. This shift in role—the same physical device
+used first to measure, then to prepare—is worth remembering, because it recurs
+throughout the chapter.
 
 ### Reading the experiment from left to right
 
@@ -178,8 +229,12 @@ of noncommuting matrices.
 ### Analyzers at a general angle
 
 The $x$ and $z$ axes are separated by $90^\circ$, but the apparatus can be
-oriented at any angle. If a beam is prepared spin-up along a unit vector
-$\mathbf a$ and analyzed along $\mathbf b$, experiment gives
+oriented at any angle $\mathbf b$ relative to a preparation axis $\mathbf a$,
+and it is natural to guess that the probability of recovering the original
+outcome should fall off smoothly as $\mathbf b$ tilts away from $\mathbf a$. A
+classical guess, by analogy with a projected vector, might be that the
+probability varies as $\cos\alpha$. Experiment instead gives, for a beam
+prepared spin-up along $\mathbf a$ and analyzed along $\mathbf b$,
 
 ```{math}
 :label: empirical-angle-rule
@@ -187,11 +242,18 @@ P(+\mathbf b\mid+\mathbf a)=\cos^2\frac{\alpha}{2},\qquad
 P(-\mathbf b\mid+\mathbf a)=\sin^2\frac{\alpha}{2},
 ```
 
-where $\alpha$ is the angle between $\mathbf a$ and $\mathbf b$. This one rule
-contains the cases already discussed: aligned analyzers give certainty,
-oppositely aligned analyzers give the opposite outcome with certainty, and
-perpendicular analyzers give equal probabilities. Chapter 2 will derive this
-half-angle law from state vectors rather than take it as an empirical summary.
+where $\alpha$ is the angle between $\mathbf a$ and $\mathbf b$. Notice the
+half-angle: this is not a minor detail but an early hint that spin does not
+transform like an ordinary arrow in space, since rotating the analyzer by a
+full $360^\circ$ around some axis will turn out to bring a spin state back to
+itself only after picking up a sign along the way. Equation
+{eq}`empirical-angle-rule` also contains the cases already discussed as
+special cases: aligned analyzers ($\alpha=0$) give certainty, oppositely
+aligned analyzers ($\alpha=180^\circ$) give the opposite outcome with
+certainty, and perpendicular analyzers ($\alpha=90^\circ$) give equal
+probabilities—matching the $x$-versus-$z$ result above. Chapter 2 will derive
+this half-angle law from state vectors rather than take it as an empirical
+summary.
 
 ### Example 1.2: three analyzer directions
 
@@ -209,7 +271,7 @@ The selected middle output is a new $+\mathbf n$ preparation. Since the angle
 back to $+z$ is again $60^\circ$,
 
 ```{math}
-P(z+\mid+\mathbf n)=\frac34,qquad
+P(z+\mid+\mathbf n)=\frac34,\qquad
 P(z-\mid+\mathbf n)=\frac14.
 ```
 
@@ -381,6 +443,168 @@ $0.0076$. Quantum outcomes are discrete, but their probabilities vary
 continuously with analyzer orientation.
 :::
 
+## 1.8 From probabilities to laboratory data
+
+Equations such as {eq}`empirical-angle-rule` predict probabilities, whereas a
+real experiment produces integer counts. The link between the two is
+statistical. If the preparation and analyzer are held fixed and $N$ independent
+atoms are recorded, the number $N_+$ at the positive exit fluctuates around
+$Np_+$, where
+
+```{math}
+p_+=\cos^2\frac{\alpha}{2}.
+```
+
+For ideal independent trials, the count follows a binomial distribution. Its
+standard deviation is
+
+```{math}
+:label: binomial-count-width
+\sigma_{N_+}=\sqrt{Np_+(1-p_+)},
+```
+
+and the measured frequency $f_+=N_+/N$ has standard deviation
+
+```{math}
+:label: binomial-frequency-width
+\sigma_{f_+}=\sqrt{\frac{p_+(1-p_+)}{N}}.
+```
+
+The $1/\sqrt N$ dependence matters. Recording four times as many atoms reduces
+the typical frequency fluctuation by only a factor of two. Quantum theory does
+not predict that every batch divides in exactly the theoretical ratio; it
+predicts the distribution of results from which those batches are drawn.
+
+### Example 1.4: is a split consistent with the angle rule?
+
+A $z+$ source is analyzed along an axis $60^\circ$ from $+z$. Among
+$N=1{,}000$ detected atoms, $N_+=735$ leave the positive exit. The ideal
+prediction is $p_+=3/4$, so the expected count and its standard deviation are
+
+```{math}
+Np_+=750,
+\qquad
+\sigma_{N_+}=\sqrt{1000\left(\frac34\right)\left(\frac14\right)}
+\approx13.7.
+```
+
+The observed count is $15$ below the mean, about $1.1$ standard deviations.
+Such a difference is ordinary statistical variation, not persuasive evidence
+against the angle rule. By contrast, a persistent discrepancy that grows in
+statistical significance as more data are collected suggests imperfect
+preparation, a misaligned analyzer, unequal detector efficiencies, or a failure
+of the model.
+
+:::{note} Counts require an experimental model
+The binomial formulas assume independent trials, stable preparation, and equal
+detection conditions for the two exits. Background events, missed atoms, beam
+drift, and detector dead time can all change the count statistics. “The data
+look noisy” is not an explanation until the sources of noise are identified
+and tested.
+:::
+
+### Estimating an unknown analyzer angle
+
+The same experiment can be used in reverse. For a known $z+$ input and an
+analyzer known to lie between $0$ and $\pi$ from $+z$, the observed positive
+frequency estimates the angle:
+
+```{math}
+:label: angle-from-frequency
+\alpha_{\mathrm{est}}=2\cos^{-1}\sqrt{f_+}.
+```
+
+If $81\%$ of a large sample exits through $+\mathbf n$, then
+$\alpha_{\mathrm{est}}=2\cos^{-1}(0.9)\approx51.7^\circ$. Counts can therefore
+characterize an apparatus as well as test a prepared state. In later chapters,
+this reversal of viewpoint becomes quantum-state tomography: known analyzers
+are used to infer an unknown preparation.
+
+## 1.9 Experiments that separate competing explanations
+
+A useful experiment does more than exhibit an effect; it distinguishes between
+models that otherwise make the same prediction. A single $z$ analyzer is not
+enough to distinguish a quantum state from a classical population of atoms
+carrying fixed $z$ labels. Sequential analyzers are powerful because competing
+stories cease to agree.
+
+Consider three hypotheses for a beam selected from the $z+$ exit:
+
+1. **Fixed-label hypothesis:** every atom carries permanent values for all
+   analyzer directions, and an analyzer only reads the relevant value.
+2. **Classical-arrow hypothesis:** every atom carries an ordinary magnetic
+   arrow, and the analyzer reports its component along the chosen axis.
+3. **Quantum preparation hypothesis:** selecting an outcome prepares a state
+   definite for that analyzer, while other components generally remain
+   indefinite.
+
+The sequence $z+\rightarrow z$ is compatible with the first and third
+hypotheses, so repeatability alone does not decide between them. The sequence
+$z+\rightarrow x+\rightarrow z$, however, restores a 50--50 $z$ distribution.
+That result conflicts with permanent, merely revealed $z$ labels. The fact that
+every analyzer still has only two exits conflicts with a classical arrow whose
+projected component can vary continuously. Coherent recombination then adds a
+third test: interference depends on a controllable relative phase that neither
+classical population model retains.
+
+This pattern is a general method for reasoning in quantum mechanics:
+
+- list the preparations and recorded outcomes without adding an unseen story;
+- derive a quantitative prediction from each candidate model;
+- choose a sequence for which those predictions differ; and
+- repeat enough trials to separate systematic disagreement from count noise.
+
+### Example 1.5: measurement or mere beam splitting?
+
+An ideal device separates a $z+$ input into $x+$ and $x-$ paths. Compare three
+arrangements.
+
+- With both paths coherently recombined, a final $z$ analyzer returns $z+$ with
+  certainty.
+- With the $x-$ path blocked, the final analyzer gives $z+$ and $z-$ equally.
+- With a path marker present but both beams physically redirected toward the
+  output, the final analyzer again gives the incoherent 50--50 statistics if
+  the marker records perfectly distinguishable alternatives.
+
+The last comparison shows why spatial overlap alone is not sufficient for
+interference. The relevant condition is whether the alternatives remain
+coherent—whether any physical degree of freedom carries usable which-path
+information. Chapter 2 will represent this distinction by retaining or
+discarding the cross terms between amplitudes.
+
+:::{admonition} Idealization boundary
+:class: caution
+A textbook Stern--Gerlach recombiner is an ideal coherent device. Constructing
+one for massive particles is technically demanding because the two paths must
+be redirected without leaving uncontrolled position, momentum, or phase
+records. The idealization isolates the quantum logic; it is not a claim that
+ordinary laboratory magnets automatically reverse an analyzer.
+:::
+
+### Concept check 1.4
+
+A run with $100$ atoms gives $54$ counts at $x+$ and $46$ at $x-$. Has the
+expected 50--50 split failed?
+
+:::{dropdown} Answer
+No. For $N=100$ and $p=1/2$, the expected standard deviation of the positive
+count is $\sqrt{100(1/2)(1/2)}=5$. A count of $54$ is less than one standard
+deviation above the mean of $50$ and is entirely typical.
+:::
+
+### Concept check 1.5
+
+Why can the sequence $z+\rightarrow x+\rightarrow z$ test more than the
+sequence $z+\rightarrow z$?
+
+:::{dropdown} Answer
+Both a fixed-label model and quantum theory can imitate immediate
+repeatability. They differ after an incompatible intermediate measurement:
+quantum theory predicts that selecting $x+$ prepares a new state and makes the
+final $z$ result 50--50, whereas a device that merely reads a permanent $z$
+label should not erase it.
+:::
+
 ## Summary
 
 - A Stern–Gerlach analyzer correlates a spin component with one of two paths.
@@ -392,6 +616,10 @@ continuously with analyzer orientation.
 - Analyzer chains are sequences of conditional preparations and measurements;
   the most recent selected outcome determines the state entering the next
   device.
+- Finite data fluctuate around theoretical probabilities with a characteristic
+  scale proportional to $1/\sqrt N$.
+- Sequential and coherent-recombination experiments are valuable because they
+  force classical and quantum explanations to make different predictions.
 
 ## Exercises
 
@@ -427,3 +655,20 @@ continuously with analyzer orientation.
     an oven source, a $z+$ filter, a uniform magnetic field, an unobserved path
     marker, a coherent recombiner, and a two-channel detector. Some elements
     may play more than one role; explain your choices operationally.
+12. A $z+$ beam is analyzed $90^\circ$ from its preparation axis. In a run of
+    $2{,}500$ atoms, estimate the mean and standard deviation of the $+$ count.
+    Is a count of $1{,}290$ surprising on this scale?
+13. A large sample prepared in $z+$ gives $f_+=0.64$ at an analyzer whose axis
+    is known to lie between $0^\circ$ and $180^\circ$ from $+z$. Estimate the
+    angle.
+14. Derive equation {eq}`binomial-frequency-width` from equation
+    {eq}`binomial-count-width`. Explain why the absolute uncertainty in a count
+    grows with $N$ while the uncertainty in a relative frequency shrinks.
+15. Design a three-configuration experiment that distinguishes coherent
+    recombination, an incoherent mixture of the two paths, and accidental
+    blocking of one path. State the qualitative final $z$ statistics expected
+    in each configuration.
+16. A source drifts so that its intensity falls by $10\%$ during a run. Explain
+    why raw output counts could then give a misleading comparison between two
+    analyzer settings. Propose a frequency or normalization that reduces the
+    problem.

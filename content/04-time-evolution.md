@@ -13,7 +13,9 @@ After this chapter, you should be able to:
 - distinguish stationary states from general superpositions;
 - predict spin precession in a uniform magnetic field;
 - connect relative phase evolution to changing measurement probabilities; and
-- compose piecewise evolution and measurement steps in a complete protocol.
+- compose piecewise evolution and measurement steps in a complete protocol;
+- translate controlled field pulses into Bloch-sphere rotations; and
+- predict a Ramsey interference signal.
 
 ## 4.1 The dynamical postulate
 
@@ -456,6 +458,134 @@ offers a useful bridge between the geometric Bloch-sphere picture and the
 matrix evolution of a ket. The expectation vector follows a smooth trajectory;
 individual Stern–Gerlach outcomes are still discrete.
 
+## 4.10 Controlled rotations and pulse language
+
+A constant control Hamiltonian applied for a chosen duration implements a
+rotation. Define
+
+```{math}
+:label: rotation-operator
+\hat R_{\mathbf n}(\alpha)
+=\exp\left(-i\frac{\alpha}{2}\mathbf n\cdot\boldsymbol\sigma\right)
+=\cos\frac{\alpha}{2}\hat I
+-i\sin\frac{\alpha}{2}\mathbf n\cdot\boldsymbol\sigma.
+```
+
+For $\hat H=(\hbar\Omega/2)\mathbf n\cdot\boldsymbol\sigma$ applied for time
+$\tau$, the angle is $\alpha=\Omega\tau$. A **$\pi$ pulse** carries a Bloch
+vector to the opposite side of its rotation circle; a **$\pi/2$ pulse** can
+turn a definite $z$ state into an equal-amplitude superposition. For example,
+
+```{math}
+\hat R_y\left(\frac{\pi}{2}\right)|+z\rangle=|+x\rangle,
+\qquad
+\hat R_x(\pi)|+z\rangle=-i|-z\rangle.
+```
+
+Keep the factor $-i$ during a multistep calculation. Although it is an overall
+phase at this stage, later operations can make bookkeeping errors look like
+relative phases.
+
+If an $x$ pulse acts first and a $y$ pulse second, then
+
+```{math}
+:label: pulse-order
+|\psi_{\mathrm f}\rangle
+=\hat R_y(\beta)\hat R_x(\alpha)|\psi_{\mathrm i}\rangle.
+```
+
+The earliest operation stands closest to the initial ket. Rotations about
+different axes generally do not commute, so reversing the matrices describes a
+different laboratory sequence.
+
+### Example 4.7: pulse order on a prepared spin
+
+Begin in $|+z\rangle$. An $x$-axis $\pi/2$ pulse produces
+
+```{math}
+\hat R_x\left(\frac{\pi}{2}\right)|+z\rangle
+=\frac{|+z\rangle-i|-z\rangle}{\sqrt2}=|-y\rangle.
+```
+
+A subsequent $y$-axis pulse changes this $S_y$ eigenstate only by an overall
+phase. In the reverse order, the first $y$ pulse produces $|+x\rangle$, which
+the $x$ pulse changes only by an overall phase. The two final Bloch vectors,
+$-y$ and $+x$, are different. This geometric check reaches the same conclusion
+as direct matrix multiplication.
+
+## 4.11 Ramsey interference
+
+A Ramsey sequence is an interferometer in a two-state space:
+
+1. prepare $|+z\rangle$;
+2. apply $\hat R_y(\pi/2)$ to create $|+x\rangle$;
+3. allow free phase evolution for time $T$;
+4. apply $\hat R_y(-\pi/2)$; and
+5. measure $S_z$.
+
+Represent the free evolution by
+
+```{math}
+\hat U_{\mathrm{free}}(T)
+=\hat R_z(\delta T)
+=\begin{pmatrix}
+e^{-i\delta T/2}&0\\
+0&e^{i\delta T/2}
+\end{pmatrix},
+```
+
+where $\delta$ is the relative angular frequency in the chosen reference
+frame. The final state is
+
+```{math}
+:label: ramsey-state
+|\psi_{\mathrm f}\rangle
+=\hat R_y\left(-\frac{\pi}{2}\right)
+\hat R_z(\delta T)
+\hat R_y\left(\frac{\pi}{2}\right)|+z\rangle.
+```
+
+Projection gives the fringes
+
+```{math}
+:label: ramsey-fringes
+P(z+)=\cos^2\frac{\delta T}{2}
+=\frac{1+\cos(\delta T)}2,\qquad
+P(z-)=\sin^2\frac{\delta T}{2}.
+```
+
+The first pulse creates two amplitudes, free evolution changes their relative
+phase, and the second pulse recombines them. This is precisely the path logic
+of Chapter 2 implemented with controlled rotations.
+
+### Example 4.8: the first fringe minimum
+
+If $|\delta|=2\pi(25\,\mathrm{kHz})$, the first $z+$ minimum occurs at
+$|\delta|T=\pi$:
+
+```{math}
+T_{\min}=\frac{\pi}{|\delta|}=20\,\mu\mathrm{s}.
+```
+
+Scanning $T$ reveals oscillations. Scanning the control frequency at fixed $T$
+also produces fringes as a function of detuning. This phase sensitivity is the
+core of atomic clocks and many quantum sensors.
+
+If the accumulated phase varies between trials, averaging reduces the fringe
+contrast. Each run may still be unitary; the pooled ensemble is mixed because
+its relative phase is not controlled. Density operators distinguish that loss
+of ensemble coherence from ordinary precession.
+
+### Concept check 4.4
+
+Why not measure $S_z$ after the first Ramsey pulse to verify both alternatives?
+
+:::{dropdown} Answer
+That measurement would make the alternatives distinguishable and remove their
+coherence. If its outcomes were pooled, the second pulse would yield equal
+final $z$ probabilities rather than a full-contrast fringe.
+:::
+
 ### Concept check 4.1
 
 Can a stationary state have a time-dependent ket?
@@ -505,6 +635,10 @@ information.
   the Hamiltonians at different times do not commute.
 - Spin expectation values precess smoothly even though individual component
   measurements have only two discrete outcomes.
+- Controlled pulses implement rotations whose matrix order follows the
+  laboratory sequence from right to left.
+- Ramsey sequences turn accumulated relative phase into measurable population
+  fringes.
 
 ## Exercises
 
@@ -547,3 +681,10 @@ information.
 16. Use equation {eq}`bloch-precession-equation` to identify a conserved
     component of $\langle\mathbf S\rangle$ in a constant magnetic field and
     connect it to energy conservation.
+17. Verify both pulse actions following equation {eq}`rotation-operator`
+    using explicit Pauli matrices.
+18. Calculate both pulse orders in Example 4.7 by matrix multiplication.
+19. Derive equation {eq}`ramsey-fringes` from equation {eq}`ramsey-state`
+    and check $\delta T=0,\pi,2\pi$.
+20. Insert an unread $S_z$ measurement after the first Ramsey pulse and use
+    density operators to show that both final outcomes have probability $1/2$.

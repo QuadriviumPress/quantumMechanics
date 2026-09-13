@@ -35,9 +35,12 @@ The text emphasizes four habits:
 3. Move deliberately among diagrams, bra–ket notation, and matrices.
 4. Check every result against normalization, dimensions, and limiting cases.
 
-## First milestone
+## Book structure
 
-The opening four chapters form a compact first unit:
+The book develops one connected route from two-state experiments to modern
+applications.
+
+### Part I: quantum states and dynamics
 
 - [Stern–Gerlach experiments](01-stern-gerlach.md) establish the experimental
   rules that a theory must explain.
@@ -48,9 +51,28 @@ The opening four chapters form a compact first unit:
 - [Time evolution](04-time-evolution.md) develops unitary dynamics and spin
   precession.
 
-Later parts will extend this framework to entanglement, wavefunctions, bound and
-scattering states, angular momentum, approximation methods, identical
-particles, and modern quantum technologies.
+### Part II: composite and continuous systems
+
+- [Composite systems and entanglement](05-composite-entanglement.md) introduce
+  tensor products, reduced states, Bell correlations, and two-qubit gates.
+- [Position and momentum representations](06-position-momentum.md) reinterpret
+  wavefunctions as continuous-basis coordinates and develop Fourier duality.
+- [One-dimensional wave mechanics](07-one-dimensional-wave-mechanics.md)
+  treats bound states, scattering, tunneling, and the harmonic oscillator.
+- [Three-dimensional wave mechanics](08-three-dimensional-wave-mechanics.md)
+  develops separability, central potentials, and hydrogen.
+
+### Part III: structure and applications
+
+- [Angular momentum](09-angular-momentum.md) develops rotation algebra,
+  spherical harmonics, and addition of angular momenta.
+- [Approximation methods](10-approximation-methods.md) introduce perturbation
+  theory, variational estimates, WKB, and driven transitions.
+- [Identical particles](11-identical-particles.md) connect exchange symmetry to
+  exclusion, occupation numbers, and the structure of matter.
+- [Modern quantum applications](12-modern-applications.md) apply the framework
+  to information processing, error correction, sensing, clocks, and
+  simulation.
 
 ## Conventions
 

@@ -14,13 +14,29 @@ After this chapter, you should be able to:
 - calculate selected routes through sequential analyzers;
 - distinguish relative phase from overall phase;
 - translate among the $x$, $y$, and $z$ spin bases; and
-- distinguish a coherent pure state from a classical mixture.
+- distinguish a coherent pure state from a classical mixture;
+- construct spinors for an arbitrary analyzer direction; and
+- add amplitudes for coherent alternatives and probabilities for exclusive
+  recorded routes.
 
 ## 2.1 States are vectors
 
+Chapter 1 listed what a workable model of spin would need: two mutually
+exclusive outcomes for every analyzer direction, a way to represent a
+preparation that is certain for one of them, continuous families of other
+preparations, and phase information that can produce interference. Ordinary
+probability tables cannot do all of this at once—they have no room for phase.
+Complex vectors can, and this chapter makes that idea precise. The notation
+$|\cdot\rangle$, read "ket," simply names a vector in that complex space; there
+is no more mystery in the symbol than in writing $\vec v$ for an arrow in
+ordinary space.
+
 The preparation called $z+$ is represented by the ket $|+z\rangle$ and the
 preparation $z-$ by $|-z\rangle$. These two state vectors form an orthonormal
-basis for the spin state space. Any pure spin state can therefore be written
+basis for the spin state space, meaning every other spin-$\tfrac12$
+preparation can be built from them by superposition, in exact analogy to how
+two perpendicular unit vectors span a plane. Any pure spin state can therefore
+be written
 
 ```{math}
 :label: general-z-state
@@ -28,7 +44,9 @@ basis for the spin state space. Any pure spin state can therefore be written
 ```
 
 where $a$ and $b$ are complex numbers. They are coordinates of the state in the
-$z$ basis; they are not probabilities.
+$z$ basis, fixing how much of $|+z\rangle$ and how much of $|-z\rangle$ go into
+building $|\psi\rangle$; they are not themselves probabilities, though
+Section 2.3 will show how probabilities are built from them.
 
 Choosing the column representation
 
@@ -67,7 +85,13 @@ predictions. We will make that comparison explicit in Section 2.8.
 
 ## 2.2 Bras and inner products
 
-The bra corresponding to $|\psi\rangle$ is its Hermitian conjugate,
+A ket by itself cannot yet produce a number we could compare to laboratory
+data. To extract predictions, every ket $|\psi\rangle$ is paired with a
+companion object called a **bra**, written $\langle\psi|$, which combines with
+a ket to its right to produce a single complex number—the inner product. This
+pairing is what will let us ask "how much of outcome $\phi$ is contained in
+state $\psi$?" and get back a definite amplitude. The bra corresponding to
+$|\psi\rangle$ is its Hermitian conjugate,
 
 ```{math}
 \langle\psi|=a^*\langle+z|+b^*\langle-z|
@@ -131,6 +155,50 @@ The coefficients are conjugated when a ket is converted to a bra, not when a
 bra acts linearly on a ket. For example, if
 $|\phi\rangle=(|+z\rangle+i|-z\rangle)/\sqrt2$, then
 $\langle\phi|=(\langle+z|-i\langle-z|)/\sqrt2$.
+
+### Complex numbers as amplitude geometry
+
+Complex numbers enter quantum mechanics because an amplitude needs both a
+magnitude and a phase. In polar form,
+
+```{math}
+z=re^{i\phi}=r(\cos\phi+i\sin\phi),
+\qquad
+z^*=re^{-i\phi},
+\qquad
+|z|^2=z^*z=r^2.
+```
+
+Multiplying amplitudes multiplies their magnitudes and adds their phases.
+Adding amplitudes is geometric addition in the complex plane. Consequently,
+two nonzero amplitudes can add to zero. For example,
+
+```{math}
+\frac12+\left(-\frac12\right)=0,
+```
+
+even though the squared magnitude of each term separately is $1/4$. This
+possibility is the algebraic core of destructive interference.
+
+For arbitrary amplitudes $A_1$ and $A_2$,
+
+```{math}
+:label: two-amplitude-interference
+|A_1+A_2|^2
+=|A_1|^2+|A_2|^2+2\operatorname{Re}(A_1^*A_2).
+```
+
+The final term is the **interference term**. It depends on relative phase and
+can be positive, negative, or zero. If the alternatives are recorded
+separately or their relative phase is randomized, the average cross term
+vanishes and only $|A_1|^2+|A_2|^2$ remains.
+
+:::{admonition} Algebra checkpoint
+:class: tip
+Do not replace $|A_1+A_2|^2$ by $|A_1|^2+|A_2|^2$ unless the physical
+alternatives are distinguishable or incoherent. Whether a cross term belongs
+in the calculation is decided by the apparatus, not by algebraic convenience.
+:::
 
 ## 2.3 The Born rule
 
@@ -487,6 +555,178 @@ in another basis. For now, the operational lesson is enough: identical
 probabilities for one measurement do not prove that two preparations are the
 same quantum state.
 
+## 2.9 Spinors for an arbitrary direction
+
+The Bloch-sphere coordinates do more than label a state. They provide the
+eigenstates of an analyzer oriented along
+
+```{math}
+\mathbf n=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta).
+```
+
+A convenient phase convention is
+
+```{math}
+:label: arbitrary-direction-spinors
+|+\mathbf n\rangle
+=\cos\frac{\theta}{2}|+z\rangle
++e^{i\phi}\sin\frac{\theta}{2}|-z\rangle,
+```
+
+```{math}
+|-\mathbf n\rangle
+=-e^{-i\phi}\sin\frac{\theta}{2}|+z\rangle
++\cos\frac{\theta}{2}|-z\rangle.
+```
+
+Direct calculation shows that each ket has norm one and that
+$\langle+\mathbf n|-\mathbf n\rangle=0$. They therefore form an orthonormal
+basis. The phases are conventional: multiplying either ket by its own overall
+phase changes its coordinates but no outcome probability. Relative phases
+within a ket are not conventional once the $z$ basis convention has been
+chosen.
+
+### Example 2.6: an analyzer not in a coordinate plane
+
+Let $\theta=2\pi/3$ and $\phi=\pi/2$. Then
+
+```{math}
+|+\mathbf n\rangle
+=\frac12|+z\rangle+i\frac{\sqrt3}{2}|-z\rangle.
+```
+
+A $z+$ input gives
+
+```{math}
+P(+\mathbf n\mid z+)
+=|\langle+\mathbf n|+z\rangle|^2
+=\frac14.
+```
+
+The same result follows from the real-space angle rule:
+$\cos^2(\theta/2)=\cos^2(\pi/3)=1/4$. The azimuth $\phi$ does not affect a
+$z+$ input because rotating the analyzer around $z$ leaves its angle from the
+preparation axis unchanged. It does affect inputs with transverse phase
+information.
+
+The column matrix whose columns are the two spinors,
+
+```{math}
+:label: direction-basis-matrix
+V_{\mathbf n}=
+\begin{pmatrix}
+\cos(\theta/2)&-e^{-i\phi}\sin(\theta/2)\\
+e^{i\phi}\sin(\theta/2)&\cos(\theta/2)
+\end{pmatrix},
+```
+
+is unitary. It converts coordinates between the analyzer basis and the $z$
+basis. Its columns say how the new basis vectors are expressed in old
+coordinates; $V_{\mathbf n}^\dagger$ performs the reverse coordinate change.
+Keeping those two directions distinct prevents a common basis-change error.
+
+## 2.10 A complete coherent path calculation
+
+Return to the ideal analyzer–recombiner of Chapter 1. Insert the $x$-basis
+identity between an initial $z+$ state and a final $z$ outcome:
+
+```{math}
+\langle+z|\hat I|+z\rangle
+=\langle+z|+x\rangle\langle+x|+z\rangle
++\langle+z|-x\rangle\langle-x|+z\rangle.
+```
+
+The two route amplitudes are each $1/2$, so
+
+```{math}
+:label: recombined-z-plus
+A(z+)=\frac12+\frac12=1,
+\qquad
+P(z+)=1.
+```
+
+For the other exit,
+
+```{math}
+:label: recombined-z-minus
+A(z-)
+=\langle-z|+x\rangle\langle+x|+z\rangle
++\langle-z|-x\rangle\langle-x|+z\rangle
+=\frac12-\frac12=0.
+```
+
+The $z-$ alternatives cancel. If an intermediate $x$ result is recorded, the
+two complete routes are exclusive and their probabilities—not amplitudes—are
+added:
+
+```{math}
+P_{\mathrm{recorded}}(z+)
+=\left|\frac12\right|^2+\left|\frac12\right|^2
+=\frac12.
+```
+
+Thus the same two magnitudes yield certainty or a 50--50 distribution depending
+on whether the alternatives remain coherent.
+
+### A controllable phase
+
+Suppose one path adds a phase $e^{i\delta}$ before recombination. Then
+
+```{math}
+A(z+)=\frac{1+e^{i\delta}}{2},
+\qquad
+A(z-)=\frac{1-e^{i\delta}}{2},
+```
+
+so
+
+```{math}
+:label: two-path-spin-fringes
+P(z+)=\cos^2\frac{\delta}{2},
+\qquad
+P(z-)=\sin^2\frac{\delta}{2}.
+```
+
+At $\delta=0$, the original $z+$ preparation is recovered. At $\delta=\pi$,
+the two exits exchange roles and $z-$ occurs with certainty. A continuously
+adjustable phase controls discrete detector outcomes through continuously
+changing ensemble frequencies.
+
+This calculation supplies a reusable rule for more complicated experiments:
+
+1. identify each complete, indistinguishable route to one final record;
+2. multiply amplitudes along each route;
+3. include every transformation phase;
+4. add the route amplitudes; and
+5. square the magnitude only after the coherent sum is complete.
+
+If a record distinguishes routes, group together only routes that remain
+indistinguishable. Add probabilities between the resulting exclusive groups.
+
+### Concept check 2.4
+
+Both route amplitudes in equation {eq}`recombined-z-minus` have squared
+magnitude $1/4$. Why is the final probability zero rather than $1/2$?
+
+:::{dropdown} Answer
+The routes are indistinguishable and must be added as complex amplitudes. Their
+relative minus sign makes the sum zero. Adding the two route probabilities
+would describe a different apparatus—one that records or decoheres the
+intermediate alternatives.
+:::
+
+### Concept check 2.5
+
+Does changing the phase convention of $|-x\rangle$ change the interference
+prediction?
+
+:::{dropdown} Answer
+No. A phase assigned to the intermediate basis ket appears once in a ket
+overlap and once with the opposite sign in the corresponding bra overlap. It
+cancels from each complete route amplitude. Observable interference depends on
+physical relative phases introduced by transformations, not on basis notation.
+:::
+
 ### Concept check 2.1
 
 Do $|+y\rangle$ and $|-y\rangle$ differ only by an overall phase?
@@ -530,6 +770,10 @@ $|-i/2|^2=1/4$.
   amplitude level.
 - A coherent superposition and a classical mixture can agree in one basis and
   disagree in another.
+- Arbitrary analyzer directions correspond to orthonormal spinors whose
+  half-angle coordinates form a unitary basis-change matrix.
+- Coherent routes are multiplied along each route and added across
+  indistinguishable alternatives before the Born rule is applied.
 
 ## Exercises
 
@@ -564,3 +808,21 @@ $|-i/2|^2=1/4$.
 14. Construct two physically different ensembles that give identical $z$
     statistics. Specify one additional analyzer orientation that distinguishes
     them, and calculate the predicted probabilities.
+15. Verify the normalization and orthogonality of the two spinors in equation
+    {eq}`arbitrary-direction-spinors`.
+16. Write $|-\mathbf n\rangle$ for $\theta=\pi/2$ and $\phi=\pi/2$. Identify it
+    as one of the six coordinate-axis states, up to overall phase.
+17. Verify by direct matrix multiplication that $V_{\mathbf n}^\dagger
+    V_{\mathbf n}=\hat I$ for equation {eq}`direction-basis-matrix`.
+18. Starting from equation {eq}`two-amplitude-interference`, let
+    $A_1=a$ and $A_2=be^{i\delta}$ for real nonnegative $a$ and $b$. Find the
+    largest and smallest possible total probabilities as $\delta$ varies.
+19. Reproduce equations {eq}`recombined-z-plus` and
+    {eq}`recombined-z-minus` with the $y$ basis inserted instead of the $x$
+    basis. Track every factor of $i$.
+20. A phase shifter adds $e^{i\delta}$ to the $x-$ route of the recombiner.
+    Predict both final probabilities for $\delta=\pi/2$, $2\pi/3$, and $\pi$.
+21. A path marker leaves the $x+$ route unchanged but correlates the $x-$ route
+    with a distinguishable marker state. Explain, without yet using composite
+    state notation, why equations {eq}`two-path-spin-fringes` no longer
+    describe full-visibility fringes.

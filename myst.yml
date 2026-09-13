@@ -25,6 +25,18 @@ project:
         - file: content/02-states-amplitudes.md
         - file: content/03-operators-measurement.md
         - file: content/04-time-evolution.md
+    - title: Composite and continuous systems
+      children:
+        - file: content/05-composite-entanglement.md
+        - file: content/06-position-momentum.md
+        - file: content/07-one-dimensional-wave-mechanics.md
+        - file: content/08-three-dimensional-wave-mechanics.md
+    - title: Structure and applications
+      children:
+        - file: content/09-angular-momentum.md
+        - file: content/10-approximation-methods.md
+        - file: content/11-identical-particles.md
+        - file: content/12-modern-applications.md
 site:
   template: book-theme
   title: Quantum Mechanics

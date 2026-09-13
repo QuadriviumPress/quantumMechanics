@@ -5,16 +5,20 @@ undergraduate textbook by QuadriviumPress. It develops quantum theory from
 Stern–Gerlach experiments, state vectors, and matrix mechanics before moving to
 continuous wavefunctions.
 
-The first milestone contains four chapters:
+The textbook contains twelve chapters:
 
 1. Stern–Gerlach experiments
 2. States and probability amplitudes
 3. Operators and measurement
 4. Time evolution
-
-Planned later parts cover composite systems and entanglement, position and
-momentum representations, one- and three-dimensional wave mechanics, angular
-momentum, approximation methods, identical particles, and modern applications.
+5. Composite systems and entanglement
+6. Position and momentum representations
+7. One-dimensional wave mechanics
+8. Three-dimensional wave mechanics
+9. Angular momentum
+10. Approximation methods
+11. Identical particles
+12. Modern quantum applications
 
 ## Build
 

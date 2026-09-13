@@ -13,12 +13,23 @@ After this chapter, you should be able to:
 - apply the Born rule and the projection postulate;
 - compute expectation values and uncertainties;
 - use commutators to diagnose incompatible observables; and
-- reconstruct a spin state from component-measurement statistics.
+- reconstruct a spin state from component-measurement statistics;
+- use Pauli-matrix identities to simplify spin calculations; and
+- represent pure states, mixtures, and unread measurements with density
+  operators.
 
 ## 3.1 Observables as operators
 
-A physical observable is represented by a Hermitian linear operator. For spin
-$\tfrac12$, it is convenient to introduce the Pauli matrices
+Chapter 2 treated $S_z$, $S_x$, and every other spin component separately,
+building a fresh pair of basis kets each time. It is more efficient—and more
+revealing—to package "the measurement of spin along some axis" into a single
+mathematical object that acts on state vectors and hands back the possible
+outcomes together with the states that make each outcome certain. That object
+is a linear operator, and a physical observable is represented by a Hermitian
+linear operator: one equal to its own conjugate transpose, a property that
+Section 3.8 shows is exactly what guarantees real, physically sensible
+measurement outcomes. For spin $\tfrac12$, it is convenient to introduce the
+Pauli matrices
 
 ```{math}
 :label: pauli-matrices
@@ -73,7 +84,11 @@ projections onto them determine the outcome probabilities.
 
 ## 3.2 Constructing an operator from its measurement states
 
-Define the projectors
+An operator that represents a measurement can be built directly out of the
+outcome states themselves, using a tool already implicit in Chapter 2's
+resolution of the identity: the **projector**, an operator that takes an
+arbitrary state and returns its component along one particular direction in
+state space, discarding the rest. Define the projectors
 
 ```{math}
 :label: z-projectors
@@ -228,8 +243,12 @@ built into the projector algebra.
 
 ## 3.4 Expectation values
 
-The expectation value is the ensemble average predicted for many identically
-prepared systems:
+A single measurement returns one eigenvalue, chosen randomly according to the
+Born-rule probabilities. It is also useful to ask what the *average* reading
+would be over many repetitions of the same preparation and measurement—a
+number a laboratory can compare directly to a meter that reports a running
+mean. The expectation value is that ensemble average predicted for many
+identically prepared systems:
 
 ```{math}
 :label: expectation
@@ -339,7 +358,10 @@ property of the state alone.
 
 ## 3.6 Commutators and incompatibility
 
-The commutator of two operators is
+Chapter 1 showed experimentally that measuring $S_x$ then $S_z$ gives a
+different final distribution than measuring $S_z$ then $S_x$: order matters
+for incompatible observables. The operator language captures this order
+dependence in a single algebraic object. The commutator of two operators is
 
 ```{math}
 [\hat A,\hat B]=\hat A\hat B-\hat B\hat A.
@@ -429,6 +451,278 @@ P(\pm\mathbf n)=\frac12(1\pm\mathbf n\cdot\mathbf r).
 This is the operator version of equation {eq}`bloch-overlap` and is useful even
 for mixed states, whose Bloch vectors lie inside the sphere.
 
+## 3.8 Why Hermitian operators have the needed structure
+
+The mathematical requirements on an observable are closely tied to the
+laboratory meaning of a measurement. Suppose
+
+```{math}
+\hat A|a\rangle=a|a\rangle
+```
+
+for a normalized eigenket. Taking the inner product with $\langle a|$ gives
+
+```{math}
+a=\langle a|\hat A|a\rangle.
+```
+
+For a Hermitian operator,
+
+```{math}
+\langle a|\hat A|a\rangle^*
+=\langle a|\hat A^\dagger|a\rangle
+=\langle a|\hat A|a\rangle,
+```
+
+so $a=a^*$ and the eigenvalue is real. Detector readings can therefore be real
+numbers with physical units.
+
+Now let $|a\rangle$ and $|b\rangle$ have distinct eigenvalues $a$ and $b$.
+Hermiticity gives
+
+```{math}
+\langle a|\hat A|b\rangle=b\langle a|b\rangle
+```
+
+but also
+
+```{math}
+\langle a|\hat A|b\rangle=a\langle a|b\rangle.
+```
+
+Thus $(a-b)\langle a|b\rangle=0$. If $a\ne b$, then
+$\langle a|b\rangle=0$: states belonging to distinct ideal outcomes are
+orthogonal. In a degenerate eigenspace, orthonormal eigenvectors can be chosen,
+but the measurement outcome by itself does not identify which vector within
+that subspace was present.
+
+These facts lead to the finite-dimensional spectral theorem: a Hermitian
+operator has an orthonormal eigenbasis and can be written
+
+```{math}
+\hat A=\sum_n a_n\hat P_n,
+```
+
+where $\hat P_n$ projects onto the full eigenspace belonging to the distinct
+value $a_n$. The nondegenerate formula in equation {eq}`spectral-general` is
+the special case $\hat P_n=|a_n\rangle\langle a_n|$.
+
+### Example 3.4: diagonalize a two-state observable
+
+Consider
+
+```{math}
+\hat A=
+\begin{pmatrix}
+2&1-i\\
+1+i&4
+\end{pmatrix}.
+```
+
+The matrix is Hermitian because its off-diagonal entries are complex
+conjugates. Its characteristic equation is
+
+```{math}
+\det(\hat A-\lambda\hat I)
+=(2-\lambda)(4-\lambda)-2
+=\lambda^2-6\lambda+6=0,
+```
+
+so the possible outcomes are the real values
+$\lambda_\pm=3\pm\sqrt3$. Solving
+$(\hat A-\lambda_\pm\hat I)|\lambda_\pm\rangle=0$ and normalizing produces
+orthogonal eigenkets. Even before doing that last algebra, Hermiticity tells us
+that the roots must be real and that a unitary change of basis can diagonalize
+the operator.
+
+## 3.9 The Pauli algebra as a calculation tool
+
+Direct multiplication of the matrices in equation {eq}`pauli-matrices` gives
+
+```{math}
+:label: pauli-product
+\sigma_i\sigma_j
+=\delta_{ij}\hat I+i\sum_k\epsilon_{ijk}\sigma_k.
+```
+
+Here $\delta_{ij}$ is one when the indices agree and zero otherwise, while
+$\epsilon_{ijk}$ supplies the sign associated with a cyclic ordering of
+$x,y,z$. A vector form packages all nine products:
+
+```{math}
+:label: pauli-vector-product
+(\mathbf a\cdot\boldsymbol\sigma)
+(\mathbf b\cdot\boldsymbol\sigma)
+=(\mathbf a\cdot\mathbf b)\hat I
++i(\mathbf a\times\mathbf b)\cdot\boldsymbol\sigma.
+```
+
+Setting $\mathbf a=\mathbf b=\mathbf n$ immediately gives
+$(\mathbf n\cdot\boldsymbol\sigma)^2=\hat I$ for a unit vector. Subtracting the
+same formula with $\mathbf a$ and $\mathbf b$ exchanged gives
+
+```{math}
+:label: arbitrary-spin-commutator
+[\hat S_{\mathbf a},\hat S_{\mathbf b}]
+=i\hbar\,\hat{\mathbf S}\cdot(\mathbf a\times\mathbf b).
+```
+
+Parallel components commute; perpendicular components have the largest
+commutator magnitude. The vector geometry of analyzer directions is therefore
+encoded directly in the operator algebra.
+
+### Example 3.5: two projectors in succession
+
+Using equation {eq}`direction-projectors`,
+
+```{math}
+\hat P_{\mathbf b+}\hat P_{\mathbf a+}
+=\frac14\left[
+(1+\mathbf a\cdot\mathbf b)\hat I
++(\mathbf a+\mathbf b)\cdot\boldsymbol\sigma
++i(\mathbf b\times\mathbf a)\cdot\boldsymbol\sigma
+\right].
+```
+
+The imaginary cross-product term changes sign if the order is reversed. The
+operators are identical only for parallel or antiparallel axes. Acting on
+$|+\mathbf a\rangle$ and taking the squared norm yields
+$(1+\mathbf a\cdot\mathbf b)/2$, recovering the analyzer angle rule while
+retaining the post-selected output state.
+
+## 3.10 Density operators and unread measurements
+
+A ket describes a pure preparation. An ensemble in which state $|\psi_j\rangle$
+is prepared with classical probability $w_j$ is represented by the **density
+operator**
+
+```{math}
+:label: density-ensemble
+\hat\rho=\sum_j w_j|\psi_j\rangle\langle\psi_j|,
+\qquad
+w_j\geq0,\quad\sum_jw_j=1.
+```
+
+The trace of an operator is the sum of its diagonal entries in any orthonormal
+basis. A density operator is Hermitian, has trace one, and has no negative
+eigenvalues. Probabilities and expectation values take the compact forms
+
+```{math}
+:label: density-predictions
+P(a_n)=\operatorname{Tr}(\hat\rho\hat P_n),
+\qquad
+\langle A\rangle=\operatorname{Tr}(\hat\rho\hat A).
+```
+
+For a pure state, $\hat\rho=|\psi\rangle\langle\psi|$ and
+$\hat\rho^2=\hat\rho$, so $\operatorname{Tr}(\hat\rho^2)=1$. A genuine mixture
+has $\operatorname{Tr}(\hat\rho^2)<1$. This **purity** test is basis
+independent.
+
+Every spin-$\tfrac12$ density operator can be written
+
+```{math}
+:label: density-bloch
+\hat\rho=\frac12(\hat I+\mathbf r\cdot\boldsymbol\sigma),
+\qquad |\mathbf r|\leq1.
+```
+
+Pure states lie on the surface of the Bloch sphere, where $|\mathbf r|=1$.
+Mixed states lie inside it. The completely unpolarized state
+$\hat\rho=\hat I/2$ lies at the center and predicts equal probabilities for
+every analyzer orientation.
+
+### Example 3.6: tomography from three analyzer settings
+
+Suppose three equal subensembles produce
+
+```{math}
+P(x+)=0.80,\qquad P(y+)=0.10,\qquad P(z+)=0.50.
+```
+
+Since $r_j=P(j+)-P(j-)=2P(j+)-1$,
+
+```{math}
+\mathbf r=(0.60,-0.80,0).
+```
+
+Its length is one, so the idealized data describe a pure equatorial state. A
+representative ket is
+
+```{math}
+|\psi\rangle
+=\frac{1}{\sqrt2}\left(|+z\rangle
++e^{i\phi}|-z\rangle\right),
+\qquad
+e^{i\phi}=0.60-0.80i.
+```
+
+Real experimental frequencies may yield a reconstructed vector slightly
+outside the unit sphere because of finite-sample noise. A statistically sound
+tomography method then finds the nearest physical density operator instead of
+interpreting $|\mathbf r|>1$ as a possible quantum state.
+
+### An outcome ignored is not a measurement undone
+
+If an ideal projective measurement occurs but its result is not retained, the
+post-measurement ensemble is
+
+```{math}
+:label: unread-measurement
+\hat\rho'=\sum_n\hat P_n\hat\rho\hat P_n.
+```
+
+For an initial $|+x\rangle$ state followed by an unread $S_z$ measurement,
+
+```{math}
+\hat\rho'
+=\hat P_{z+}|+x\rangle\langle+x|\hat P_{z+}
++\hat P_{z-}|+x\rangle\langle+x|\hat P_{z-}
+=\frac12\hat P_{z+}+\frac12\hat P_{z-}
+=\frac12\hat I.
+```
+
+The off-diagonal $z$-basis terms have disappeared. A later $S_x$ measurement is
+therefore 50--50, even though no observer used the intermediate result.
+Discarding a record is not equivalent to preventing the record from being
+created. The physical correlation that made the alternatives distinguishable
+is what removed their interference.
+
+If the result $a_n$ is retained, the conditional density operator is
+
+```{math}
+:label: conditional-density-update
+\hat\rho_n'
+=\frac{\hat P_n\hat\rho\hat P_n}
+{\operatorname{Tr}(\hat\rho\hat P_n)}.
+```
+
+Equations {eq}`unread-measurement` and
+{eq}`conditional-density-update` distinguish two common laboratory
+instructions: “measure and forget the result” versus “measure and select one
+result.”
+
+### Concept check 3.4
+
+Can the same density operator arise from different preparation recipes?
+
+:::{dropdown} Answer
+Yes. For example, equal mixtures of $z+$ and $z-$, of $x+$ and $x-$, or of
+$y+$ and $y-$ all give $\hat I/2$. No measurement on the spin alone can
+distinguish preparation recipes that produce the same density operator.
+:::
+
+### Concept check 3.5
+
+An unread $S_z$ measurement is made on a $z+$ state. Does its density operator
+change?
+
+:::{dropdown} Answer
+No. Equation {eq}`unread-measurement` returns
+$\hat P_{z+}\hat\rho\hat P_{z+}=\hat\rho$ and a zero contribution from the
+other projector. The state was already definite for the measured observable.
+:::
+
 ### Concept check 3.1
 
 If $\langle S_z\rangle=0$, must the state have a definite value of $S_x$?
@@ -469,6 +763,10 @@ $S_x$ or $S_y$; each of those uncertainties is $\hbar/2$.
 - Noncommuting observables encode order dependence and uncertainty relations.
 - Projector products describe selected routes through sequential measurements.
 - The three mean Pauli components reconstruct a spin state's Bloch vector.
+- Hermiticity guarantees real outcomes and orthogonal eigenspaces for distinct
+  outcomes.
+- Density operators describe pure states and mixtures in one framework;
+  unread measurements remove coherence in the measured basis.
 
 ## Exercises
 
@@ -507,3 +805,25 @@ $S_x$ or $S_y$; each of those uncertainties is $\hbar/2$.
     $\|\hat P_{z+}\hat P_{x+}|+z\rangle\|^2$ and
     $\|\hat P_{x+}\hat P_{z+}|+z\rangle\|^2$. Explain why they answer different
     experimental questions even though they contain the same two projectors.
+15. Complete Example 3.4 by finding normalized eigenkets for both eigenvalues.
+    Verify their orthogonality directly.
+16. Derive equation {eq}`pauli-vector-product` by expanding both dot products
+    and using equation {eq}`pauli-product`.
+17. Use equation {eq}`arbitrary-spin-commutator` to calculate the commutator
+    of components along $\mathbf a=(1,1,0)/\sqrt2$ and
+    $\mathbf b=(0,1,1)/\sqrt2$.
+18. Find the density matrix and purity for a mixture containing $z+$ with
+    probability $3/4$ and $z-$ with probability $1/4$. Draw or describe its
+    Bloch vector.
+19. Show from equation {eq}`density-bloch` that
+    $\operatorname{Tr}(\hat\rho^2)=(1+|\mathbf r|^2)/2$.
+20. Verify every line of the unread-measurement calculation for an initial
+    $|+x\rangle$ state using explicit $2\times2$ matrices.
+21. An initial $|+y\rangle$ state undergoes an unread $S_x$ measurement. Find
+    the final density matrix and predict subsequent $x$, $y$, and $z$
+    statistics.
+22. A detector selects $+\mathbf n$ from a mixed input
+    $\hat\rho=(\hat I+r\sigma_z)/2$. Use equation
+    {eq}`conditional-density-update` to show that the transmitted ensemble is
+    the pure state $|+\mathbf n\rangle$, provided the transmission probability
+    is nonzero.
