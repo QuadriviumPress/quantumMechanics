@@ -1,8 +1,13 @@
 :root {
-  --book-accent: #315c8c;
+  --book-accent: #5b4bb7;
 }
 
-/* Add project-specific book styling below. */
 a {
   text-underline-offset: 0.15em;
+}
+
+/* Keep long calculations readable on narrow screens. */
+.math-display {
+  overflow-x: auto;
+  overflow-y: hidden;
 }

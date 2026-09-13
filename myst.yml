@@ -1,30 +1,37 @@
 version: 1
 project:
-  title: Your Book Title
-  short_title: Your Book
-  description: A concise description of your interactive online book.
+  title: Quantum Mechanics
+  short_title: Quantum Mechanics
+  subtitle: A Spins-First, Experimental Approach
+  description: An open undergraduate quantum mechanics textbook that develops the formalism from spin measurements before introducing wavefunctions.
   authors:
-    - name: Your Name
+    - name:
+        literal: QuadriviumPress
   license: CC-BY-SA-4.0
   open_access: true
-  github: QuadriviumPress/opiniatedMystmdBookTemplate
+  github: QuadriviumPress/quantumMechanics
   keywords:
     - open textbook
-    - interactive book
+    - quantum mechanics
+    - spins first
+    - Stern-Gerlach experiment
+    - Dirac notation
     - MyST Markdown
   toc:
     - file: content/index.md
-    - title: Chapters
+    - title: Quantum states and dynamics
       children:
-        - file: content/01-getting-started.md
-        - file: content/02-interactive-content.md
+        - file: content/01-stern-gerlach.md
+        - file: content/02-states-amplitudes.md
+        - file: content/03-operators-measurement.md
+        - file: content/04-time-evolution.md
 site:
   template: book-theme
-  title: Your Book Title
+  title: Quantum Mechanics
   options:
     logo: img/logo.svg
     logo_dark: img/logo-dark.svg
-    logo_alt: Open book logo
-    logo_text: Your Book
+    logo_alt: Quantum state on a Bloch sphere
+    logo_text: Quantum Mechanics
     style: css/custom.css
     hide_authors: false

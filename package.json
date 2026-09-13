@@ -1,9 +1,9 @@
 {
-  "name": "opiniated-mystmd-book-template",
+  "name": "quantum-mechanics",
   "version": "1.0.0",
   "private": true,
-  "description": "An opinionated, PWA-ready MyST Markdown book template.",
-  "license": "MIT",
+  "description": "An open, spins-first undergraduate quantum mechanics textbook.",
+  "license": "CC-BY-SA-4.0",
   "engines": {
     "node": "22.x",
     "npm": ">=10 <11"

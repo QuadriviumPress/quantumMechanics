@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
-  <title id="title">Open book</title>
-  <rect width="512" height="512" rx="96" fill="#dcecff"/>
-  <path d="M82 130c66-10 123 7 174 51v232c-51-44-108-61-174-51V130Zm348 0c-66-10-123 7-174 51v232c51-44 108-61 174-51V130Z" fill="#132238"/>
-  <path d="M256 181v232" stroke="#315c8c" stroke-width="16"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Quantum state on a Bloch sphere</title>
+  <desc id="desc">A pale sphere with coordinate axes and a gold state vector on a dark violet background.</desc>
+  <rect width="512" height="512" rx="96" fill="#171329"/>
+  <circle cx="256" cy="256" r="157" fill="#211b3d" stroke="#c7bef7" stroke-width="15"/>
+  <ellipse cx="256" cy="256" rx="157" ry="55" fill="none" stroke="#756aa9" stroke-width="9"/>
+  <path d="M256 99v314M99 256h314M145 367 367 145" fill="none" stroke="#756aa9" stroke-width="8" stroke-linecap="round"/>
+  <path d="M256 256 338 156" stroke="#ffc44d" stroke-width="20" stroke-linecap="round"/>
+  <path d="m338 156-10 39-29-24Z" fill="#ffc44d"/>
+  <circle cx="256" cy="256" r="15" fill="#c7bef7"/>
 </svg>
