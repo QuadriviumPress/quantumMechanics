@@ -116,6 +116,16 @@ while $E_-^{(2)}=-g^2/\Delta$. Expanding the exact eigenvalues
 $\pm\sqrt{\Delta^2/4+g^2}$ confirms these results. Comparison with an exact
 answer is an excellent way to understand an approximation's domain.
 
+:::{figure} ../images/figures/ch10-perturbative-level-shifts.svg
+:name: fig-perturbative-level-shifts
+:alt: A weak off-diagonal coupling pushes a two-level system's upper and lower energies apart at second order. A graph compares the exact upper energy with its second-order approximation, showing agreement only at small coupling.
+:width: 100%
+
+Off-diagonal coupling produces level repulsion even when the first-order
+diagonal shifts vanish. The truncated series follows the exact answer only
+while the coupling remains small relative to the unperturbed gap.
+:::
+
 ### Selection rules save work
 
 If symmetry forces $\langle m|\hat V|n\rangle=0$, that state does not appear
@@ -265,6 +275,17 @@ energy and determines both an energy upper bound and an approximate spatial
 scale. Dimensional analysis already predicts
 $b\sim(\hbar^2/ma)^{1/3}$.
 
+:::{figure} ../images/figures/ch10-variational-energy.svg
+:name: fig-variational-energy
+:alt: Kinetic energy decreases with trial width while potential energy increases. Their sum has a minimum marked as the best state within the trial family, remaining above the exact ground-state energy.
+:width: 100%
+
+Variational optimization balances competing costs: a narrow state pays high
+kinetic energy, while a broad state samples more potential energy. The minimum
+is the best upper bound supplied by the chosen family, not necessarily the
+exact ground energy.
+:::
+
 The variational method is safest for the ground state. The reason is worth
 making explicit rather than taken on faith. Expanding any normalized trial
 state in the exact eigenbasis, $|\psi_{\mathrm{trial}}\rangle=\sum_nc_n|n
@@ -343,6 +364,16 @@ For bound motion between two smooth turning points, connection formulas give
 
 WKB fails near a turning point if used without connection formulas and fails
 when the potential changes substantially within one wavelength.
+
+:::{figure} ../images/figures/ch10-wkb-turning-points.svg
+:name: fig-wkb-turning-points
+:alt: A smooth potential crosses a horizontal energy line at two turning points. Between them the WKB wavefunction oscillates with changing wavelength; outside them it decays exponentially in classically forbidden regions.
+:width: 100%
+
+Turning points divide oscillatory, classically allowed motion from exponential,
+forbidden behavior. Connection formulas—not the separate local expressions—are
+what carry one approximation smoothly into the other.
+:::
 
 ### Concept check 10.4
 

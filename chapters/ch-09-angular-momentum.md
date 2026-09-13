@@ -171,6 +171,16 @@ an integer or a half-integer. Normalizing the resulting states gives
 \,|j,m\pm1\rangle.
 ```
 
+:::{figure} ../images/figures/ch09-angular-momentum-ladder.svg
+:name: fig-angular-momentum-ladder
+:alt: Five horizontal rungs represent the m values from minus 2 through plus 2 for j equals 2. Raising and lowering arrows connect adjacent rungs and stop at the top and bottom states.
+:width: 100%
+
+For fixed $j$, the ladder operators move only among the $2j+1$ allowed
+component values. Their action vanishes at $m=\pm j$, so the ladder cannot
+continue beyond its two physical endpoints.
+:::
+
 The transverse components follow from
 
 ```{math}
@@ -393,6 +403,16 @@ multiplicities $(2j+1)$ over the triangle-rule range of $j$, must total the
 same number. This bookkeeping catches many errors before a single coefficient
 is computed.
 
+:::{figure} ../images/figures/ch09-angular-momentum-addition.svg
+:name: fig-angular-momentum-addition
+:alt: Two angular-momentum vectors add head to tail under the triangle rule. A second panel shows three orbital states times two spin states reorganizing into a four-state j equals three halves multiplet and a two-state j equals one half multiplet.
+:width: 100%
+
+The triangle rule lists the allowed total magnitudes, while dimension counting
+checks that the coupled multiplets account for every uncoupled product state.
+For $\ell=1$ and $s=1/2$, six states become a quadruplet and a doublet.
+:::
+
 ### Example 9.3: coupling orbital motion and spin
 
 Couple $j_1=\ell=1$ (a $p$ electron's orbital angular momentum) with
@@ -515,6 +535,16 @@ the coupled-basis relations,
 
 A total-spin measurement therefore gives $j=1$ or $j=0$, each with probability
 $1/2$, while $J_z=0$ is certain.
+
+:::{figure} ../images/figures/ch09-singlet-triplet.svg
+:name: fig-singlet-triplet
+:alt: The four product states of two spin-one-half systems reorganize into a three-rung j equals 1 triplet and a one-state j equals 0 singlet. The product state spin up spin down is shown as an equal superposition of the m equals zero triplet and singlet.
+:width: 100%
+
+Coupling two spin-$1/2$ systems produces one symmetric triplet and one
+antisymmetric singlet. A product state with opposite component values has a
+definite $J_z$ but not a definite total $J^2$.
+:::
 
 ### Concept check 9.6
 

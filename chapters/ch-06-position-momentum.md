@@ -128,6 +128,16 @@ when moving from discrete to continuous quantum mechanics: a "large" value
 of $|\psi(x)|^2$ at some point says only that a narrow interval there
 carries appreciable probability, not that the point itself is likely.
 
+:::{figure} ../images/figures/ch06-continuous-born-rule.svg
+:name: fig-continuous-born-rule
+:alt: A probability-density curve has the area between positions a and b shaded. A second graph shows that interval probability approaches zero as the detector interval shrinks to an exact point.
+:width: 100%
+
+In a continuous measurement, height is a density and area is probability.
+Shrinking the detector interval to zero removes its area even when the density
+at the selected point remains nonzero.
+:::
+
 ### Example 6.1: normalize an exponential packet
 
 Let $\psi(x)=Ae^{-\kappa|x|}$ with $\kappa>0$. Then
@@ -282,6 +292,16 @@ amplitude for an equally real, independently measurable observable. A
 classical wave packet's Fourier width is a statement about its mathematical
 shape; a quantum wavefunction's Fourier width is simultaneously a statement
 about the distribution of a different physical quantity's measured values.
+
+:::{figure} ../images/figures/ch06-fourier-uncertainty.svg
+:name: fig-fourier-uncertainty
+:alt: Four plots compare Fourier-paired Gaussian densities. A narrow position distribution corresponds to a broad momentum distribution, while a broad position distribution corresponds to a narrow momentum distribution.
+:width: 100%
+
+Position and momentum descriptions are Fourier partners. Localizing the same
+state more tightly in one representation necessarily spreads it across more
+basis states in the other.
+:::
 
 ```{phet} fourier-making-waves
 :screen: 2
@@ -541,6 +561,16 @@ The center, meanwhile, moves classically:
 A narrow initial packet spreads faster than a broad one, because a narrow
 packet in position necessarily contains a broader range of momenta—and
 therefore a broader range of velocities—than a broad one does.
+
+:::{figure} ../images/figures/ch06-free-packet-spreading.svg
+:name: fig-free-packet-spreading
+:alt: Three Gaussian probability densities at successive times move to the right while becoming wider and lower. Their centers travel uniformly but their spatial uncertainty increases.
+:width: 100%
+
+Free evolution advances the packet center at the group velocity while its
+constituent momentum components separate. The fixed momentum spread therefore
+appears as a growing position spread.
+:::
 
 ### Group and phase velocity
 

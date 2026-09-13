@@ -81,6 +81,16 @@ $B$. This factorization is the defining feature of a pure **product state**,
 and it is exactly what will fail, in Section 5.2, for a state that cannot be
 built this way.
 
+:::{figure} ../images/figures/ch05-tensor-product-space.svg
+:name: fig-tensor-product-space
+:alt: Two two-dimensional single-system spaces combine into four joint basis states. Coefficient grids contrast a factorable product state with a Bell state whose only nonzero amplitudes lie on the 00 and 11 diagonal.
+:width: 100%
+
+The tensor product expands two local two-state spaces into one four-state
+joint space. Product-state coefficients form an outer product of two local
+lists; the Bell-state pattern cannot be factored that way.
+:::
+
 ### Operators on one subsystem
 
 An operation on $A$ alone is represented by $\hat A\otimes\hat I_B$; an
@@ -335,6 +345,17 @@ exactly $1/2$—yet no quantum state realizes them. Quantum mechanics is more
 correlated than any classical local theory can be, but less correlated than
 logical consistency alone would permit.
 
+:::{figure} ../images/figures/ch05-bell-chsh-bounds.svg
+:name: fig-bell-chsh-bounds
+:alt: Four coplanar analyzer settings are arranged at 45-degree intervals. A bar chart compares the local hidden-variable CHSH limit of 2, the quantum Tsirelson limit of 2 square root 2, and the algebraic maximum of 4.
+:width: 100%
+
+The optimal CHSH geometry places the two settings at each station between
+those at the other station. Quantum mechanics exceeds the local bound but
+stops well below the largest value that an arbitrary correlation table could
+produce.
+:::
+
 ### Example 5.3: a setting that does not reveal a violation
 
 A $2\sqrt2$ violation requires a specific relationship between the four
@@ -398,6 +419,16 @@ $|a,b\rangle\mapsto|a,b\oplus a\rangle$. Starting from $|00\rangle$,
 \xrightarrow{\mathrm{CNOT}}
 \frac{|00\rangle+|11\rangle}{\sqrt2}.
 ```
+
+:::{figure} ../images/figures/ch05-entangling-gate-circuit.svg
+:name: fig-entangling-gate-circuit
+:alt: A two-wire quantum circuit applies a Hadamard gate to qubit A and then a controlled-NOT from A to B. The output probability display has equal weights only for 00 and 11.
+:width: 100%
+
+The Hadamard creates two coherent alternatives; CNOT correlates the second
+qubit with them. The output is still a pure state, but it is no longer a
+product of separate states for $A$ and $B$.
+:::
 
 The Hadamard creates a superposition in $A$; the controlled operation then
 correlates each alternative with a distinguishable state of $B$. A

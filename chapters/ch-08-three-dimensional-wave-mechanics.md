@@ -117,6 +117,16 @@ degeneracy in the hydrogen atom that cannot be explained this way. Keeping
 these two origins distinct now will make the hydrogen case less mysterious
 later.
 
+:::{figure} ../images/figures/ch08-box-degeneracy.svg
+:name: fig-box-degeneracy
+:alt: Three cubic-box states with quantum numbers 112, 121, and 211 share one energy. Stretching the box along z lowers the 112 state while the other two remain degenerate at a higher energy.
+:width: 100%
+
+Permuting the quantum numbers of a cubic box does not change the energy.
+Stretching one side distinguishes that direction, partially lifting the
+degeneracy and exposing its geometric origin.
+:::
+
 ## 8.3 Central potentials and spherical coordinates
 
 When $V(\mathbf r)=V(r)$, spherical coordinates respect the rotational
@@ -353,6 +363,16 @@ radius" without saying which one is meant. In general,
 which reproduces both results above and lets Exercises 15–16 extend the
 comparison to other orbitals without repeating the integral from scratch.
 
+:::{figure} ../images/figures/ch08-hydrogen-radial-and-orbital.svg
+:name: fig-hydrogen-radial-orbital
+:alt: Curves compare the hydrogen 1s point density with 1s and 2p radial probability densities, whose peaks occur at one and four Bohr radii. A two-lobed real 2p orbital shows opposite phases separated by an angular node.
+:width: 100%
+
+The shell-volume factor moves radial-probability peaks away from the point
+where the spatial density is largest. Angular factors add lobes, phases, and
+nodes; none of these structures represents a classical electron orbit.
+:::
+
 ### Concept check 8.4
 
 For the $2p$ orbital of Example 8.2, why is $\langle r\rangle=5a_0$ larger
@@ -423,6 +443,16 @@ For electric-dipole coupling, the most common orbital rules are
 $\Delta\ell=\pm1$ and $\Delta m=0,\pm1$. These are not extra prohibitions
 placed on energy conservation; they identify matrix elements that vanish by
 symmetry.
+
+:::{figure} ../images/figures/ch08-hydrogen-selection-rules.svg
+:name: fig-hydrogen-selection-rules
+:alt: Hydrogen s, p, and d sublevels are arranged by energy. Arrows connect electric-dipole-allowed transitions that change orbital angular momentum by one, while a 3d to 2s transition changing it by two is crossed out.
+:width: 100%
+
+Energy differences determine possible photon frequencies, while symmetry
+determines which transitions have nonzero electric-dipole amplitudes. An
+energetically possible line may therefore be absent or extremely weak.
+:::
 
 ### Why $\Delta\ell=\pm1$: a parity argument
 

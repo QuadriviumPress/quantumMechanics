@@ -185,6 +185,17 @@ reappears, with the opposite role, once *energies* rather than mere detection
 probabilities are computed in Section 11.3: there it becomes the exchange
 integral responsible for Hund's rule.
 
+:::{figure} ../images/figures/ch11-exchange-interference.svg
+:name: fig-exchange-interference
+:alt: Joint-position heat maps compare symmetric and antisymmetric two-particle amplitudes. Bosons show enhanced probability along equal detector coordinates, while fermions have a dark exchange hole along that diagonal.
+:width: 100%
+
+Direct and exchanged alternatives are physically indistinguishable, so their
+amplitudes interfere. The plus sign enhances coincidence for bosons; the minus
+sign forces the fermionic density to zero when the complete one-particle states
+coincide.
+:::
+
 ### Concept check 11.3
 
 Does an exchange hole prove that two fermions repel through a new force?
@@ -231,6 +242,16 @@ electron must occupy a higher orbital:
 
 Exclusion therefore affects energy even when the Hamiltonian contains no
 spin-dependent term.
+
+:::{figure} ../images/figures/ch11-spin-space-symmetry.svg
+:name: fig-spin-space-symmetry
+:alt: A mapping shows that an antisymmetric electron spin singlet must pair with symmetric space and may share a spatial orbital, while a symmetric spin triplet must pair with antisymmetric space and requires different orbitals.
+:width: 100%
+
+Only the symmetry of the complete two-electron state is fixed. Spin and space
+therefore compensate: the singlet permits shared spatial occupation, whereas
+the triplet forces an antisymmetric spatial factor with an exchange hole.
+:::
 
 ### Concept check 11.4
 
@@ -391,6 +412,16 @@ subshell, the exchange energy of Section 11.3 further determines how electrons
 distribute among degenerate orbitals: Hund's rule predicts that electrons
 first occupy separate orbitals with parallel spins, maximizing the (typically
 positive) exchange energy $K$, before any orbital is doubly occupied.
+
+:::{figure} ../images/figures/ch11-boson-fermion-filling.svg
+:name: fig-boson-fermion-filling
+:alt: Bosons pile into one low-energy mode. Fermions instead fill separate levels with at most two opposite-spin particles per spatial mode up to a Fermi energy.
+:width: 100%
+
+Bosonic occupations can become arbitrarily large in one mode. Exclusion makes
+fermions occupy a ladder of distinct states, creating a nonzero Fermi energy—and
+therefore pressure—even at zero temperature.
+:::
 
 ```{phet} build-an-atom
 :label: fig:ch11-build-an-atom-sim

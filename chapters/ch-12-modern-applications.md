@@ -145,6 +145,16 @@ state, consistent with no-cloning. The receiver cannot recover $|\psi\rangle$
 before the classical message arrives, so teleportation does not send
 information faster than light.
 
+:::{figure} ../images/figures/ch12-teleportation-circuit.svg
+:name: fig-teleportation-circuit
+:alt: A three-wire teleportation circuit prepares a Bell pair on qubits 2 and 3, performs a Bell measurement on the unknown qubit 1 and qubit 2, sends two classical measurement bits, and applies X and Z corrections to recover the state on qubit 3.
+:width: 100%
+
+Teleportation relocates a preparation by combining a shared Bell pair with two
+classical bits. The Bell measurement removes the sender's local copy, and the
+receiver obtains the state only after the outcome-dependent correction.
+:::
+
 ### Concept check 12.2
 
 Does teleportation eliminate the need to transmit information?
@@ -234,6 +244,16 @@ Two common time scales are:
 - $T_1$, energy relaxation toward thermal populations; and
 - $T_2$, loss of phase coherence.
 
+:::{figure} ../images/figures/ch12-decoherence-t1-t2.svg
+:name: fig-decoherence-t1-t2
+:alt: Successively shorter Bloch vectors show transverse coherence shrinking toward the sphere's center. Exponential curves compare energy relaxation with faster phase-coherence loss.
+:width: 100%
+
+Decoherence turns a sharp Bloch vector into a shorter mixed-state vector.
+$T_1$ tracks population relaxation, while $T_2$ tracks transverse phase
+coherence; a device must characterize both rather than quote one lifetime.
+:::
+
 Typically $T_2\le2T_1$, and additional low-frequency noise can make it much
 shorter. Gate times must be small compared with relevant coherence times, but
 that ratio alone does not fully characterize correlated errors, leakage, or
@@ -321,6 +341,17 @@ superposition outright. This is a measurement engineered to reveal only the
 *transformation* that occurred (which error, if any) while leaving the
 encoded *preparation* untouched—the same operational split between reading
 a result and merely narrowing a preparation that organized Chapter 1.
+
+:::{figure} ../images/figures/ch12-error-correction-syndrome.svg
+:name: fig-error-correction-syndrome
+:alt: An unknown logical qubit is encoded into three physical qubits, one bit may flip, and two parity measurements branch into four syndromes identifying no error or a flip on qubit 1, 2, or 3 without exposing the logical amplitudes.
+:width: 100%
+
+The repetition code stores logical information nonlocally. Two joint parity
+checks distinguish the four error locations but take the same values on both
+terms of the encoded superposition, so they reveal no information about
+$\alpha$ or $\beta$.
+:::
 
 ### Concept check 12.4
 

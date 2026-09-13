@@ -113,6 +113,16 @@ number of interior nodes of $u_n$. More nodes means more curvature, and more
 curvature means higher energy, since curvature is exactly what converts
 potential energy into kinetic energy in equation {eq}`one-dimensional-tise`.
 
+:::{figure} ../images/figures/ch07-infinite-well-spectrum.svg
+:name: fig-infinite-well-spectrum
+:alt: The first three infinite-square-well wavefunctions are drawn around their energy levels between hard walls. Their energies grow as n squared, and the states have zero, one, and two interior nodes.
+:width: 100%
+
+Hard-wall boundary conditions admit only wavelengths that fit the box. Higher
+$n$ brings both more nodes and more curvature, so the kinetic energy rises as
+$n^2$ rather than in equal steps.
+:::
+
 ### Example 7.1: a superposition in the well
 
 Suppose
@@ -447,6 +457,16 @@ stationary scattering state still gives $E$; the spatial wavefunction simply
 extends through a region where a classical particle of that energy could
 not travel.
 
+:::{figure} ../images/figures/ch07-tunneling-barrier.svg
+:name: fig-tunneling-barrier
+:alt: A wave approaches a rectangular barrier higher than its energy, decays across the barrier, and emerges with smaller amplitude. A logarithmic graph shows transmission falling exponentially with barrier thickness.
+:width: 100%
+
+Inside a classically forbidden barrier the stationary wavefunction is
+exponential, not absent. Matching it at the second boundary leaves a transmitted
+amplitude whose probability is extraordinarily sensitive to barrier width.
+:::
+
 ### Example 7.2: compare two barrier widths
 
 In the thick-barrier regime, increasing $a$ by $\Delta a$ multiplies $T$ by
@@ -557,6 +577,16 @@ differential equation for every level: every excited state is reached from
 $|0\rangle$ by repeated algebra with $\hat a^\dagger$, rather than by solving
 a new second-order boundary-value problem for each $n$ as Sections 7.2–7.4
 required.
+
+:::{figure} ../images/figures/ch07-harmonic-oscillator.svg
+:name: fig-harmonic-oscillator
+:alt: A parabolic harmonic-oscillator potential contains the first three wavefunctions drawn around equally spaced energy levels. The ground state is Gaussian and each higher state gains one additional node.
+:width: 100%
+
+Unlike the square well, the oscillator has equal energy spacing. The ladder
+operator raises both the energy by $\hbar\omega$ and the node count by one,
+building every state from the Gaussian ground state.
+:::
 
 ### Example 7.5: the ground state in position space
 

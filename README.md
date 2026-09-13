@@ -36,7 +36,8 @@ is written to `_build/html`.
 
 ## Figures
 
-The original SVG diagrams are generated with Matplotlib. To regenerate them,
+The original SVG diagrams for all twelve chapters are generated with
+Matplotlib. To regenerate them,
 create a Python environment, install the small figure-only dependency set, and
 run the generator:
 
@@ -44,6 +45,7 @@ run the generator:
 python3 -m venv .venv
 .venv/bin/pip install -r requirements-figures.txt
 .venv/bin/python scripts/generate_figures.py
+.venv/bin/python scripts/generate_figures_05_12.py
 ```
 
 The script writes deterministic, editable SVG files to `images/figures/`.
