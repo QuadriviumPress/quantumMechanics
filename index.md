@@ -42,35 +42,35 @@ applications.
 
 ### Part I: quantum states and dynamics
 
-- [Stern–Gerlach experiments](01-stern-gerlach.md) establish the experimental
+- [Stern–Gerlach experiments](chapters/ch-01-stern-gerlach.md) establish the experimental
   rules that a theory must explain.
-- [States and probability amplitudes](02-states-amplitudes.md) introduce kets,
+- [States and probability amplitudes](chapters/ch-02-states-amplitudes.md) introduce kets,
   bases, inner products, and interference.
-- [Operators and measurement](03-operators-measurement.md) turn measurement
+- [Operators and measurement](chapters/ch-03-operators-measurement.md) turn measurement
   outcomes into a general mathematical framework.
-- [Time evolution](04-time-evolution.md) develops unitary dynamics and spin
+- [Time evolution](chapters/ch-04-time-evolution.md) develops unitary dynamics and spin
   precession.
 
 ### Part II: composite and continuous systems
 
-- [Composite systems and entanglement](05-composite-entanglement.md) introduce
+- [Composite systems and entanglement](chapters/ch-05-composite-entanglement.md) introduce
   tensor products, reduced states, Bell correlations, and two-qubit gates.
-- [Position and momentum representations](06-position-momentum.md) reinterpret
+- [Position and momentum representations](chapters/ch-06-position-momentum.md) reinterpret
   wavefunctions as continuous-basis coordinates and develop Fourier duality.
-- [One-dimensional wave mechanics](07-one-dimensional-wave-mechanics.md)
+- [One-dimensional wave mechanics](chapters/ch-07-one-dimensional-wave-mechanics.md)
   treats bound states, scattering, tunneling, and the harmonic oscillator.
-- [Three-dimensional wave mechanics](08-three-dimensional-wave-mechanics.md)
+- [Three-dimensional wave mechanics](chapters/ch-08-three-dimensional-wave-mechanics.md)
   develops separability, central potentials, and hydrogen.
 
 ### Part III: structure and applications
 
-- [Angular momentum](09-angular-momentum.md) develops rotation algebra,
+- [Angular momentum](chapters/ch-09-angular-momentum.md) develops rotation algebra,
   spherical harmonics, and addition of angular momenta.
-- [Approximation methods](10-approximation-methods.md) introduce perturbation
+- [Approximation methods](chapters/ch-10-approximation-methods.md) introduce perturbation
   theory, variational estimates, WKB, and driven transitions.
-- [Identical particles](11-identical-particles.md) connect exchange symmetry to
+- [Identical particles](chapters/ch-11-identical-particles.md) connect exchange symmetry to
   exclusion, occupation numbers, and the structure of matter.
-- [Modern quantum applications](12-modern-applications.md) apply the framework
+- [Modern quantum applications](chapters/ch-12-modern-applications.md) apply the framework
   to information processing, error correction, sensing, clocks, and
   simulation.
 

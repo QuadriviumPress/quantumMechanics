@@ -18,31 +18,31 @@ project:
     - Dirac notation
     - MyST Markdown
   toc:
-    - file: content/index.md
+    - file: index.md
     - title: Quantum states and dynamics
       children:
-        - file: content/01-stern-gerlach.md
-        - file: content/02-states-amplitudes.md
-        - file: content/03-operators-measurement.md
-        - file: content/04-time-evolution.md
+        - file: chapters/ch-01-stern-gerlach.md
+        - file: chapters/ch-02-states-amplitudes.md
+        - file: chapters/ch-03-operators-measurement.md
+        - file: chapters/ch-04-time-evolution.md
     - title: Composite and continuous systems
       children:
-        - file: content/05-composite-entanglement.md
-        - file: content/06-position-momentum.md
-        - file: content/07-one-dimensional-wave-mechanics.md
-        - file: content/08-three-dimensional-wave-mechanics.md
+        - file: chapters/ch-05-composite-entanglement.md
+        - file: chapters/ch-06-position-momentum.md
+        - file: chapters/ch-07-one-dimensional-wave-mechanics.md
+        - file: chapters/ch-08-three-dimensional-wave-mechanics.md
     - title: Structure and applications
       children:
-        - file: content/09-angular-momentum.md
-        - file: content/10-approximation-methods.md
-        - file: content/11-identical-particles.md
-        - file: content/12-modern-applications.md
+        - file: chapters/ch-09-angular-momentum.md
+        - file: chapters/ch-10-approximation-methods.md
+        - file: chapters/ch-11-identical-particles.md
+        - file: chapters/ch-12-modern-applications.md
 site:
   template: book-theme
   title: Quantum Mechanics
   options:
-    logo: img/logo.svg
-    logo_dark: img/logo-dark.svg
+    logo: images/logo.svg
+    logo_dark: images/logo-dark.svg
     logo_alt: Quantum state on a Bloch sphere
     logo_text: Quantum Mechanics
     style: css/custom.css

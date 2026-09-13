@@ -39,8 +39,8 @@ for (const file of ['offline.html', 'service-worker.js']) {
 }
 
 for (const size of [192, 512]) {
-  await sharp(path.join(root, 'img', 'logo.svg')).resize(size, size).png().toFile(path.join(output, 'icons', `icon-${size}.png`));
-  await sharp(path.join(root, 'img', 'logo.svg')).resize(size, size, { fit: 'contain', background: '#315c8c' }).png().toFile(path.join(output, 'icons', `icon-${size}-maskable.png`));
+  await sharp(path.join(root, 'images', 'logo.svg')).resize(size, size).png().toFile(path.join(output, 'icons', `icon-${size}.png`));
+  await sharp(path.join(root, 'images', 'logo.svg')).resize(size, size, { fit: 'contain', background: '#315c8c' }).png().toFile(path.join(output, 'icons', `icon-${size}-maskable.png`));
 }
 
 const htmlFiles = [];

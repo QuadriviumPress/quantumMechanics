@@ -4,7 +4,7 @@ import process from 'node:process';
 import YAML from 'yaml';
 
 const root = process.cwd();
-const required = ['myst.yml', 'content/index.md', '.github/workflows/ci.yml', '.github/workflows/deploy.yml', 'pwa/service-worker.js'];
+const required = ['myst.yml', 'index.md', '.github/workflows/ci.yml', '.github/workflows/deploy.yml', 'pwa/service-worker.js'];
 const missing = required.filter((file) => !fs.existsSync(path.join(root, file)));
 if (missing.length) throw new Error(`Missing required files: ${missing.join(', ')}`);
 
