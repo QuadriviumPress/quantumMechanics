@@ -25,7 +25,7 @@ Chapters 2 through 4 developed a complete quantum description of a single
 spin: a two-dimensional complex state space, Hermitian operators for
 measurable quantities, and unitary time evolution. But that formalism, on its
 own, does not say how to describe *two* spins that were prepared together and
-are later measured separately—perhaps in two different laboratories. A first
+are later measured separately, perhaps in two different laboratories. A first
 guess might be that each spin simply carries its own independent ket, and a
 joint experiment just reports the two kets' separate predictions side by
 side. That guess is sometimes right and sometimes badly wrong, and sorting out
@@ -56,7 +56,7 @@ A joint quantum state space is built the same way. Spin $A$ has two basis
 states and spin $B$ has two basis states, so the *joint* system needs one
 basis state for every combination of one $A$-label and one $B$-label: four
 in total, listed just below. This is why joint dimensions multiply rather
-than add, and it generalizes immediately—three spins need
+than add, and it generalizes immediately: three spins need
 $2\times2\times2=8$ basis states, and an $A$ with $m$ outcomes joined to a
 $B$ with $n$ outcomes needs $mn$.
 
@@ -128,13 +128,13 @@ Only the terms ending in $B$-label $0$ survive, because $|\phi\rangle_B$ has
 no $|1\rangle_B$ component at all: the amplitude for any joint outcome with
 $B=1$ is forced to zero regardless of what $A$ does. Contrast this with the
 entangled state introduced next: here both surviving terms share the same
-$B$ label while $A$'s label is free to be either $0$ or $1$—exactly the
+$B$ label while $A$'s label is free to be either $0$ or $1$, exactly the
 signature of $A$ and $B$ having been prepared independently, with no
 correlation between their outcomes.
 
 :::{figure} ../images/figures/ch05-tensor-product-space.svg
 :name: fig-tensor-product-space
-:alt: Two two-dimensional single-system spaces combine into four joint basis states. Coefficient grids contrast a factorable product state with a Bell state whose only nonzero amplitudes lie on the 00 and 11 diagonal.
+:alt: Two single-system spaces, each two-dimensional, combine into four joint basis states. Coefficient grids contrast a factorable product state with a Bell state whose only nonzero amplitudes lie on the 00 and 11 diagonal.
 :width: 100%
 
 The tensor product expands two local two-state spaces into one four-state
@@ -189,7 +189,7 @@ even when the individual components being measured on either spin, taken
 alone, would be incompatible. This is a stronger and more precise statement
 than just "the two measurements don't interfere." It says that a single
 joint probability distribution can be written down for the two experiments at
-all—which is exactly the kind of object that incompatible single-spin
+all, which is exactly the kind of object that incompatible single-spin
 observables (Chapter 3) cannot generally be assigned to begin with.
 
 ### Example 5.1: independent preparations
@@ -219,7 +219,7 @@ Now consider the normalized state
 
 Try to write it in the product form of equation {eq}`two-product-state`. If
 $ad=bc=0$ while both $ac$ and $bd$ are nonzero, the required single-system
-coefficients contradict one another—there is no consistent choice of $a$,
+coefficients contradict one another: there is no consistent choice of $a$,
 $b$, $c$, $d$ that works. A state like this, which cannot be factored, is
 called **entangled**.
 
@@ -250,7 +250,7 @@ Relative signs that were invisible in a $z$ measurement become visible once
 we switch to another basis, exactly as relative phase did for a single spin
 in Chapter 2.
 
-It is worth being precise about what "entangled" means, since the word
+Being precise about what "entangled" means matters here, since the word
 invites an all-or-nothing reading it does not deserve. Entanglement is not a
 label attached loosely to "the two particles are correlated somehow"; it is
 a precise property of the joint state, and it comes in degrees. A state can
@@ -342,8 +342,8 @@ E(\mathbf a,\mathbf b)
 
 Aligned analyzers always disagree, perpendicular analyzers show no
 correlation, and oppositely aligned analyzers always agree, under these
-numerical labels. It is worth checking one more feature of equation
-{eq}`singlet-joint` directly: summing it over $s$ gives $P_A(r)=1/2$ for
+numerical labels. One more feature of equation
+{eq}`singlet-joint` deserves a direct check: summing it over $s$ gives $P_A(r)=1/2$ for
 every $r$, independent of $\mathbf a$ or $\mathbf b$. Each side's own
 marginal statistics are, on their own, featureless coin flips. All the
 physical content lives in how the two records *compare*, not in either
@@ -352,7 +352,7 @@ record alone—a point Section 5.4 develops further.
 ## 5.4 Reduced states
 
 Suppose an experimenter has access only to spin $A$, and never touches spin
-$B$ at all—perhaps $B$ has been carried off to a distant laboratory. What can
+$B$ at all, perhaps $B$ has been carried off to a distant laboratory. What can
 that experimenter predict, given only the full joint state $\hat\rho_{AB}$?
 The answer is captured by the **reduced density operator**,
 
@@ -388,7 +388,7 @@ Tracing over $B$ means sandwiching this between ${}_B\langle0|\cdots|0
 adding the two results. Because ${}_B\langle0|0\rangle_B=
 {}_B\langle1|1\rangle_B=1$ while ${}_B\langle0|1\rangle_B=
 {}_B\langle1|0\rangle_B=0$, any term whose two $B$ labels disagree vanishes
-immediately—including both off-diagonal terms, $|00\rangle\langle11|$ and
+immediately, including both off-diagonal terms, $|00\rangle\langle11|$ and
 $|11\rangle\langle00|$, which are exactly the terms carrying
 $|\Phi^+\rangle$'s coherence. What survives is only
 
@@ -403,7 +403,7 @@ $|\Phi^+\rangle$'s coherence. What survives is only
 and the identical calculation, tracing over $A$ instead, gives
 $\hat\rho_B=\hat I/2$ as well.
 
-It is worth noticing exactly which piece of information the partial trace
+Notice exactly which piece of information the partial trace
 discarded. It kept the diagonal terms, which correctly predict that a $z$
 measurement of $A$ alone is 50–50. It discarded the off-diagonal
 $|00\rangle\langle11|$ coherence—the very feature that made
@@ -422,7 +422,7 @@ If $B$ is measured in the $z$ basis and $0$ is selected, $A$ is
 conditionally prepared in $|0\rangle$. If $B$ instead measures in the $x$
 basis and selects $+x$, $A$ is conditionally prepared in $|+x\rangle$. Yet
 before learning which setting was used, or what its outcome was, an observer
-at $A$ still assigns exactly $\hat I/2$—no matter what choice is made at $B$.
+at $A$ still assigns exactly $\hat I/2$, no matter what choice is made at $B$.
 
 :::{important} Correlation is not a signal
 Changing the analyzer at $B$ changes how joint data are sorted after the two
@@ -532,7 +532,7 @@ choice is made, independent of which pair actually gets measured together.
 Then a bit of algebra regroups the CHSH combination as
 $AB+AB'+A'B-A'B'=A(B+B')+A'(B-B')$. Since $B$ and $B'$ are each $\pm1$,
 exactly one of $B+B'$ and $B-B'$ is always $0$ while the other is always
-$\pm2$—they can never both be large at the same time. So this expression can
+$\pm2$; they can never both be large at the same time. So this expression can
 never exceed $2$ in magnitude, no matter how the four hidden values were
 assigned. Quantum mechanics evades this argument not by breaking the
 algebra, but because no single joint assignment of definite, pre-existing
@@ -559,13 +559,13 @@ The conclusion this supports is precise, and it is worth stating carefully:
 the observed correlations cannot be reproduced by local models in which
 every result is fixed by shared pre-existing variables, independent of the
 later settings. Bell tests do not show that experimenters can send
-information backward in time or faster than light—Section 5.4 already ruled
+information backward in time or faster than light; Section 5.4 already ruled
 that out on its own.
 
 ### The Tsirelson bound
 
 Equation {eq}`chsh` shows that quantum mechanics *can* exceed the classical
-bound of $2$—but it cannot exceed it arbitrarily. One can show that for the
+bound of $2$, but it cannot exceed it arbitrarily. One can show that for the
 singlet, and more generally for any quantum state and any choice of
 $\pm1$-valued observables, $|S|\le2\sqrt2\approx2.828$. This number is the
 **Tsirelson bound**. The coplanar, $45^\circ$-separated setting above is not
@@ -801,7 +801,7 @@ For two qubits, the state
 
 is already written in Schmidt form. At $\eta=0$ it is a product. At
 $\eta=\pi/4$ its coefficients are equal and each subsystem is maximally
-mixed—the fully entangled case.
+mixed: the fully entangled case.
 
 A single number summarizing pure-state entanglement is the entropy of
 either reduced state:
@@ -865,7 +865,7 @@ different correlation pattern without changing the entangled state one bit.
 
 ## 5.8 Entanglement, mixtures, and correlation
 
-Correlation alone does not prove entanglement, and it is worth seeing a
+Correlation alone does not prove entanglement; here is a
 clean example where it does not. The mixed state
 
 ```{math}
@@ -889,7 +889,7 @@ A mixed state is called **separable** if it can be written
 Such states can still contain shared classical randomness, but nothing more.
 Entangled mixed states cannot be written this way. Bell-inequality violation
 certifies entanglement when it occurs, but some entangled mixed states do
-not violate any particular Bell test—the choice of measurement matters.
+not violate any particular Bell test: the choice of measurement matters.
 
 A cleaner illustration of the boundary between separable and entangled is
 the **Werner state**,
@@ -931,7 +931,7 @@ entanglement. For $p\le1/3$, all four eigenvalues are nonnegative and the
 two-qubit sufficiency result guarantees separability. Mixing in only a little
 of the entangled state therefore leaves a classically explicable mixture;
 only past a specific threshold does the joint state require entanglement.
-"How entangled" a mixed state is is not simply proportional to how much of an
+"How entangled" a mixed state is does not scale simply with how much of an
 entangled state was mixed in.
 
 Curiously, the reduced state $\hat\rho_A=\operatorname{Tr}_B(\hat\rho_W)
@@ -962,7 +962,7 @@ Local unitary operations can rotate the Schmidt bases, but they cannot
 change the Schmidt coefficients, the reduced-state purity, or the
 entanglement entropy. Creating or destroying entanglement genuinely requires
 an interaction, a joint measurement, or discarding information into an
-external system—no amount of purely local fiddling will do it.
+external system; no amount of purely local fiddling will do it.
 
 :::{note} Enrichment: beyond two subsystems
 Three or more entangled qubits raise questions this two-qubit chapter

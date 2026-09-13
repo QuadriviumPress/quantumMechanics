@@ -12,7 +12,7 @@ After this chapter, you should be able to:
 - construct and interpret the unitary time-evolution operator;
 - distinguish stationary states from general superpositions;
 - predict spin precession in a uniform magnetic field;
-- connect relative phase evolution to changing measurement probabilities; and
+- connect relative phase evolution to changing measurement probabilities;
 - compose piecewise evolution and measurement steps in a complete protocol;
 - translate controlled field pulses into Bloch-sphere rotations; and
 - predict a Ramsey interference signal.
@@ -33,13 +33,15 @@ i\hbar\frac{d}{dt}|\psi(t)\rangle=\hat H(t)|\psi(t)\rangle.
 ```
 
 The Hamiltonian $\hat H$ is the observable associated with energy, and it
-plays a second role here as the *generator* of time evolution—the object
+plays a second role here as the *generator* of time evolution: the object
 that tells the state how to change from one instant to the next. Equation
 {eq}`tdse` is a first-order differential equation for a vector, which means
 specifying the initial state $|\psi(0)\rangle$ and the Hamiltonian $\hat
 H(t)$ is enough to determine the state at every later time.
 
 :::{note} Quick review: what does it mean to exponentiate an operator?
+Skip this box if exponentiating a matrix is already routine for you.
+
 For an ordinary number $x$, the exponential function is defined by its power
 series,
 
@@ -84,7 +86,7 @@ an explicit solution:
 \hat U(t)=e^{-i\hat Ht/\hbar}.
 ```
 
-It is worth checking directly that this solves equation {eq}`tdse`, rather
+Check directly that this solves equation {eq}`tdse`, rather
 than accepting it purely on authority. Differentiating the defining power
 series of $\hat U(t)$ term by term with respect to $t$,
 
@@ -112,8 +114,8 @@ drifts as it evolves:
 ```
 
 So unitary evolution preserves normalization and, more generally, every
-inner product between two evolving states. It is worth pausing on something
-that can feel paradoxical at first: this evolution is completely
+inner product between two evolving states. Something here can feel
+paradoxical at first: this evolution is completely
 *deterministic*, even though the measurement outcomes it eventually leads to
 are probabilistic. Nothing random happens while the state simply evolves;
 randomness enters only at the moment of measurement.
@@ -186,7 +188,7 @@ stationary because this overall phase leaves all time-independent
 measurement probabilities unchanged.
 :::
 
-A general initial state need not be a single energy eigenstate—it can be any
+A general initial state need not be a single energy eigenstate; it can be any
 superposition of them,
 
 ```{math}
@@ -251,7 +253,7 @@ e^{-i(E_n-E_m)t/\hbar}.
 ```
 
 This predicts an experimentally visible angular frequency
-$|E_n-E_m|/\hbar$—a useful fact to remember, since it also gives a quick
+$|E_n-E_m|/\hbar$, a useful fact to remember, since it also gives a quick
 dimensional check: energy divided by $\hbar$ has units of inverse time, as an
 angular frequency should. A common phase built from, say, the *average*
 energy of two levels drops out of every isolated-system probability, exactly
@@ -347,7 +349,7 @@ _{=i\sin\theta}\sigma_z,
 using $\sigma_z^n=\hat I$ for even $n$ and $\sigma_z^n=\sigma_z$ for odd $n$
 to pull $\sigma_z$ out of every odd term. The two bracketed sums are exactly
 the ordinary Taylor series whose sum is $\cos\theta$ and $i\sin\theta$
-respectively—the same series reviewed above for $e^{i\phi}$, now split into
+respectively: the same series reviewed above for $e^{i\phi}$, now split into
 its even and odd parts instead of read off directly. This gives
 
 ```{math}
@@ -400,7 +402,7 @@ the $z$-directed field. Then
 ```
 
 After removing an overall phase, the relative phase between the two terms is
-$e^{-i\omega_0t}$—and Chapter 2 already showed exactly what a relative phase
+$e^{-i\omega_0t}$, and Chapter 2 already showed exactly what a relative phase
 like this does to measurement probabilities in a different basis. The
 probabilities for a later $S_x$ measurement are
 
@@ -411,10 +413,10 @@ P(x+,t)=\cos^2\frac{\omega_0t}{2},
 P(x-,t)=\sin^2\frac{\omega_0t}{2}.
 ```
 
-Meanwhile $P(z+)=P(z-)=1/2$ at every time $t$—the $z$-basis populations never
+Meanwhile $P(z+)=P(z-)=1/2$ at every time $t$: the $z$-basis populations never
 change at all. Geometrically, the Bloch vector simply rotates around the $z$
 axis at the Larmor angular frequency $|\omega_0|$. This is the general
-pattern worth remembering: dynamics changes a *relative phase*, and it is
+pattern to remember: dynamics changes a *relative phase*, and it is
 the choice of final analyzer that converts an otherwise hidden phase into a
 measurable probability.
 
@@ -440,7 +442,7 @@ changing counts. A single measurement basis does not provide complete state
 information.
 :::
 
-This experiment is worth recognizing as a two-state interferometer, in the
+This experiment is a two-state interferometer, in the
 same spirit as the recombination experiments of Chapters 1 and 2. Preparing
 $|+x\rangle$ creates two equal $z$-basis amplitudes, the field gives them
 different phases as time passes, and the final $x$ analyzer recombines those
@@ -489,7 +491,7 @@ gives $x-$ with certainty satisfies $|\omega_0|t=\pi$. Thus
 t_{\text{flip}}=\frac{\pi}{|\omega_0|}.
 ```
 
-It is worth being precise about what this is *not*: it is not a transition
+Be precise about what this is *not*: it is not a transition
 between the $S_z$ energy levels, since their populations remain fixed
 throughout. It is a rotation of the state relative to the $x$ measurement
 basis—the energy eigenstates are untouched; only the relative phase between
@@ -512,7 +514,7 @@ The smallest positive phase is $|\omega_0|t=\pi/3$, giving
 \approx5.24\times10^5\ \text{rad s}^{-1}.
 ```
 
-Two ambiguities remain, and it is worth noticing both. The probability alone
+Two ambiguities remain, and neither should be overlooked. The probability alone
 does not determine the *sign* of $\omega_0$, since $\cos^2$ cannot
 distinguish clockwise from counterclockwise rotation. And because the cosine
 is periodic, this same data is also consistent with larger frequencies
@@ -544,10 +546,10 @@ reveals why the exponent naturally involves a *half*-angle, echoing the
 half-angle rule from Chapter 1. A $2\pi$ spatial rotation gives
 $\hat U=-\hat I$, and only a $4\pi$ rotation returns the ket to exactly
 itself. That minus sign after $2\pi$ is an overall phase for one isolated
-evolving path, so it has no effect by itself—but it becomes observable
+evolving path, so it has no effect by itself, but it becomes observable
 through interference with a second, unrotated path.
 
-Three geometric cases are worth visualizing separately. If the initial Bloch
+Three geometric cases deserve separate attention. If the initial Bloch
 vector is parallel to $\mathbf n$, the state is an energy eigenstate and
 gains only an overall phase, never changing direction. If it starts
 perpendicular to $\mathbf n$, it sweeps out a full circle around $\mathbf n$.
@@ -569,16 +571,16 @@ $\hat H=-(\hbar\omega/2)\sigma_x$ and initial state $|+z\rangle$. Equation
 The probability of a $z-$ result is
 $\sin^2(\omega t/2)$. At $|\omega|t=\pi/2$, the state has equal $z$
 probabilities but a definite transverse direction; at $|\omega|t=\pi$, it is
-$|-z\rangle$ up to phase. It is worth emphasizing that equal $z$ populations
-halfway through the rotation do not mean coherence has been lost—the state
-is still a perfectly definite pure state, just one pointing along a
+$|-z\rangle$ up to phase. Equal $z$ populations
+halfway through the rotation do not mean coherence has been lost, however:
+the state is still a perfectly definite pure state, just one pointing along a
 different axis.
 
 ## 4.6 Measurement interrupts unitary evolution
 
 So far we have evolved a state continuously and only asked about
 measurement at the very end. Real experimental protocols often measure,
-select an outcome, and then let the resulting state evolve further—and it is
+select an outcome, and then let the resulting state evolve further, and it is
 important to know exactly how to handle that. Suppose the spin evolves until
 time $t_1$, when $S_x$ is measured. Just before the measurement,
 
@@ -609,7 +611,7 @@ outcome is selected. The same field then acts for another time
 $t_2=\pi/(2|\omega_0|)$ before a final $S_x$ measurement.
 
 Just before the intermediate measurement,
-$P(x+)=P(x-)=1/2$. Selecting $x-$ prepares $|-x\rangle$—it does not leave the
+$P(x+)=P(x-)=1/2$. Selecting $x-$ prepares $|-x\rangle$; it does not leave the
 earlier phase-evolved ket in place, per the rule just stated. Starting fresh
 from $|-x\rangle$, another quarter-period of evolution produces equal final
 $x$ probabilities. So the probability for either final result, *conditional*
@@ -753,7 +755,12 @@ exactly such a rotation. Define
 ```
 
 For $\hat H=(\hbar\Omega/2)\mathbf n\cdot\boldsymbol\sigma$ applied for time
-$\tau$, the rotation angle is $\alpha=\Omega\tau$. Two particular pulses come
+$\tau$, the rotation angle is $\alpha=\Omega\tau$. This control Hamiltonian is
+defined with the opposite sign from the field Hamiltonian
+$\hat H=-(\hbar\omega/2)\mathbf n\cdot\boldsymbol\sigma$ of Sections 4.3–4.5;
+matching the two conventions, $\Omega=-\omega$, recovers
+$\hat R_{\mathbf n}(\Omega\tau)=\hat U(\tau)$ from equation
+{eq}`arbitrary-rotation`. Two particular pulses come
 up often enough to deserve names: a **$\pi$ pulse** carries a Bloch vector to
 the opposite side of its rotation circle, while a **$\pi/2$ pulse** can turn
 a definite $z$ state into an equal-amplitude superposition. For example,

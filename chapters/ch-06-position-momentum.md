@@ -94,7 +94,7 @@ One consequence follows immediately: ideal position kets are not
 normalizable physical states at all. Real preparations are wave packets of
 finite width, as Section 6.5 develops in detail.
 
-It is worth seeing directly why an ordinary finite function cannot play the
+It helps to see directly why an ordinary finite function cannot play the
 role of $\langle x|x'\rangle$, rather than simply asserting it. Suppose
 instead that $\langle x|x'\rangle=g(x-x')$ for some bounded function $g$.
 Completeness would then require
@@ -107,7 +107,7 @@ to equal $\psi(x')$ for *every* state $|\psi\rangle$. But a bounded kernel
 convolves and smooths a function as it integrates against it; it cannot
 reproduce the function's exact value at a single point. The only way it
 could would be for the kernel to be concentrated entirely at $x=x'$ with
-unit weight there—and no ordinary function is simultaneously concentrated at
+unit weight there, and no ordinary function is simultaneously concentrated at
 one point and normalized to integrate to one. Only the singular limit of an
 infinitely narrow, infinitely tall spike—the Dirac delta—has the sifting
 property we actually need. This is the same logic that made a discrete
@@ -144,8 +144,8 @@ Normalization requires
 ```
 
 Unlike a discrete probability, $|\psi(x)|^2$ is a probability **density**,
-with units of inverse length. This has a striking consequence worth stating
-plainly: the probability of finding the particle at any one exact point is
+with units of inverse length. This has a striking consequence: the
+probability of finding the particle at any one exact point is
 zero, even at a point where the density itself is nonzero.
 
 This is a genuine conceptual shift from the spin chapters, not merely a
@@ -216,7 +216,7 @@ interval, and the density carries units of inverse length.
 Send electrons, photons, or atoms one at a time through a double slit and
 watch each arrive as a single dot, yet build up the interference pattern
 predicted by $|\psi(x)|^2$ over many trials. Cover one slit with a detector
-and the pattern collapses to two bands—the continuous-variable version of
+and the pattern collapses to two bands, the continuous-variable version of
 Chapter 1's Rule 3.
 ```
 
@@ -237,7 +237,7 @@ Momentum acts by differentiation:
 =-i\hbar\frac{d\psi}{dx}.
 ```
 
-It is worth applying both operator orders explicitly to an arbitrary
+Apply both operator orders explicitly to an arbitrary
 function $\psi(x)$, rather than taking the commutator below on faith. The
 term $\hat x\hat p\,\psi$ first differentiates, then multiplies by $x$:
 
@@ -299,7 +299,7 @@ the left side as an integral and integrating by parts once,
 ```
 
 The remaining integral on the right is exactly $\langle\hat p\phi|\psi
-\rangle$—the quantity Hermiticity requires the left side to equal. So the
+\rangle$, the quantity Hermiticity requires the left side to equal. So the
 two sides agree if and only if the boundary term
 $\big[\phi^*\psi\big]_{-\infty}^{\infty}$ vanishes. For any pair of
 normalizable wavefunctions on the whole line, both $\phi$ and $\psi$ must
@@ -361,7 +361,7 @@ f(x)=\int_{-\infty}^{\infty}c(k)\,e^{ikx}\,dk.
 ```
 
 The **Fourier transform** is simply the rule that reads off the weight
-$c(k)$ belonging to each wave number, given $f(x)$—playing exactly the role
+$c(k)$ belonging to each wave number, given $f(x)$, playing exactly the role
 that an inner product $\langle+z|\psi\rangle$ played in extracting a
 coefficient from a ket. A function that oscillates rapidly in $x$ draws
 mostly on large-$|k|$ waves; a function that varies slowly draws mostly on
@@ -370,7 +370,7 @@ spike, turns out to require comparable contributions from every wave
 number, spread very broadly in $k$. This trade-off, between how localized a
 function is in $x$ and how localized its transform is in $k$, is a purely
 mathematical fact about waves that has nothing to do with quantum mechanics
-yet—it is the same reason a sharply plucked guitar string rings with many
+yet: it is the same reason a sharply plucked guitar string rings with many
 overtones, while a slow, pure tone contains almost only one frequency.
 
 Equations {eq}`momentum-wavefunction` and {eq}`inverse-fourier` below are
@@ -405,16 +405,16 @@ with inverse
 \int_{-\infty}^{\infty}e^{ipx/\hbar}\phi(p)\,dp.
 ```
 
-These are basis changes, not dynamical evolution—exactly the same
+These are basis changes, not dynamical evolution: exactly the same
 distinction Chapter 2 drew between rewriting a spin ket in a new basis and
 performing an actual measurement. Normalization is preserved either way:
 $\int|\psi(x)|^2dx=\int|\phi(p)|^2dp=1$.
 
 A broad packet in position generally requires a narrow range of wave
 numbers; a narrow position packet requires many. This Fourier fact underlies
-the position–momentum uncertainty relation, and it is worth being clear
-about what is and is not quantum here. As a mathematical statement about
-pairs of Fourier partners, it has no quantum content of its own—it is true
+the position–momentum uncertainty relation, and separating what is and is
+not quantum here matters. As a mathematical statement about
+pairs of Fourier partners, it has no quantum content of its own: it is true
 of classical wave pulses too. What quantum mechanics adds is the physical
 claim that $\phi(p)$, not merely $\psi(x)$, is a genuine probability
 amplitude for an equally real, independently measurable observable. A
@@ -438,7 +438,7 @@ basis states in the other.
 :label: fig:ch06-fourier-making-waves-sim
 
 Add harmonics one at a time and watch a broad range of wave numbers
-synthesize a narrow, localized packet in position—or remove harmonics and
+synthesize a narrow, localized packet in position, or remove harmonics and
 watch the reverse. The spread displayed for each domain is exactly the
 trade-off behind equation {eq}`minimum-uncertainty` below.
 ```
@@ -481,9 +481,8 @@ Thus
 ```
 
 The Gaussian saturates the Robertson bound associated with equation
-{eq}`xp-commutator`. It is worth pausing on what this uncertainty is *not*:
-it is not caused by a badly calibrated position detector kicking the
-particle around. It describes the spreads found in two genuinely different
+{eq}`xp-commutator`. This uncertainty is not, however, caused by a badly
+calibrated position detector kicking the particle around. It describes the spreads found in two genuinely different
 ensembles, each prepared identically in the same state, one measured for
 position and the other for momentum.
 
@@ -526,7 +525,7 @@ affects neither $\Delta x$ nor $\Delta p$). No other line shape solves
 equation {eq}`minimum-uncertainty-condition`: any state that is not Gaussian
 must have $\Delta x\,\Delta p>\hbar/2$ strictly. So Gaussian wave packets,
 far from being merely a convenient textbook example, are *the* states of
-least joint position–momentum uncertainty—there is no better one to be
+least joint position–momentum uncertainty: there is no better one to be
 found.
 
 ### Example 6.3: overlap of two wave packets
@@ -560,7 +559,7 @@ orthogonal and behave as reliably distinguishable preparations; packets
 separated by less than a width overlap substantially, and no measurement
 can sort individual particles between them with certainty. This is the
 continuous counterpart of the Stern–Gerlach statement that only exactly
-orthogonal spin states are perfectly distinguishable—here "exactly
+orthogonal spin states are perfectly distinguishable: here "exactly
 orthogonal" is replaced by "infinitely far apart," and any finite
 separation always leaves some residual overlap.
 
@@ -630,7 +629,7 @@ Conjugating position by the translation gives
 ```
 
 This operator statement makes the geometry independent of any particular
-wavefunction—it is true for every state at once, not just the ones we
+wavefunction: it is true for every state at once, not just the ones we
 happen to write down explicitly.
 
 ### Concept check 6.5
@@ -757,8 +756,8 @@ not, in general: $\langle V'(\hat x)\rangle\ne V'(\langle x\rangle)$ except
 in special cases. The center of a narrow packet in a slowly varying
 potential only *approximately* follows a classical trajectory.
 
-There is one important exception, and it is worth seeing exactly why it
-arises. For quadratic potentials, the equations close exactly for the
+There is one important exception, and the reason it arises deserves a
+closer look. For quadratic potentials, the equations close exactly for the
 means. The reason is purely algebraic: the discrepancy
 $\langle V'(\hat x)\rangle-V'(\langle x\rangle)$ is controlled by the higher
 moments of $\hat x-\langle x\rangle$, through a Taylor expansion of $V'$
@@ -773,7 +772,7 @@ packet's spread.
 Ehrenfest's theorem does not turn a quantum state into a classical point.
 The packet retains its uncertainties, may spread, and may even split into
 reflected and transmitted pieces. Classical behavior emerges only for
-suitable states, observables, potentials, and time scales—not as a general
+suitable states, observables, potentials, and time scales, not as a general
 guarantee.
 
 ### Example 6.4: constant force

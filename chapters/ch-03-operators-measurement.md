@@ -12,7 +12,7 @@ After this chapter, you should be able to:
 - calculate eigenvalues, eigenvectors, and spectral decompositions;
 - apply the Born rule and the projection postulate;
 - compute expectation values and uncertainties;
-- use commutators to diagnose incompatible observables; and
+- use commutators to diagnose incompatible observables;
 - reconstruct a spin state from component-measurement statistics;
 - use Pauli-matrix identities to simplify spin calculations; and
 - represent pure states, mixtures, and unread measurements with density
@@ -33,7 +33,7 @@ make each outcome certain.
 Skip this box if diagonalizing a matrix is already routine for you.
 
 A matrix acting on a column vector is a rule for turning one vector into
-another—in general, rotating and rescaling it into some new direction.
+another, in general rotating and rescaling it into some new direction.
 Remarkably, for almost any square matrix, a few special input vectors are
 *not* redirected at all: the matrix sends each of them straight back along
 its own original direction, merely stretched or shrunk by some factor. Such
@@ -52,13 +52,14 @@ scaled by $4$. Acting on $(1,-1)$ gives $(2,-2)=2\,(1,-1)$: the same
 direction again, this time scaled by $2$. Try this on almost any other
 vector, say $(1,0)$, and the result, $(3,1)$, points in a genuinely new
 direction rather than merely rescaling $(1,0)$. So $(1,1)$ and $(1,-1)$ are
-eigenvectors of $M$, with eigenvalues $4$ and $2$ respectively—and, for this
-particular $M$, essentially the only directions with this special property.
+eigenvectors of $M$, with eigenvalues $4$ and $2$ respectively; for this
+particular $M$, these two directions are also essentially the only ones with
+this special property.
 
 This is exactly the mathematical structure a measurement needs. An
 eigenvector is a preparation for which "applying the operator" returns a
 definite, predictable multiple of the same state, rather than mixing it into
-something new—and the multiple it returns by is the number a measurement
+something new; the multiple it returns by is the number a measurement
 would report. Sections 3.1–3.2 make this identification precise for spin,
 where the vectors involved are complex kets rather than real columns like
 $(1,1)$.
@@ -88,7 +89,7 @@ The spin operators are built directly from them:
 
 Hermiticity, written $\hat A^\dagger=\hat A$, guarantees two things at once:
 real eigenvalues, and an orthonormal eigenbasis. These are exactly the two
-properties we need from an ideal measurement—real numbers on a meter, and a
+properties we need from an ideal measurement: real numbers on a meter, and a
 definite state associated with each possible reading.
 
 For example, applying $\hat S_z$ to the two basis kets just returns them,
@@ -124,7 +125,7 @@ object. Solving its eigenvalue equation
 
 extracts the possible readings $a_n$ and the corresponding definite-outcome
 states $|a_n\rangle$ in one stroke. The prepared state $|\psi\rangle$ need
-not itself be one of those eigenkets—in general it will not be. Instead, its
+not itself be one of those eigenkets; in general, it will not be. Instead, its
 *projections* onto them are what determine the outcome probabilities, as the
 next section makes precise.
 
@@ -143,7 +144,7 @@ state space, and discards the rest. Define the projectors
 \hat P_{z-}=|-z\rangle\langle-z|.
 ```
 
-They satisfy three properties worth checking directly from the definition:
+Direct from the definition, they satisfy three properties:
 $\hat P^2=\hat P$ (projecting twice does nothing new), $\hat P^\dagger=\hat
 P$ (each is Hermitian), and $\hat P_{z+}\hat P_{z-}=0$ (the two outcomes are
 mutually exclusive). Completeness, from Chapter 2, gives
@@ -189,7 +190,7 @@ operator alone.
 
 This construction also runs in reverse: if the matrix of an observable is
 already known, its eigenvectors identify the corresponding analyzer states.
-This two-way connection is worth practicing in both directions:
+This two-way connection deserves practice in both directions:
 
 ```{math}
 \text{measurement states and values}
@@ -281,7 +282,7 @@ P(+\mathbf n\mid z+)
 
 The operator method has recovered the same half-angle rule found empirically
 in Chapter 1, while also identifying the exact state prepared once the
-$+\mathbf n$ result is selected—something the earlier probability-tree
+$+\mathbf n$ result is selected, something the earlier probability-tree
 approach could not supply on its own.
 
 For a degenerate result, several orthogonal states share one eigenvalue. If
@@ -353,7 +354,7 @@ average predicted for many identically prepared systems:
 An important subtlety: the expectation value need not itself be a possible
 result of any single measurement. For spin $\tfrac12$, $\langle
 S_z\rangle=0$ is a perfectly good ensemble average even though no individual
-$S_z$ measurement can ever return zero—every single measurement returns
+$S_z$ measurement can ever return zero: every single measurement returns
 $+\hbar/2$ or $-\hbar/2$.
 
 ### Example 3.3: mean spin
@@ -408,7 +409,7 @@ prepared members of an ensemble, then
 
 with analogous expressions for $y$ and $z$. Three *separate* subensembles
 are required, one per axis, because the three spin components cannot all be
-measured sharply on the same atom—measuring one disturbs what can be known
+measured sharply on the same atom: measuring one disturbs what can be known
 about the others. The general process of reconstructing a state from a
 collection of measurement statistics like this is called **quantum-state
 tomography**.
@@ -444,7 +445,7 @@ directly from $\sigma_j^2=\hat I$. Applying this to a $z+$ state gives
 
 Zero uncertainty means exactly one thing: the state is an eigenstate of the
 observable in question. It does *not* mean that all observables are
-simultaneously sharp—here $S_z$ is perfectly definite while $S_x$ and $S_y$
+simultaneously sharp: here $S_z$ is perfectly definite while $S_x$ and $S_y$
 are maximally spread.
 
 ### Concept check 3.1
@@ -593,7 +594,7 @@ route probability for $z+\rightarrow x+\rightarrow z-$ is
 \|\hat P_{z-}\hat P_{x+}|+z\rangle\|^2=\frac14.
 ```
 
-Reversing the two projectors changes the physical route being described—it
+Reversing the two projectors changes the physical route being described: it
 answers a different experimental question, not just a reordered version of
 the same one. The projector product keeps both the ordering and the
 conditional selection explicit, which the commutator alone does not.
@@ -621,7 +622,7 @@ spin component along that direction as
 =\frac{\hbar}{2}\mathbf n\cdot\boldsymbol\sigma.
 ```
 
-Its eigenvalues are $\pm\hbar/2$, for any choice of $\mathbf n$—a fact
+Its eigenvalues are $\pm\hbar/2$, for any choice of $\mathbf n$, a fact
 consistent with Chapter 1's observation that every analyzer, no matter how
 it is oriented, gives exactly two outcomes. Its $+$ eigenstate is the
 Bloch-sphere state in equation {eq}`bloch-state`, up to an overall phase. The
@@ -755,7 +756,7 @@ determinant computed above, $2\cdot4-|1-i|^2=8-2=6$. Both checks pass, so it
 is safe to proceed.
 
 To find the eigenvector for $\lambda_+$, write $|\lambda_+\rangle=(v_1,v_2)$
-and use either row of $(\hat A-\lambda_+\hat I)|\lambda_+\rangle=0$—the two
+and use either row of $(\hat A-\lambda_+\hat I)|\lambda_+\rangle=0$: the two
 rows are not independent equations once $\lambda_+$ is an exact root, so
 either one alone determines the ratio $v_2/v_1$. The second row reads
 $(1+i)v_1+(4-\lambda_+)v_2=0$, so
@@ -812,8 +813,8 @@ be real and that such an orthonormal eigenbasis must exist.
 ## 3.9 The Pauli algebra as a calculation tool
 
 Many spin calculations become much shorter once a few Pauli-matrix
-identities are available, so it is worth collecting them here as tools
-rather than rederiving them from scratch each time. Direct multiplication of
+identities are available, so they are collected here as tools
+rather than rederived from scratch each time. Direct multiplication of
 the matrices in equation {eq}`pauli-matrices` gives
 
 ```{math}
@@ -867,8 +868,8 @@ Using equation {eq}`direction-projectors`,
 ```
 
 The imaginary cross-product term changes sign if the order is reversed, so
-the two operators are identical only for parallel or antiparallel axes—any
-other pair of directions gives an order-dependent result. Acting on
+the two operators are identical only for parallel or antiparallel axes;
+any other pair of directions gives an order-dependent result. Acting on
 $|+\mathbf a\rangle$ and taking the squared norm yields
 $(1+\mathbf a\cdot\mathbf b)/2$, recovering the analyzer angle rule while
 also retaining the post-selected output state, something the bare
@@ -890,7 +891,7 @@ w_j\geq0,\quad\sum_jw_j=1.
 ```
 
 Recall that the trace of an operator is the sum of its diagonal entries in
-any orthonormal basis—the result does not depend on which basis is chosen.
+any orthonormal basis; the result does not depend on which basis is chosen.
 (This is the same fact used as a check in Example 3.4: the trace, computed
 from the diagonal entries, equals the sum of the eigenvalues, computed from
 an entirely different calculation.) A density operator is always Hermitian,
