@@ -34,6 +34,41 @@ npm run build
 Use `npm ci` for an exact installation from the lockfile. The production site
 is written to `_build/html`.
 
+## Figures
+
+The original SVG diagrams are generated with Matplotlib. To regenerate them,
+create a Python environment, install the small figure-only dependency set, and
+run the generator:
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-figures.txt
+.venv/bin/python scripts/generate_figures.py
+```
+
+The script writes deterministic, editable SVG files to `images/figures/`.
+
+## Interactive simulations
+
+Chapters embed running browser simulations with the `{openlyceum}`, `{phet}`,
+`{phet-legacy}`, or `{simulation}` directives, supplied by
+[`plugins/simulation.mjs`](plugins/simulation.mjs):
+
+````markdown
+```{openlyceum} SternGerlach
+:label: fig:ch01-stern-gerlach-sim
+
+Assemble analyzers, magnets, and counters, then compare Monte Carlo counts
+with the analytic prediction.
+```
+````
+
+On the website this is the live simulation. In print or any other export that
+cannot run JavaScript, the same figure becomes a screenshot with its caption
+and a link to the running version. See [`plugins/README.md`](plugins/README.md)
+for the full option list and [`SOURCES.md`](SOURCES.md) for which simulation
+appears in which chapter.
+
 ## Contributing
 
 Corrections, accessibility improvements, exercises, and original interactive

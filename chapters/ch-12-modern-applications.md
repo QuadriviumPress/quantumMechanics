@@ -47,6 +47,15 @@ They are unitary transformations, not measurements. The $X$ gate exchanges
 $|0\rangle$ and $|1\rangle$; $Z$ changes a relative sign; Hadamard converts
 between $z$ and $x$ bases; and $S$ adds a quarter-cycle phase.
 
+```{openlyceum} QubitSketch
+:label: fig:ch12-qubitsketch-gates-sim
+
+Drag $X$, $Z$, $H$, and $S$ gates onto a single qubit and watch its Bloch
+sphere and amplitudes $\alpha,\beta$ update after each one—the same circuit
+builder used in Chapter 5 to entangle two qubits, now applied one gate at a
+time to a single qubit's state.
+```
+
 ## 12.2 Circuits and quantum information
 
 A circuit diagram is read in time order. Gates compose as matrix products, and
@@ -414,6 +423,17 @@ followed one branch more than the other with higher probability; the two
 branches instead interfered constructively for one final measurement outcome
 and destructively for the other, exactly the mechanism named at the start of
 this section.
+
+```{openlyceum} QubitSketch
+:label: fig:ch12-qubitsketch-deutsch-sim
+
+Build this circuit on two wires: Hadamard both qubits, insert an oracle, then
+Hadamard the first qubit again before measuring it. All four possible oracles
+are built from gates already in the palette—identity or $X$ on the target
+qubit for a constant $f$, and CNOT (with an extra $X$ for the other balanced
+case) for a balanced $f$. Confirm the first qubit always reads $0$ for the
+constant oracles and $1$ for the balanced ones.
+```
 
 ### Concept check 12.6
 

@@ -392,6 +392,15 @@ distribute among degenerate orbitals: Hund's rule predicts that electrons
 first occupy separate orbitals with parallel spins, maximizing the (typically
 positive) exchange energy $K$, before any orbital is doubly occupied.
 
+```{phet} build-an-atom
+:label: fig:ch11-build-an-atom-sim
+
+Add electrons one at a time and watch them fill shells subject to exclusion,
+building up the periodic table's structure orbital by orbital. Try filling a
+subshell with parallel spins before doubling any orbital, and check the
+result against Hund's rule above.
+```
+
 In a macroscopic fermion system, low-energy states fill up to a Fermi energy.
 Compression forces particles into higher momentum states even at zero
 temperature, producing degeneracy pressure. For bosons, many particles can

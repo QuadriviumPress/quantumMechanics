@@ -260,6 +260,14 @@ The principal quantum number $n$ sets the energy in the ideal Coulomb
 problem; $\ell$ sets the orbital angular-momentum magnitude; and $m$ sets
 its component along the chosen $z$ axis.
 
+```{phet} models-of-the-hydrogen-atom
+:label: fig:ch08-hydrogen-atom-models-sim
+
+Compare the Bohr, de Broglie, and Schrödinger pictures of hydrogen side by
+side, and fire simulated photons at each model to see which one's
+predictions actually match the observed emission and absorption spectrum.
+```
+
 ### Concept check 8.3
 
 Does the quantum number $m$ specify a three-dimensional orbital plane?

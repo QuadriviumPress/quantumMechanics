@@ -17,6 +17,8 @@ project:
     - Stern-Gerlach experiment
     - Dirac notation
     - MyST Markdown
+  plugins:
+    - plugins/simulation.mjs
   toc:
     - file: index.md
     - title: Quantum states and dynamics

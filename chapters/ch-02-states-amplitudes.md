@@ -216,6 +216,16 @@ phase is randomized by the apparatus, this cross term averages to zero and
 only $|A_1|^2+|A_2|^2$ remains—the ordinary rule for adding probabilities of
 mutually exclusive events.
 
+:::{figure} ../images/figures/ch02-complex-amplitudes.svg
+:name: fig-complex-amplitudes
+:alt: An Argand diagram shows a complex amplitude as an arrow with magnitude and phase. A second diagram adds two amplitude arrows head to tail to form their complex sum.
+:width: 100%
+
+A complex amplitude is a two-dimensional arrow: its length is the magnitude
+and its direction is the phase. Coherent alternatives interfere because these
+arrows add before the squared magnitude is taken.
+:::
+
 :::{admonition} Algebra checkpoint
 :class: tip
 Do not replace $|A_1+A_2|^2$ by $|A_1|^2+|A_2|^2$ unless the physical
@@ -265,6 +275,17 @@ out of its projections onto the basis." For example,
 Comparing this with equation {eq}`general-z-state` shows that the expansion
 coefficients $a$ and $b$ are precisely the amplitudes $\langle+z|\psi\rangle$
 and $\langle-z|\psi\rangle$ for the two basis outcomes.
+
+:::{figure} ../images/figures/ch02-born-rule-projection.svg
+:name: fig-born-rule-projection
+:alt: A state vector is resolved into components along the z plus and z minus basis directions. A bar chart shows that the squared magnitudes of those components are the two outcome probabilities and sum to one.
+:width: 100%
+
+Projection onto a measurement basis produces amplitudes; the Born rule turns
+their squared magnitudes into normalized outcome probabilities. The geometry
+is schematic—spin state space is complex even though this cross-section is
+drawn in a real plane.
+:::
 
 ### A probability calculation in four steps
 
@@ -611,6 +632,17 @@ $\cos(\theta/2)=\sqrt3/2$, so $\theta=\pi/3$. The relative phase is
 $e^{i\phi}=-i$, so one convenient choice is $\phi=3\pi/2$. The state
 therefore lies $60^\circ$ from $+z$ and points toward negative $y$.
 
+```{phet} quantum-measurement
+:screen: 3
+:sim-name: Quantum Measurement: Bloch Sphere
+:label: fig:ch02-bloch-sphere-sim
+
+Prepare a spin-$\tfrac12$ state and read its $(\theta,\phi)$ coordinates
+directly off the sphere, or drag the state vector and watch the ket in
+equation {eq}`bloch-state` update to match. Reproduce Example 2.5 by dragging
+to $\theta=60^\circ$ and checking the phase the sphere reports.
+```
+
 ## 2.8 Pure states and mixtures
 
 Section 2.1 promised that a coherent superposition and a classical mixture
@@ -630,6 +662,15 @@ $|+x\rangle$ state gives $x+$ with certainty, by construction. For the
 coin-toss ensemble, half of the atoms began in $z+$ and half in $z-$; each of
 those subensembles independently gives 50–50 $x$ results, so the combined
 statistics also remain 50–50.
+
+```{phet} quantum-coin-toss
+:label: fig:ch02-quantum-coin-toss-sim
+
+Compare a classical biased coin with a quantum "coin" prepared in
+superposition. Both can be tuned to land heads half the time, yet only the
+quantum coin has a measurement basis—an analogue of the $x$ analyzer
+above—in which the 50–50 outcome disappears entirely.
+```
 
 No single ket can represent that classical mixture—there is simply no linear
 combination of $|+z\rangle$ and $|-z\rangle$ that reproduces its statistics
@@ -655,6 +696,17 @@ $\hat\rho_{\mathrm{mix}}$ are exactly the coherence that can influence
 measurements in another basis. For now, the operational lesson is enough:
 identical probabilities for one measurement do not prove that two
 preparations are the same quantum state.
+
+:::{figure} ../images/figures/ch02-bloch-phase-and-mixture.svg
+:name: fig-bloch-phase-mixture
+:alt: Three Bloch spheres. A pure state is shown by an arrow to the surface, relative phase changes the arrow's azimuth around the equator, and a mixed state is represented by a shorter vector inside the sphere.
+:width: 100%
+
+The Bloch sphere packages the distinctions developed in this chapter. Pure
+states reach the surface, relative phase fixes an azimuth, and mixtures occupy
+the interior. Overall phase has no Bloch-sphere coordinate because it changes
+no physical state.
+:::
 
 ## 2.9 Spinors for an arbitrary direction
 

@@ -200,6 +200,16 @@ time:
 5. Use the resulting state—not the original state—for any later
    measurement.
 
+:::{figure} ../images/figures/ch03-projective-measurement-workflow.svg
+:name: fig-projective-measurement-workflow
+:alt: An incoming state enters an observable represented by a spectral sum. The process branches into plus and minus outcomes with projector probabilities, and each selected branch prepares the corresponding eigenstate.
+:width: 100%
+
+A projective measurement does two jobs. Its spectral projectors determine the
+probabilities of the possible records, and a selected record supplies the
+state used in every later step.
+:::
+
 This workflow is nothing more than the operator version of tracing a route
 through sequential Stern–Gerlach analyzers, which Chapter 1 did by hand and
 Chapter 2 did with explicit amplitudes.
@@ -271,6 +281,19 @@ same projector a second time changes nothing. A second immediate measurement
 therefore finds the same outcome with certainty—repeatability is not a
 separate assumption we need to add; it falls straight out of the projector
 algebra.
+
+```{phet} quantum-measurement
+:screen: 2
+:sim-name: Quantum Measurement: Spin
+:label: fig:ch03-quantum-measurement-spin-sim
+
+Prepare a spin-$\tfrac12$ state, choose an analyzer orientation $\mathbf n$,
+and watch the projection postulate act: a Bloch-sphere readout shows the
+prepared state collapse to $|\pm\mathbf n\rangle$ the instant a result is
+recorded. Reproduce Example 3.2 by tilting the analyzer to angle $\theta$ from
+a $z+$ preparation and comparing the displayed probability with
+$\cos^2(\theta/2)$.
+```
 
 ## 3.4 Expectation values
 
@@ -494,6 +517,17 @@ Reversing the two projectors changes the physical route being described—it
 answers a different experimental question, not just a reordered version of
 the same one. The projector product keeps both the ordering and the
 conditional selection explicit, which the commutator alone does not.
+
+:::{figure} ../images/figures/ch03-measurement-order.svg
+:name: fig-measurement-order
+:alt: Two analyzer sequences begin from the same y plus state. Selecting z plus and then x plus leaves a final x plus state, while selecting x plus and then z plus leaves a final z plus state. Each selected route has probability one quarter.
+:width: 100%
+
+Reversing two selected measurements reverses which eigenstate is prepared
+last. Even when the displayed routes happen to have equal probabilities, their
+final states differ: $\hat P_x\hat P_z$ and $\hat P_z\hat P_x$ are not the same
+operation.
+:::
 
 ## 3.7 Operators along an arbitrary direction
 
@@ -810,7 +844,20 @@ now 50–50, even though no observer ever actually used the intermediate
 result. Discarding a record after the fact is not the same as preventing
 that record from being created in the first place. It is the physical
 correlation that made the alternatives distinguishable—not anyone's act of
-reading it—that destroyed the interference.
+reading it—that destroyed the interference. This is exactly the distinction
+the quantum-coin-toss simulation of Chapter 2 makes tangible: a coin that has
+decohered into a fixed outcome behaves just like $\hat\rho'$ above, no matter
+whether that outcome has been read yet.
+
+:::{figure} ../images/figures/ch03-unread-measurement.svg
+:name: fig-unread-measurement
+:alt: Three Bloch spheres show an initial x plus state, the two possible selected z outcomes, and the completely mixed state at the center when those outcomes are pooled and unread.
+:width: 100%
+
+An $S_z$ measurement sends each member of the ensemble to a pole. Keeping the
+outcome selects one pole; pooling the outcomes leaves no net Bloch vector and
+removes the transverse coherence of the initial $|+x\rangle$ state.
+:::
 
 ### Concept check 3.4
 

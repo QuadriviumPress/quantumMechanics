@@ -412,6 +412,15 @@ spins. Chapter 4's rotations and this section's entangling gates are the
 same kind of mathematical object—unitary operators—differing only in how
 many subsystems they act on jointly.
 
+```{openlyceum} QubitSketch
+:label: fig:ch05-qubitsketch-entangling-sim
+
+Drag a Hadamard gate onto qubit $A$ and a controlled-NOT between $A$ and $B$
+to build the circuit above. Watch the two Bloch spheres and the joint-state
+amplitudes update live, and confirm that measuring $A$ instantly fixes what a
+later measurement of $B$ will find.
+```
+
 ## 5.7 Schmidt decomposition and amount of entanglement
 
 Section 5.2 promised a precise, quantitative way to say "how entangled" a

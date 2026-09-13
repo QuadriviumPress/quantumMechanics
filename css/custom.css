@@ -11,3 +11,64 @@ a {
   overflow-x: auto;
   overflow-y: hidden;
 }
+
+/*
+ * Styles for the {simulation}, {openlyceum}, and {phet} directives in
+ * plugins/simulation.mjs. Merged here rather than kept as a separate
+ * stylesheet because `site.options.style` accepts only one file.
+ *
+ * Each directive emits an iframe *and* a screenshot as siblings of one
+ * figure, because no single node type survives every MyST output format.
+ * On the website both would be visible, so this hides the screenshot and
+ * flips the pair back around for print.
+ */
+
+/* The static fallback exists for PDF, DOCX, Markdown, and print. */
+.simulation-placeholder {
+  display: none;
+}
+
+/*
+ * The MyST theme wraps every iframe in a div carrying an inline
+ * `padding-bottom: 60%`, which is the aspect ratio. 60% matches the
+ * SceneryStack 1024x618 frame almost exactly, so only other ratios need a
+ * rule here -- and each one has to win against an inline style.
+ */
+.simulation-aspect-768x504 > div {  /* PhET */
+  padding-bottom: 65.63% !important;
+}
+
+.simulation-aspect-16x9 > div {
+  padding-bottom: 56.25% !important;
+}
+
+.simulation-aspect-4x3 > div {
+  padding-bottom: 75% !important;
+}
+
+.simulation-aspect-1x1 > div {
+  padding-bottom: 100% !important;
+}
+
+/* The caption line that links to the live simulation. */
+.simulation-link {
+  font-size: 0.9em;
+}
+
+/*
+ * Printing from the browser is a fourth static path, alongside PDF, DOCX,
+ * and Markdown. An iframe prints as a blank rectangle at best, so swap in
+ * the screenshot the exports already use.
+ */
+@media print {
+  .simulation-frame {
+    display: none;
+  }
+
+  .simulation-placeholder {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+}

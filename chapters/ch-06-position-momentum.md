@@ -158,6 +158,16 @@ No. It is a density. A finite probability requires integration over a finite
 interval, and the density carries units of inverse length.
 :::
 
+```{phet} quantum-wave-interference
+:label: fig:ch06-quantum-wave-interference-sim
+
+Send electrons, photons, or atoms one at a time through a double slit and
+watch each arrive as a single dot, yet build up the interference pattern
+predicted by $|\psi(x)|^2$ over many trials. Cover one slit with a detector
+and the pattern collapses to two bands—the continuous-variable version of
+Chapter 1's Rule 3.
+```
+
 ## 6.3 Operators in the position representation
 
 Position acts by multiplication:
@@ -272,6 +282,17 @@ amplitude for an equally real, independently measurable observable. A
 classical wave packet's Fourier width is a statement about its mathematical
 shape; a quantum wavefunction's Fourier width is simultaneously a statement
 about the distribution of a different physical quantity's measured values.
+
+```{phet} fourier-making-waves
+:screen: 2
+:sim-name: Fourier: Making Waves
+:label: fig:ch06-fourier-making-waves-sim
+
+Add harmonics one at a time and watch a broad range of wave numbers
+synthesize a narrow, localized packet in position—or remove harmonics and
+watch the reverse. The spread displayed for each domain is exactly the
+trade-off behind equation {eq}`minimum-uncertainty` below.
+```
 
 ### Concept check 6.3
 

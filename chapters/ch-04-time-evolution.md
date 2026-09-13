@@ -156,6 +156,16 @@ by the energy differences. Any observable that mixes different energy
 eigenstates can therefore vary in time, even though no individual energy
 probability ever does.
 
+:::{figure} ../images/figures/ch04-energy-phase-evolution.svg
+:name: fig-energy-phase-evolution
+:alt: Two energy levels carry phase-clock arrows that advance at different rates. A graph shows constant probabilities in the energy basis but an oscillating probability in a basis that mixes the energy states.
+:width: 100%
+
+Energy-basis populations stay fixed while the phase clocks advance at rates
+set by their energies. Only the relative clock angle is observable, and a
+measurement in a mixing basis converts it into an oscillating probability.
+:::
+
 ### Example 4.1: a two-level superposition
 
 Suppose $E_+>E_-$ and
@@ -330,6 +340,16 @@ pattern worth remembering: dynamics changes a *relative phase*, and it is
 the choice of final analyzer that converts an otherwise hidden phase into a
 measurable probability.
 
+:::{figure} ../images/figures/ch04-larmor-precession.svg
+:name: fig-larmor-precession
+:alt: A Bloch vector traces a circle around a magnetic field directed along z. Beside it, x plus and x minus probabilities oscillate while both z probabilities remain fixed at one half.
+:width: 100%
+
+Larmor precession leaves the $z$-basis populations unchanged but moves the
+Bloch vector around the equator. An $x$ analyzer reveals this motion as
+complementary oscillations in its two output probabilities.
+:::
+
 ### Concept check 4.3
 
 A spin in a $z$-directed field always has
@@ -356,6 +376,31 @@ a measurement. A uniform field, ideally, does not separate the beam; it
 changes the spin state coherently. The former correlates spin with a path,
 while the latter implements unitary evolution.
 :::
+
+```{phet} quantum-measurement
+:screen: 3
+:sim-name: Quantum Measurement: Bloch Sphere
+:label: fig:ch04-bloch-sphere-precession-sim
+
+Prepare $|+x\rangle$, switch on a $z$-directed field, and watch the Bloch
+vector sweep around the equator at the Larmor frequency exactly as equation
+{eq}`x-precession-state` predicts, while a live readout of $P(x\pm,t)$
+confirms equation {eq}`larmor-x-probabilities`.
+```
+
+The classical system with the same equation of motion is a gyroscope: a
+torque perpendicular to an angular momentum does not tip it over but walks it
+around a cone at fixed polar angle, exactly as a transverse field walks the
+Bloch vector around the equator without changing $P(z\pm)$.
+
+```{openlyceum} Precession
+:label: fig:ch04-precession-sim
+
+A spinning top under gravity, precessing steadily about the vertical.
+$|\vec L|$ and $L_z$ stay fixed while $L_x$ and $L_y$ trace out a circle—the
+classical motion behind the Bloch vector's rotation above, and behind the
+orbital-angular-momentum vector model of Chapter 9.
+```
 
 ### Example 4.3: a spin-flip time
 
@@ -638,6 +683,16 @@ final Bloch vectors, $-y$ and $+x$, are clearly different states. This
 geometric shortcut reaches the same conclusion as direct matrix
 multiplication, with considerably less arithmetic.
 
+:::{figure} ../images/figures/ch04-pulse-order.svg
+:name: fig-pulse-order
+:alt: Two pulse sequences start from z plus and apply the same x-axis and y-axis pi over two pulses in opposite orders. One sequence ends at minus y and the reversed sequence ends at plus x.
+:width: 100%
+
+The same two control pulses lead to different final states when their order is
+reversed. The laboratory sequence runs left to right, while the corresponding
+operator product acts on the ket from right to left.
+:::
+
 ## 4.11 Ramsey interference
 
 We can now assemble everything in this chapter into one of the most
@@ -689,6 +744,17 @@ pulse recombines those two amplitudes so that the final measurement can read
 out the accumulated phase as a probability. This is precisely the coherent
 path logic first introduced in Chapter 2, now implemented with controlled
 rotations rather than physically separated paths.
+
+:::{figure} ../images/figures/ch04-ramsey-sequence.svg
+:name: fig-ramsey-sequence
+:alt: A Ramsey sequence prepares z plus, applies a pi over two pulse, allows free phase evolution, applies a reverse pi over two pulse, and measures z. A graph below shows complementary z plus and z minus interference fringes versus accumulated phase.
+:width: 100%
+
+A Ramsey experiment is a two-state interferometer: the first pulse splits an
+amplitude, free evolution shifts the relative phase, and the second pulse
+recombines the alternatives. The final $S_z$ counts trace the accumulated
+phase as complementary fringes.
+:::
 
 ### Example 4.8: the first fringe minimum
 

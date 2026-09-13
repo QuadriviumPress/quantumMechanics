@@ -89,6 +89,16 @@ That is not what Stern and Gerlach saw. Instead of a smear, they saw exactly
 two separated spots, with nothing in between. We label these two outcomes
 $z+$ and $z-$.
 
+:::{figure} ../images/figures/ch01-stern-gerlach-apparatus.svg
+:name: fig-sg-apparatus
+:alt: A silver-atom oven, collimating slits, and a field-gradient magnet send atoms to a detector. The classical prediction is a continuous smear, while the observed pattern has two distinct spots labeled z plus and z minus.
+:width: 100%
+
+The Stern–Gerlach apparatus converts the spin component along the field
+gradient into a visible deflection. The decisive observation is not merely a
+deflected beam, but two discrete spots in place of the classical smear.
+:::
+
 :::{note} What the apparatus measures
 A Stern–Gerlach analyzer does not simply reveal the location of a
 pre-existing little arrow. It couples an internal degree of freedom to the
@@ -193,6 +203,15 @@ About $6{,}000$ atoms reach the second analyzer, and all $6{,}000$ leave its
 $z+$ exit. Statistical fluctuations affect the first split, but an ideal
 repeat measurement does not create a second 50–50 split.
 
+```{openlyceum} SternGerlach
+:label: fig:ch01-stern-gerlach-sim
+
+Assemble your own chain of ovens, analyzers, and counters, fire spin-$\tfrac12$
+or spin-$1$ atoms through it, and watch Monte Carlo counts accumulate next to
+the analytic prediction. Rebuild the repeated-analyzer setup from Example 1.1
+before reading on, then try chaining analyzers at other angles.
+```
+
 ## 1.3 Incompatible questions
 
 Repeating a measurement along the *same* axis gave a simple, if important,
@@ -236,6 +255,16 @@ $z+$ with certainty—but it does not.
 Preparing a definite value of one spin component generally produces uncertain
 outcomes for a different component. An intervening measurement can erase the
 predictive certainty established by an earlier preparation.
+:::
+
+:::{figure} ../images/figures/ch01-analyzer-chains.svg
+:name: fig-analyzer-chains
+:alt: Two Stern–Gerlach analyzer chains. Repeating a z measurement after preparing z plus gives z plus with certainty. Selecting x plus between the preparation and final z measurement produces equal z plus and z minus probabilities.
+:width: 100%
+
+Aligned analyzers repeat a definite result, whereas an intervening analyzer
+along an incompatible axis replaces that certainty with a new preparation.
+The diagrams are read from left to right, just like the laboratory sequence.
 :::
 
 ### What "disturbance" does and does not explain
@@ -306,6 +335,16 @@ Equation {eq}`empirical-angle-rule` is therefore not a separate new rule; it
 is the general law that contains every case already found as a special case.
 For now we treat it as an empirical summary of the data. Chapter 2 will derive
 it from the mathematics of state vectors.
+
+:::{figure} ../images/figures/ch01-half-angle-rule.svg
+:name: fig-half-angle-rule
+:alt: Two analyzer axes separated by angle alpha beside a graph. The probability for the plus outcome decreases from one to zero as alpha goes from zero to 180 degrees, while the minus probability increases from zero to one; both are one half at 90 degrees.
+:width: 100%
+
+The half-angle rule smoothly joins repeatability at $0^\circ$, equal splitting
+at $90^\circ$, and certain reversal at $180^\circ$. At every angle the two
+exclusive probabilities add to one.
+:::
 
 ### Example 1.2: three analyzer directions
 
@@ -380,6 +419,16 @@ One can summarize the alternatives with two limiting arrangements:
   including their relative phase, and then square the magnitude.
 - **Paths detected separately or phase-randomized:** square the magnitudes
   for the alternatives separately and then add the probabilities.
+
+:::{figure} ../images/figures/ch01-coherent-recombination.svg
+:name: fig-coherent-recombination
+:alt: Two path experiments. With no path record, x plus and x minus amplitudes recombine coherently and recover z plus with certainty. With path records, interference is lost and the final z plus probability is one half.
+:width: 100%
+
+Recombination restores the original state only while the two alternatives
+remain coherent. A durable path record changes the calculation from adding
+amplitudes to adding probabilities, even if nobody reads the record.
+:::
 
 This is why "half the atoms went through each arm" is not a complete
 description of the coherent experiment. The path amplitudes can cancel at one

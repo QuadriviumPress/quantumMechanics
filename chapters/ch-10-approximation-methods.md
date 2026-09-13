@@ -23,6 +23,16 @@ other particles; real wells are not perfectly square; and most coupled
 differential equations do not have closed-form solutions. Approximation
 methods are controlled ways to retain the most important physics.
 
+```{phet} atomic-interactions
+:label: fig:ch10-atomic-interactions-sim
+
+The interaction between two real atoms is not a square well or a harmonic
+oscillator; it is closer to the Lennard-Jones potential this simulation
+plots. Adjust the atom types and separation and watch the force and potential
+energy curves change shape—exactly the kind of realistic potential the
+methods below are built to handle without an exact solution.
+```
+
 Before calculating, identify a dimensionless small or large parameter. An
 answer labeled “first order” is useful only when omitted terms are expected to
 be smaller. After calculating, check normalization, units, symmetry, and the
@@ -270,6 +280,16 @@ the true ground state—typically enforced by symmetry, such as parity or a
 node structure, rather than by numerically minimizing overlap. If the exact
 ground state is not fully known, an excited-state trial function orthogonal
 only to an *approximate* ground state offers no guaranteed bound at all.
+
+```{phet-legacy} bound-states
+:label: fig:ch10-bound-states-variational-sim
+
+Build a well and read off its ground-state energy directly, then compare that
+exact number against the trial-Gaussian estimate from equation
+{eq}`variational-bound`—the same simulation introduced for the finite well in
+Chapter 7, now used to check a variational guess rather than to explore an
+exactly solvable potential.
+```
 
 ### Concept check 10.3
 

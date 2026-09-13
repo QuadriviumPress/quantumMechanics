@@ -255,6 +255,16 @@ appeared. Equation {eq}`finite-well-count` confirms this directly:
 $N=\lfloor 8/\pi\rfloor+1=\lfloor2.55\rfloor+1=3$. This well supports
 exactly three bound states: two even and one odd.
 
+```{phet-legacy} bound-states
+:label: fig:ch07-bound-states-sim
+
+Set up a finite well and drag its width and depth to change $z_0$, watching
+bound states appear at the thresholds equation {eq}`finite-well-count`
+predicts. The same sim's other potential shapes carry forward to the
+harmonic oscillator later in this chapter and to the variational estimates of
+Chapter 10.
+```
+
 ### Concept check 7.2
 
 Does a shallow, narrow finite well always fail to bind a particle if $V_0$ is
@@ -443,6 +453,16 @@ In the thick-barrier regime, increasing $a$ by $\Delta a$ multiplies $T$ by
 $e^{-2\kappa\Delta a}$. If $\kappa\Delta a=1$, the transmission falls by
 $e^{-2}\approx0.135$. This sensitivity underlies scanning tunneling
 microscopy and many decay processes.
+
+```{phet-legacy} quantum-tunneling
+:label: fig:ch07-quantum-tunneling-sim
+
+Send a wave packet at a rectangular barrier and adjust its width and height to
+see the exponential sensitivity of equation {eq}`barrier-transmission`
+directly: a reflected packet, a smaller transmitted one, and no borrowed
+energy anywhere. A CheerpJ simulation takes tens of seconds to load on a cold
+cache and is mouse-only.
+```
 
 ### Above the barrier: resonant transmission
 
