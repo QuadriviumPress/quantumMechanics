@@ -152,6 +152,37 @@ different subsystems always commute:
 [\hat A\otimes\hat I,\hat I\otimes\hat B]=0.
 ```
 
+To construct these matrices rather than merely name them, replace every
+entry of the first matrix by that entry times the entire second matrix. For
+example, in the ordered basis $|00\rangle,|01\rangle,|10\rangle,|11\rangle$,
+
+```{math}
+\sigma_x\otimes\hat I
+=\begin{pmatrix}0\hat I&1\hat I\\1\hat I&0\hat I\end{pmatrix}
+=\begin{pmatrix}
+0&0&1&0\\
+0&0&0&1\\
+1&0&0&0\\
+0&1&0&0
+\end{pmatrix},
+\qquad
+\hat I\otimes\sigma_z
+=\begin{pmatrix}
+1&0&0&0\\
+0&-1&0&0\\
+0&0&1&0\\
+0&0&0&-1
+\end{pmatrix}.
+```
+
+The first matrix flips $A$'s label while leaving $B$'s unchanged:
+$|00\rangle\mapsto|10\rangle$ and $|01\rangle\mapsto|11\rangle$. The second
+multiplies a basis ket by the eigenvalue associated with $B$'s label while
+leaving $A$ alone. Multiplying these two explicit matrices in either order
+gives the same result, verifying the commutator above concretely. This
+block-matrix recipe is the **Kronecker product** used whenever subsystem
+operators must be written as a matrix on the joint space.
+
 Because these operators commute, measurements made on the two distinct
 systems can always be assigned one common joint probability distribution,
 even when the individual components being measured on either spin, taken
@@ -258,7 +289,41 @@ state in physics: the singlet,
 ```
 
 Measure $A$ along $\mathbf a$ and $B$ along $\mathbf b$, and assign numerical
-results $r,s=\pm1$ to the two outcomes. The joint distribution works out to
+results $r,s=\pm1$ to the two outcomes. Chapter 3 gives the corresponding
+projectors as
+
+```{math}
+\hat P_{\mathbf a,r}=\frac12(\hat I+r\,\mathbf a\cdot\boldsymbol\sigma),
+\qquad
+\hat P_{\mathbf b,s}=\frac12(\hat I+s\,\mathbf b\cdot\boldsymbol\sigma).
+```
+
+The singlet density operator has the useful Pauli form
+
+```{math}
+\hat\rho_{\Psi^-}
+=\frac14\left(\hat I\otimes\hat I
+-\sum_{j=x,y,z}\sigma_j\otimes\sigma_j\right).
+```
+
+This identity can be checked by inserting the Pauli matrices and comparing
+the resulting $4\times4$ matrix with
+$|\Psi^-\rangle\langle\Psi^-|$. Now use the trace rules
+$\operatorname{Tr}(\sigma_i)=0$ and
+$\operatorname{Tr}(\sigma_i\sigma_j)=2\delta_{ij}$. The joint Born rule gives
+
+```{math}
+\begin{aligned}
+P(r,s|\mathbf a,\mathbf b)
+&=\operatorname{Tr}\!\left[
+\hat\rho_{\Psi^-}
+(\hat P_{\mathbf a,r}\otimes\hat P_{\mathbf b,s})\right]\\
+&=\frac14\left(1-rs\sum_j a_jb_j\right)\\
+&=\frac14(1-rs\,\mathbf a\cdot\mathbf b).
+\end{aligned}
+```
+
+Thus the joint distribution is
 
 ```{math}
 :label: singlet-joint
@@ -376,6 +441,56 @@ an already-fixed set of joint records can be sorted into subsets once the
 two sides compare notes; it cannot change the unconditional distribution of
 $A$'s own outcomes.
 
+Here is the algebra behind that statement. If $B$ performs a complete
+projective measurement and the outcome is not supplied to $A$, the joint
+state becomes
+
+```{math}
+\hat\rho'_{AB}=\sum_b
+(\hat I\otimes\hat P_b)\hat\rho_{AB}
+(\hat I\otimes\hat P_b).
+```
+
+Taking the partial trace and cycling operators that act only on $B$ within
+that trace,
+
+```{math}
+\begin{aligned}
+\hat\rho'_A
+&=\sum_b\operatorname{Tr}_B\!\left[
+\hat\rho_{AB}(\hat I\otimes\hat P_b^2)\right]\\
+&=\operatorname{Tr}_B\!\left[
+\hat\rho_{AB}
+(\hat I\otimes\sum_b\hat P_b)\right]\\
+&=\operatorname{Tr}_B(\hat\rho_{AB})=\hat\rho_A.
+\end{aligned}
+```
+
+Completeness, $\sum_b\hat P_b=\hat I$, is the decisive step. The same result
+holds for any local operation at $B$ whose outcomes are pooled and whose
+probabilities sum to one. If one outcome is selected and communicated,
+however, $A$ uses a *conditional* state; that sorting requires the ordinary
+communication channel and cannot produce a signal before the message arrives.
+
+### Midpoint mastery check
+
+Before moving to Bell inequalities, make sure you can do all four of the
+following without consulting the preceding pages:
+
+1. expand a product ket in the four-state basis;
+2. decide whether a pure two-qubit ket factors;
+3. compute a joint probability and sum it to obtain a marginal; and
+4. take a partial trace of a Bell-state density operator.
+
+:::{dropdown} Diagnostic answers
+A product expansion has coefficients $ac,ad,bc,bd$. A pure coefficient array
+factors exactly when its $2\times2$ coefficient matrix has determinant zero.
+Marginalizing means summing the joint probabilities over the ignored outcome.
+Tracing either half of any Bell state gives $\hat I/2$. If any of these steps
+is not yet routine, review Sections 5.1–5.4 before proceeding: the Bell and
+Schmidt calculations reuse all four skills.
+:::
+
 ### Concept check 5.1
 
 If $\hat\rho_A=\hat I/2$, does that mean the spin at $A$ is definitely
@@ -424,6 +539,18 @@ algebra, but because no single joint assignment of definite, pre-existing
 values to all four settings needs to exist in the first place.
 :::
 
+The short argument makes several assumptions that should remain visible.
+The setting choices are statistically independent of the source variables
+(often called **measurement independence**); the result at either station
+does not depend on the distant setting (**locality**); and the recorded sample
+fairly represents the emitted pairs. Allowing a hidden-variable model to be
+stochastic rather than deterministic does not evade the bound: any local
+response probability can be treated as an average over additional local
+randomness, and averaging numbers that each lie between $-2$ and $2$ cannot
+leave that interval. Real Bell experiments are designed to close setting,
+locality, and detection loopholes closely enough that these assumptions can
+be tested rather than silently presumed.
+
 For the singlet, suitable coplanar settings separated by $45^\circ$ instead give
 $|S|=2\sqrt2$. Quantum theory violates the classical bound while still
 preserving the no-signaling marginal probabilities from Section 5.4.
@@ -446,6 +573,30 @@ a lucky combination that happens to violate the classical bound; it is the
 specific configuration that *saturates* the strongest violation quantum
 mechanics allows.
 
+:::{dropdown} Why quantum mechanics stops at $2\sqrt2$
+Let $\hat A,\hat A',\hat B,\hat B'$ be the four $\pm1$-valued observables and
+define the CHSH operator
+
+```{math}
+\hat C=\hat A\otimes(\hat B+\hat B')
++\hat A'\otimes(\hat B-\hat B').
+```
+
+Because each observable squares to the identity, direct multiplication gives
+
+```{math}
+\hat C^2=4\hat I-[\hat A,\hat A']\otimes[\hat B,\hat B'].
+```
+
+A $\pm1$ observable cannot stretch a normalized vector by more than one, so
+each commutator has maximum stretch at most $2$. Consequently $\hat C^2$ has
+maximum stretch at most $4+2\times2=8$, and $\hat C$ at most
+$\sqrt8=2\sqrt2$. Every expectation value therefore obeys
+$|\langle\hat C\rangle|\leq2\sqrt2$. Suitable singlet analyzer directions
+reach the bound, so the inequality is tight rather than merely an estimate.
+:::
+
+:::{note} Enrichment: post-quantum correlations
 That quantum correlations stop at $2\sqrt2$, rather than climbing all the
 way to the logically largest conceivable value of $4$, is itself a
 substantive fact about nature, not a bookkeeping accident. Hypothetical
@@ -455,6 +606,9 @@ constraint of Section 5.4—each individual marginal can still come out
 exactly $1/2$—yet no quantum state realizes them. Quantum mechanics is more
 correlated than any classical local theory can be, but less correlated than
 logical consistency alone would permit.
+This comparison is useful context but is not required for the remaining
+sections.
+:::
 
 :::{figure} ../images/figures/ch05-bell-chsh-bounds.svg
 :name: fig-bell-chsh-bounds
@@ -588,6 +742,55 @@ operators share the same nonzero eigenvalues $\lambda_k$:
 \hat\rho_B=\sum_k\lambda_k|v_k\rangle\langle v_k|.
 ```
 
+### Worked method: finding a Schmidt decomposition
+
+When a state is not already in Schmidt form, arrange its amplitudes as a
+coefficient matrix $C$, with $A$ labeling rows and $B$ labeling columns:
+
+```{math}
+|\Psi\rangle=\sum_{a,b}C_{ab}|a,b\rangle.
+```
+
+Then $\hat\rho_A=CC^\dagger$. Its eigenvalues are the Schmidt weights
+$\lambda_k$, and its eigenvectors are the $|u_k\rangle_A$. The corresponding
+$B$ vectors can be recovered from
+
+```{math}
+|v_k\rangle_B
+=\frac{1}{\sqrt{\lambda_k}}
+(\langle u_k|\otimes\hat I)|\Psi\rangle.
+```
+
+For example, consider a normalized state that is not visibly in Schmidt form,
+
+```{math}
+|\chi\rangle
+=\frac{2|00\rangle+|01\rangle+|10\rangle+2|11\rangle}{\sqrt{10}},
+\qquad
+C=\frac1{\sqrt{10}}\begin{pmatrix}2&1\\1&2\end{pmatrix}.
+```
+
+The reduced state is
+
+```{math}
+\hat\rho_A=CC^\dagger
+=\frac1{10}\begin{pmatrix}5&4\\4&5\end{pmatrix}.
+```
+
+Its eigenvectors are $|+x\rangle$ and $|-x\rangle$, with eigenvalues
+$9/10$ and $1/10$. Applying the recovery formula gives the same two vectors
+on $B$, so
+
+```{math}
+|\chi\rangle
+=\frac3{\sqrt{10}}|+x,+x\rangle
++\frac1{\sqrt{10}}|-x,-x\rangle.
+```
+
+This is the Schmidt decomposition. It immediately shows Schmidt rank two and
+therefore entanglement. In matrix language, the same procedure is the singular
+value decomposition of $C$; its singular values are $\sqrt{\lambda_k}$.
+
 For two qubits, the state
 
 ```{math}
@@ -700,13 +903,36 @@ the **Werner state**,
 a mixture of the maximally entangled $|\Phi^+\rangle$ with the maximally
 mixed two-qubit background $\hat I/4$, which carries no correlation at all.
 At $p=0$ this is two independent, fully random spins; at $p=1$ it is the
-pure Bell state. One can show, by direct application of the separable-state
-definition above, that $\hat\rho_W$ is separable for $p\le1/3$ and entangled
-for $p>1/3$. Mixing in only a little of the entangled state, small $p$,
-leaves a separable and therefore classically explicable mixture; only past a
-specific threshold does the joint state actually require entanglement to
-describe it. "How entangled" a mixed state is, in other words, is not simply
-proportional to how much of an entangled state was mixed in.
+pure Bell state. To locate the entanglement boundary rather than merely quote
+it, use the **partial-transpose test**. Transposing only $B$ changes a matrix
+element by
+
+```{math}
+\langle a,b|\hat\rho|a',b'\rangle
+\longmapsto
+\langle a,b'|\hat\rho^{T_B}|a',b\rangle.
+```
+
+Every separable state remains positive under this operation. For two qubits,
+the converse also holds: a positive partial transpose is sufficient for
+separability. The partial transpose of
+$|\Phi^+\rangle\langle\Phi^+|$ has three eigenvalues $+1/2$ and one eigenvalue
+$-1/2$. Adding the maximally mixed part therefore gives
+
+```{math}
+\operatorname{eig}(\hat\rho_W^{T_B})
+=\left\{
+\frac{1+p}{4},\frac{1+p}{4},\frac{1+p}{4},\frac{1-3p}{4}
+\right\}.
+```
+
+The final eigenvalue becomes negative precisely when $p>1/3$, certifying
+entanglement. For $p\le1/3$, all four eigenvalues are nonnegative and the
+two-qubit sufficiency result guarantees separability. Mixing in only a little
+of the entangled state therefore leaves a classically explicable mixture;
+only past a specific threshold does the joint state require entanglement.
+"How entangled" a mixed state is is not simply proportional to how much of an
+entangled state was mixed in.
 
 Curiously, the reduced state $\hat\rho_A=\operatorname{Tr}_B(\hat\rho_W)
 =\hat I/2$ for every value of $p$: local measurements at $A$ alone cannot
@@ -738,7 +964,7 @@ entanglement entropy. Creating or destroying entanglement genuinely requires
 an interaction, a joint measurement, or discarding information into an
 external system—no amount of purely local fiddling will do it.
 
-:::{note} Beyond two subsystems
+:::{note} Enrichment: beyond two subsystems
 Three or more entangled qubits raise questions this two-qubit chapter
 deliberately sets aside. The state $(|000\rangle+|111\rangle)/\sqrt2$, for
 example, does not factor, yet—as you can check by tracing out any one
@@ -798,6 +1024,8 @@ contain all information in a joint state.
 
 ## Exercises
 
+### Core practice
+
 1. Expand $|+x\rangle_A|+y\rangle_B$ in the joint $z$ basis.
 2. Determine which states factor:
    $(|00\rangle-|10\rangle)/\sqrt2$,
@@ -835,6 +1063,9 @@ contain all information in a joint state.
     $A,A',B,B'\in\{+1,-1\}$, show that
     $AB+AB'+A'B-A'B'=A(B+B')+A'(B-B')$, and that this expression cannot exceed
     $2$ in magnitude because $B+B'$ and $B-B'$ cannot both be nonzero.
+
+### Extensions and synthesis
+
 19. Verify the arithmetic of Example 5.3 by direct substitution into equation
     {eq}`singlet-correlation`, and find one nearby setting—a small deviation
     from the $45^\circ$-spaced configuration of Section 5.5—that still
@@ -893,3 +1124,40 @@ contain all information in a joint state.
     +\tfrac12|11\rangle\langle11|$ has the separable form
     $\sum_jw_j\hat\rho_A^{(j)}\otimes\hat\rho_B^{(j)}$, and identify the
     weights $w_j$ and single-qubit states explicitly.
+
+## Selected exercise guidance
+
+Use these answers to check method and conventions after making a complete
+attempt. They are intentionally selective rather than a substitute for
+working the full set.
+
+:::{dropdown} Exercise 1
+
+```{math}
+|+x\rangle_A|+y\rangle_B
+=\frac12\left(|00\rangle+i|01\rangle+|10\rangle+i|11\rangle\right).
+```
+:::
+
+:::{dropdown} Exercise 2
+The first state factors as $|-x\rangle_A|0\rangle_B$; the second is the Bell
+state $|\Phi^+\rangle$ and is entangled; the third factors as
+$|+x\rangle_A|+x\rangle_B$.
+:::
+
+:::{dropdown} Exercise 5
+At $60^\circ$, $\mathbf a\cdot\mathbf b=1/2$. Each equal-result probability is
+$1/8$, and each opposite-result probability is $3/8$. Their sum is one and
+the correlation is $-1/2$.
+:::
+
+:::{dropdown} Exercise 9
+With $(\theta_a,\theta_{a'},\theta_b,\theta_{b'})=(0^\circ,90^\circ,
+45^\circ,-45^\circ)$, the four terms in the stated CHSH convention combine to
+$S=-2\sqrt2$, so $|S|=2\sqrt2$.
+:::
+
+:::{dropdown} Exercise 21
+For $p=1/2$, the final partial-transpose eigenvalue is
+$(1-3p)/4=-1/8$. Its negativity certifies that the state is entangled.
+:::

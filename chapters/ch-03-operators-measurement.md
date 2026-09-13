@@ -313,9 +313,12 @@ space,
 
 because $\hat P_n^2=\hat P_n$. Reading this equation in words: applying the
 same projector a second time changes nothing. A second immediate measurement
-therefore finds the same outcome with certainty—repeatability is not a
-separate assumption we need to add; it falls straight out of the projector
-algebra.
+therefore finds the same outcome with certainty. This is an important
+**consistency check** on the projection postulate: once ideal measurement has
+been modeled by a projector update, repeatability follows from idempotence.
+The algebra does not derive the update rule from the Born rule; the update
+itself remains part of the ideal-measurement postulate motivated by the
+experiments of Chapter 1.
 
 ```{phet} quantum-measurement
 :screen: 2
@@ -560,6 +563,20 @@ In a $z+$ state, equation {eq}`robertson` gives
 $\Delta S_x\Delta S_y\geq\hbar^2/4$; both uncertainties equal $\hbar/2$, so
 the bound is saturated exactly—there is no slack left.
 
+The right-hand side is **state dependent**. A nonzero commutator operator does
+not guarantee a positive numerical lower bound in every state. For example,
+in $|+z\rangle$,
+
+```{math}
+\langle[\hat S_x,\hat S_z]\rangle
+=-i\hbar\langle S_y\rangle=0,
+```
+
+so Robertson gives only $\Delta S_x\Delta S_z\geq0$. The observables are still
+incompatible; this particular bound is merely uninformative for this state.
+Indeed $\Delta S_z=0$ and $\Delta S_x=\hbar/2$. Noncommutation is an operator
+statement, whereas the numerical lower bound also depends on the preparation.
+
 :::{warning} A common misreading
 An uncertainty relation describes the spread of outcomes for ensembles
 prepared in the same state. It is not merely a statement about poor
@@ -748,15 +765,49 @@ v_2=-\frac{1+i}{4-\lambda_+}v_1
 =-\frac{1+i}{1-\sqrt3}v_1.
 ```
 
-Choosing $v_1=1$ fixes an unnormalized eigenvector; dividing by its norm
-then produces a properly normalized $|\lambda_+\rangle$. The same procedure
-with $\lambda_-=3-\sqrt3$ produces $|\lambda_-\rangle$, and one can check
-directly that $\langle\lambda_+|\lambda_-\rangle=0$, exactly as the general
-argument of Section 3.8 guarantees for any two eigenvectors belonging to
-distinct eigenvalues of a Hermitian matrix. Even before carrying out this
-last piece of algebra, Hermiticity already told us in advance that the roots
-must be real and that a unitary change of basis can diagonalize the
-operator; Exercise 15 asks you to finish the normalization explicitly.
+Choosing $v_1=1$ gives a squared norm
+
+```{math}
+1+\left|\frac{1+i}{\sqrt3-1}\right|^2=3+\sqrt3,
+```
+
+so one normalized eigenket is
+
+```{math}
+|\lambda_+\rangle
+=\frac{1}{\sqrt{3+\sqrt3}}
+\begin{pmatrix}
+1\\[2pt]
+\dfrac{1+i}{\sqrt3-1}
+\end{pmatrix}.
+```
+
+For $\lambda_-=3-\sqrt3$, the second row instead gives
+$v_2=-(1+i)/(1+\sqrt3)$ when $v_1=1$. Its squared norm is
+$3-\sqrt3$, so
+
+```{math}
+|\lambda_-\rangle
+=\frac{1}{\sqrt{3-\sqrt3}}
+\begin{pmatrix}
+1\\[2pt]
+-\dfrac{1+i}{1+\sqrt3}
+\end{pmatrix}.
+```
+
+Before trusting the result, check the inner product. The product of the two
+lower components before normalization is
+
+```{math}
+\left(\frac{1+i}{\sqrt3-1}\right)^*
+\left(-\frac{1+i}{1+\sqrt3}\right)=-1,
+```
+
+which cancels the product $1^*1$ of the upper components. Thus
+$\langle\lambda_+|\lambda_-\rangle=0$. We have now completed the full
+workflow: find the eigenvalues, solve for each component ratio, normalize,
+and check orthogonality. Hermiticity told us in advance that the roots would
+be real and that such an orthonormal eigenbasis must exist.
 
 ## 3.9 The Pauli algebra as a calculation tool
 
@@ -1040,8 +1091,9 @@ words but behave quite differently: "measure and forget the result" versus
     $\|\hat P_{z+}\hat P_{x+}|+z\rangle\|^2$ and
     $\|\hat P_{x+}\hat P_{z+}|+z\rangle\|^2$. Explain why they answer different
     experimental questions even though they contain the same two projectors.
-15. Complete Example 3.4 by finding normalized eigenkets for both eigenvalues.
-    Verify their orthogonality directly.
+15. For Example 3.4, verify both eigenvalue equations with the normalized
+    eigenkets given in the text, then reconstruct $\hat A$ from its spectral
+    decomposition.
 16. Derive equation {eq}`pauli-vector-product` by expanding both dot products
     and using equation {eq}`pauli-product`.
 17. Use equation {eq}`arbitrary-spin-commutator` to calculate the commutator
@@ -1062,3 +1114,35 @@ words but behave quite differently: "measure and forget the result" versus
     {eq}`conditional-density-update` to show that the transmitted ensemble is
     the pure state $|+\mathbf n\rangle$, provided the transmission probability
     is nonzero.
+
+## Selected exercise guidance
+
+Use these answers only after making a complete attempt.
+
+:::{dropdown} Exercise 3
+The state is $|+y\rangle$, so
+$(\langle S_x\rangle,\langle S_y\rangle,\langle S_z\rangle)
+=(0,\hbar/2,0)$.
+:::
+
+:::{dropdown} Exercise 7
+$\langle S_x\rangle=(\hbar/2)(3/4-1/4)=\hbar/4$. Since
+$\langle S_x^2\rangle=\hbar^2/4$,
+$\Delta S_x=\sqrt3\hbar/4$.
+:::
+
+:::{dropdown} Exercise 11
+The estimated Bloch vector is
+$\mathbf r=(0.500,0,0.866)$. Its length is approximately one, so the idealized
+counts are consistent with a nearly pure state.
+:::
+
+:::{dropdown} Exercise 18
+
+```{math}
+\hat\rho=\begin{pmatrix}3/4&0\\0&1/4\end{pmatrix},\qquad
+\operatorname{Tr}(\hat\rho^2)=\frac58,
+```
+
+and its Bloch vector is $(0,0,1/2)$.
+:::

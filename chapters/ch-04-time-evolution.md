@@ -666,6 +666,45 @@ generally does not produce the same final state as the reversed sequence.
 This is the dynamical counterpart of the noncommuting analyzer questions
 from Chapter 3.
 
+### Example 4.7: a piecewise-constant Hamiltonian
+
+Suppose a control system applies
+
+```{math}
+\hat H(t)=
+\begin{cases}
+(\hbar\Omega/2)\sigma_x,&0\leq t<\tau,\\
+(\hbar\Omega/2)\sigma_z,&\tau\leq t<2\tau,
+\end{cases}
+\qquad \Omega\tau=\frac{\pi}{2}.
+```
+
+Within each interval the Hamiltonian is constant. The complete evolution is
+therefore the ordered product
+
+```{math}
+\hat U(2\tau,0)
+=\underbrace{\hat R_z(\pi/2)}_{\text{second interval}}
+ \underbrace{\hat R_x(\pi/2)}_{\text{first interval}}.
+```
+
+The earliest operation stands nearest the initial ket. Starting from
+$|+z\rangle$, the first interval gives
+$\hat R_x(\pi/2)|+z\rangle=|-y\rangle$. Applying the $z$ rotation then gives
+
+```{math}
+\hat R_z(\pi/2)|-y\rangle
+=e^{-i\pi/4}|+x\rangle.
+```
+
+The displayed phase is overall, so the final Bloch direction is $+x$. If the
+two intervals are reversed, the $z$ pulse first changes $|+z\rangle$ only by
+an overall phase, after which the $x$ pulse leaves the Bloch vector at $-y$.
+The two schedules use the same Hamiltonians for the same durations but end in
+different physical states because the interval propagators do not commute.
+This piecewise construction is the practical finite-step version of time
+ordering.
+
 ## 4.9 Motion of expectation values
 
 The Schrödinger equation for the ket also implies a direct equation of
@@ -744,7 +783,7 @@ do not commute, so reversing the order of these two matrices describes a
 genuinely different laboratory sequence, not merely a different way of
 writing the same one.
 
-### Example 4.7: pulse order on a prepared spin
+### Example 4.8: pulse order on a prepared spin
 
 Begin in $|+z\rangle$. An $x$-axis $\pi/2$ pulse produces
 
@@ -834,7 +873,7 @@ recombines the alternatives. The final $S_z$ counts trace the accumulated
 phase as complementary fringes.
 :::
 
-### Example 4.8: the first fringe minimum
+### Example 4.9: the first fringe minimum
 
 If $|\delta|=2\pi(25\,\mathrm{kHz})$, the first $z+$ minimum occurs at
 $|\delta|T=\pi$:
@@ -934,8 +973,39 @@ equal final $z$ probabilities rather than a full-contrast fringe.
     connect it to energy conservation.
 17. Verify both pulse actions following equation {eq}`rotation-operator`
     using explicit Pauli matrices.
-18. Calculate both pulse orders in Example 4.7 by matrix multiplication.
+18. Calculate both pulse orders in Example 4.8 by matrix multiplication.
 19. Derive equation {eq}`ramsey-fringes` from equation {eq}`ramsey-state`
     and check $\delta T=0,\pi,2\pi$.
 20. Insert an unread $S_z$ measurement after the first Ramsey pulse and use
     density operators to show that both final outcomes have probability $1/2$.
+
+## Selected exercise guidance
+
+Use these answers only after making a complete attempt.
+
+:::{dropdown} Exercise 2
+The return amplitude is
+$(1+e^{-i\epsilon t/\hbar})/2$, so the return probability is
+$\cos^2(\epsilon t/2\hbar)$.
+:::
+
+:::{dropdown} Exercise 5
+For positive $\omega_0$ under the chapter's sign convention, the Bloch vector
+is $(\cos\omega_0t,-\sin\omega_0t,0)$ and
+
+```{math}
+P(y+,t)=\frac{1-\sin(\omega_0t)}2.
+```
+
+It initially moves from $+x$ toward $-y$.
+:::
+
+:::{dropdown} Exercise 6
+$P(z-,t)=\sin^2(|\omega|t/2)$, so the earliest certain flip occurs at
+$t=\pi/|\omega|$.
+:::
+
+:::{dropdown} Exercise 19
+At $\delta T=0,\pi,2\pi$, the $z+$ probabilities are respectively $1,0,1$;
+the $z-$ probabilities are the complements.
+:::

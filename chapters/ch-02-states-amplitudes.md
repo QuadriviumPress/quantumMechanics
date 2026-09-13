@@ -407,6 +407,29 @@ The amplitude may be complex, but the probability is its squared magnitude:
 $|-i/2|^2=1/4$.
 :::
 
+## 2.4 Changing the question means changing the basis
+
+Every measurement so far has used the $z$ basis, but nothing forces that
+choice—an analyzer built along $x$ or $y$ asks a different physical question,
+and it needs its own basis kets. The experimental 50–50 result for a $z+$
+state measured along $x$, found in Chapter 1, is reproduced if we define
+
+```{math}
+:label: x-states
+|+x\rangle=\frac{1}{\sqrt2}\left(|+z\rangle+|-z\rangle\right),
+\qquad
+|-x\rangle=\frac{1}{\sqrt2}\left(|+z\rangle-|-z\rangle\right).
+```
+
+A consistent phase convention for the $y$ basis, similarly, is
+
+```{math}
+:label: y-states
+|+y\rangle=\frac{1}{\sqrt2}\left(|+z\rangle+i|-z\rangle\right),
+\qquad
+|-y\rangle=\frac{1}{\sqrt2}\left(|+z\rangle-i|-z\rangle\right).
+```
+
 ### Example 2.2: one complex amplitude
 
 Prepare
@@ -441,29 +464,6 @@ P(y+)=\frac{(1+\sqrt2)^2}{6}
 The complementary probability is
 $P(y-)=(3-2\sqrt2)/6$, so the sum is one. The sign from conjugating $i$ in the
 $y+$ ket is physically consequential here.
-
-## 2.4 Changing the question means changing the basis
-
-Every measurement so far has used the $z$ basis, but nothing forces that
-choice—an analyzer built along $x$ or $y$ asks a different physical question,
-and it needs its own basis kets. The experimental 50–50 result for a $z+$
-state measured along $x$, found in Chapter 1, is reproduced if we define
-
-```{math}
-:label: x-states
-|+x\rangle=\frac{1}{\sqrt2}\left(|+z\rangle+|-z\rangle\right),
-\qquad
-|-x\rangle=\frac{1}{\sqrt2}\left(|+z\rangle-|-z\rangle\right).
-```
-
-A consistent phase convention for the $y$ basis, similarly, is
-
-```{math}
-:label: y-states
-|+y\rangle=\frac{1}{\sqrt2}\left(|+z\rangle+i|-z\rangle\right),
-\qquad
-|-y\rangle=\frac{1}{\sqrt2}\left(|+z\rangle-i|-z\rangle\right).
-```
 
 Let's check that this reproduces the known result. Applying the Born rule to
 a $z+$ input,
@@ -726,8 +726,30 @@ This spin-$\tfrac12$ rule resembles Malus's law for polarized light, but with
 one important difference: it uses *half* the geometric angle on the Bloch
 sphere, not the angle itself.
 
-For two arbitrary pure states pointing along unit vectors $\mathbf a$ and
-$\mathbf b$, the same reasoning gives their overlap probability as
+For two arbitrary pure states, let their Bloch angles be
+$(\theta_a,\phi_a)$ and $(\theta_b,\phi_b)$. Substituting equation
+{eq}`bloch-state` for both kets gives the amplitude
+
+```{math}
+\langle+\mathbf b|+\mathbf a\rangle
+=\cos\frac{\theta_b}{2}\cos\frac{\theta_a}{2}
++e^{i(\phi_a-\phi_b)}
+ \sin\frac{\theta_b}{2}\sin\frac{\theta_a}{2}.
+```
+
+Taking its squared magnitude and using the half-angle identities produces
+
+```{math}
+|\langle+\mathbf b|+\mathbf a\rangle|^2
+=\frac12\left[
+1+\cos\theta_a\cos\theta_b
++\sin\theta_a\sin\theta_b\cos(\phi_a-\phi_b)
+\right].
+```
+
+The expression in square brackets after the $1$ is exactly
+$\mathbf a\cdot\mathbf b=\cos\alpha$, where $\alpha$ is the ordinary angle
+between the two analyzer directions. Therefore
 
 ```{math}
 :label: bloch-overlap
@@ -736,8 +758,8 @@ $\mathbf b$, the same reasoning gives their overlap probability as
 =\cos^2\frac{\alpha}{2}.
 ```
 
-This is the derivation, promised in Chapter 1, of the empirical angle rule
-from state vectors. Notice a geometric subtlety worth pausing on: orthogonal
+This completes the derivation, promised in Chapter 1, of the empirical angle
+rule from state vectors. Notice a geometric subtlety worth pausing on: orthogonal
 directions in ordinary space ($\alpha=90^\circ$) do **not** correspond to
 orthogonal kets. They give an overlap probability of $1/2$, not zero. The
 state that *is* orthogonal to $|+\mathbf a\rangle$ is $|-\mathbf a\rangle$,
@@ -1107,3 +1129,33 @@ resulting exclusive groups.
     with a distinguishable marker state. Explain, without yet using composite
     state notation, why equations {eq}`two-path-spin-fringes` no longer
     describe full-visibility fringes.
+
+## Selected exercise guidance
+
+Use these answers only after making a complete attempt.
+
+:::{dropdown} Exercise 1
+The norm is $5$, so the normalized ket is
+$(3/5,4i/5)^{\mathsf T}$. The probabilities are $9/25$ and $16/25$.
+:::
+
+:::{dropdown} Exercise 5
+
+```{math}
+P(y+)=\frac{2+\sqrt3}{4},\qquad
+P(y-)=\frac{2-\sqrt3}{4}.
+```
+
+The imaginary relative coefficient aligns constructively with $|+y\rangle$
+and destructively with $|-y\rangle$.
+:::
+
+:::{dropdown} Exercise 12
+$\theta=2\pi/3$ and $\phi=\pi/2$. The Bloch vector is
+$(0,\sqrt3/2,-1/2)$: it lies $120^\circ$ from $+z$ toward $+y$.
+:::
+
+:::{dropdown} Exercise 20
+For $\delta=\pi/2$, $(P(z+),P(z-))=(1/2,1/2)$. For $2\pi/3$ the pair is
+$(1/4,3/4)$, and for $\pi$ it is $(0,1)$.
+:::

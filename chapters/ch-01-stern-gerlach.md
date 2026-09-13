@@ -30,11 +30,13 @@ to rethink what it even means for a particle to have a direction.
 
 Picture the apparatus in three stages. First, an oven heats a sample of silver
 until atoms boil off as a vapor. Second, that vapor escapes through a narrow
-opening, and a pair of slits downstream blocks every atom except those
-traveling in one exact direction at one exact speed; what emerges is a
-**collimated beam**, meaning every atom in it moves the same way. Third, this
-beam passes between the shaped poles of a magnet and then strikes a glass
-screen, where each atom leaves a visible mark.
+opening, and a pair of slits downstream accepts only atoms traveling within a
+narrow range of directions; what emerges is a **collimated beam**. Collimation
+does not, by itself, select one exact speed: an oven beam retains a thermal
+spread of speeds unless a separate velocity selector is added. In the
+idealized diagrams below we suppress both spreads so that the spin-dependent
+splitting is easy to see. Third, the beam passes between the shaped poles of a
+magnet and then strikes a glass screen, where each atom leaves a visible mark.
 
 One feature of the magnet matters more than any other: its poles are shaped so
 that the field is much stronger near one pole than the other. Without this
@@ -106,14 +108,15 @@ atom's path, and the resulting spatial separation is what makes two possible
 outcomes visible at the detector.
 :::
 
-The two-spot pattern tells us something remarkable: whatever internal
-property of the atom is responsible for this deflection, it is not
-continuously variable. That property is the atom's intrinsic angular
-momentum, called **spin**. No matter which axis we build the magnet along, an
-analyzer measuring spin along that axis ever produces only two outcomes—never
-a value in between. For a spin-$\tfrac12$ particle such as silver's unpaired
-outer electron, the measured $z$ component of spin angular momentum can only
-be
+The two-spot pattern tells us something remarkable: the component of the
+atom's magnetic moment that couples to the apparatus takes two discrete
+values rather than a continuum. Historically, Stern and Gerlach observed this
+space quantization before electron spin had been identified. In the modern
+description, a ground-state silver atom has closed inner shells and one
+unpaired outer electron with zero orbital angular momentum, so its relevant
+two-valued angular momentum is spin. No matter which axis we build the magnet
+along, an analyzer of this effective spin-$\tfrac12$ system produces only two
+outcomes—never a value in between. The measured $z$ component can only be
 
 ```{math}
 :label: sz-values
@@ -244,11 +247,15 @@ z- & \text{with probability }1/2.
 
 This is the key point: measuring $S_x$ changed what we could predict about
 $S_z$, even though nothing directly measured $S_z$ in between. It is tempting
-to imagine that the atom secretly carried definite values for *both* $S_z$
-and $S_x$ the whole time, and that each analyzer simply reads off the value
-it happens to be built to detect. The experiment rules this out. If both
-values were fixed all along, the final $S_z$ measurement should still return
-$z+$ with certainty—but it does not.
+to imagine that the atom secretly carried permanent values for *both* $S_z$
+and $S_x$, and that each analyzer simply reads the relevant value without
+changing anything else. The experiment rules out that specific, noninvasive
+**fixed-label model**: if the $x$ analyzer merely revealed an unchanged $x$
+label, the final $S_z$ measurement should still return $z+$ with certainty—but
+it does not. The sequence does not, by itself, rule out every possible
+hidden-variable account; a more elaborate model could allow the apparatus to
+alter hidden variables contextually. Bell's test in Chapter 5 will impose
+additional locality assumptions and reach a stronger conclusion.
 
 :::{admonition} Rule 2: incompatibility
 :class: tip
@@ -269,15 +276,15 @@ The diagrams are read from left to right, just like the laboratory sequence.
 
 ### What "disturbance" does and does not explain
 
-One might try to rescue the classical picture by blaming the middle analyzer:
-perhaps it simply jostles the atom around and scrambles its $z$ value by
-brute mechanical force. But the data rule this out too. If the middle
-analyzer were merely adding random noise, we would expect its own $S_x$
-result to be unreliable on repetition. Instead, the $x+$ selection is
-perfectly repeatable: send those atoms through a second $\mathrm{SG}_x$
-analyzer, and every one of them comes out $x+$ again. The middle analyzer has
-not scrambled anything at all. It has replaced one definite, repeatable
-quantity ($S_z$) with a different definite, repeatable quantity ($S_x$).
+One might instead say that the middle analyzer simply adds uncontrolled
+mechanical noise. Repeatability shows why that description is inadequate: if
+the device only randomized everything, its own $S_x$ result would not be
+reliable on repetition. Yet an $x+$ selection is perfectly repeatable. The
+analyzer performs a reproducible transformation—it replaces a preparation
+definite for $S_z$ with one definite for $S_x$—even though the later $S_z$
+result becomes uncertain. This does not prove that no underlying disturbance
+occurs; it shows that "mere random jostling" lacks the structure needed to
+explain the observations.
 
 Order matters here in a way that has no classical analogue. Compare
 
@@ -836,3 +843,31 @@ $z$ label should not erase it.
     why raw output counts could then give a misleading comparison between two
     analyzer settings. Propose a frequency or normalization that reduces the
     problem.
+
+## Selected exercise guidance
+
+Use these answers only after making a complete attempt.
+
+:::{dropdown} Exercise 2
+The $x-$ selection occurs with probability $1/2$. Conditional on that
+selection, the final $z+$ and $z-$ probabilities are each $1/2$, so each
+complete detected route contains $1/4$ of the original beam.
+:::
+
+:::{dropdown} Exercise 7
+$P(+\mathbf n|z+)=\cos^2(60^\circ)=1/4$ and
+$P(-\mathbf n|z+)=3/4$.
+:::
+
+:::{dropdown} Exercise 12
+The mean is $1{,}250$ and the standard deviation is
+$\sqrt{2500(1/2)(1/2)}=25$. A count of $1{,}290$ is $1.6$ standard deviations
+above the mean, so it is not especially surprising.
+:::
+
+:::{dropdown} Exercise 13
+
+```{math}
+\alpha=2\cos^{-1}\sqrt{0.64}=2\cos^{-1}(0.8)\approx73.7^\circ.
+```
+:::
