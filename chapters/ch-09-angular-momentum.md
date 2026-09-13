@@ -45,11 +45,12 @@ whose Cartesian components satisfy
 and cyclic permutations. Before deriving anything from this relation, it is
 worth checking that it is physically plausible. Take an ordinary object—a
 book, a phone—and rotate it $90^\circ$ about $x$ and then $90^\circ$ about
-$y$; then reset it and perform the same two rotations in the opposite order.
-The final orientations differ. Finite rotations about different axes do not
-commute, and equation {eq}`angular-commutators` is the quantum statement of
-the corresponding infinitesimal fact: the generators of rotations about
-different axes cannot commute either. Section 9.3 makes this connection exact.
+$y$. Now reset it, and perform the same two rotations in the opposite order.
+The final orientations differ. Finite rotations about different axes simply
+do not commute, and equation {eq}`angular-commutators` is the quantum
+statement of the corresponding infinitesimal fact: the generators of
+rotations about different axes cannot commute either. Section 9.3 makes this
+connection exact.
 
 Its squared magnitude,
 
@@ -278,9 +279,10 @@ spherical harmonics:
 ```
 
 For orbital motion, single-valued spatial wavefunctions require integer
-$\ell=0,1,2,\ldots$: a wavefunction must return to the same value after
-$\phi\to\phi+2\pi$, and $e^{im\phi}$ does that only for integer $m$, hence
-integer $\ell$. The intrinsic spin label $s$ may also be half-integer,
+$\ell=0,1,2,\ldots$. The reason is direct: a wavefunction must return to the
+same value after $\phi\to\phi+2\pi$, and $e^{im\phi}$ does that only for
+integer $m$, hence integer $\ell$. The intrinsic spin label $s$ may also be
+half-integer,
 precisely because spin is never built from a spatial wavefunction's dependence
 on $\phi$ in the first place—it is defined directly by the abstract algebra of
 Section 9.1, with no analogue of "returning to the same value" to enforce.

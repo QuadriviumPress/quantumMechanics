@@ -98,8 +98,17 @@ E_{n_xn_yn_z}
 ```
 
 In a cube, permutations such as $(1,1,2)$, $(1,2,1)$, and $(2,1,1)$ have the
-same energy. This **degeneracy** reflects the box's symmetry. Changing one side
-length breaks the symmetry and usually splits those energies.
+same energy. This **degeneracy** reflects the box's symmetry. Changing one
+side length breaks the symmetry and usually splits those energies.
+
+### Concept check 8.1
+
+In a cubic box, are $(1,1,2)$ and $(1,2,1)$ the same state?
+
+:::{dropdown} Answer
+No. They are orthogonal spatial functions with the same energy. Degeneracy
+means equal eigenvalues, not identical eigenstates.
+:::
 
 The cube's degeneracy comes from a *geometric* symmetry: permuting $x$, $y$,
 and $z$ leaves the Hamiltonian unchanged, so states related by that
@@ -197,6 +206,16 @@ elements differ. Example 8.2 revisits this distinction for a state with
 nonzero $\ell$, where the growing shell volume and the decaying exponential
 compete at a larger radius.
 
+### Concept check 8.2
+
+Why can $|\psi(0)|^2$ be largest at the origin while the probability of
+finding the particle at exactly the origin is zero?
+
+:::{dropdown} Answer
+$|\psi|^2$ is a density. A single point has zero volume. Radial probabilities
+also include the shell factor $4\pi r^2$, which vanishes at the origin.
+:::
+
 ## 8.4 The hydrogen atom
 
 For an electron and proton, the center-of-mass motion separates from their
@@ -237,9 +256,19 @@ factors as
 =R_{n\ell}(r)Y_\ell^m(\theta,\phi).
 ```
 
-The principal quantum number $n$ sets the energy in the ideal Coulomb problem;
-$\ell$ sets the orbital angular-momentum magnitude; and $m$ sets its component
-along the chosen $z$ axis.
+The principal quantum number $n$ sets the energy in the ideal Coulomb
+problem; $\ell$ sets the orbital angular-momentum magnitude; and $m$ sets
+its component along the chosen $z$ axis.
+
+### Concept check 8.3
+
+Does the quantum number $m$ specify a three-dimensional orbital plane?
+
+:::{dropdown} Answer
+No. It specifies the eigenvalue $m\hbar$ of one chosen angular-momentum
+component. A stationary orbital is a probability amplitude, not a classical
+trajectory in a plane.
+:::
 
 ### Nodes and scales
 
@@ -316,6 +345,18 @@ radius" without saying which one is meant. In general,
 which reproduces both results above and lets Exercises 15–16 extend the
 comparison to other orbitals without repeating the integral from scratch.
 
+### Concept check 8.4
+
+For the $2p$ orbital of Example 8.2, why is $\langle r\rangle=5a_0$ larger
+than the most probable radius $r_{\max}=4a_0$?
+
+:::{dropdown} Answer
+The radial probability density $P(r)$ is not symmetric: it rises from zero,
+peaks at $r_{\max}$, and then falls off with a long exponential tail. That
+tail contributes disproportionately to the mean, pulling $\langle r\rangle$
+above the peak, exactly as for an everyday right-skewed distribution.
+:::
+
 ## 8.5 Degeneracy and symmetry
 
 For fixed $n$, the allowed orbital states number
@@ -324,20 +365,34 @@ For fixed $n$, the allowed orbital states number
 \sum_{\ell=0}^{n-1}(2\ell+1)=n^2.
 ```
 
-Including two spin states doubles this count. The Coulomb degeneracy is larger
-than rotational symmetry alone requires: states with different $\ell$ also
-share the same energy. This is a genuinely different phenomenon from the box
-degeneracy of Section 8.2. Rotational symmetry by itself only guarantees the
-$(2\ell+1)$-fold degeneracy in $m$ at fixed $\ell$; it says nothing about why
-the $2s$ and $2p$ levels should coincide. The extra, exact $1/r$ dependence of
-the Coulomb potential hides a larger symmetry beyond ordinary rotations —
-associated with a conserved Runge–Lenz vector and often described as an
-$\mathrm{SO}(4)$ symmetry of the classical and quantum Kepler problem. Working
-out that symmetry is beyond this book's scope, but it is worth knowing by name:
-"accidental" degeneracy in hydrogen is not an accident at all, and it is fragile
-for exactly that reason. Relativistic corrections, spin–orbit coupling, external
-electric or magnetic fields, and finite nuclear effects break the exact $1/r$
-form and lift parts of this degeneracy.
+Including two spin states doubles this count. The Coulomb degeneracy is
+larger than rotational symmetry alone requires: states with different
+$\ell$ also share the same energy. This is a genuinely different phenomenon
+from the box degeneracy of Section 8.2. Rotational symmetry by itself only
+guarantees the $(2\ell+1)$-fold degeneracy in $m$ at fixed $\ell$; it says
+nothing about why the $2s$ and $2p$ levels should coincide. The extra, exact
+$1/r$ dependence of the Coulomb potential hides a larger symmetry beyond
+ordinary rotations — associated with a conserved Runge–Lenz vector and
+often described as an $\mathrm{SO}(4)$ symmetry of the classical and
+quantum Kepler problem. Working out that symmetry is beyond this book's
+scope, but it is worth knowing by name: "accidental" degeneracy in hydrogen
+is not an accident at all, and it is fragile for exactly that reason.
+Relativistic corrections, spin–orbit coupling, external electric or
+magnetic fields, and finite nuclear effects break the exact $1/r$ form and
+lift parts of this degeneracy.
+
+### Concept check 8.5
+
+Is the degeneracy between the cubic-box states $(1,1,2)$ and $(2,1,1)$ the
+same kind of phenomenon as the degeneracy between hydrogen's $2s$ and $2p$
+states?
+
+:::{dropdown} Answer
+No. The box degeneracy comes from a geometric symmetry — permuting the three
+Cartesian directions of a cube. The $2s$–$2p$ degeneracy comes from the extra
+dynamical symmetry of the exact $1/r$ potential and disappears once the
+potential departs from a pure Coulomb form, for example in alkali atoms.
+:::
 
 Degenerate states may be combined into other stationary states of the same
 energy. For example, real linear combinations of $m=\pm1$ orbitals can be
@@ -392,63 +447,11 @@ selection rules and become important precisely when the electric-dipole matrix
 element is forbidden.
 :::
 
-### Concept check 8.1
-
-In a cubic box, are $(1,1,2)$ and $(1,2,1)$ the same state?
-
-:::{dropdown} Answer
-No. They are orthogonal spatial functions with the same energy. Degeneracy
-means equal eigenvalues, not identical eigenstates.
-:::
-
-### Concept check 8.2
-
-Why can $|\psi(0)|^2$ be largest at the origin while the probability of finding
-the particle at exactly the origin is zero?
-
-:::{dropdown} Answer
-$|\psi|^2$ is a density. A single point has zero volume. Radial probabilities
-also include the shell factor $4\pi r^2$, which vanishes at the origin.
-:::
-
-### Concept check 8.3
-
-Does the quantum number $m$ specify a three-dimensional orbital plane?
-
-:::{dropdown} Answer
-No. It specifies the eigenvalue $m\hbar$ of one chosen angular-momentum
-component. A stationary orbital is a probability amplitude, not a classical
-trajectory in a plane.
-:::
-
-### Concept check 8.4
-
-Is the degeneracy between the cubic-box states $(1,1,2)$ and $(2,1,1)$ the same
-kind of phenomenon as the degeneracy between hydrogen's $2s$ and $2p$ states?
-
-:::{dropdown} Answer
-No. The box degeneracy comes from a geometric symmetry — permuting the three
-Cartesian directions of a cube. The $2s$–$2p$ degeneracy comes from the extra
-dynamical symmetry of the exact $1/r$ potential and disappears once the
-potential departs from a pure Coulomb form, for example in alkali atoms.
-:::
-
-### Concept check 8.5
-
-For the $2p$ orbital of Example 8.2, why is $\langle r\rangle=5a_0$ larger than
-the most probable radius $r_{\max}=4a_0$?
-
-:::{dropdown} Answer
-The radial probability density $P(r)$ is not symmetric: it rises from zero,
-peaks at $r_{\max}$, and then falls off with a long exponential tail. That tail
-contributes disproportionately to the mean, pulling $\langle r\rangle$ above
-the peak, exactly as for an everyday right-skewed distribution.
-:::
-
 ### Concept check 8.6
 
-A student argues that a $3d\to2s$ transition should be electric-dipole allowed
-because energy is released and $\Delta n\ne0$. Is the student correct?
+A student argues that a $3d\to2s$ transition should be electric-dipole
+allowed because energy is released and $\Delta n\ne0$. Is the student
+correct?
 
 :::{dropdown} Answer
 No. Energy release only guarantees that a photon of the right frequency could
