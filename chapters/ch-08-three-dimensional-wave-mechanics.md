@@ -96,7 +96,13 @@ The vector probability current is
 (\psi^*\boldsymbol\nabla\psi-\psi\boldsymbol\nabla\psi^*),
 ```
 
-and obeys $\partial|\psi|^2/\partial t+\boldsymbol\nabla\cdot\mathbf j=0$.
+and obeys $\partial|\psi|^2/\partial t+\boldsymbol\nabla\cdot\mathbf j=0$. This
+is the same probability current introduced in one dimension in Chapter 7, now
+carrying a direction as well as a magnitude: $\mathbf j$ measures how much
+probability flows through a small oriented patch of space per unit time,
+exactly as an ordinary mass or charge flux would, and the continuity equation
+says that probability can shift from place to place but can never be created
+or destroyed.
 
 ## 8.2 Separation in a rectangular box
 
