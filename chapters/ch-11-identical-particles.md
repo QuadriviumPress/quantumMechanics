@@ -60,6 +60,15 @@ Particles with integer spin are bosons; particles with half-integer spin are
 fermions. This spin–statistics connection is a result of relativistic quantum
 field theory and is taken as an empirical rule in nonrelativistic mechanics.
 
+### Concept check 11.1
+
+Is an antisymmetric wavefunction itself an observable negative probability?
+
+:::{dropdown} Answer
+No. Exchange changes an amplitude's sign. Probabilities remain nonnegative,
+but the sign changes interference with the exchanged amplitude.
+:::
+
 ### The permutation operator
 
 The fact that only the squared magnitude of $\Psi$ is constrained suggests
@@ -102,6 +111,20 @@ equation {eq}`exchange-symmetry`: it is less an independent postulate about
 wavefunctions than a statement of which permutation eigenvalue a given kind of
 particle occupies, a choice forced to be one of only two possibilities by the
 operator argument just given.
+
+### Concept check 11.2
+
+Why does $[\hat H,\hat P_{12}]=0$ for identical particles, and what does it
+let us conclude about energy eigenstates?
+
+:::{dropdown} Answer
+The Hamiltonian of identical particles cannot contain any term that treats
+"particle 1" differently from "particle 2," since the two share every
+intrinsic property. Because $\hat H$ and $\hat P_{12}$ commute, energy
+eigenstates can be chosen to also be eigenstates of $\hat P_{12}$, with
+eigenvalue $+1$ (bosons) or $-1$ (fermions). A given species is always found
+with one eigenvalue, never a mixture.
+:::
 
 ## 11.2 Symmetrized two-particle states
 
@@ -162,6 +185,15 @@ reappears, with the opposite role, once *energies* rather than mere detection
 probabilities are computed in Section 11.3: there it becomes the exchange
 integral responsible for Hund's rule.
 
+### Concept check 11.3
+
+Does an exchange hole prove that two fermions repel through a new force?
+
+:::{dropdown} Answer
+No. It can occur even for a Hamiltonian with no interaction between the
+particles. It is a correlation required by antisymmetry.
+:::
+
 ## 11.3 Spin and spatial symmetry
 
 The **complete** state—including space and spin—must have the required exchange
@@ -199,6 +231,15 @@ electron must occupy a higher orbital:
 
 Exclusion therefore affects energy even when the Hamiltonian contains no
 spin-dependent term.
+
+### Concept check 11.4
+
+Can two electrons occupy the same spatial orbital?
+
+:::{dropdown} Answer
+Yes, if their combined spin state is antisymmetric—the singlet. They do not
+occupy the same complete spin-orbital.
+:::
 
 ### Direct and exchange energies
 
@@ -245,6 +286,21 @@ and $K$ depend on the specific orbitals involved, and their ranking can differ
 in other systems—some excited-state configurations and some molecular orbitals
 reverse it. Treat $E_\pm=J\pm K$ as the correct general structure, and check
 the sign of $K$ case by case rather than assuming it.
+:::
+
+### Concept check 11.5
+
+Using $E_\pm=J\pm K$, explain why the triplet configuration of two electrons in
+different orbitals is usually lower in energy than the singlet configuration
+built from the same orbitals.
+
+:::{dropdown} Answer
+The triplet's symmetric spin state forces an antisymmetric spatial
+wavefunction, which already vanishes when the two electrons coincide—the
+exchange hole. This keeps the electrons farther apart on average and lowers
+their mutual Coulomb repulsion, giving the triplet energy $J-K$, with $K>0$
+typically, below the singlet's $J+K$. No spin-dependent force is needed, only
+antisymmetry combined with ordinary repulsion.
 :::
 
 ## 11.4 Slater determinants
@@ -386,70 +442,6 @@ supported in turn by neutron degeneracy pressure at far higher density. None of
 this requires any interaction beyond exclusion applied to a very dense, very
 cold Fermi gas.
 
-### Distinguishable in practice
-
-Two particles of the same species may behave approximately distinguishably
-when their wave packets remain well separated and no experiment recombines
-them. Then exchange terms are negligibly small. As wavefunctions overlap,
-particle-by-particle labels cease to support correct predictions and the
-symmetrized description becomes essential.
-
-### Concept check 11.1
-
-Can two electrons occupy the same spatial orbital?
-
-:::{dropdown} Answer
-Yes, if their combined spin state is antisymmetric—the singlet. They do not
-occupy the same complete spin-orbital.
-:::
-
-### Concept check 11.2
-
-Is an antisymmetric wavefunction itself an observable negative probability?
-
-:::{dropdown} Answer
-No. Exchange changes an amplitude's sign. Probabilities remain nonnegative,
-but the sign changes interference with the exchanged amplitude.
-:::
-
-### Concept check 11.3
-
-Does an exchange hole prove that two fermions repel through a new force?
-
-:::{dropdown} Answer
-No. It can occur even for a Hamiltonian with no interaction between the
-particles. It is a correlation required by antisymmetry.
-:::
-
-### Concept check 11.4
-
-Why does $[\hat H,\hat P_{12}]=0$ for identical particles, and what does it let
-us conclude about energy eigenstates?
-
-:::{dropdown} Answer
-The Hamiltonian of identical particles cannot contain any term that treats
-"particle 1" differently from "particle 2," since the two share every
-intrinsic property. Because $\hat H$ and $\hat P_{12}$ commute, energy
-eigenstates can be chosen to also be eigenstates of $\hat P_{12}$, with
-eigenvalue $+1$ (bosons) or $-1$ (fermions). A given species is always found
-with one eigenvalue, never a mixture.
-:::
-
-### Concept check 11.5
-
-Using $E_\pm=J\pm K$, explain why the triplet configuration of two electrons in
-different orbitals is usually lower in energy than the singlet configuration
-built from the same orbitals.
-
-:::{dropdown} Answer
-The triplet's symmetric spin state forces an antisymmetric spatial
-wavefunction, which already vanishes when the two electrons coincide—the
-exchange hole. This keeps the electrons farther apart on average and lowers
-their mutual Coulomb repulsion, giving the triplet energy $J-K$, with $K>0$
-typically, below the singlet's $J+K$. No spin-dependent force is needed, only
-antisymmetry combined with ordinary repulsion.
-:::
-
 ### Concept check 11.6
 
 Does the degeneracy pressure of Example 11.3 require a nonzero temperature?
@@ -460,6 +452,14 @@ temperature. Exclusion alone forces fermions into high-momentum states even at
 $T=0$; an ordinary classical gas, by contrast, would exert zero pressure at
 zero temperature.
 :::
+
+### Distinguishable in practice
+
+Two particles of the same species may behave approximately distinguishably
+when their wave packets remain well separated and no experiment recombines
+them. Then exchange terms are negligibly small. As wavefunctions overlap,
+particle-by-particle labels cease to support correct predictions and the
+symmetrized description becomes essential.
 
 ## Summary
 

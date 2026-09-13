@@ -20,8 +20,8 @@ After this chapter, you should be able to:
 
 Exactly solvable Hamiltonians are rare. Real atoms interact with fields and
 other particles; real wells are not perfectly square; and most coupled
-differential equations do not have closed-form solutions. Approximation methods
-are controlled ways to retain the most important physics.
+differential equations do not have closed-form solutions. Approximation
+methods are controlled ways to retain the most important physics.
 
 Before calculating, identify a dimensionless small or large parameter. An
 answer labeled “first order” is useful only when omitted terms are expected to
@@ -108,11 +108,20 @@ answer is an excellent way to understand an approximation's domain.
 
 ### Selection rules save work
 
-If symmetry forces $\langle m|\hat V|n\rangle=0$, that state does not appear in
-the corresponding sum. For example, an odd perturbation has zero diagonal
+If symmetry forces $\langle m|\hat V|n\rangle=0$, that state does not appear
+in the corresponding sum. For example, an odd perturbation has zero diagonal
 matrix element in a parity eigenstate, so its first-order energy shift
-vanishes. A zero correction often expresses symmetry, not absence of a physical
-effect at every order.
+vanishes. A zero correction often expresses symmetry, not absence of a
+physical effect at every order.
+
+### Concept check 10.1
+
+Can a first-order correction vanish while the exact energy still changes?
+
+:::{dropdown} Answer
+Yes. Symmetry may make the diagonal matrix element zero while second- and
+higher-order corrections remain.
+:::
 
 ### Example 10.2: an anharmonic correction that grows with the state
 
@@ -145,6 +154,19 @@ longer be trusted there even though it worked well for the low-lying levels
 with the very same $\lambda$. "The perturbation is weak" must be checked
 against the specific state being corrected, not asserted once for the whole
 spectrum.
+:::
+
+### Concept check 10.2
+
+For the quartic oscillator of Example 10.2, does making $\lambda$ smaller
+guarantee that first-order perturbation theory is accurate for every level
+$n$?
+
+:::{dropdown} Answer
+No. Equation {eq}`quartic-shift` grows like $n^2$ for fixed $\lambda$, so for
+any nonzero $\lambda$ there is always some large enough $n$ at which the
+correction rivals the level spacing $\hbar\omega$. Making $\lambda$ smaller
+only pushes that breakdown to higher $n$; it does not remove it.
 :::
 
 ## 10.3 Degenerate perturbation theory
@@ -249,6 +271,16 @@ node structure, rather than by numerically minimizing overlap. If the exact
 ground state is not fully known, an excited-state trial function orthogonal
 only to an *approximate* ground state offers no guaranteed bound at all.
 
+### Concept check 10.3
+
+Why is a variational energy below a known exact ground energy a warning?
+
+:::{dropdown} Answer
+For a normalized trial state and the correct Hamiltonian it is impossible.
+Such a result signals an algebra, normalization, boundary-condition, or
+numerical error.
+:::
+
 ## 10.5 The WKB approximation
 
 The variational principle traded a small parameter for a guessed function
@@ -292,6 +324,16 @@ For bound motion between two smooth turning points, connection formulas give
 WKB fails near a turning point if used without connection formulas and fails
 when the potential changes substantially within one wavelength.
 
+### Concept check 10.4
+
+Does WKB require high total energy in every problem?
+
+:::{dropdown} Answer
+No. It requires the wavelength to vary slowly on the wavelength scale. High
+energy often helps, but slowly varying potentials can also create a valid
+semiclassical regime.
+:::
+
 ### Example 10.5: the quantum bouncer
 
 A particle of mass $m$ rests above an impenetrable floor under a uniform
@@ -334,6 +376,20 @@ $(E_{n+1}-E_n)/E_n$ *shrinks* as $n$ grows instead of staying fixed. WKB
 reaches this result without ever constructing the bouncer's exact
 Airy-function wavefunction—a genuine payoff of the method beyond the
 textbook-symmetric wells where an exact solution is available for comparison.
+
+### Concept check 10.5
+
+Why isn't the quantum bouncer's quantization condition the same
+$(n+\tfrac12)\pi\hbar$ rule used for the harmonic oscillator?
+
+:::{dropdown} Answer
+The oscillator has two smooth classical turning points, each contributing a
+connection-formula phase of $\pi/4$, for a total of $\pi/2$. The bouncer has
+one smooth turning point and one hard wall; the wall enforces an exact node
+and contributes $\pi/2$ by itself, for the same total phase but a different
+split, giving the $(n+\tfrac34)\pi\hbar$ condition of equation
+{eq}`bouncer-quantization`.
+:::
 
 ## 10.6 Time-dependent perturbations
 
@@ -400,6 +456,19 @@ is what allows the discrete result of this example to reproduce the smooth,
 irreversible-looking rate of equation {eq}`golden-rule` once many closely
 spaced final states are summed over.
 
+### Concept check 10.6
+
+Does making the interaction time $T$ longer in Example 10.6 make a transition
+more or less selective in energy?
+
+:::{dropdown} Answer
+More selective. The peak of equation {eq}`constant-transition-probability`
+narrows in $\omega_{fi}$ as $1/T$ even as its height grows as $T^2$. In the
+limit of very long $T$ this sharply peaked, narrow function is what allows a
+sum over many closely spaced final states to collapse into the
+energy-conserving rate of Fermi's golden rule, equation {eq}`golden-rule`.
+:::
+
 An oscillating perturbation contains phases $e^{\pm i\omega t}$. The integral
 grows most strongly when the driving frequency is near
 $|\omega_{fi}|$: resonance is constructive accumulation of transition
@@ -432,75 +501,6 @@ An approximation should report:
 3. the symmetry restrictions used;
 4. the range where the expression is expected to work; and
 5. at least one independent check.
-
-### Concept check 10.1
-
-Can a first-order correction vanish while the exact energy still changes?
-
-:::{dropdown} Answer
-Yes. Symmetry may make the diagonal matrix element zero while second- and
-higher-order corrections remain.
-:::
-
-### Concept check 10.2
-
-Why is a variational energy below a known exact ground energy a warning?
-
-:::{dropdown} Answer
-For a normalized trial state and the correct Hamiltonian it is impossible.
-Such a result signals an algebra, normalization, boundary-condition, or
-numerical error.
-:::
-
-### Concept check 10.3
-
-Does WKB require high total energy in every problem?
-
-:::{dropdown} Answer
-No. It requires the wavelength to vary slowly on the wavelength scale. High
-energy often helps, but slowly varying potentials can also create a valid
-semiclassical regime.
-:::
-
-### Concept check 10.4
-
-For the quartic oscillator of Example 10.2, does making $\lambda$ smaller
-guarantee that first-order perturbation theory is accurate for every level
-$n$?
-
-:::{dropdown} Answer
-No. Equation {eq}`quartic-shift` grows like $n^2$ for fixed $\lambda$, so for
-any nonzero $\lambda$ there is always some large enough $n$ at which the
-correction rivals the level spacing $\hbar\omega$. Making $\lambda$ smaller
-only pushes that breakdown to higher $n$; it does not remove it.
-:::
-
-### Concept check 10.5
-
-Why isn't the quantum bouncer's quantization condition the same
-$(n+\tfrac12)\pi\hbar$ rule used for the harmonic oscillator?
-
-:::{dropdown} Answer
-The oscillator has two smooth classical turning points, each contributing a
-connection-formula phase of $\pi/4$, for a total of $\pi/2$. The bouncer has
-one smooth turning point and one hard wall; the wall enforces an exact node
-and contributes $\pi/2$ by itself, for the same total phase but a different
-split, giving the $(n+\tfrac34)\pi\hbar$ condition of equation
-{eq}`bouncer-quantization`.
-:::
-
-### Concept check 10.6
-
-Does making the interaction time $T$ longer in Example 10.6 make a transition
-more or less selective in energy?
-
-:::{dropdown} Answer
-More selective. The peak of equation {eq}`constant-transition-probability`
-narrows in $\omega_{fi}$ as $1/T$ even as its height grows as $T^2$. In the
-limit of very long $T$ this sharply peaked, narrow function is what allows a
-sum over many closely spaced final states to collapse into the
-energy-conserving rate of Fermi's golden rule, equation {eq}`golden-rule`.
-:::
 
 ## Summary
 

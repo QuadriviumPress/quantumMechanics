@@ -97,6 +97,17 @@ must destroy the sender's local access to $|\psi\rangle$ as the price of
 reconstructing it elsewhere—transmitting quantum information can never mean
 copying it.
 
+### Concept check 12.1
+
+Why can a controlled-NOT gate copy $|0\rangle$ and $|1\rangle$ without
+violating no-cloning?
+
+:::{dropdown} Answer
+No-cloning forbids copying every unknown state. CNOT copies the selected
+orthogonal basis, but an input superposition produces entanglement rather than
+two independent copies.
+:::
+
 ## 12.3 Teleportation
 
 Quantum teleportation transfers an unknown qubit state using shared
@@ -124,6 +135,16 @@ The original qubit is not copied: the measurement destroys its prior local
 state, consistent with no-cloning. The receiver cannot recover $|\psi\rangle$
 before the classical message arrives, so teleportation does not send
 information faster than light.
+
+### Concept check 12.2
+
+Does teleportation eliminate the need to transmit information?
+
+:::{dropdown} Answer
+No. It consumes shared entanglement and requires two ordinary classical bits.
+Without them, the receiver's local state contains no accessible copy of the
+unknown input.
+:::
 
 ### Example 12.1: a concrete correction
 
@@ -160,6 +181,19 @@ that will organize the rest of this chapter (Section 12.9), the
 resource and the classical record of the *measurement* at the sender;
 neither the entanglement alone nor the two bits alone would be evidence of a
 transferred qubit.
+
+### Concept check 12.3
+
+In Example 12.1, does the sender end up holding a usable copy of
+$|\psi\rangle$ after the Bell measurement?
+
+:::{dropdown} Answer
+No. The Bell measurement projects qubits 1 and 2 into an entangled two-qubit
+outcome state, leaving qubit 1 with no local state that recovers
+$|\psi\rangle$. If the sender also retained a usable copy while qubit 3
+ended up with $|\psi\rangle$, two independent copies of an unknown state
+would exist, contradicting no-cloning.
+:::
 
 ### Superdense coding
 
@@ -279,10 +313,35 @@ superposition outright. This is a measurement engineered to reveal only the
 encoded *preparation* untouched—the same operational split between reading
 a result and merely narrowing a preparation that organized Chapter 1.
 
+### Concept check 12.4
+
+In Example 12.3, a measured syndrome is $(-1,-1)$. Which physical qubit has a
+bit flip, and has this measurement revealed anything about $\alpha$ or
+$\beta$?
+
+:::{dropdown} Answer
+Qubit 2. The table shows $(-1,-1)$ occurs only for the $\hat X_2$ row. The
+amplitudes are not revealed: the same syndrome occurs for the
+$\alpha|000\rangle$ term and the $\beta|111\rangle$ term of the corrupted
+codeword, so the measurement distinguishes only which error occurred, not
+the encoded superposition.
+:::
+
 Fault tolerance is the architecture that prevents imperfect correction
 operations from spreading errors uncontrollably. A scalable device needs
 error rates, connectivity, control, decoding, and overhead that together
 support logical operations—not merely a large physical qubit count.
+
+### Concept check 12.5
+
+Is a larger number of physical qubits alone evidence of a more capable quantum
+computer?
+
+:::{dropdown} Answer
+No. Fidelity, connectivity, coherence, leakage, control speed, measurement,
+error correction, and algorithmic overhead all affect useful logical
+capability.
+:::
 
 ## 12.6 Quantum computation
 
@@ -356,6 +415,18 @@ branches instead interfered constructively for one final measurement outcome
 and destructively for the other, exactly the mechanism named at the start of
 this section.
 
+### Concept check 12.6
+
+After running Deutsch's algorithm in Example 12.4 and measuring the first
+qubit, do we know the value of $f(0)$?
+
+:::{dropdown} Answer
+No. Only the global constant-or-balanced property is determined. The
+individual values $f(0)$ and $f(1)$ remain unknown from that one run—the
+algorithm answers a question about the function as a whole, not about any
+particular input.
+:::
+
 ## 12.7 Clocks, resonance, and sensing
 
 The Ramsey sequence of Chapter 4 compares a controlled oscillator with a
@@ -423,77 +494,6 @@ Every quantum technology can be analyzed with four questions:
 Terms such as *superposition*, *entanglement*, and *quantum advantage* name
 specific mathematical and experimental resources. They should lead to
 testable probability distributions, not serve as substitutes for a mechanism.
-
-### Concept check 12.1
-
-Why can a controlled-NOT gate copy $|0\rangle$ and $|1\rangle$ without
-violating no-cloning?
-
-:::{dropdown} Answer
-No-cloning forbids copying every unknown state. CNOT copies the selected
-orthogonal basis, but an input superposition produces entanglement rather than
-two independent copies.
-:::
-
-### Concept check 12.2
-
-Does teleportation eliminate the need to transmit information?
-
-:::{dropdown} Answer
-No. It consumes shared entanglement and requires two ordinary classical bits.
-Without them, the receiver's local state contains no accessible copy of the
-unknown input.
-:::
-
-### Concept check 12.3
-
-Is a larger number of physical qubits alone evidence of a more capable quantum
-computer?
-
-:::{dropdown} Answer
-No. Fidelity, connectivity, coherence, leakage, control speed, measurement,
-error correction, and algorithmic overhead all affect useful logical
-capability.
-:::
-
-### Concept check 12.4
-
-In Example 12.1, does the sender end up holding a usable copy of
-$|\psi\rangle$ after the Bell measurement?
-
-:::{dropdown} Answer
-No. The Bell measurement projects qubits 1 and 2 into an entangled two-qubit
-outcome state, leaving qubit 1 with no local state that recovers
-$|\psi\rangle$. If the sender also retained a usable copy while qubit 3
-ended up with $|\psi\rangle$, two independent copies of an unknown state
-would exist, contradicting no-cloning.
-:::
-
-### Concept check 12.5
-
-In Example 12.3, a measured syndrome is $(-1,-1)$. Which physical qubit has a
-bit flip, and has this measurement revealed anything about $\alpha$ or
-$\beta$?
-
-:::{dropdown} Answer
-Qubit 2. The table shows $(-1,-1)$ occurs only for the $\hat X_2$ row. The
-amplitudes are not revealed: the same syndrome occurs for the
-$\alpha|000\rangle$ term and the $\beta|111\rangle$ term of the corrupted
-codeword, so the measurement distinguishes only which error occurred, not
-the encoded superposition.
-:::
-
-### Concept check 12.6
-
-After running Deutsch's algorithm in Example 12.4 and measuring the first
-qubit, do we know the value of $f(0)$?
-
-:::{dropdown} Answer
-No. Only the global constant-or-balanced property is determined. The
-individual values $f(0)$ and $f(1)$ remain unknown from that one run—the
-algorithm answers a question about the function as a whole, not about any
-particular input.
-:::
 
 ## Summary
 
