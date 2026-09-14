@@ -12,7 +12,7 @@
     "start": "myst start",
     "figures": "python3 scripts/generate_figures.py && python3 scripts/generate_figures_05_12.py",
     "build": "myst build --html && node scripts/setup-pwa.mjs",
-    "verify": "node scripts/verify-book.mjs",
+    "verify": "python3 scripts/verify_book.py",
     "test": "node --test tests/*.test.mjs",
     "check": "npm run verify && npm test && myst build --html --strict --check-links"
   },
