@@ -84,3 +84,11 @@ and lie between zero and one.
 This is an original open textbook inspired by the spins-first teaching
 tradition. It does not reproduce the prose, figures, or problems of commercial
 texts.
+
+## Downloadable editions
+
+<!-- export-downloads:start -->
+The download menu offers the latest available PDF and Word editions. The
+published site lists their export dates and source revisions here; the website
+may contain more recent changes.
+<!-- export-downloads:end -->
