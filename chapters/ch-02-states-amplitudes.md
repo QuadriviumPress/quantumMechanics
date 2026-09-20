@@ -814,8 +814,9 @@ minus sign. The corresponding physical ray is unchanged because the sign is
 an overall phase, though it can be observed relative to another coherent
 amplitude.
 
-:::{figure} ../images/figures/ch02-bloch-phase-and-mixture.svg
-:name: fig-bloch-phase-mixture
+```{animation} ch02-bloch-phase-and-mixture
+:label: fig-bloch-phase-mixture
+:figure: /images/figures/ch02-bloch-phase-and-mixture.svg
 :alt: Three Bloch spheres show a pure state as a point on the surface, a change in relative phase as a change in azimuth, and two kets differing by an overall phase at the same Bloch-sphere point.
 :width: 100%
 
@@ -823,7 +824,7 @@ The Bloch sphere represents physical pure states rather than individual ket
 representatives. Polar angle fixes the relative magnitudes, azimuth fixes the
 relative phase, and overall phase has no coordinate because it leaves the
 physical state unchanged.
-:::
+```
 
 For a measurement along a unit vector $\mathbf n$ making angle $\theta$ with
 $+z$, equation {eq}`bloch-state` gives

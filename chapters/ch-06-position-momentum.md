@@ -721,15 +721,16 @@ A narrow initial packet spreads faster than a broad one, because a narrow
 packet in position necessarily contains a broader range of momenta—and
 therefore a broader range of velocities—than a broad one does.
 
-:::{figure} ../images/figures/ch06-free-packet-spreading.svg
-:name: fig-free-packet-spreading
+```{animation} ch06-free-packet-spreading
+:label: fig-free-packet-spreading
+:figure: /images/figures/ch06-free-packet-spreading.svg
 :alt: Three Gaussian probability densities at successive times move to the right while becoming wider and lower. Their centers travel uniformly but their spatial uncertainty increases.
 :width: 100%
 
 Free evolution advances the packet center at the group velocity while its
 constituent momentum components separate. The fixed momentum spread therefore
 appears as a growing position spread.
-:::
+```
 
 ### Group and phase velocity
 

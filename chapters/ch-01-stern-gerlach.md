@@ -480,15 +480,16 @@ One can summarize the alternatives with two limiting arrangements:
 - **Paths detected separately or phase-randomized:** square the magnitudes
   for the alternatives separately and then add the probabilities.
 
-:::{figure} ../images/figures/ch01-coherent-recombination.svg
-:name: fig-coherent-recombination
+```{animation} ch01-coherent-recombination
+:label: fig-coherent-recombination
+:figure: /images/figures/ch01-coherent-recombination.svg
 :alt: Two path experiments. With no path record, x plus and x minus amplitudes recombine coherently and recover z plus with certainty. With path records, interference is lost and the final z plus probability is one half.
 :width: 100%
 
 Recombination restores the original state only while the two alternatives
 remain coherent. A durable path record changes the calculation from adding
 amplitudes to adding probabilities, even if nobody reads the record.
-:::
+```
 
 This is why "half the atoms went through each arm" is not a complete
 description of the coherent experiment. The path amplitudes can cancel at one

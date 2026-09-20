@@ -480,15 +480,16 @@ stationary scattering state still gives $E$; the spatial wavefunction simply
 extends through a region where a classical particle of that energy could
 not travel.
 
-:::{figure} ../images/figures/ch07-tunneling-barrier.svg
-:name: fig-tunneling-barrier
+```{animation} ch07-tunneling-barrier
+:label: fig-tunneling-barrier
+:figure: /images/figures/ch07-tunneling-barrier.svg
 :alt: A wave approaches a rectangular barrier higher than its energy, decays across the barrier, and emerges with smaller amplitude. A logarithmic graph shows transmission falling exponentially with barrier thickness.
 :width: 100%
 
 Inside a classically forbidden barrier the stationary wavefunction is
 exponential, not absent. Matching it at the second boundary leaves a transmitted
 amplitude whose probability is extraordinarily sensitive to barrier width.
-:::
+```
 
 ### Example 7.4: compare two barrier widths
 
@@ -626,15 +627,16 @@ $|0\rangle$ by repeated algebra with $\hat a^\dagger$, rather than by solving
 a new second-order boundary-value problem for each $n$ as the earlier well
 problems required.
 
-:::{figure} ../images/figures/ch07-harmonic-oscillator.svg
-:name: fig-harmonic-oscillator
+```{animation} ch07-harmonic-oscillator
+:label: fig-harmonic-oscillator
+:figure: /images/figures/ch07-harmonic-oscillator.svg
 :alt: A parabolic harmonic-oscillator potential contains the first three wavefunctions drawn around equally spaced energy levels. The ground state is Gaussian and each higher state gains one additional node.
 :width: 100%
 
 Unlike the square well, the oscillator has equal energy spacing. The ladder
 operator raises both the energy by $\hbar\omega$ and the node count by one,
 building every state from the Gaussian ground state.
-:::
+```
 
 ### Example 7.5: the ground state in position space
 

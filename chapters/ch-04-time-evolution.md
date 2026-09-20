@@ -216,15 +216,16 @@ by the energy differences. Any observable that mixes different energy
 eigenstates can therefore vary in time, even though no individual energy
 probability ever does.
 
-:::{figure} ../images/figures/ch04-energy-phase-evolution.svg
-:name: fig-energy-phase-evolution
+```{animation} ch04-energy-phase-evolution
+:label: fig-energy-phase-evolution
+:figure: /images/figures/ch04-energy-phase-evolution.svg
 :alt: Two energy levels carry phase-clock arrows that advance at different rates. A graph shows constant probabilities in the energy basis but an oscillating probability in a basis that mixes the energy states.
 :width: 100%
 
 Energy-basis populations stay fixed while the phase clocks advance at rates
 set by their energies. Only the relative clock angle is observable, and a
 measurement in a mixing basis converts it into an oscillating probability.
-:::
+```
 
 ### Example 4.1: a two-level superposition
 
@@ -427,15 +428,16 @@ pattern to remember: dynamics changes a *relative phase*, and it is
 the choice of final analyzer that converts an otherwise hidden phase into a
 measurable probability.
 
-:::{figure} ../images/figures/ch04-larmor-precession.svg
-:name: fig-larmor-precession
+```{animation} ch04-larmor-precession
+:label: fig-larmor-precession
+:figure: /images/figures/ch04-larmor-precession.svg
 :alt: A Bloch vector traces a circle around a magnetic field directed along z. Beside it, x plus and x minus probabilities oscillate while both z probabilities remain fixed at one half.
 :width: 100%
 
 Larmor precession leaves the $z$-basis populations unchanged but moves the
 Bloch vector around the equator. An $x$ analyzer reveals this motion as
 complementary oscillations in its two output probabilities.
-:::
+```
 
 ### Concept check 4.3
 
@@ -877,8 +879,9 @@ out the accumulated phase as a probability. This is precisely the coherent
 path logic first introduced in Chapter 2, now implemented with controlled
 rotations rather than physically separated paths.
 
-:::{figure} ../images/figures/ch04-ramsey-sequence.svg
-:name: fig-ramsey-sequence
+```{animation} ch04-ramsey-sequence
+:label: fig-ramsey-sequence
+:figure: /images/figures/ch04-ramsey-sequence.svg
 :alt: A Ramsey sequence prepares z plus, applies a pi over two pulse, allows free phase evolution, applies a reverse pi over two pulse, and measures z. A graph below shows complementary z plus and z minus interference fringes versus accumulated phase.
 :width: 100%
 
@@ -886,7 +889,7 @@ A Ramsey experiment is a two-state interferometer: the first pulse splits an
 amplitude, free evolution shifts the relative phase, and the second pulse
 recombines the alternatives. The final $S_z$ counts trace the accumulated
 phase as complementary fringes.
-:::
+```
 
 ### Example 4.9: the first fringe minimum
 

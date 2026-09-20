@@ -244,15 +244,16 @@ Two common time scales are:
 - $T_1$, energy relaxation toward thermal populations; and
 - $T_2$, loss of phase coherence.
 
-:::{figure} ../images/figures/ch12-decoherence-t1-t2.svg
-:name: fig-decoherence-t1-t2
+```{animation} ch12-decoherence-t1-t2
+:label: fig-decoherence-t1-t2
+:figure: /images/figures/ch12-decoherence-t1-t2.svg
 :alt: Successively shorter Bloch vectors show transverse coherence shrinking toward the sphere's center. Exponential curves compare energy relaxation with faster phase-coherence loss.
 :width: 100%
 
 Decoherence turns a sharp Bloch vector into a shorter mixed-state vector.
 $T_1$ tracks population relaxation, while $T_2$ tracks transverse phase
 coherence; a device must characterize both rather than quote one lifetime.
-:::
+```
 
 Typically $T_2\le2T_1$, and additional low-frequency noise can make it much
 shorter. Gate times must be small compared with relevant coherence times, but

@@ -213,8 +213,9 @@ reappears, with the opposite role, once *energies* rather than mere detection
 probabilities are computed in Section 11.3: there it becomes the exchange
 integral responsible for Hund's rule.
 
-:::{figure} ../images/figures/ch11-exchange-interference.svg
-:name: fig-exchange-interference
+```{animation} ch11-exchange-interference
+:label: fig-exchange-interference
+:figure: /images/figures/ch11-exchange-interference.svg
 :alt: Joint-position heat maps compare symmetric and antisymmetric two-particle amplitudes. Bosons show enhanced probability along equal detector coordinates, while fermions have a dark exchange hole along that diagonal.
 :width: 100%
 
@@ -222,7 +223,7 @@ Direct and exchanged alternatives are physically indistinguishable, so their
 amplitudes interfere. The plus sign enhances coincidence for bosons; the minus
 sign forces the fermionic density to zero when the complete one-particle states
 coincide.
-:::
+```
 
 ### Concept check 11.3
 
