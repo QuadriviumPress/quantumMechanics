@@ -1,0 +1,89 @@
+# Build the printable editions -- the two book PDFs, the chapter offprints,
+# and the Word document -- and keep them as workflow artifacts.
+#
+# This is the only place they are built. deploy.yml downloads this workflow's
+# most recent successful artifacts instead of rebuilding them on every push,
+# which would cost every one-word prose fix a TeX Live install and a XeLaTeX
+# pass. So the download menu on the published site tracks the most recent
+# monthly, tagged, or manually requested export, not every commit.
+#
+# Keeping it out of ci.yml also keeps pull request feedback fast and HTML-only:
+# the TeX Live and Inkscape install alone is a few minutes.
+#
+# The toolchain and build steps live in .github/actions/build-exports.
+name: Exports
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Build once per month and keep the downloadable editions reasonably fresh
+    # without installing the large print toolchain on ordinary pushes.
+    - cron: '17 4 1 * *'
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exports-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build PDF and DOCX
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ./.github/actions/build-exports
+        with:
+          site-url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+
+      # 90 days is the ceiling, and worth asking for: deploy.yml serves the site's
+      # downloads out of these artifacts, so once they expire the download menu
+      # goes empty until the next tag or manual run.
+      - uses: actions/upload-artifact@v7
+        with:
+          name: quantum-mechanics-exports
+          path: |
+            exports/*.pdf
+            exports/metadata.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish durable release downloads
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || \
+            gh release create "$GITHUB_REF_NAME" --generate-notes --title "$GITHUB_REF_NAME"
+          gh release upload "$GITHUB_REF_NAME" \
+            exports/quantum-mechanics.pdf \
+            exports/quantum-mechanics-student.pdf \
+            exports/quantum-mechanics.docx \
+            exports/metadata.json \
+            --clobber
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: quantum-mechanics-docx
+          path: exports/*.docx
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Write build summary
+        if: always()
+        run: |
+          {
+            echo "## Print editions"
+            echo
+            echo "| File | Size |"
+            echo "|------|------|"
+            for f in exports/*.pdf exports/*.docx; do
+              [ -e "$f" ] || continue
+              printf '| `%s` | %s |\n' "$(basename "$f")" "$(du -h "$f" | cut -f1)"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"

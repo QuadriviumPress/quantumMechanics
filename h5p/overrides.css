@@ -1,0 +1,22 @@
+/*
+ * Injected into the H5P player's own content iframe via embed.html's
+ * `customCss` option (see the h5p-standalone README's "Advanced Usage"
+ * section). H5P.Question/H5P.MultiChoice size their type in two ways that
+ * both assume a full h5p.com page rather than a compact, ~30rem-tall
+ * exercise sunk into a book page with much smaller body type:
+ *
+ *   - the modern theme (H5P.JoubelUI) sizes everything in `rem`, relative to
+ *     this iframe document's own root font-size;
+ *   - the older H5P.Question layout sizes the question text in `em`,
+ *     relative to `.h5p-content`'s own fixed 16px base (h5p.css).
+ *
+ * Scaling both down here brings the exercise's type roughly in line with the
+ * surrounding book text instead of towering over it.
+ */
+html {
+  font-size: 87.5%;
+}
+
+.h5p-content {
+  font-size: 14px !important;
+}

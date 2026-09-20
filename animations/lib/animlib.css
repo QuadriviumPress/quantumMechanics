@@ -1,0 +1,94 @@
+/*
+ * Shared chrome for the animation pages themselves (the document rendered
+ * inside the {animation} iframe), not to be confused with ../../plugins/simulation.css,
+ * which styles the book pages that embed them.
+ */
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #333333;
+  background: #ffffff;
+}
+
+.anim-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0.4rem 0.6rem 0.6rem;
+}
+
+.anim-canvas {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  touch-action: none;
+}
+
+.anim-controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0.3rem;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.anim-toggle {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid #999999;
+  background: #f4f6f8;
+  color: #333333;
+  cursor: pointer;
+}
+
+.anim-toggle:hover {
+  background: #e8ecef;
+}
+
+.anim-toggle:focus-visible {
+  outline: 2px solid #1769aa;
+  outline-offset: 2px;
+}
+
+.anim-note {
+  color: #555555;
+  flex: 1 1 16rem;
+}
+
+.anim-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  color: #444444;
+}
+
+.anim-control select,
+.anim-control input {
+  accent-color: #1769aa;
+  font: inherit;
+}
+
+.anim-control select {
+  border: 1px solid #999999;
+  border-radius: 0.35rem;
+  background: #ffffff;
+  color: #333333;
+  padding: 0.2rem 0.35rem;
+}
+
+.anim-control input[type="range"] {
+  width: min(9rem, 24vw);
+}

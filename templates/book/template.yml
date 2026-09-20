@@ -1,0 +1,56 @@
+myst: v1
+kind: tex
+title: Quantum Mechanics Book
+description: >-
+  The print edition of Quantum Mechanics. A LaTeX template carrying the
+  float-safe problem-set commands that plugins/export.mjs writes into, the
+  sectioning depths that keep the printed numbering identical to the
+  website's, and the geometry and running heads of a textbook meant to be
+  printed on paper. The `chapter` option turns the same source into a
+  standalone chapter offprint.
+version: '1.0.0'
+license: CC-BY-SA-4.0
+tags:
+  - book
+options:
+  - id: chapter
+    type: number
+    integer: true
+    min: 1
+    description: >-
+      Set when typesetting one chapter as a standalone offprint: the chapter's
+      number in the full book. Switches the class from `book` to `article` and
+      starts the section counter so the reading sections are numbered N.1, N.2
+      ... exactly as they are in the book and on the website. Leave unset for
+      the whole book.
+doc:
+  - id: title
+    required: true
+  - id: subtitle
+  - id: authors
+    required: true
+  - id: date
+  - id: license
+  - id: bibliography
+files:
+  - template.tex
+packages:
+  - amsmath
+  - amssymb
+  - amsthm
+  - booktabs
+  - caption
+  - changepage
+  - enumitem
+  - fancyhdr
+  - float
+  - fontspec
+  - framed
+  - geometry
+  - graphicx
+  - hyperref
+  - microtype
+  - natbib
+  - needspace
+  - newunicodechar
+  - xcolor

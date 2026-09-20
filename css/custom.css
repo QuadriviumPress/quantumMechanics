@@ -13,18 +13,22 @@ a {
 }
 
 /*
- * Styles for the {simulation}, {openlyceum}, and {phet} directives in
- * plugins/simulation.mjs. Merged here rather than kept as a separate
- * stylesheet because `site.options.style` accepts only one file.
+ * Styles for interactive-media directives: {simulation}, {openlyceum}, and
+ * {phet} from plugins/simulation.mjs, {animation} from plugins/animation.mjs,
+ * {video} from plugins/video.mjs, and {h5p} from plugins/h5p.mjs. Merged here
+ * rather than kept as a separate stylesheet because `site.options.style`
+ * accepts only one file.
  *
- * Each directive emits an iframe *and* a screenshot as siblings of one
- * figure, because no single node type survives every MyST output format.
- * On the website both would be visible, so this hides the screenshot and
- * flips the pair back around for print.
+ * Each directive emits an iframe *and* a screenshot (or, for h5p, an ungraded
+ * static version) as siblings of one figure, because no single node type
+ * survives every MyST output format. On the website both would be visible,
+ * so this hides the screenshot and flips the pair back around for print.
  */
 
 /* The static fallback exists for PDF, DOCX, Markdown, and print. */
-.simulation-placeholder {
+.simulation-placeholder,
+.animation-placeholder,
+.video-placeholder {
   display: none;
 }
 
@@ -50,9 +54,45 @@ a {
   padding-bottom: 100% !important;
 }
 
-/* The caption line that links to the live simulation. */
-.simulation-link {
+.animation-aspect-2x1 > div {
+  padding-bottom: 50% !important;
+}
+
+.animation-aspect-1x1 > div {
+  padding-bottom: 100% !important;
+}
+
+.animation-aspect-4x3 > div,
+.video-aspect-4x3 > div {
+  padding-bottom: 75% !important;
+}
+
+.video-aspect-16x9 > div {
+  padding-bottom: 56.25% !important;
+}
+
+/* The caption line that links to the live simulation or video. */
+.simulation-link,
+.video-link {
   font-size: 0.9em;
+}
+
+.video-link a {
+  font-weight: 600;
+}
+
+/* H5P question sets use a fixed viewport rather than a video aspect ratio. */
+.h5p-frame > div {
+  height: 30rem;
+  padding-bottom: 0 !important;
+}
+
+.h5p-frame iframe {
+  height: 30rem;
+}
+
+.h5p-fallback {
+  display: none;
 }
 
 /*
@@ -61,14 +101,23 @@ a {
  * the screenshot the exports already use.
  */
 @media print {
-  .simulation-frame {
+  .simulation-frame,
+  .animation-frame,
+  .video-frame,
+  .h5p-frame {
     display: none;
   }
 
-  .simulation-placeholder {
+  .simulation-placeholder,
+  .animation-placeholder,
+  .video-placeholder {
     display: block;
     max-width: 100%;
     height: auto;
     margin: 0 auto;
+  }
+
+  .h5p-fallback {
+    display: block;
   }
 }

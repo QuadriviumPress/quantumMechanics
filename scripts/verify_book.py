@@ -89,7 +89,27 @@ def project_field(myst_text: str, key: str) -> bool:
 
 
 def toc_files(myst_text: str) -> list[str]:
-    return re.findall(r'(?m)^\s*-?\s*file:\s*"?([^"\n]+?)"?\s*$', myst_text)
+    """Return the ``file:`` entries inside ``project.toc`` only.
+
+    An unscoped scan would also pick up ``file:`` keys from ``project.downloads``
+    and ``project.exports[].articles`` -- build artifacts like
+    ``exports/book.pdf`` that do not exist in a fresh checkout and are not part
+    of the website's table of contents.
+    """
+    in_toc = False
+    collected: list[str] = []
+    for line in myst_text.splitlines():
+        if re.match(r"^  toc:\s*$", line):
+            in_toc = True
+            continue
+        if in_toc:
+            if re.match(r"^  \S", line):
+                in_toc = False
+                continue
+            match = re.match(r'^\s*-?\s*file:\s*"?([^"\n]+?)"?\s*$', line)
+            if match:
+                collected.append(match.group(1))
+    return collected
 
 
 def content_paths(listed: list[str]) -> list[Path]:
@@ -295,9 +315,12 @@ def main() -> int:
     images_root = ROOT / "images"
     if images_root.is_dir():
         on_disk = {p.resolve() for p in images_root.rglob("*") if p.is_file()}
-        # Also count chapter-local images directories when present
+        # Also count chapter-local images directories when present, but not
+        # vendored assets (H5P libraries/player, the generated H5P tree, or
+        # node_modules) -- those are never referenced from chapter markdown.
+        skip = ("h5p", ".generated", "node_modules")
         for folder in ROOT.glob("**/images"):
-            if folder.is_dir():
+            if folder.is_dir() and not any(part in skip for part in folder.relative_to(ROOT).parts):
                 on_disk.update(p.resolve() for p in folder.rglob("*") if p.is_file())
         orphans = sorted(on_disk - referenced)
         if orphans:

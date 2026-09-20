@@ -1,0 +1,56 @@
+name: Build print exports
+description: >-
+  Install the print toolchain and run scripts/build-exports.sh, leaving the
+  two book PDFs, the chapter offprints, and the Word document in exports/.
+  Used by exports.yml only; deploy.yml downloads that workflow's artifacts
+  rather than rebuilding them.
+
+inputs:
+  site-url:
+    description: >-
+      Base URL the chapter offprints link back to. An offprint holds one
+      chapter, so its "see Chapter 7" references have to leave the file; they
+      point here instead.
+    required: false
+    default: https://quadriviumpress.github.io/quantumMechanics
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 22
+        cache: npm
+
+    - name: Install the print toolchain
+      shell: bash
+      run: |
+        sudo apt-get update -qq
+        sudo apt-get install -y --no-install-recommends \
+          inkscape \
+          latexmk \
+          texlive-fonts-recommended \
+          texlive-latex-base \
+          texlive-latex-extra \
+          texlive-latex-recommended \
+          texlive-plain-generic \
+          texlive-xetex \
+          pandoc \
+          poppler-utils
+        # Not a nicety: MyST converts SVG to PDF with Inkscape and with nothing
+        # else (`svgToPdf` in myst-cli falls back to a warning). Every book
+        # figure is SVG, so without it they are missing.
+        inkscape --version
+        # poppler's pdftoppm rasterizes the figures for the Word file. Ubuntu's
+        # ImageMagick policy refuses to read PDF, so it is not an alternative here.
+        pdftoppm -v
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Build the print editions
+      shell: bash
+      env:
+        MYST_SITE_URL: ${{ inputs.site-url }}
+      run: scripts/build-exports.sh all

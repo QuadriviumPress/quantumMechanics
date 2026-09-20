@@ -1,0 +1,65 @@
+name: Export smoke test
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'plugins/**'
+      - 'templates/**'
+      - 'scripts/build-exports.sh'
+      - 'scripts/tex-to-docx.py'
+      - 'myst.yml'
+      - 'package*.json'
+      - 'chapters/**'
+      - 'images/**'
+      - 'tests/**'
+      - 'scripts/smoke-exports.py'
+      - '.github/workflows/export-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: export-smoke-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  chapter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install PDF toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            inkscape latexmk texlive-xetex texlive-latex-base \
+            texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-plain-generic pandoc poppler-utils
+      - run: npm ci
+      - run: npm test
+      - name: Verify full and student PDFs and Word content
+        run: npm run test:exports
+      - name: Build representative and changed chapter offprints
+        env:
+          MYST_PRINT: full
+          MYST_SITE_URL: https://quadriviumpress.github.io/quantumMechanics
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          chapters=(chapters/ch-01-stern-gerlach.md)
+          if [ -n "$BASE_SHA" ]; then
+            while IFS= read -r -d '' chapter; do
+              if [ -f "$chapter" ] && [ "$chapter" != "${chapters[0]}" ]; then
+                chapters+=("$chapter")
+              fi
+            done < <(git diff --name-only --diff-filter=ACMR -z "$BASE_SHA" HEAD -- 'chapters/*.md')
+          fi
+          npx myst build --pdf "${chapters[@]}"

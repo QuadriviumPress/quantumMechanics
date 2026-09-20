@@ -1,7 +1,17 @@
 node_modules/
 _build/
+.generated/
 .myst/
 .env
 .env.*
 .DS_Store
 npm-debug.log*
+__pycache__/
+*.py[cod]
+
+# Built by scripts/build-exports.sh, and in CI by the Exports workflow, whose
+# artifacts the deploy workflow downloads. Never committed.
+/exports/
+
+# MS Office lock files left behind when a document is open during `git add`.
+~$*

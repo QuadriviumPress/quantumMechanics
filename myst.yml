@@ -7,7 +7,10 @@ project:
   authors:
     - name:
         literal: QuadriviumPress
+  subject: Physics
+  date: 2026-01-01
   license: CC-BY-SA-4.0
+  copyright: "2026 QuadriviumPress"
   open_access: true
   github: QuadriviumPress/quantumMechanics
   keywords:
@@ -18,7 +21,105 @@ project:
     - Dirac notation
     - MyST Markdown
   plugins:
+    # Locally authored looping canvas figures with static print fallbacks.
+    - plugins/animation.mjs
+    # Privacy-conscious YouTube/Vimeo embeds with poster fallbacks and links.
+    - plugins/video.mjs
+    # Self-hosted chapter-review activities, packaged into a minimal static
+    # runtime at build time; see h5p/README.md.
+    - plugins/h5p.mjs
     - plugins/simulation.mjs
+    # Rewrites exercises, solutions, margin notes and dropdowns into nodes the
+    # LaTeX/DOCX renderers understand. Inert unless MYST_PRINT is set, so the
+    # website build is untouched; see plugins/export.mjs.
+    - plugins/export.mjs
+  # The animation and h5p directives use stable same-origin iframe URLs. MyST
+  # would otherwise content-hash these standalone HTML modules and break
+  # imports.
+  static_files:
+    - animations
+    - .generated/h5p
+  # The media directives emit a website iframe beside a static print fallback.
+  # plugins/export.mjs strips the iframe before the tex renderer sees it, but a
+  # stray one must not fail the build.
+  error_rules:
+    - id: tex-renders
+      severity: warn
+    - id: docx-renders
+      severity: warn
+    # The downloads below are build artifacts. They exist in CI, which builds
+    # the exports before the site, but not in a fresh clone or during
+    # `myst start`.
+    - id: static-action-file-copied
+      severity: warn
+  # The download menu on every page of the site. These are the artifacts
+  # scripts/build-exports.sh writes; the deploy workflow downloads them from
+  # the last successful Exports run before it builds the HTML, so they are on
+  # disk by the time MyST looks for them. `static: true` is not cosmetic:
+  # without it a missing file is an unsuppressible error, and these are build
+  # artifacts that a fresh clone has not made yet. With it the complaint
+  # carries the `static-action-file-copied` rule id, which error_rules above
+  # softens to a warning so `myst start` stays quiet.
+  downloads:
+    - file: exports/quantum-mechanics.pdf
+      title: Download the book (PDF, with worked solutions)
+      static: true
+    - file: exports/quantum-mechanics-student.pdf
+      title: Download the book (PDF, exercises only)
+      static: true
+    - file: exports/quantum-mechanics.docx
+      title: Download the book (Word)
+      static: true
+  # The printable book. Built by scripts/build-exports.sh, which runs this
+  # twice -- once with MYST_PRINT=full, once with MYST_PRINT=student -- and
+  # renames the output. `level: 0` makes each chapter a \chapter rather than a
+  # \section, so LaTeX's own numbering lands on the same 1, 1.1, 1.2 the
+  # website shows; the titled `level: -1` entries are the part dividers for
+  # the printed book only (the website `toc:` below is a flat chapter list
+  # inside each part). index.md is the website's landing page and is not one
+  # of them; the printed book opens with the title and copyright pages in
+  # templates/book/template.tex, straight into \mainmatter and Chapter 1.
+  exports:
+    - id: book
+      # `pdf+tex` keeps the intermediate .tex, which scripts/tex-to-docx.py
+      # feeds to pandoc -- MyST's own --docx writes raw LaTeX strings into Word
+      # equation fields, which is unreadable at any scale.
+      format: pdf+tex
+      template: ./templates/book
+      output: exports/quantum-mechanics.pdf
+      articles:
+        - title: Quantum states and dynamics
+          level: -1
+        - file: chapters/ch-01-stern-gerlach.md
+          level: 0
+        - file: chapters/ch-02-states-amplitudes.md
+          level: 0
+        - file: chapters/ch-03-operators-measurement.md
+          level: 0
+        - file: chapters/ch-04-time-evolution.md
+          level: 0
+        - title: Composite and continuous systems
+          level: -1
+        - file: chapters/ch-05-composite-entanglement.md
+          level: 0
+        - file: chapters/ch-06-position-momentum.md
+          level: 0
+        - file: chapters/ch-07-one-dimensional-wave-mechanics.md
+          level: 0
+        - file: chapters/ch-08-three-dimensional-wave-mechanics.md
+          level: 0
+        - title: Structure and applications
+          level: -1
+        - file: chapters/ch-09-angular-momentum.md
+          level: 0
+        - file: chapters/ch-10-approximation-methods.md
+          level: 0
+        - file: chapters/ch-11-identical-particles.md
+          level: 0
+        - file: chapters/ch-12-modern-applications.md
+          level: 0
+  # Website sidebar: a flat reading order within each part. The right-hand page
+  # outline supplies each chapter's numbered sections.
   toc:
     - file: index.md
     - title: Quantum states and dynamics
@@ -42,10 +143,20 @@ project:
 site:
   template: book-theme
   title: Quantum Mechanics
+  nav:
+    - title: Sources & Attribution
+      url: https://github.com/QuadriviumPress/quantumMechanics/blob/main/SOURCES.md
+  actions:
+    - title: GitHub
+      url: https://github.com/QuadriviumPress/quantumMechanics
   options:
     logo: images/logo.svg
     logo_dark: images/logo-dark.svg
     logo_alt: Quantum state on a Bloch sphere
     logo_text: Quantum Mechanics
+    logo_url: /
     style: css/custom.css
     hide_authors: false
+    # Chapters number ## reading sections (N.1, N.2, …); depth 2 keeps the
+    # right-hand outline to those assignable units (plus Summary / Exercises).
+    outline_maxdepth: 2

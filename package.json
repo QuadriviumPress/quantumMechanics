@@ -9,14 +9,26 @@
     "npm": ">=10 <11"
   },
   "scripts": {
+    "check:toolchain": "node scripts/check-toolchain.mjs",
+    "h5p:prepare": "node scripts/prepare-h5p.mjs",
+    "prestart": "npm run check:toolchain && npm run h5p:prepare",
     "start": "myst start",
     "figures": "python3 scripts/generate_figures.py && python3 scripts/generate_figures_05_12.py",
+    "check:figures": "scripts/check-figures.sh",
+    "prebuild": "npm run check:toolchain && npm run h5p:prepare",
     "build": "myst build --html && node scripts/setup-pwa.mjs",
-    "verify": "python3 scripts/verify_book.py",
-    "test": "node --test tests/*.test.mjs",
+    "precheck": "npm run check:toolchain",
+    "verify": "npm run h5p:prepare && python3 scripts/verify_book.py",
+    "test": "node --test tests/*.test.mjs && python3 -m unittest discover -s tests -p 'test_*.py'",
+    "test:exports": "python3 scripts/smoke-exports.py",
+    "build:exports": "scripts/build-exports.sh all",
+    "build:pdf": "scripts/build-exports.sh pdf",
+    "build:chapters": "scripts/build-exports.sh chapters",
+    "build:docx": "scripts/build-exports.sh docx",
     "check": "npm run verify && npm test && myst build --html --strict --check-links"
   },
   "devDependencies": {
+    "fflate": "^0.8.2",
     "mystmd": "1.10.1",
     "sharp": "0.35.4",
     "yaml": "2.9.0"
