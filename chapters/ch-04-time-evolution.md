@@ -832,7 +832,7 @@ operator product acts on the ket from right to left.
 We can now assemble everything in this chapter into one of the most
 important protocols in atomic physics: a Ramsey sequence, which is really an
 interferometer built entirely in a two-state space, using pulses instead of
-beamsplitters. The protocol has five steps:
+beam splitters. The protocol has five steps:
 
 1. prepare $|+z\rangle$;
 2. apply $\hat R_y(\pi/2)$ to create $|+x\rangle$;
