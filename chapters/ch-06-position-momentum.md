@@ -869,7 +869,7 @@ $x$ analyzer.
 Computing $\phi(p)=\langle p|\psi\rangle$ from a known $\psi(x)$ is
 arithmetic: it uses one fixed state and asks what its coefficients look
 like in a different, already-chosen basis. Performing a momentum
-measurement is physical: it interacts the system with an apparatus,
+measurement is physical: it couples the system to an apparatus,
 produces one random outcome, and updates the state. The two operations can
 produce numerically identical-looking distributions $|\phi(p)|^2$—one as a
 computed property of the original state, one as a set of relative

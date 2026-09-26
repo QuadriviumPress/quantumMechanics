@@ -319,7 +319,7 @@ A bit-flip $\hat X_1$ sends the codeword to
 $\alpha|100\rangle+\beta|011\rangle$. Direct evaluation gives
 $\hat Z_1\hat Z_2|100\rangle=(-1)(+1)|100\rangle$ and
 $\hat Z_1\hat Z_2|011\rangle=(+1)(-1)|011\rangle$: both terms agree on
-eigenvalue $-1$, so the syndrome is well defined even though $\alpha,\beta$
+the eigenvalue $-1$, so the syndrome is well defined even though $\alpha,\beta$
 are unknown and different for the two terms. Repeating this check for every
 single bit flip gives
 

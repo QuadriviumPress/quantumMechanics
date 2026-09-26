@@ -148,8 +148,8 @@ higher-order corrections remain.
 Take the harmonic oscillator of Chapter 7,
 $\hat H_0=\hbar\omega(\hat a^\dagger\hat a+\tfrac12)$, perturbed by a quartic
 term $\hat V=\hat x^4$ with strength $\lambda$, so $\hat H=\hat H_0+\lambda\hat
-x^4$. Writing $\hat x=\sqrt{\hbar/(2m\omega)}\,(\hat a+\hat a^\dagger)$ and
-expanding $(\hat a+\hat a^\dagger)^4$, only terms that return to $|n\rangle$
+x^4$. When we write $\hat x=\sqrt{\hbar/(2m\omega)}\,(\hat a+\hat a^\dagger)$ and
+expand $(\hat a+\hat a^\dagger)^4$, only terms that return to $|n\rangle$
 survive the diagonal matrix element, and their combinatorics give
 
 ```{math}
@@ -287,7 +287,7 @@ exact ground energy.
 :::
 
 The variational method is safest for the ground state. The reason is worth
-making explicit rather than taken on faith. Expanding any normalized trial
+making explicit rather than taking on faith. Expanding any normalized trial
 state in the exact eigenbasis, $|\psi_{\mathrm{trial}}\rangle=\sum_nc_n|n
 \rangle$, gives $E_{\mathrm{trial}}=\sum_n|c_n|^2E_n$, a weighted average of
 *all* the exact energies with nonnegative weights summing to one. Such an

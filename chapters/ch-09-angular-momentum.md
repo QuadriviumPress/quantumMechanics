@@ -697,7 +697,7 @@ different energies and hence emit at two closely spaced wavelengths.
   states pick up a sign under a full $2\pi$ rotation.
 - Coupled and uncoupled bases organize the addition of angular momenta, with
   Clebsch–Gordan coefficients connecting them.
-- Two spins one-half combine into a symmetric triplet and an antisymmetric
+- Two spin-one-half systems combine into a symmetric triplet and an antisymmetric
   singlet; orbital and spin angular momentum combine into fine-structure
   multiplets with a predictable splitting pattern.
 

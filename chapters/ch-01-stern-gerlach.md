@@ -83,7 +83,7 @@ directly: a spot's position on the screen.
 
 Now we can ask what classical physics predicts for the result. Nothing in
 classical physics picks out a preferred direction for $\boldsymbol\mu$, so the
-atoms boiling off the oven should have their magnetic moments pointing every
+atoms emerging from the oven should have their magnetic moments pointing every
 which way. That means $\mu_z=\mu\cos\theta$ should take every value between
 $-\mu$ and $+\mu$, depending on each atom's orientation angle $\theta$.
 Combined with equation {eq}`sg-force`, this predicts a continuous smear of

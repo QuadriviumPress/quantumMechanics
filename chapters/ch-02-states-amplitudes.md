@@ -410,7 +410,7 @@ the $x$ basis is
 |-x\rangle=\frac{1}{\sqrt2}\left(|+z\rangle-|-z\rangle\right).
 ```
 
-and the $y$ basis is
+And the $y$ basis is
 
 ```{math}
 :label: y-states

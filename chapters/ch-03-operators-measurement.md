@@ -65,7 +65,7 @@ this special property.
 This is exactly the mathematical structure a measurement needs. An
 eigenvector is a preparation for which "applying the operator" returns a
 definite, predictable multiple of the same state, rather than mixing it into
-something new; the multiple it returns by is the number a measurement
+something new; the multiple it returns is the number a measurement
 would report. Sections 3.1–3.2 make this identification precise for spin,
 where the vectors involved are complex kets rather than real columns like
 $(1,1)$.

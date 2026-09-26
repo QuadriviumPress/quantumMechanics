@@ -406,7 +406,7 @@ record alone—a point Section 5.4 develops further.
 ## 5.4 Reduced states
 
 Suppose an experimenter has access only to spin $A$, and never touches spin
-$B$ at all, perhaps $B$ has been carried off to a distant laboratory. What can
+$B$ at all—perhaps $B$ has been carried off to a distant laboratory. What can
 that experimenter predict, given only the full joint state $\hat\rho_{AB}$?
 The answer is captured by the **reduced density operator**,
 
