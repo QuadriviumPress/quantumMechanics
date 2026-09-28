@@ -77,7 +77,7 @@ Keep this manifest with the export artifacts and release assets. Deployment
 runs `node scripts/export-metadata.mjs prepare` to show verified dates and
 revisions on the landing page and in the download menu. This updates the CI
 checkout's `index.md` and `myst.yml`; do not commit these generated labels.
-Older exports, or files whose hashes do not match, are explicitly labelled as
+Older exports, or files whose hashes do not match, are explicitly labeled as
 having an unavailable export date and revision.
 
 ## Release checklist

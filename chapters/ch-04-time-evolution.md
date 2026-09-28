@@ -456,7 +456,7 @@ same spirit as the recombination experiments of Chapters 1 and 2. Preparing
 $|+x\rangle$ creates two equal $z$-basis amplitudes, the field gives them
 different phases as time passes, and the final $x$ analyzer recombines those
 amplitudes into an interference pattern. The observed oscillation is the
-spin-space analogue of moving a phase plate through one arm of an ordinary
+spin-space analog of moving a phase plate through one arm of an ordinary
 path interferometer.
 
 :::{note} Two different roles for magnetic fields

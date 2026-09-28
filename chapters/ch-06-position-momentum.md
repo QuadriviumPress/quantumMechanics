@@ -43,7 +43,7 @@ Skip this box if replacing a sum with an integral already feels natural.
 
 For spin, completeness read $\sum_n|n\rangle\langle n|=\hat I$, a *finite*
 sum over two labels. Position has a continuous label $x$ in place of a
-discrete index $n$, and turning a sum into its continuum analogue always
+discrete index $n$, and turning a sum into its continuum analog always
 follows the same two-step recipe: chop the line into narrow bins of width
 $\Delta x$, write a Riemann sum over those bins, and then let
 $\Delta x\to0$ so the sum becomes an integral. If $|n;\Delta x\rangle$ is a
@@ -861,7 +861,7 @@ In momentum space the same abstract operators act differently:
 Nothing has happened to the particle when one changes from $\psi(x)$ to
 $\phi(p)$. One has simply changed the basis used to describe the same ket. A
 physical position measurement, by contrast, changes conditional predictions
-through state update. This distinction is the continuous analogue of
+through state update. This distinction is the continuous analog of
 rewriting a spin ket in the $x$ basis versus actually sending it through an
 $x$ analyzer.
 

@@ -22,7 +22,7 @@ suppliers are used, both of which require attribution and receive it through
 that link:
 
 - **PhET Interactive Simulations** (University of Colorado Boulder), CC-BY 4.0.
-  The `{phet}` directive addresses PhET's HTML5 catalogue; `{phet-legacy}`
+  The `{phet}` directive addresses PhET's HTML5 catalog; `{phet-legacy}`
   addresses its pre-HTML5 Java simulations, which PhET now runs in the browser
   through CheerpJ and which remain the only interactive treatment of bound
   states and tunneling.

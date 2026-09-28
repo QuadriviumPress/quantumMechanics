@@ -312,7 +312,7 @@ result becomes uncertain. This does not prove that no underlying disturbance
 occurs; it shows that "mere random jostling" lacks the structure needed to
 explain the observations.
 
-Order matters here in a way that has no classical analogue. Compare
+Order matters here in a way that has no classical analog. Compare
 
 ```{math}
 z+\longrightarrow z+\longrightarrow x

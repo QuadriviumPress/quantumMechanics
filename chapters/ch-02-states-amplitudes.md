@@ -928,7 +928,7 @@ statistics also remain 50–50.
 
 Compare a classical biased coin with a quantum "coin" prepared in
 superposition. Both can be tuned to land heads half the time, yet only the
-quantum coin has a measurement basis—an analogue of the $x$ analyzer
+quantum coin has a measurement basis—an analog of the $x$ analyzer
 above—in which the 50–50 outcome disappears entirely.
 ```
 

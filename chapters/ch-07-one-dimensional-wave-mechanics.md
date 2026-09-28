@@ -419,7 +419,7 @@ does not assign a trajectory in which an individual particle travels in and
 then returns.
 
 Writing $r$ in polar form exposes a reflection *phase shift* with no
-classical analogue. If $\kappa\to\infty$ (an infinitely high step, i.e. an
+classical analog. If $\kappa\to\infty$ (an infinitely high step, i.e. an
 infinite wall), $r\to-1$: the familiar node-forcing hard-wall reflection.
 For finite $\kappa$, the phase interpolates continuously between this
 hard-wall value and $r\to+1$ as $E\to V_0^-$—which matches the $E>V_0$
