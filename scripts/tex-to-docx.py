@@ -79,6 +79,36 @@ def flatten(master: Path) -> str:
     return re.sub(r"\\include\{([^}]+)\}", substitute, body)
 
 
+# myst-to-tex turns a Markdown thematic break into this; pandoc's LaTeX reader
+# cannot parse the nested braces and aborts. plugins/export.mjs rewrites the
+# break before export, but keep the substitution as a backstop for a .tex that
+# was built without that plugin path.
+_CENTERLINE_RULE = re.compile(r"\\centerline\{\\rule\{[^}]+\}\{[^}]+\}\}")
+
+# Pandoc's math reader rejects a few macros XeLaTeX accepts. Rewrite them to
+# forms that still become OMML in Word, so ``--fail-if-warnings`` does not
+# abort a DOCX that is otherwise fine.
+_PANDOC_MATH_REPLACEMENTS = (
+    (re.compile(r"\\text\{\\textdegree\s*C\}"), r"^{\\circ}\\mathrm{C}"),
+    (r"\textdegree", r"^{\circ}"),
+    (r"\Bigl", r"\bigl"),
+    (r"\Bigr", r"\bigr"),
+    (r"\biggl", r"\bigl"),
+    (r"\biggr", r"\bigr"),
+)
+
+
+def sanitize_for_pandoc(body: str) -> str:
+    """Rewrite TeX that XeLaTeX accepts but pandoc's LaTeX reader rejects."""
+    body = _CENTERLINE_RULE.sub(r"\\par\\medskip", body)
+    for pattern, replacement in _PANDOC_MATH_REPLACEMENTS:
+        if isinstance(pattern, re.Pattern):
+            body = pattern.sub(replacement, body)
+        else:
+            body = body.replace(pattern, replacement)
+    return body
+
+
 def rasterize(body: str, tex_dir: Path, out_dir: Path, dpi: int) -> str:
     """Convert every PDF figure the body references to PNG, and repoint it.
 
@@ -167,7 +197,7 @@ def main() -> int:
     work.mkdir(parents=True, exist_ok=True)
 
     print(f"Assembling {master} for pandoc")
-    body = rasterize(flatten(master), args.tex_dir, work, args.dpi)
+    body = sanitize_for_pandoc(rasterize(flatten(master), args.tex_dir, work, args.dpi))
     flat = work / "flat.tex"
     flat.write_text(PREAMBLE + body + "\n\\end{document}\n", encoding="utf-8")
 

@@ -38,6 +38,7 @@ test('full edition retains solutions and opens dropdowns', async () => {
 test('print rewrite removes iframes, flattens captions, and converts asides', async () => {
   const { rewrite } = await edition('full');
   assert.deepEqual(rewrite({ type: 'iframe' }), []);
+  assert.match(rewrite({ type: 'thematicBreak' })[0].tex, /medskip/);
   assert.equal(rewrite({ type: 'aside', children: [] })[0].type, 'blockquote');
   const [caption] = rewrite({
     type: 'caption',

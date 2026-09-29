@@ -17,6 +17,7 @@ npm run precheck
 npm run verify
 npm run check
 npm run check:figures
+npm run check:project
 npm run test
 npm run test:exports
 npm run build:exports
@@ -31,9 +32,11 @@ npm run figures
 ## Intentional differences
 
 - `check:toolchain` and `h5p:prepare` support H5P. `prestart` and `prebuild` run both. There is no `h5p:generate` or `h5p:check`.
-- `verify` runs H5P prepare, `python3 scripts/verify_book.py`, and `npm test`, so `check` can stay `npm run verify && myst build --html --strict --check-links`.
-- `figures` regenerates chapter figures. `check:figures`, `test:exports`, `build:exports`, `build:pdf`, `build:chapters`, and `build:docx` cover figures and print editions.
+- `verify` runs H5P prepare, `python3 scripts/verify_book.py`, `check:project`, and `npm test`, so `check` can stay `npm run verify && myst build --html --strict --check-links`.
+- `figures` regenerates chapter figures. `check:figures`, `check:project`, `test:exports`, `build:exports`, `build:pdf`, `build:chapters`, and `build:docx` cover figures, project metadata, and print editions.
+- `check:project` checks that the website table of contents and the print export list the same chapter files, and that every figure has alternative text.
 - `devDependencies` includes `fflate`.
+- `scripts/setup-pwa.mjs` deletes the duplicate `/build/h5p` copy MyST emits and marks H5P iframes `loading="lazy"`.
 
 ## Presentation gap
 

@@ -13,6 +13,11 @@ const url = (name = '') => `${basePath}${name}`.replace(/\/+/g, '/');
 
 if (!fs.existsSync(output)) throw new Error('Missing _build/html; run MyST before PWA setup.');
 
+// MyST also copies static files below /build. H5P uses the stable root copy;
+// remove the unreachable duplicate to avoid nearly doubling deployments.
+const duplicateH5p = path.join(output, 'build', 'h5p');
+if (fs.existsSync(duplicateH5p)) fs.rmSync(duplicateH5p, { recursive: true });
+
 const title = config.project?.title || config.site?.title || 'MyST Book';
 const shortName = config.project?.short_title || title;
 const description = config.project?.description || `Read ${title} online or offline.`;
@@ -57,6 +62,10 @@ const tags = `<link rel="manifest" href="${url('manifest.webmanifest')}">\n<meta
 const registration = `<script>if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('${url('service-worker.js')}', { scope: '${basePath}' }).catch(console.error));</script>`;
 for (const file of htmlFiles) {
   let html = fs.readFileSync(file, 'utf8');
+  html = html.replace(
+    /<iframe\b(?![^>]*\bloading=)(?=[^>]*\bsrc=(['"])[^'"]*\/h5p\/embed\.html(?:\?[^'"]*)?\1)/gi,
+    '<iframe loading="lazy"'
+  );
   if (!html.includes('manifest.webmanifest')) html = html.replace('</head>', `${tags}\n</head>`);
   if (!html.includes('serviceWorker.register')) html = html.replace('</body>', `${registration}\n</body>`);
   fs.writeFileSync(file, html);

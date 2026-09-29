@@ -226,6 +226,14 @@ function rewrite( node ) {
     case 'iframe':
       return [];
 
+    // A Markdown thematic break (`---`). myst-to-tex writes
+    // `\centerline{\rule{13cm}{0.4pt}}`, which XeLaTeX accepts but pandoc's
+    // LaTeX reader rejects with "unexpected {", aborting the DOCX build. A
+    // small vertical gap separates sections the same way on paper and
+    // survives into Word.
+    case 'thematicBreak':
+      return [ tex( '\\par\\medskip\n' ) ];
+
     case 'exercise':
       return [ toBlock( node, 'Exercise', 'mystexercise' ) ];
 

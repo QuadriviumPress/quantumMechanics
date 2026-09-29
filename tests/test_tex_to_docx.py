@@ -35,3 +35,18 @@ class ConverterTests(unittest.TestCase):
                 self.assertIn("300", run.call_args.args[0])
             self.assertIn("{files/plot.png}", result)
             self.assertIn("{https://example.test/book.pdf}", result)
+
+    def test_centerline_rule_is_rewritten_for_pandoc(self):
+        body = "before\n\\centerline{\\rule{13cm}{0.4pt}}\nafter"
+        self.assertEqual(
+            converter.sanitize_for_pandoc(body),
+            "before\n\\par\\medskip\nafter",
+        )
+
+    def test_pandoc_fragile_math_macros_are_rewritten(self):
+        body = r"7.8\ \text{\textdegree C} and \Bigl(f + \frac{\Delta}{2}\Bigr)"
+        cleaned = converter.sanitize_for_pandoc(body)
+        self.assertNotIn(r"\textdegree", cleaned)
+        self.assertNotIn(r"\Bigl", cleaned)
+        self.assertIn(r"\bigl", cleaned)
+        self.assertIn(r"^{\circ}", cleaned)
