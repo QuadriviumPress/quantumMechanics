@@ -45,6 +45,14 @@ project:
   # plugins/export.mjs strips the iframe before the tex renderer sees it, but a
   # stray one must not fail the build.
   error_rules:
+    # Remote hosts often answer 403, 404, or 5xx to the CI checker even when the
+    # page is fine in a browser. Internal links and missing files still fail.
+    - rule: link-resolves
+      severity: ignore
+      keys:
+        - "{http,https}://**"
+    - rule: doi-link-valid
+      severity: ignore
     - id: tex-renders
       severity: warn
     - id: docx-renders
