@@ -11,7 +11,7 @@
 #         npm run build:exports            (all of it)
 #         npm run build:pdf                (the two book PDFs only)
 #
-# Requires: Node 22 + npm 10, a TeX Live with XeLaTeX and latexmk, and Inkscape
+# Requires: Node 26 + npm 10, a TeX Live with XeLaTeX and latexmk, and Inkscape
 # (MyST converts SVG figures to PDF with it and with nothing else). The DOCX
 # additionally needs pandoc and poppler-utils; ImageMagick is an optional local
 # fallback for rasterization. See README.md.

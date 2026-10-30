@@ -6,7 +6,7 @@ discussed in an issue first.
 
 ## Development environment
 
-Use Node 22 and npm 10. The versions are declared in `.nvmrc`, `.node-version`,
+Use Node 26 and npm 10. The versions are declared in `.nvmrc`, `.node-version`,
 and `package.json`. With nvm:
 
 ```bash
@@ -82,7 +82,7 @@ having an unavailable export date and revision.
 
 ## Release checklist
 
-1. Run `npm ci` and `npm run check` with Node 22.
+1. Run `npm ci` and `npm run check` with Node 26.
 2. Run `npm run build:exports` and inspect the complete and student PDFs.
 3. Confirm that the student PDF omits solutions and that the DOCX contains math
    and figures.
