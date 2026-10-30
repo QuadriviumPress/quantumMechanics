@@ -22,7 +22,7 @@ The textbook contains twelve chapters:
 
 ## Build
 
-Node 26 and npm 10 are required (`nvm use` if you have nvm; see
+Node 26 and npm 11.20.0 are required (`nvm use` if you have nvm; see
 `.nvmrc`). The same floor is `engines.node` in `package.json`.
 
 ```bash

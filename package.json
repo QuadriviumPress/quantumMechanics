@@ -4,10 +4,10 @@
   "private": true,
   "description": "An open, spins-first undergraduate quantum mechanics textbook.",
   "license": "CC-BY-SA-4.0",
-  "packageManager": "npm@10.9.8",
+  "packageManager": "npm@11.20.0",
   "engines": {
     "node": ">=26",
-    "npm": ">=10 <11"
+    "npm": ">=11 <12"
   },
   "scripts": {
     "check:toolchain": "node scripts/check-toolchain.mjs",
@@ -30,7 +30,7 @@
     "figures": "python3 scripts/generate_figures.py && python3 scripts/generate_figures_05_12.py"
   },
   "devDependencies": {
-    "mystmd": "1.11.0",
+    "mystmd": "1.12.0",
     "sharp": "0.35.5",
     "yaml": "2.9.1",
     "fflate": "^0.8.2"

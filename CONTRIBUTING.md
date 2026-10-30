@@ -6,7 +6,7 @@ discussed in an issue first.
 
 ## Development environment
 
-Use Node 26 and npm 10. The versions are declared in `.nvmrc`, `.node-version`,
+Use Node 26 and npm 11.20.0. The versions are declared in `.nvmrc`, `.node-version`,
 and `package.json`. With nvm:
 
 ```bash
