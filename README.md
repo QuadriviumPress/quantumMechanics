@@ -22,8 +22,8 @@ The textbook contains twelve chapters:
 
 ## Build
 
-Node.js 22 and npm 10 are recommended (`nvm use` if you have nvm; see
-`.nvmrc`).
+Node 26 and npm 10 are required (`nvm use` if you have nvm; see
+`.nvmrc`). The same floor is `engines.node` in `package.json`.
 
 ```bash
 npm install
