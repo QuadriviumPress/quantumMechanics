@@ -9,11 +9,8 @@ This book follows the [QuadriviumPress MyST baseline](https://github.com/Quadriv
 ```bash
 npm run check:toolchain
 npm run h5p:prepare
-npm run prestart
 npm run start
-npm run prebuild
 npm run build
-npm run precheck
 npm run verify
 npm run check
 npm run check:figures
